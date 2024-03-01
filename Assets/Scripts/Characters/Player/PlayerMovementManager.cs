@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace Characters.Player {
     public class PlayerMovementManager : CharacterMovementScript {
@@ -38,6 +39,7 @@ namespace Characters.Player {
         }
 
         void HandleGroundMovement() {
+            if (_playerManager.movementLocked) return;
             _inputMovement = _playerManager.inputManager.MovementInput;
             _moveDirection = _camManagerTransform.forward * _inputMovement.y + _camManagerTransform.right * _inputMovement.x;
             _moveDirection.y = 0;
@@ -54,6 +56,7 @@ namespace Characters.Player {
         }
 
         void HandleRotation() {
+            if (_playerManager.rotationLocked) return;
             CheckRotationRelativeToCam();
             if (_targetRotation == Vector3.zero) return;
             Quaternion newRotation = Quaternion.LookRotation(_targetRotation);

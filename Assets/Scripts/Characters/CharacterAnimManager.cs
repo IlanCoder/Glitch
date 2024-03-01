@@ -15,10 +15,12 @@ namespace Characters {
         }
 
         public virtual void PlayTargetAnimation(string targetAnimation, bool cancellableAction,
-            bool applyRootMotion = true) {
+            bool lockMovement = true, bool lockRotation = true, bool applyRootMotion = true) {
             _character.animator.applyRootMotion = applyRootMotion;
             _character.animator.CrossFade(targetAnimation, 0.2f);
             _character.isPerformingAction = !cancellableAction;
+            _character.movementLocked = lockMovement;
+            _character.rotationLocked = lockRotation;
         }
     }
 }

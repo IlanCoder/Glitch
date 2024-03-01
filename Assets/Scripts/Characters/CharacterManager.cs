@@ -9,6 +9,8 @@ namespace Characters {
 
         #region Flags
         [HideInInspector] public bool isPerformingAction = false;
+        [HideInInspector] public bool rotationLocked = false;
+        [HideInInspector] public bool movementLocked = false;
         #endregion
         
         protected virtual void Awake() {
