@@ -13,5 +13,12 @@ namespace Characters {
             _character.animator.SetFloat("Horizontal", horizontal,0.1f, Time.deltaTime);
             _character.animator.SetFloat("Vertical", vertical,0.1f, Time.deltaTime);
         }
+
+        public virtual void PlayTargetAnimation(string targetAnimation, bool cancellableAction,
+            bool applyRootMotion = true) {
+            _character.animator.applyRootMotion = applyRootMotion;
+            _character.animator.CrossFade(targetAnimation, 0.2f);
+            _character.isPerformingAction = !cancellableAction;
+        }
     }
 }

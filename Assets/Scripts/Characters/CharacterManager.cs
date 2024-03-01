@@ -6,6 +6,10 @@ namespace Characters {
     public class CharacterManager : MonoBehaviour {
         [HideInInspector]public Animator animator;
         [HideInInspector]public CharacterController controller;
+
+        #region Flags
+        [HideInInspector] public bool isPerformingAction = false;
+        #endregion
         
         protected virtual void Awake() {
             DontDestroyOnLoad(gameObject);

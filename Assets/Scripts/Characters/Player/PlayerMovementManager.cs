@@ -2,8 +2,6 @@ using System.Diagnostics;
 using UnityEngine;
 
 namespace Characters.Player {
-    [RequireComponent(typeof(PlayerManager)), 
-     RequireComponent(typeof(PlayerInputManager))]
     public class PlayerMovementManager : CharacterMovementScript {
         [HideInInspector]public PlayerCamera playerCam;
 
@@ -13,33 +11,39 @@ namespace Characters.Player {
         [SerializeField] float rotationSpeed = 10;
         
         PlayerManager _playerManager;
-        PlayerInputManager _inputManager;
 
-        Transform _camTransform;
+        Transform _camManagerTransform;
+        Transform _camObjTransform;
         Vector3 _moveDirection;
         Vector3 _targetRotation;
         Vector2 _inputMovement;
 
+        Vector3 _dodgeDirection;
+
 
         protected override void Awake() {
             base.Awake();
-            _inputManager = GetComponent<PlayerInputManager>();
             _playerManager = GetComponent<PlayerManager>();
         }
         
         public void HandleMovement() {
+            GetCameraTransforms();
             HandleGroundMovement();
             HandleRotation();
         }
 
+        void GetCameraTransforms() {
+            _camManagerTransform = playerCam.transform;
+            _camObjTransform = playerCam.cam.transform;
+        }
+
         void HandleGroundMovement() {
-            _camTransform = playerCam.transform;
-            _inputMovement = _inputManager.MovementInput;
-            _moveDirection = _camTransform.forward * _inputMovement.y + _camTransform.right * _inputMovement.x;
+            _inputMovement = _playerManager.inputManager.MovementInput;
+            _moveDirection = _camManagerTransform.forward * _inputMovement.y + _camManagerTransform.right * _inputMovement.x;
             _moveDirection.y = 0;
             _moveDirection.Normalize();
 
-            switch (_inputManager.MoveAmount) {
+            switch (_playerManager.inputManager.MoveAmount) {
                 case 0.5f:
                     _playerManager.controller.Move(walkingSpeed * Time.deltaTime * _moveDirection);
                     break;
@@ -50,16 +54,28 @@ namespace Characters.Player {
         }
 
         void HandleRotation() {
-            Transform tempCamTransform = playerCam.cam.transform;
-            _targetRotation = tempCamTransform.forward * _inputMovement.y + tempCamTransform.right * _inputMovement.x;
-            _targetRotation.y = 0;
-            _targetRotation.Normalize();
-
+            CheckRotationRelativeToCam();
             if (_targetRotation == Vector3.zero) return;
             Quaternion newRotation = Quaternion.LookRotation(_targetRotation);
             Quaternion targetRotation =
                 Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
             transform.rotation = targetRotation;
+        }
+
+        void CheckRotationRelativeToCam() {
+            _targetRotation = _camObjTransform.forward * _inputMovement.y + _camObjTransform.right * _inputMovement.x;
+            _targetRotation.y = 0;
+            _targetRotation.Normalize();
+        }
+
+        public void AttemptToDodge() {
+            if (_playerManager.isPerformingAction) return;
+            if (_playerManager.inputManager.MoveAmount > 0) {
+                CheckRotationRelativeToCam();
+                Quaternion newRotation = Quaternion.LookRotation(_targetRotation);
+                transform.rotation = newRotation;
+                _playerManager.animManager.PlayTargetAnimation("Dodge", false);
+            }
         }
     }
 }

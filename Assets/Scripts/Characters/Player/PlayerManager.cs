@@ -1,22 +1,28 @@
 using UnityEngine;
 
 namespace Characters.Player {
-    [RequireComponent(typeof(PlayerMovementManager))]
+    [RequireComponent(typeof(PlayerMovementManager)),
+     RequireComponent(typeof(PlayerInputManager)),
+     RequireComponent(typeof(PlayerAnimManager))]
     public class PlayerManager : CharacterManager {
-        PlayerMovementManager _movementManager;
         [SerializeField] PlayerCamera playerCamera;
+        [HideInInspector]public PlayerMovementManager movementManager;
+        [HideInInspector]public PlayerInputManager inputManager;
+        [HideInInspector]public PlayerAnimManager animManager;
         
         protected override void Awake() {
             base.Awake();
-            _movementManager = GetComponent<PlayerMovementManager>();
-            _movementManager.playerCam = playerCamera;
+            animManager = GetComponent<PlayerAnimManager>();
+            inputManager = GetComponent<PlayerInputManager>();
+            movementManager = GetComponent<PlayerMovementManager>();
+            movementManager.playerCam = playerCamera;
             playerCamera.player = this;
-            playerCamera.inputManager = GetComponent<PlayerInputManager>();
+            playerCamera.inputManager = inputManager;
         }
 
         protected override void Update() {
             base.Update();
-            _movementManager.HandleMovement();
+            movementManager.HandleMovement();
         }
 
         protected override void LateUpdate() {
