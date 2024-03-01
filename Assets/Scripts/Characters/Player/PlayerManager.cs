@@ -5,6 +5,7 @@ namespace Characters.Player {
     public class PlayerManager : CharacterManager {
         PlayerMovementManager _movementManager;
         [SerializeField] PlayerCamera playerCamera;
+        
         protected override void Awake() {
             base.Awake();
             _movementManager = GetComponent<PlayerMovementManager>();

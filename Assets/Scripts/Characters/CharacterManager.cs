@@ -2,12 +2,15 @@ using System;
 using UnityEngine;
 
 namespace Characters {
-    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(CharacterController)),RequireComponent(typeof(Animator))]
     public class CharacterManager : MonoBehaviour {
+        [HideInInspector]public Animator animator;
         [HideInInspector]public CharacterController controller;
+        
         protected virtual void Awake() {
             DontDestroyOnLoad(gameObject);
             controller = GetComponent<CharacterController>();
+            animator = GetComponent<Animator>();
         }
 
         protected virtual void Update() {

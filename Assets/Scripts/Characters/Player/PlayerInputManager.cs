@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 using WorldManager;
 
 namespace Characters.Player {
+    [RequireComponent(typeof(PlayerAnimManager))]
     public class PlayerInputManager : MonoBehaviour {
 
         [SerializeField] WorldSaveManager worldSaveManager;
         PlayerControls _playerControls;
+        PlayerAnimManager _animManager;
         
         public Vector2 MovementInput { get; private set; }
         public float MoveAmount{ get; private set; }
@@ -16,8 +18,8 @@ namespace Characters.Player {
         public Vector2 CameraInput { get; private set; }
 
         void Awake() {
-            DontDestroyOnLoad(gameObject);
             SceneManager.activeSceneChanged += OnSceneChanged;
+            _animManager = GetComponent<PlayerAnimManager>();
             enabled = false;
         }
         
@@ -56,6 +58,9 @@ namespace Characters.Player {
                 default: MoveAmount = 1;
                     break;
             }
+            _animManager.UpdateMovementParameters(0, MoveAmount);
+
+
         }
     }
 }
