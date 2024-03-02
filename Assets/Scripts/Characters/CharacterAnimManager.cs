@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Characters {
     [RequireComponent(typeof(CharacterManager))]
@@ -15,10 +14,10 @@ namespace Characters {
         }
 
         public virtual void PlayTargetAnimation(string targetAnimation, bool cancellableAction,
-            bool lockMovement = true, bool lockRotation = true, bool applyRootMotion = true) {
-            _character.animator.applyRootMotion = applyRootMotion;
-            _character.animator.CrossFade(targetAnimation, 0.2f);
+            bool lockMovement = true, bool lockRotation = true) {
             _character.isPerformingAction = !cancellableAction;
+            _character.animator.applyRootMotion = lockMovement;
+            _character.animator.CrossFade(targetAnimation, 0.2f);
             _character.movementLocked = lockMovement;
             _character.rotationLocked = lockRotation;
         }

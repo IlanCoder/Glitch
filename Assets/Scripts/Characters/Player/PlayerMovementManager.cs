@@ -1,6 +1,4 @@
-using System.Diagnostics;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 namespace Characters.Player {
     public class PlayerMovementManager : CharacterMovementScript {
