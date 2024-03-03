@@ -40,10 +40,12 @@ namespace Characters.Player {
         void HandleGroundMovement() {
             if (_playerManager.movementLocked) return;
             _inputMovement = _playerManager.inputManager.MovementInput;
-            _moveDirection = _camManagerTransform.forward * _inputMovement.y + _camManagerTransform.right * _inputMovement.x;
+            _moveDirection = _camManagerTransform.forward * _inputMovement.y + 
+                             _camManagerTransform.right * _inputMovement.x;
             _moveDirection.y = 0;
             _moveDirection.Normalize();
             _playerManager.controller.Move(GetGroundSpeed() * Time.deltaTime * _moveDirection);
+            _playerManager.animManager.UpdateMovementParameters(0, _playerManager.inputManager.MoveAmount);
         }
 
         float GetGroundSpeed()

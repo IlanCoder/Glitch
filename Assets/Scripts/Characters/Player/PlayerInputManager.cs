@@ -74,7 +74,6 @@ namespace Characters.Player {
                 default: MoveAmount = 1;
                     break;
             }
-            _playerManager.animManager.UpdateMovementParameters(0, MoveAmount);
         }
 
         void HandleDodge()
