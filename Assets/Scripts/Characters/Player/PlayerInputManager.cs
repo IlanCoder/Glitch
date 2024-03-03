@@ -13,14 +13,13 @@ namespace Characters.Player {
         #region Player Movement Vars
         public Vector2 MovementInput { get; private set; }
         public float MoveAmount{ get; private set; }
+        bool _dodge = false;
+        bool _sprint = false;
 #endregion
+
         #region Camera Vars
         public Vector2 CameraInput { get; private set; }
 #endregion
-
-        #region Dodge Vars
-        bool _dodge = false;
-        #endregion
 
         void Awake() {
             SceneManager.activeSceneChanged += OnSceneChanged;
@@ -32,10 +31,12 @@ namespace Characters.Player {
             if (_playerControls == null) {
                 _playerControls = new PlayerControls();
                 _playerControls.PlayerMovement.Movement.performed += i => 
-                MovementInput = i.ReadValue<Vector2>();
-                _playerControls.PlayerMovement.Dodge.performed += i => _dodge = true;
+                    MovementInput = i.ReadValue<Vector2>();
                 _playerControls.PlayerCamera.Movement.performed += i => 
-                CameraInput = i.ReadValue<Vector2>();
+                    CameraInput = i.ReadValue<Vector2>();
+                _playerControls.PlayerMovement.Dodge.performed += i => _dodge = true;
+                _playerControls.PlayerMovement.Sprint.performed += i => _sprint = true;
+                _playerControls.PlayerMovement.Sprint.canceled += i => _sprint = false;
             }
             _playerControls.Enable();
         }
@@ -49,8 +50,9 @@ namespace Characters.Player {
         }
 
         void Update() {
-            HandleMovement();
             HandleDodge();
+            HandleSprint();
+            HandleMovement();
         }
 
         void OnSceneChanged(Scene oldScene, Scene newScene) {
@@ -59,6 +61,11 @@ namespace Characters.Player {
 
         void HandleMovement() {
             MoveAmount = Mathf.Clamp01(Mathf.Abs(MovementInput.x) + Mathf.Abs(MovementInput.y));
+            if (_playerManager.isSprinting)
+            {
+                MoveAmount = 2;
+                return;
+            }
             switch (MoveAmount) {
                 case 0: break;
                 case <= 0.5f:
@@ -70,11 +77,22 @@ namespace Characters.Player {
             _playerManager.animManager.UpdateMovementParameters(0, MoveAmount);
         }
 
-        void HandleDodge() {
-            if (_dodge) {
-                _dodge = false;
-                _playerManager.movementManager.AttemptToDodge();
+        void HandleDodge()
+        {
+            if (!_dodge) return;
+            _dodge = false;
+            _playerManager.movementManager.AttemptToDodge();
+        }
+
+        void HandleSprint()
+        {
+            if (!_sprint)
+            {
+                if(!_playerManager.isSprinting) return;
+                _playerManager.isSprinting = false;
+                return;
             }
+            _playerManager.movementManager.HandleSprint();
         }
     }
 }

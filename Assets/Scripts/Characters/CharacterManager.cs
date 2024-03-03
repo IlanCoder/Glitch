@@ -8,9 +8,10 @@ namespace Characters {
         [HideInInspector]public CharacterController controller;
 
         #region Flags
-        [HideInInspector] public bool isPerformingAction = false;
-        [HideInInspector] public bool rotationLocked = false;
-        [HideInInspector] public bool movementLocked = false;
+        [HideInInspector] public bool isPerformingAction;
+        [HideInInspector] public bool rotationLocked;
+        [HideInInspector] public bool movementLocked;
+        [HideInInspector] public bool isSprinting;
         #endregion
         
         protected virtual void Awake() {

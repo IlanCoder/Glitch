@@ -7,9 +7,9 @@ namespace Characters.Player {
         [Header("Speeds")]
         [SerializeField] float walkingSpeed = 2;
         [SerializeField] float runningSpeed = 4;
+        [SerializeField] float sprintSpeed = 6;
         [SerializeField] float rotationSpeed = 10;
-        float _groundedSpeed;
-        
+
         PlayerManager _playerManager;
 
         Transform _camManagerTransform;
@@ -43,17 +43,19 @@ namespace Characters.Player {
             _moveDirection = _camManagerTransform.forward * _inputMovement.y + _camManagerTransform.right * _inputMovement.x;
             _moveDirection.y = 0;
             _moveDirection.Normalize();
+            _playerManager.controller.Move(GetGroundSpeed() * Time.deltaTime * _moveDirection);
+        }
 
+        float GetGroundSpeed()
+        {
+            if (_playerManager.isSprinting) return sprintSpeed;
             switch (_playerManager.inputManager.MoveAmount) {
                 case 0.5f:
-                    _groundedSpeed = walkingSpeed;
-                    break;
+                    return walkingSpeed;
                 case 1:
-                    _groundedSpeed = runningSpeed;
-                    break;
+                    return runningSpeed;
+                default: return 0;
             }
-
-            _playerManager.controller.Move(_groundedSpeed * Time.deltaTime * _moveDirection);
         }
 
         void HandleRotation() {
@@ -82,6 +84,12 @@ namespace Characters.Player {
                 return;
             }
             _playerManager.animManager.PlayTargetAnimation("Dodge_B", false);
+        }
+
+        public void HandleSprint()
+        {
+            if (_playerManager.isPerformingAction) return;
+            _playerManager.isSprinting = true;
         }
     }
 }
