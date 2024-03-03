@@ -8,6 +8,7 @@ namespace Characters.Player {
         [SerializeField] float walkingSpeed = 2;
         [SerializeField] float runningSpeed = 4;
         [SerializeField] float rotationSpeed = 10;
+        float _groundedSpeed;
         
         PlayerManager _playerManager;
 
@@ -45,12 +46,14 @@ namespace Characters.Player {
 
             switch (_playerManager.inputManager.MoveAmount) {
                 case 0.5f:
-                    _playerManager.controller.Move(walkingSpeed * Time.deltaTime * _moveDirection);
+                    _groundedSpeed = walkingSpeed;
                     break;
                 case 1:
-                    _playerManager.controller.Move(runningSpeed * Time.deltaTime * _moveDirection);
+                    _groundedSpeed = runningSpeed;
                     break;
             }
+
+            _playerManager.controller.Move(_groundedSpeed * Time.deltaTime * _moveDirection);
         }
 
         void HandleRotation() {
@@ -75,8 +78,10 @@ namespace Characters.Player {
                 CheckRotationRelativeToCam();
                 Quaternion newRotation = Quaternion.LookRotation(_targetRotation);
                 transform.rotation = newRotation;
-                _playerManager.animManager.PlayTargetAnimation("Dodge", false);
+                _playerManager.animManager.PlayTargetAnimation("Dodge_F", false);
+                return;
             }
+            _playerManager.animManager.PlayTargetAnimation("Dodge_B", false);
         }
     }
 }
