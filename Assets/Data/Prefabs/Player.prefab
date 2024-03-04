@@ -1586,9 +1586,10 @@ GameObject:
   - component: {fileID: 5738588397391005857}
   - component: {fileID: 4705518008009068066}
   - component: {fileID: 8605303721872254329}
+  - component: {fileID: 8043861301878091408}
+  - component: {fileID: -2887517767363528626}
   - component: {fileID: 5697119794618443428}
   - component: {fileID: 7987833362174241047}
-  - component: {fileID: 8043861301878091408}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1630,10 +1631,12 @@ MonoBehaviour:
   isPerformingAction: 0
   rotationLocked: 0
   movementLocked: 0
+  isSprinting: 0
   playerCamera: {fileID: 0}
   movementManager: {fileID: 0}
   inputManager: {fileID: 0}
   animManager: {fileID: 0}
+  statManager: {fileID: 0}
 --- !u!114 &4705518008009068066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1649,7 +1652,11 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   walkingSpeed: 2
   runningSpeed: 4
+  sprintSpeed: 6
   rotationSpeed: 20
+  sprintCost: 3
+  rollCost: 10
+  backStepCost: 20
 --- !u!114 &8605303721872254329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1663,6 +1670,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldSaveManager: {fileID: 0}
+--- !u!114 &8043861301878091408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443002251341178569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f49b8164cc4837a267e48f53e5effb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2887517767363528626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443002251341178569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a1a6f1d9a76fa41996a5f39c5fc73c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endurance: 1
+  staminaRegen: 1
+  staminaRegenDelay: 1
+  onStaminaChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onMaxStaminaChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &5697119794618443428
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1710,18 +1750,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8043861301878091408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7443002251341178569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f49b8164cc4837a267e48f53e5effb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7536215720965947221
 GameObject:
   m_ObjectHideFlags: 0

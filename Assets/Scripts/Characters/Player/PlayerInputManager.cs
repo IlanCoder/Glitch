@@ -10,6 +10,7 @@ namespace Characters.Player {
         [SerializeField] WorldSaveManager worldSaveManager;
         PlayerControls _playerControls;
         PlayerManager _playerManager;
+        
         #region Player Movement Vars
         public Vector2 MovementInput { get; private set; }
         public float MoveAmount{ get; private set; }
@@ -61,8 +62,7 @@ namespace Characters.Player {
 
         void HandleMovement() {
             MoveAmount = Mathf.Clamp01(Mathf.Abs(MovementInput.x) + Mathf.Abs(MovementInput.y));
-            if (_playerManager.isSprinting)
-            {
+            if (_playerManager.isSprinting) {
                 MoveAmount = 2;
                 return;
             }
@@ -76,17 +76,14 @@ namespace Characters.Player {
             }
         }
 
-        void HandleDodge()
-        {
+        void HandleDodge() {
             if (!_dodge) return;
             _dodge = false;
             _playerManager.movementManager.AttemptToDodge();
         }
 
-        void HandleSprint()
-        {
-            if (!_sprint)
-            {
+        void HandleSprint() {
+            if (!_sprint) {
                 if(!_playerManager.isSprinting) return;
                 _playerManager.isSprinting = false;
                 return;

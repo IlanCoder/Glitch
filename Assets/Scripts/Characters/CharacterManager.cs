@@ -27,5 +27,7 @@ namespace Characters {
         protected virtual void LateUpdate() {
             
         }
+        
+        
     }
 }

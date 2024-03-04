@@ -1,8 +1,9 @@
 using UnityEngine;
 
 namespace Characters.Player {
-    public class PlayerMovementManager : CharacterMovementScript {
+    public class PlayerMovementManager : CharacterMovementManager {
         [HideInInspector]public PlayerCamera playerCam;
+        PlayerManager _playerManager;
 
         [Header("Speeds")]
         [SerializeField] float walkingSpeed = 2;
@@ -10,8 +11,11 @@ namespace Characters.Player {
         [SerializeField] float sprintSpeed = 6;
         [SerializeField] float rotationSpeed = 10;
 
-        PlayerManager _playerManager;
-
+        [Header("Stamina Costs")] 
+        [SerializeField, Min(0.1f)] float sprintCost;
+        [SerializeField, Min(1)] int rollCost;
+        [SerializeField, Min(1)] int backStepCost;
+            
         Transform _camManagerTransform;
         Transform _camObjTransform;
         Vector3 _moveDirection;
@@ -19,7 +23,6 @@ namespace Characters.Player {
         Vector2 _inputMovement;
 
         Vector3 _dodgeDirection;
-
 
         protected override void Awake() {
             base.Awake();
@@ -77,21 +80,31 @@ namespace Characters.Player {
         }
 
         public void AttemptToDodge() {
-            if (_playerManager.isPerformingAction) return;
+            if (!CanPerformStaminaAction()) return;
             if (_playerManager.inputManager.MoveAmount > 0) {
                 CheckRotationRelativeToCam();
                 Quaternion newRotation = Quaternion.LookRotation(_targetRotation);
                 transform.rotation = newRotation;
                 _playerManager.animManager.PlayTargetAnimation("Dodge_F", false);
+                _playerManager.statManager.UseStamina(rollCost);
                 return;
             }
             _playerManager.animManager.PlayTargetAnimation("Dodge_B", false);
+            _playerManager.statManager.UseStamina(backStepCost);
         }
 
-        public void HandleSprint()
-        {
-            if (_playerManager.isPerformingAction) return;
+        public void HandleSprint() {
+            if (!CanPerformStaminaAction()) {
+                _playerManager.isSprinting = false;
+                return;
+            }
             _playerManager.isSprinting = true;
+            _playerManager.statManager.UseStamina(sprintCost * Time.deltaTime);
+        }
+
+        bool CanPerformStaminaAction() {
+            if (_playerManager.isPerformingAction) return false;
+            return _playerManager.statManager.CurrentStamina > 0;
         }
     }
 }
