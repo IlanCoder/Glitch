@@ -1694,15 +1694,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a1a6f1d9a76fa41996a5f39c5fc73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endurance: 1
-  staminaRegen: 1
+  endurance: 10
+  staminaRegen: 5
   staminaRegenDelay: 1
   onStaminaChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Characters.Player.PlayerUI.HUDManager, Assembly-CSharp
+        m_MethodName: SetNewStaminaValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onMaxStaminaChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Characters.Player.PlayerUI.HUDManager, Assembly-CSharp
+        m_MethodName: SetNewMaxStaminaValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!143 &5697119794618443428
 CharacterController:
   m_ObjectHideFlags: 0

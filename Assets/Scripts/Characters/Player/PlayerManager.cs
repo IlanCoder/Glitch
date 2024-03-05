@@ -1,5 +1,6 @@
 using System;
 using Characters.Player.PlayerUI;
+using SaveSystem;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
@@ -35,6 +36,18 @@ namespace Characters.Player {
             base.LateUpdate();
             playerCamera.HandleCamera();
         }
-        
+
+        public void SavePlayerData(ref PlayerSaveData saveData) {
+            saveData.PlayerName = statManager.characterName;
+            Vector3 position = transform.position;
+            saveData.PlayerXPos = position.x;
+            saveData.PlayerYPos = position.y;
+            saveData.PlayerZPos = position.y;
+        }
+
+        public void LoadPlayerData(ref PlayerSaveData saveData) {
+            statManager.characterName = saveData.PlayerName;
+            transform.position = new Vector3(saveData.PlayerXPos, saveData.PlayerYPos, saveData.PlayerZPos);
+        }
     }
 }

@@ -7,6 +7,9 @@ using UnityEngine.Serialization;
 namespace Characters {
     public class CharacterStatManager : MonoBehaviour {
         PlayerManager _playerManager;
+
+        public string characterName = "Character";
+        
         [Header("Main Stats")] 
         [SerializeField,Range(1, 99)] protected int endurance = 1;
 
