@@ -94,7 +94,8 @@ namespace Characters.Player {
         }
 
         public void HandleSprint() {
-            if (!CanPerformStaminaAction()) {
+            if (!CanPerformStaminaAction() || 
+                _playerManager.inputManager.MoveAmount < 0.5f) {
                 _playerManager.isSprinting = false;
                 return;
             }

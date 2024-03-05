@@ -41,7 +41,7 @@ namespace WorldManager {
             #endif
             _currentSaveData = _saveFileEditor.LoadSaveFile();
             player.LoadPlayerData(ref _currentSaveData);
-            StartCoroutine(LoadWorld());
+            //StartCoroutine(LoadWorld());
         }
         [ContextMenu("Save")]
         public void SaveGame() {
@@ -52,7 +52,7 @@ namespace WorldManager {
             _saveFileEditor = new SaveFileEditor(Application.persistentDataPath, _fileName);
             #endif
             player.SavePlayerData(ref _currentSaveData);
-            _saveFileEditor.CreateFile(_currentSaveData);
+            _saveFileEditor.SaveFile(_currentSaveData);
         }
         
         public IEnumerator LoadWorld() {

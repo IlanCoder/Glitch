@@ -13,15 +13,15 @@ namespace SaveSystem {
         }
         
         public bool CheckFileExists() {
-            return File.Exists(Path.Combine(_saveDataPath,_saveFileName));
+            return File.Exists(Path.Combine(_saveDataPath, _saveFileName));
         }
 
         public void DeleteFile() {
-            File.Delete(Path.Combine(_saveDataPath,_saveDataPath));
+            File.Delete(Path.Combine(_saveDataPath, _saveFileName));
         }
 
-        public void CreateFile(PlayerSaveData playerData) {
-            string savePath = Path.Combine(_saveDataPath, _saveDataPath);
+        public void SaveFile(PlayerSaveData playerData) {
+            string savePath = Path.Combine(_saveDataPath, _saveFileName);
             try {
                 Directory.CreateDirectory(Path.GetDirectoryName(savePath)!);
 
@@ -30,6 +30,8 @@ namespace SaveSystem {
                 FileStream stream = new FileStream(savePath, FileMode.Create);
                 StreamWriter writer = new StreamWriter(stream);
                 writer.Write(dataToStore);
+                writer.Close();
+                stream.Close();
             } catch (Exception ex) {
                 Debug.LogError($"Error whilst trying to save player data\n{ex}");
             }
@@ -37,12 +39,14 @@ namespace SaveSystem {
 
         public PlayerSaveData LoadSaveFile() {
             PlayerSaveData playerData = null;
-            string loadPath = Path.Combine(_saveDataPath, _saveDataPath);
+            string loadPath = Path.Combine(_saveDataPath, _saveFileName);
             if (!File.Exists(loadPath)) return null;
             try {
                 FileStream stream = new FileStream(loadPath, FileMode.Open);
                 StreamReader reader = new StreamReader(stream);
                 string dataToLoad = reader.ReadToEnd();
+                reader.Close();
+                stream.Close();
                 
                 playerData = JsonUtility.FromJson<PlayerSaveData>(dataToLoad);
             }
