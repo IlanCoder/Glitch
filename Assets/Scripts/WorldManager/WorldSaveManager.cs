@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Characters.Player;
@@ -12,51 +13,74 @@ namespace WorldManager {
         [SerializeField] PlayerManager player;
         SaveFileEditor _saveFileEditor;
 
-        int _currentSaveDataIndex = 0;
+        public int currentSaveDataIndex;
         PlayerSaveData _currentSaveData = new PlayerSaveData();
         string _fileName;
-        
-        public List<PlayerSaveData> CharacterSlots = new List<PlayerSaveData>(10);
-        
+
+        public PlayerSaveData[] CharacterSlots { get; private set; } = new PlayerSaveData[10];
+
         void Awake() {
-            DontDestroyOnLoad(gameObject);
+            LoadWorldManager();
         }
 
-        void GetSaveFileNameBasesOnIndex() {
-            _fileName = $"CharacterSlot_{_currentSaveDataIndex}";
+        public void LoadWorldManager() {
+            #if UNITY_EDITOR
+            _saveFileEditor = new SaveFileEditor(Application.dataPath + "/SaveFiles", _fileName);
+            #else
+            _saveFileEditor = new SaveFileEditor(Application.persistentDataPath + "/SaveFiles", _fileName);
+            #endif
+            LoadAllSlots();
         }
 
-        public void CreateNewGame() {
-            GetSaveFileNameBasesOnIndex();
-            _currentSaveData = new PlayerSaveData();
+        void LoadAllSlots() {
+            for (int i = 0; i < CharacterSlots.Length; i++) {
+                ChangeSaveFileBaseOnIndex(i);
+                if (!_saveFileEditor.CheckFileExists()) {
+                    CharacterSlots[i] = null;
+                    continue;
+                }
+                CharacterSlots[i] = _saveFileEditor.LoadSaveFile();
+            }
+        }
+
+        void ChangeSaveFileBaseOnIndex(int index) {
+            _fileName = GetSaveFileNameBasesOnIndex(index);
+            _saveFileEditor.ChangeFile(_fileName);
+        }
+
+        public string GetSaveFileNameBasesOnIndex(int saveIndex) {
+            return $"CharacterSlot_{saveIndex}";
+        }
+
+        public bool AttemptToCreateNewGame() {
+            for (int i = 0; i < CharacterSlots.Length; i++) {
+                ChangeSaveFileBaseOnIndex(i);
+                if (_saveFileEditor.CheckFileExists()) continue;
+                currentSaveDataIndex = i;
+                CharacterSlots[i] = new PlayerSaveData();
+                _currentSaveData = CharacterSlots[i];
+                StartCoroutine(LoadWorld());
+                return true;
+            }
+            return false;
         }
 
         [ContextMenu("Load")]
         public void LoadGame() {
-            GetSaveFileNameBasesOnIndex();
-            #if UNITY_EDITOR
-            _saveFileEditor = new SaveFileEditor(Application.dataPath, _fileName);
-            #else
-            _saveFileEditor = new SaveFileEditor(Application.persistentDataPath, _fileName);
-            #endif
+            ChangeSaveFileBaseOnIndex(currentSaveDataIndex);
             _currentSaveData = _saveFileEditor.LoadSaveFile();
-            player.LoadPlayerData(ref _currentSaveData);
-            //StartCoroutine(LoadWorld());
+            StartCoroutine(LoadWorld());
         }
         [ContextMenu("Save")]
         public void SaveGame() {
-            GetSaveFileNameBasesOnIndex();
-            #if UNITY_EDITOR
-            _saveFileEditor = new SaveFileEditor(Application.dataPath, _fileName);
-            #else
-            _saveFileEditor = new SaveFileEditor(Application.persistentDataPath, _fileName);
-            #endif
+            ChangeSaveFileBaseOnIndex(currentSaveDataIndex);
             player.SavePlayerData(ref _currentSaveData);
             _saveFileEditor.SaveFile(_currentSaveData);
         }
         
         public IEnumerator LoadWorld() {
             SceneManager.LoadSceneAsync(GameSceneIndex);
+            player.LoadPlayerData(ref _currentSaveData);
             yield return null;
         }
         

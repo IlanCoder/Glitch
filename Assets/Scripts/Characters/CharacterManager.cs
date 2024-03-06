@@ -15,7 +15,6 @@ namespace Characters {
         #endregion
         
         protected virtual void Awake() {
-            DontDestroyOnLoad(gameObject);
             controller = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
         }

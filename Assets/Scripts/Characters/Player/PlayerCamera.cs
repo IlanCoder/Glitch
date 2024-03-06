@@ -25,9 +25,8 @@ namespace Characters.Player {
         float _targetCamZPos;
         
         void Awake() {
-            DontDestroyOnLoad(gameObject);
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
+            //Cursor.lockState = CursorLockMode.Locked;
             _camZPosition = cam.transform.localPosition.z;
         }
 

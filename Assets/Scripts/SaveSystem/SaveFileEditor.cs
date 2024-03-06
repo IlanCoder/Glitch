@@ -7,6 +7,10 @@ namespace SaveSystem {
         string _saveDataPath;
         string _saveFileName;
 
+        public void ChangeFile(string newFileName) {
+            _saveFileName = newFileName;
+        }
+        
         public SaveFileEditor(string dataPath, string fileName) {
             _saveDataPath = dataPath;
             _saveFileName = fileName;

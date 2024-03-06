@@ -42,7 +42,7 @@ namespace Characters.Player {
             Vector3 position = transform.position;
             saveData.PlayerXPos = position.x;
             saveData.PlayerYPos = position.y;
-            saveData.PlayerZPos = position.y;
+            saveData.PlayerZPos = position.z;
         }
 
         public void LoadPlayerData(ref PlayerSaveData saveData) {
