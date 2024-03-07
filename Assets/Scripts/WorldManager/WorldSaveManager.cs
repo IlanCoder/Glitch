@@ -77,6 +77,12 @@ namespace WorldManager {
             player.SavePlayerData(ref _currentSaveData);
             _saveFileEditor.SaveFile(_currentSaveData);
         }
+
+        public void DeleteGame(int gameIndex) {
+            ChangeSaveFileBaseOnIndex(gameIndex);
+            CharacterSlots[gameIndex] = null;
+            _saveFileEditor.DeleteFile();
+        }
         
         public IEnumerator LoadWorld() {
             SceneManager.LoadSceneAsync(GameSceneIndex);

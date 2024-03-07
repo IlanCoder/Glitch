@@ -14,7 +14,6 @@ namespace Characters.Player {
         #region Player Movement Vars
         public Vector2 MovementInput { get; private set; }
         public float MoveAmount{ get; private set; }
-        bool _dodge = false;
         bool _sprint = false;
 #endregion
 
@@ -35,7 +34,7 @@ namespace Characters.Player {
                     MovementInput = i.ReadValue<Vector2>();
                 _playerControls.PlayerCamera.Movement.performed += i => 
                     CameraInput = i.ReadValue<Vector2>();
-                _playerControls.PlayerMovement.Dodge.performed += i => _dodge = true;
+                _playerControls.PlayerMovement.Dodge.performed += i => HandleDodge();
                 _playerControls.PlayerMovement.Sprint.performed += i => _sprint = true;
                 _playerControls.PlayerMovement.Sprint.canceled += i => _sprint = false;
             }
@@ -51,7 +50,6 @@ namespace Characters.Player {
         }
 
         void Update() {
-            HandleDodge();
             HandleSprint();
             HandleMovement();
         }
@@ -77,8 +75,6 @@ namespace Characters.Player {
         }
 
         void HandleDodge() {
-            if (!_dodge) return;
-            _dodge = false;
             _playerManager.movementManager.AttemptToDodge();
         }
 

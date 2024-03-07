@@ -8,6 +8,7 @@ using WorldManager;
 namespace TitleScreen {
     public class UICharacterSaveSlot : MonoBehaviour {
         [SerializeField] WorldSaveManager saveManager;
+        [SerializeField] LoadMenuManager loadManager;
         
         [SerializeField] int saveDataIndex;
 
@@ -24,7 +25,7 @@ namespace TitleScreen {
             timePlayed.text = saveManager.CharacterSlots[saveDataIndex].TimePlayed.ToString();
         }
 
-        void LoadSaveSlot() {
+        public void LoadSaveSlot() {
             if (saveManager.CharacterSlots[saveDataIndex] == null) {
                 gameObject.SetActive(false);
                 return;
@@ -35,6 +36,10 @@ namespace TitleScreen {
         public void LoadGame() {
             saveManager.currentSaveDataIndex = saveDataIndex;
             saveManager.LoadGame();
+        }
+
+        public void OnSelectSlot() {
+            loadManager.SelectCharacterSlotIndex(saveDataIndex);
         }
     }
 }

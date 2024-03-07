@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Characters.Player {
     public class PlayerMovementManager : CharacterMovementManager {
-        [HideInInspector]public PlayerCamera playerCam;
+        [HideInInspector] public PlayerCamera playerCam;
         PlayerManager _playerManager;
 
         [Header("Speeds")]
