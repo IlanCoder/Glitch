@@ -1632,6 +1632,8 @@ MonoBehaviour:
   rotationLocked: 0
   movementLocked: 0
   isSprinting: 0
+  isJumping: 0
+  isGrounded: 0
   playerCamera: {fileID: 0}
   movementManager: {fileID: 0}
   inputManager: {fileID: 0}
@@ -1649,6 +1651,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e5756a0b0db284a92cdd99dbe6001e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheckSphereRadius: 0.3
+  yVel: {x: 0, y: 0, z: 0}
+  groundedYVel: -20
+  gravityForce: -9.81
+  fallStartVel: -5
+  fallMaxVel: -20
   playerCam: {fileID: 0}
   walkingSpeed: 2
   runningSpeed: 4
@@ -1657,6 +1668,7 @@ MonoBehaviour:
   sprintCost: 3
   rollCost: 10
   backStepCost: 20
+  jumpCost: 0
 --- !u!114 &8605303721872254329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1694,6 +1706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a1a6f1d9a76fa41996a5f39c5fc73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Character
   endurance: 10
   staminaRegen: 5
   staminaRegenDelay: 1
@@ -1746,7 +1759,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.8
+  m_Height: 1.7
   m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3

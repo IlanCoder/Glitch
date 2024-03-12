@@ -10,7 +10,7 @@ namespace Characters.Player {
      RequireComponent(typeof(PlayerAnimManager)),
      RequireComponent(typeof(PlayerStatManager))]
     public class PlayerManager : CharacterManager {
-        [SerializeField] PlayerCamera playerCamera;
+        [SerializeField]PlayerCamera playerCamera;
         [HideInInspector]public PlayerMovementManager movementManager;
         [HideInInspector]public PlayerInputManager inputManager;
         [HideInInspector]public PlayerAnimManager animManager;

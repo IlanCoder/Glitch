@@ -1,9 +1,8 @@
 using UnityEngine;
 
 namespace Characters.Player {
-    public class PlayerMovementManager : CharacterMovementManager {
+    public class PlayerMovementManager : CharacterMovementManager<PlayerManager> {
         [HideInInspector] public PlayerCamera playerCam;
-        PlayerManager _playerManager;
 
         [Header("Speeds")]
         [SerializeField] float walkingSpeed = 2;
@@ -15,7 +14,8 @@ namespace Characters.Player {
         [SerializeField, Min(0.1f)] float sprintCost;
         [SerializeField, Min(1)] int rollCost;
         [SerializeField, Min(1)] int backStepCost;
-            
+        [SerializeField, Min(1)] int jumpCost;
+        
         Transform _camManagerTransform;
         Transform _camObjTransform;
         Vector3 _moveDirection;
@@ -23,11 +23,6 @@ namespace Characters.Player {
         Vector2 _inputMovement;
 
         Vector3 _dodgeDirection;
-
-        protected override void Awake() {
-            base.Awake();
-            _playerManager = GetComponent<PlayerManager>();
-        }
         
         public void HandleMovement() {
             GetCameraTransforms();
@@ -41,20 +36,20 @@ namespace Characters.Player {
         }
 
         void HandleGroundMovement() {
-            if (_playerManager.movementLocked) return;
-            _inputMovement = _playerManager.inputManager.MovementInput;
+            if (manager.movementLocked) return;
+            _inputMovement = manager.inputManager.MovementInput;
             _moveDirection = _camManagerTransform.forward * _inputMovement.y + 
                              _camManagerTransform.right * _inputMovement.x;
             _moveDirection.y = 0;
             _moveDirection.Normalize();
-            _playerManager.controller.Move(GetGroundSpeed() * Time.deltaTime * _moveDirection);
-            _playerManager.animManager.UpdateMovementParameters(0, _playerManager.inputManager.MoveAmount);
+            manager.controller.Move(GetGroundSpeed() * Time.deltaTime * _moveDirection);
+            manager.animManager.UpdateMovementParameters(0, manager.inputManager.MoveAmount);
         }
 
         float GetGroundSpeed()
         {
-            if (_playerManager.isSprinting) return sprintSpeed;
-            switch (_playerManager.inputManager.MoveAmount) {
+            if (manager.isSprinting) return sprintSpeed;
+            switch (manager.inputManager.MoveAmount) {
                 case 0.5f:
                     return walkingSpeed;
                 case 1:
@@ -64,7 +59,7 @@ namespace Characters.Player {
         }
 
         void HandleRotation() {
-            if (_playerManager.rotationLocked) return;
+            if (manager.rotationLocked) return;
             CheckRotationRelativeToCam();
             if (_targetRotation == Vector3.zero) return;
             Quaternion newRotation = Quaternion.LookRotation(_targetRotation);
@@ -81,31 +76,45 @@ namespace Characters.Player {
 
         public void AttemptToDodge() {
             if (!CanPerformStaminaAction()) return;
-            if (_playerManager.inputManager.MoveAmount > 0) {
+            if (manager.inputManager.MoveAmount > 0) {
                 CheckRotationRelativeToCam();
                 Quaternion newRotation = Quaternion.LookRotation(_targetRotation);
                 transform.rotation = newRotation;
-                _playerManager.animManager.PlayTargetAnimation("Dodge_F", false);
-                _playerManager.statManager.UseStamina(rollCost);
+                manager.animManager.PlayTargetAnimation("Dodge_F", false);
+                manager.statManager.UseStamina(rollCost);
                 return;
             }
-            _playerManager.animManager.PlayTargetAnimation("Dodge_B", false);
-            _playerManager.statManager.UseStamina(backStepCost);
+            manager.animManager.PlayTargetAnimation("Dodge_B", false);
+            manager.statManager.UseStamina(backStepCost);
+        }
+
+        public void AttemptToJump() {
+            if (!CanPerformStaminaAction()) return;
+            if(manager.isJumping) return;
+            if (!manager.isGrounded) return;
+            
+            manager.animManager.PlayTargetAnimation("Jump_Start",true);
+            manager.statManager.UseStamina(jumpCost);
+            manager.isJumping = true;
         }
 
         public void HandleSprint() {
             if (!CanPerformStaminaAction() || 
-                _playerManager.inputManager.MoveAmount < 0.5f) {
-                _playerManager.isSprinting = false;
+                manager.inputManager.MoveAmount < 0.5f) {
+                manager.isSprinting = false;
                 return;
             }
-            _playerManager.isSprinting = true;
-            _playerManager.statManager.UseStamina(sprintCost * Time.deltaTime);
+            manager.isSprinting = true;
+            manager.statManager.UseStamina(sprintCost * Time.deltaTime);
         }
 
         bool CanPerformStaminaAction() {
-            if (_playerManager.isPerformingAction) return false;
-            return _playerManager.statManager.CurrentStamina > 0;
+            if (manager.isPerformingAction) return false;
+            return manager.statManager.CurrentStamina > 0;
+        }
+
+        public void ApplyJumpingVelocity() {
+            
         }
     }
 }

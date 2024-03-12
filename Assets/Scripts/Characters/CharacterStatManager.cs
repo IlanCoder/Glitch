@@ -5,8 +5,8 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace Characters {
-    public class CharacterStatManager : MonoBehaviour {
-        PlayerManager _playerManager;
+    public class CharacterStatManager<T> : MonoBehaviour where T : CharacterManager {
+        protected T manager;
 
         public string characterName = "Character";
         
@@ -25,7 +25,7 @@ namespace Characters {
         public int MaxStamina { get; protected set; }
 
         protected virtual void Awake() {
-            _playerManager = GetComponent<PlayerManager>();
+            manager = GetComponent<T>();
         }
 
         protected virtual void Update() {
@@ -33,8 +33,8 @@ namespace Characters {
         }
 
         void RegenStamina() {
-            if (_playerManager.isPerformingAction) return;
-            if (_playerManager.isSprinting) return;
+            if (manager.isPerformingAction) return;
+            if (manager.isSprinting) return;
             if (_staminaRegenTimer > staminaRegenDelay) {
                 _staminaRegenTimer -= Time.deltaTime;
                 return;
@@ -50,7 +50,7 @@ namespace Characters {
             _staminaRegenTimer = staminaRegenDelay;
         }
 
-        public void SetMaxStamina(int newMaxStamina) {
+        protected void SetMaxStamina(int newMaxStamina) {
             MaxStamina = newMaxStamina;
             onMaxStaminaChange?.Invoke(MaxStamina);
             CurrentStamina = MaxStamina;

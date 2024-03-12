@@ -32,11 +32,13 @@ namespace Characters.Player {
                 _playerControls = new PlayerControls();
                 _playerControls.PlayerMovement.Movement.performed += i => 
                     MovementInput = i.ReadValue<Vector2>();
-                _playerControls.PlayerCamera.Movement.performed += i => 
-                    CameraInput = i.ReadValue<Vector2>();
+                _playerControls.PlayerMovement.Jump.performed += i => HandleJump();
                 _playerControls.PlayerMovement.Dodge.performed += i => HandleDodge();
                 _playerControls.PlayerMovement.Sprint.performed += i => _sprint = true;
                 _playerControls.PlayerMovement.Sprint.canceled += i => _sprint = false;
+                
+                _playerControls.PlayerCamera.Movement.performed += i => 
+                    CameraInput = i.ReadValue<Vector2>();
             }
             _playerControls.Enable();
         }
@@ -74,6 +76,10 @@ namespace Characters.Player {
             }
         }
 
+        void HandleJump() {
+            _playerManager.movementManager.AttemptToJump();
+        }
+        
         void HandleDodge() {
             _playerManager.movementManager.AttemptToDodge();
         }

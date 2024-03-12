@@ -2,7 +2,8 @@ using System;
 using UnityEngine;
 
 namespace Characters.Player {
-    public class PlayerStatManager : CharacterStatManager {
+    public class PlayerStatManager : CharacterStatManager<PlayerManager> {
+        
         void Start() {
             SetMaxStamina(GetStaminaBasedOnLevel());
         }
