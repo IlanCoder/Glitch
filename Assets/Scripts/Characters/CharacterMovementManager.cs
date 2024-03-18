@@ -34,7 +34,7 @@ namespace Characters {
 
         void GetYVel() {
             if (manager.isGrounded) {
-                if (yVel.y >= 0) return;
+                if (yVel.y > 0) return;
                 inAirTimer = 0;
                 fallingVelHasBeenSet = false;
                 yVel.y = groundedYVel;

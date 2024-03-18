@@ -1665,10 +1665,13 @@ MonoBehaviour:
   runningSpeed: 4
   sprintSpeed: 6
   rotationSpeed: 20
+  jumpSpeed: 5
+  freeFallSpeed: 1
   sprintCost: 3
   rollCost: 10
   backStepCost: 20
-  jumpCost: 0
+  jumpCost: 1
+  jumpHeight: 1.5
 --- !u!114 &8605303721872254329
 MonoBehaviour:
   m_ObjectHideFlags: 0
