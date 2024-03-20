@@ -1588,6 +1588,7 @@ GameObject:
   - component: {fileID: 8605303721872254329}
   - component: {fileID: 8043861301878091408}
   - component: {fileID: -2887517767363528626}
+  - component: {fileID: 233316731465283562}
   - component: {fileID: 5697119794618443428}
   - component: {fileID: 7987833362174241047}
   m_Layer: 0
@@ -1710,7 +1711,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Character
-  endurance: 10
   staminaRegen: 5
   staminaRegenDelay: 1
   onStaminaChange:
@@ -1743,6 +1743,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  vitality: 1
+  endurance: 10
+  dexterity: 1
+  strength: 1
+  cyber: 1
+  control: 1
+--- !u!114 &233316731465283562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443002251341178569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb9cf81f74dde1d40bac624dcd5867b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!143 &5697119794618443428
 CharacterController:
   m_ObjectHideFlags: 0

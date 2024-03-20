@@ -1,7 +1,4 @@
-using System;
-using Characters.Player.PlayerUI;
 using SaveSystem;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 namespace Characters.Player {
@@ -15,7 +12,7 @@ namespace Characters.Player {
         [HideInInspector]public PlayerInputManager inputManager;
         [HideInInspector]public PlayerAnimManager animManager;
         [HideInInspector]public PlayerStatManager statManager;
-        
+
         protected override void Awake() {
             base.Awake();
             animManager = GetComponent<PlayerAnimManager>();

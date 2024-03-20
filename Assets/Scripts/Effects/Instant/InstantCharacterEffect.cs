@@ -1,4 +1,5 @@
 using Characters;
+using Characters.Player;
 using UnityEngine;
 
 namespace Effects.Instant {
@@ -6,7 +7,7 @@ namespace Effects.Instant {
         [Header("Effect ID")]
         public readonly int instantEffectID;
 
-        public virtual void ProcessEffect(CharacterManager character) {
+        public virtual void ProcessEffect(PlayerManager player) {
             
         }
     }
