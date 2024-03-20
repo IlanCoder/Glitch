@@ -14219,6 +14219,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170566953}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1170778961 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2453359960870287301, guid: 752639fa95abbd2409c2234008a1899e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1541650105}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb9cf81f74dde1d40bac624dcd5867b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1177948719
 GameObject:
   m_ObjectHideFlags: 0
@@ -18829,6 +18841,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7967837545312094350, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: effect
+      value: 
+      objectReference: {fileID: 11400000, guid: d538d210790f5da4a85164473f3d1a26,
+        type: 2}
+    - target: {fileID: 7967837545312094350, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: effectsManager
+      value: 
+      objectReference: {fileID: 1170778961}
     - target: {fileID: 8535703146482532956, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: antialiasing

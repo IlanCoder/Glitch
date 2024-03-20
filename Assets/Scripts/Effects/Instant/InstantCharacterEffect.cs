@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Effects.Instant {
     public class InstantCharacterEffect : ScriptableObject {
         [Header("Effect ID")]
-        public readonly int instantEffectID;
+        public int instantEffectID;
 
         public virtual void ProcessEffect(PlayerManager player) {
             
