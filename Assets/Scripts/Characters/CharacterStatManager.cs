@@ -9,9 +9,6 @@ namespace Characters {
         protected T manager;
 
         public string characterName = "Character";
-        
-        [Header("Main Stats")] 
-        [SerializeField,Range(1, 99)] protected int endurance = 1;
 
         [Header("Sub Stats")] 
         [SerializeField,Min(0.1f)] protected float staminaRegen = 1;
@@ -21,8 +18,9 @@ namespace Characters {
         [Header("Events")] 
         public UnityEvent<float> onStaminaChange;
         public UnityEvent<int> onMaxStaminaChange;
-        public float CurrentStamina { get; protected set; }
+        
         public int MaxStamina { get; protected set; }
+        public float CurrentStamina { get; protected set; }
 
         protected virtual void Awake() {
             manager = GetComponent<T>();
