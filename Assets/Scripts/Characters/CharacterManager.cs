@@ -7,6 +7,8 @@ namespace Characters {
         [HideInInspector]public Animator animator;
         [HideInInspector]public CharacterController controller;
 
+        public bool isDead { get; private set; }
+        
         #region Flags
         [HideInInspector] public bool isPerformingAction;
         [HideInInspector] public bool rotationLocked;

@@ -1,7 +1,15 @@
 {
-    "PlayerName": "0",
+    "PlayerName": "Character",
     "TimePlayed": 0.0,
-    "PlayerXPos": 0.8105312585830689,
-    "PlayerYPos": 0.07999992370605469,
-    "PlayerZPos": 0.07999992370605469
+    "PlayerXPos": 0.0,
+    "PlayerYPos": 0.0,
+    "PlayerZPos": 0.0,
+    "Vitality": 10,
+    "Endurance": 10,
+    "Dexterity": 10,
+    "Strength": 10,
+    "Cyber": 10,
+    "Control": 10,
+    "CurrentHp": 100.0,
+    "CurrentStamina": 100.0
 }

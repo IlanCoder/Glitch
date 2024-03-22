@@ -107,8 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3593094248d53484c9a65c146a176717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageEffect: {fileID: 11400000, guid: a2fab64016e926745bc83c451da718cf, type: 2}
   instantEffects:
   - {fileID: 11400000, guid: d538d210790f5da4a85164473f3d1a26, type: 2}
+  - {fileID: 11400000, guid: a2fab64016e926745bc83c451da718cf, type: 2}
 --- !u!1001 &621206394525022843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -297,6 +299,16 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6628204683802544537, guid: 67e08b80ea92c9449b4be07eb74d0201,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 8687789047204903359}
+    - target: {fileID: 6628204683802544537, guid: 67e08b80ea92c9449b4be07eb74d0201,
+        type: 3}
+      propertyPath: statManager
+      value: 
+      objectReference: {fileID: 8565147569743247457}
     - target: {fileID: 7146067768691177503, guid: 67e08b80ea92c9449b4be07eb74d0201,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -358,6 +370,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e6b93227731b845b9a29e6803a9194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8687789047204903359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8074899119382987716, guid: 67e08b80ea92c9449b4be07eb74d0201,
+    type: 3}
+  m_PrefabInstance: {fileID: 621206394525022843}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a62f70f55c03374f9f6ed908597b5cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2391690360510365743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -366,6 +390,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7872325728363234796}
     m_Modifications:
+    - target: {fileID: -2887517767363528626, guid: 6169ed57bd56a1144932ccb03668fe8b,
+        type: 3}
+      propertyPath: cyber
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2887517767363528626, guid: 6169ed57bd56a1144932ccb03668fe8b,
+        type: 3}
+      propertyPath: control
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2887517767363528626, guid: 6169ed57bd56a1144932ccb03668fe8b,
+        type: 3}
+      propertyPath: strength
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2887517767363528626, guid: 6169ed57bd56a1144932ccb03668fe8b,
+        type: 3}
+      propertyPath: dexterity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -2887517767363528626, guid: 6169ed57bd56a1144932ccb03668fe8b,
         type: 3}
       propertyPath: onStaminaChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -802,6 +846,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 150d3e813d251f34bbff8bfe7162b8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8565147569743247457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2887517767363528626, guid: 6169ed57bd56a1144932ccb03668fe8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2391690360510365743}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a1a6f1d9a76fa41996a5f39c5fc73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8155165200415475062

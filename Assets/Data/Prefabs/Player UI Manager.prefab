@@ -364,7 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e6b93227731b845b9a29e6803a9194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBar: {fileID: 8074899119382987716}
+  statManager: {fileID: 0}
+  healthBar: {fileID: 0}
   staminaBar: {fileID: 5115283551369386310}
   energyBar: {fileID: 3615083580165886206}
 --- !u!1 &1332330876479010146
@@ -607,7 +608,7 @@ MonoBehaviour:
     m_Top: 25
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: -25
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -943,6 +944,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a62f70f55c03374f9f6ed908597b5cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleBarLengthWithStats: 1
+  widthScaleMultiplier: 1.8
 --- !u!1 &6095749580330595192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,6 +1199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a62f70f55c03374f9f6ed908597b5cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleBarLengthWithStats: 1
+  widthScaleMultiplier: 1
 --- !u!1 &7934411234279013158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,3 +1451,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a62f70f55c03374f9f6ed908597b5cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleBarLengthWithStats: 1
+  widthScaleMultiplier: 0.3

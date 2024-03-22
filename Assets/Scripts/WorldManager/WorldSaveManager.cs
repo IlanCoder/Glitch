@@ -59,18 +59,24 @@ namespace WorldManager {
                 currentSaveDataIndex = i;
                 CharacterSlots[i] = new PlayerSaveData();
                 _currentSaveData = CharacterSlots[i];
-                StartCoroutine(LoadWorld());
+                NewGame();
                 return true;
             }
             return false;
         }
 
+        void NewGame() {
+            SaveGame();
+            StartCoroutine(LoadWorld());
+        }
+        
         [ContextMenu("Load")]
         public void LoadGame() {
             ChangeSaveFileBaseOnIndex(currentSaveDataIndex);
             _currentSaveData = _saveFileEditor.LoadSaveFile();
             StartCoroutine(LoadWorld());
         }
+        
         [ContextMenu("Save")]
         public void SaveGame() {
             ChangeSaveFileBaseOnIndex(currentSaveDataIndex);
@@ -85,8 +91,8 @@ namespace WorldManager {
         }
         
         public IEnumerator LoadWorld() {
-            SceneManager.LoadSceneAsync(GameSceneIndex);
             player.LoadPlayerData(ref _currentSaveData);
+            SceneManager.LoadSceneAsync(GameSceneIndex);
             yield return null;
         }
         
