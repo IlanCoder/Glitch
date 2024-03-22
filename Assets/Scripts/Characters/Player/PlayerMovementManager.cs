@@ -79,7 +79,7 @@ namespace Characters.Player {
                 return;
             }
             manager.isSprinting = true;
-            manager.statManager.UseStamina(sprintCost * Time.deltaTime);
+            manager.statsManager.UseStamina(sprintCost * Time.deltaTime);
         }
         
         void CheckRotationRelativeToCam() {
@@ -95,11 +95,11 @@ namespace Characters.Player {
                 Quaternion newRotation = Quaternion.LookRotation(_targetRotation);
                 transform.rotation = newRotation;
                 manager.animManager.PlayDodgeAnimation();
-                manager.statManager.UseStamina(rollCost);
+                manager.statsManager.UseStamina(rollCost);
                 return;
             }
             manager.animManager.PlayDodgeAnimation(true);
-            manager.statManager.UseStamina(backStepCost);
+            manager.statsManager.UseStamina(backStepCost);
         }
 
         public void AttemptToJump() {
@@ -108,7 +108,7 @@ namespace Characters.Player {
             if (!manager.isGrounded) return;
             manager.isJumping = true;
             manager.animManager.PlayJumpAnimation();
-            manager.statManager.UseStamina(jumpCost);
+            manager.statsManager.UseStamina(jumpCost);
             _jumpDirection = GetNormalizedHorizontalDirection();
             _jumpDirection *= GetJumpSpeed();
         }
@@ -137,7 +137,7 @@ namespace Characters.Player {
         
         bool CanPerformStaminaAction() {
             if (manager.isPerformingAction) return false;
-            return manager.statManager.CurrentStamina > 0;
+            return manager.statsManager.CurrentStamina > 0;
         }
 
         Vector3 GetNormalizedHorizontalDirection() {

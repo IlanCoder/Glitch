@@ -6,7 +6,7 @@ namespace Characters {
     public class CharacterManager : MonoBehaviour {
         [HideInInspector]public Animator animator;
         [HideInInspector]public CharacterController controller;
-
+        public virtual CharacterStatsManager StatsManager => null;
         public bool isDead { get; private set; }
         
         #region Flags
@@ -28,5 +28,7 @@ namespace Characters {
 
         protected virtual void LateUpdate() {
         }
+        
+        
     }
 }

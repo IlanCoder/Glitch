@@ -34,16 +34,16 @@ namespace Effects.Instant {
             Damage = dmg;
         }
         
-        public override void ProcessEffect(PlayerManager player) {
+        public override void ProcessEffect(CharacterManager player) {
             base.ProcessEffect(player);
             CalculateHealthDamage(player);
         }
 
-        void CalculateHealthDamage(PlayerManager player) {
+        void CalculateHealthDamage(CharacterManager player) {
             _totalDmg = Mathf.RoundToInt(Damage.SlashDmg + Damage.StrikeDmg + Damage.ThrustDmg + Damage.PhotonDmg +
                                          Damage.ShockDmg + Damage.PlasmaDmg);
             if (_totalDmg <= 0) _totalDmg = 1;
-            player.statManager.ReceiveDamage(_totalDmg);
+            player.StatsManager.ReceiveDamage(_totalDmg);
         }
     }
 }

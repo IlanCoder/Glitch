@@ -1,26 +1,29 @@
+using System;
 using SaveSystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Characters.Player {
     [RequireComponent(typeof(PlayerMovementManager)),
      RequireComponent(typeof(PlayerInputManager)),
      RequireComponent(typeof(PlayerAnimManager)),
-     RequireComponent(typeof(PlayerStatManager)),
+     RequireComponent(typeof(PlayerStatsManager)),
      RequireComponent(typeof(PlayerEffectsManager))]
     public class PlayerManager : CharacterManager {
         [SerializeField]PlayerCamera playerCamera;
         [HideInInspector]public PlayerMovementManager movementManager;
         [HideInInspector]public PlayerInputManager inputManager;
         [HideInInspector]public PlayerAnimManager animManager;
-        [HideInInspector]public PlayerStatManager statManager;
+        [FormerlySerializedAs("statManager")] [HideInInspector]public PlayerStatsManager statsManager;
         [HideInInspector]public PlayerEffectsManager effectsManager;
+        public override CharacterStatsManager StatsManager => statsManager;
 
         protected override void Awake() {
             base.Awake();
             animManager = GetComponent<PlayerAnimManager>();
             inputManager = GetComponent<PlayerInputManager>();
             movementManager = GetComponent<PlayerMovementManager>();
-            statManager = GetComponent<PlayerStatManager>();
+            statsManager = GetComponent<PlayerStatsManager>();
             effectsManager = GetComponent<PlayerEffectsManager>();
             movementManager.playerCam = playerCamera;
             playerCamera.player = this;
@@ -38,31 +41,31 @@ namespace Characters.Player {
         }
 
         public void SavePlayerData(ref PlayerSaveData saveData) {
-            saveData.PlayerName = statManager.characterName;
+            saveData.PlayerName = statsManager.characterName;
             Vector3 position = transform.position;
             saveData.PlayerXPos = position.x;
             saveData.PlayerYPos = position.y;
             saveData.PlayerZPos = position.z;
             SavePlayerAttributes(ref saveData);
-            saveData.CurrentHp = statManager.CurrentHp;
-            saveData.CurrentStamina = statManager.CurrentStamina;
+            saveData.CurrentHp = statsManager.CurrentHp;
+            saveData.CurrentStamina = statsManager.CurrentStamina;
         }
 
         void SavePlayerAttributes(ref PlayerSaveData saveData) {
-            saveData.Vitality = statManager.Vitality;
-            saveData.Endurance = statManager.Endurance;
-            saveData.Dexterity = statManager.Dexterity;
-            saveData.Strength = statManager.Strength;
-            saveData.Cyber = statManager.Cyber;
-            saveData.Control = statManager.Control;
+            saveData.Vitality = statsManager.Vitality;
+            saveData.Endurance = statsManager.Endurance;
+            saveData.Dexterity = statsManager.Dexterity;
+            saveData.Strength = statsManager.Strength;
+            saveData.Cyber = statsManager.Cyber;
+            saveData.Control = statsManager.Control;
         }
 
         public void LoadPlayerData(ref PlayerSaveData saveData) {
-            statManager.characterName = saveData.PlayerName;
+            statsManager.characterName = saveData.PlayerName;
             transform.position = new Vector3(saveData.PlayerXPos, saveData.PlayerYPos, saveData.PlayerZPos);
-            statManager.LoadCharacterAttributes(saveData.Vitality, saveData.Endurance, saveData.Dexterity,
+            statsManager.LoadCharacterAttributes(saveData.Vitality, saveData.Endurance, saveData.Dexterity,
                 saveData.Strength, saveData.Cyber, saveData.Control);
-            statManager.LoadCurrentStats(saveData.CurrentHp, saveData.CurrentStamina);
+            statsManager.LoadCurrentStats(saveData.CurrentHp, saveData.CurrentStamina);
         }
     }
 }

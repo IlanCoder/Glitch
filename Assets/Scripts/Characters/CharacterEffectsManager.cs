@@ -3,11 +3,11 @@ using Effects.Instant;
 using UnityEngine;
 
 namespace Characters {
-    public class CharacterEffectsManager<T> : MonoBehaviour where T: CharacterManager {
-        protected T manager;
+    public class CharacterEffectsManager : MonoBehaviour {
+        protected CharacterManager manager;
         
         protected virtual void Awake() {
-            manager = GetComponent<T>();
+            manager = GetComponent<CharacterManager>();
         }
 
         public virtual void ProcessInstantEffect(InstantCharacterEffect effect) {

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Characters.Player {
     
-    public class PlayerAnimManager : CharacterAnimManager<PlayerManager> {
+    public class PlayerAnimManager : CharacterAnimManager {
         readonly Dictionary<string, int> _playerAnimationHashes = new Dictionary<string, int>() {
             { "Dodge_F", Animator.StringToHash("Dodge_F") },
             { "Dodge_B", Animator.StringToHash("Dodge_B") },

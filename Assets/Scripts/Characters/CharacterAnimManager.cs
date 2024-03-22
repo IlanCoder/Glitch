@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Characters {
     [RequireComponent(typeof(CharacterManager))]
-    public class CharacterAnimManager<T> : MonoBehaviour where T : CharacterManager {
-        protected T manager;
+    public class CharacterAnimManager : MonoBehaviour {
+        protected CharacterManager manager;
 
         #region Animation String Hashes
 
@@ -15,7 +15,7 @@ namespace Characters {
         #endregion
         
         protected virtual void Awake() {
-            manager = GetComponent<T>();
+            manager = GetComponent<CharacterManager>();
         }
         
         public void UpdateMovementParameters(float horizontal, float vertical) {

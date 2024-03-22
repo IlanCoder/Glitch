@@ -5,8 +5,8 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace Characters {
-    public class CharacterStatManager<T> : MonoBehaviour where T : CharacterManager {
-        protected T manager;
+    public class CharacterStatsManager : MonoBehaviour {
+        protected CharacterManager manager;
 
         public string characterName = "Character";
         
@@ -28,7 +28,7 @@ namespace Characters {
         public int CurrentHp { get; protected set; }
 
         protected virtual void Awake() {
-            manager = GetComponent<T>();
+            manager = GetComponent<CharacterManager>();
         }
 
         protected virtual void Update() {

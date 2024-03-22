@@ -1,19 +1,20 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Characters.Player.PlayerUI {
     public class HUDManager : MonoBehaviour {
-        [SerializeField] CharacterStatManager<PlayerManager> statManager;
+        [FormerlySerializedAs("statManager")] [SerializeField] CharacterStatsManager statsManager;
         [Header("HUD Bars")]
         [SerializeField] UIStatBar healthBar;
         [SerializeField] UIStatBar staminaBar;
         [SerializeField] UIStatBar energyBar;
 
         void Awake() {
-            statManager.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
-            statManager.onStaminaChange.AddListener(SetNewStaminaValue);
-            statManager.onMaxHpChange.AddListener(SetNewMaxHPValue);
-            statManager.onHpChange.AddListener(SetNewHPValue);
+            statsManager.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
+            statsManager.onStaminaChange.AddListener(SetNewStaminaValue);
+            statsManager.onMaxHpChange.AddListener(SetNewMaxHPValue);
+            statsManager.onHpChange.AddListener(SetNewHPValue);
         }
 
         public void SetNewStaminaValue(float newValue) {
