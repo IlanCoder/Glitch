@@ -19,7 +19,7 @@ namespace Characters {
         
         [HideInInspector] public UnityEvent<float> onStaminaChange;
         [HideInInspector] public UnityEvent<int> onMaxStaminaChange;
-        [HideInInspector] public UnityEvent<float> onHpChange;
+        [HideInInspector] public UnityEvent<int> onHpChange;
         [HideInInspector] public UnityEvent<int> onMaxHpChange;
         
         public int MaxStamina { get; protected set; }
@@ -57,6 +57,8 @@ namespace Characters {
         public void ReceiveDamage(int dmgReceived) {
             CurrentHp -= dmgReceived;
             onHpChange?.Invoke(CurrentHp);
+            if (CurrentHp > 0) return;
+            manager.HandleDeathEvent();
         }
         
         public void UseStamina(float staminaUsed) {

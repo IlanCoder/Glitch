@@ -14,9 +14,10 @@ namespace Characters.Player {
         [HideInInspector]public PlayerMovementManager movementManager;
         [HideInInspector]public PlayerInputManager inputManager;
         [HideInInspector]public PlayerAnimManager animManager;
-        [FormerlySerializedAs("statManager")] [HideInInspector]public PlayerStatsManager statsManager;
+        [HideInInspector]public PlayerStatsManager statsManager;
         [HideInInspector]public PlayerEffectsManager effectsManager;
         public override CharacterStatsManager StatsManager => statsManager;
+        public override CharacterAnimManager AnimManager => animManager;
 
         protected override void Awake() {
             base.Awake();

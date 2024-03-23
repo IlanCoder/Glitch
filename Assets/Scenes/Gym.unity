@@ -4319,6 +4319,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6952895938145275405, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6959787394734292369, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_Layer
@@ -4453,6 +4458,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9107670775032622425, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.624512
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15019,7 +15029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d582d202058104c9cdc43cddf09eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slashDmg: 100
+  slashDmg: 2000
   strikeDmg: 0
   thrustDmg: 0
   photonDmg: 0

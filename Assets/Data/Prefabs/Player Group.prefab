@@ -194,6 +194,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1354662148760397604, guid: 67e08b80ea92c9449b4be07eb74d0201,
+        type: 3}
+      propertyPath: characterManager
+      value: 
+      objectReference: {fileID: 7967837545312094350}
     - target: {fileID: 2207825391194053375, guid: 67e08b80ea92c9449b4be07eb74d0201,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -307,6 +312,11 @@ PrefabInstance:
     - target: {fileID: 6628204683802544537, guid: 67e08b80ea92c9449b4be07eb74d0201,
         type: 3}
       propertyPath: statManager
+      value: 
+      objectReference: {fileID: 8565147569743247457}
+    - target: {fileID: 6628204683802544537, guid: 67e08b80ea92c9449b4be07eb74d0201,
+        type: 3}
+      propertyPath: statsManager
       value: 
       objectReference: {fileID: 8565147569743247457}
     - target: {fileID: 7146067768691177503, guid: 67e08b80ea92c9449b4be07eb74d0201,

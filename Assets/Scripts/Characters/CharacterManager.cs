@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Characters {
     [RequireComponent(typeof(CharacterController)), RequireComponent(typeof(Animator))]
@@ -7,7 +9,10 @@ namespace Characters {
         [HideInInspector]public Animator animator;
         [HideInInspector]public CharacterController controller;
         public virtual CharacterStatsManager StatsManager => null;
+        public virtual CharacterAnimManager AnimManager => null;
         public bool isDead { get; private set; }
+        
+        [HideInInspector] public UnityEvent onDeath;
         
         #region Flags
         [HideInInspector] public bool isPerformingAction;
@@ -28,7 +33,11 @@ namespace Characters {
 
         protected virtual void LateUpdate() {
         }
-        
-        
+
+        public virtual void HandleDeathEvent() {
+            isDead = true;
+            AnimManager.PlayDeathAnimation();
+            onDeath?.Invoke();
+        }
     }
 }
