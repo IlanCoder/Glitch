@@ -8,14 +8,14 @@ namespace Characters {
         [HideInInspector]public CharacterController controller;
         public virtual CharacterStatsManager StatsManager => null;
         public virtual CharacterAnimManager AnimManager => null;
-        public bool isDead { get; private set; }
 
         #region Flags
+        public bool isDead { get; private set; }
         [HideInInspector] public bool isPerformingAction;
         [HideInInspector] public bool rotationLocked;
         [HideInInspector] public bool movementLocked;
         [HideInInspector] public bool isSprinting;
-        [HideInInspector] public bool isJumping;
+        public bool isJumping;
         [HideInInspector] public bool isGrounded;
         #endregion
         
@@ -33,6 +33,10 @@ namespace Characters {
         public virtual void HandleDeathEvent() {
             isDead = true;
             AnimManager.PlayDeathAnimation();
+        }
+
+        public virtual void ReviveCharacter() {
+            
         }
     }
 }

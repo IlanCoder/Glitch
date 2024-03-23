@@ -76,5 +76,12 @@ namespace Characters.Player {
             base.HandleDeathEvent();
             onPlayerDeath?.Invoke();
         }
+        
+        [ContextMenu("Revive")]
+        public override void ReviveCharacter() {
+            base.ReviveCharacter();
+            statsManager.RevivePlayer();
+            animManager.Revive();
+        }
     }
 }

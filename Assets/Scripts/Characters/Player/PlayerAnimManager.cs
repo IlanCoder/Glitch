@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Characters.Player {
     
     public class PlayerAnimManager : CharacterAnimManager {
-        readonly public Dictionary<string, int> _playerAnimationHashes = new Dictionary<string, int>() {
+        readonly protected Dictionary<string, int> PlayerAnimationHashes = new Dictionary<string, int>() {
             { "Dodge_F", Animator.StringToHash("Dodge_F") },
             { "Dodge_B", Animator.StringToHash("Dodge_B") },
             { "Jump_Start", Animator.StringToHash("Jump_Start") }
@@ -12,14 +12,18 @@ namespace Characters.Player {
 
         public void PlayDodgeAnimation(bool backStep=false) {
             if (backStep) {
-                PlayTargetAnimation(_playerAnimationHashes["Dodge_B"], false);
+                PlayTargetAnimation(PlayerAnimationHashes["Dodge_B"], false);
                 return;
             }
-            PlayTargetAnimation(_playerAnimationHashes["Dodge_F"], false);
+            PlayTargetAnimation(PlayerAnimationHashes["Dodge_F"], false);
         }
 
         public void PlayJumpAnimation() {
-            PlayTargetAnimation(_playerAnimationHashes["Jump_Start"], false);
+            PlayTargetAnimation(PlayerAnimationHashes["Jump_Start"], false);
+        }
+
+        public void Revive() {
+            PlayTargetAnimation(Animator.StringToHash("Movement"), true);
         }
     }
 }

@@ -7,8 +7,7 @@ namespace Characters {
         protected CharacterManager manager;
 
         #region Animation String Hashes
-
-        readonly public Dictionary<string, int> animationHashes = new Dictionary<string, int>() {
+        readonly protected Dictionary<string, int> AnimationHashes = new Dictionary<string, int>() {
             { "Vertical", Animator.StringToHash("Vertical") },
             { "Horizontal", Animator.StringToHash("Horizontal") },
             { "Death", Animator.StringToHash("Death") }
@@ -20,8 +19,8 @@ namespace Characters {
         }
         
         public void UpdateMovementParameters(float horizontal, float vertical) {
-            manager.animator.SetFloat(animationHashes["Horizontal"], horizontal,0.1f, Time.deltaTime);
-            manager.animator.SetFloat(animationHashes["Vertical"], vertical,0.1f, Time.deltaTime);
+            manager.animator.SetFloat(AnimationHashes["Horizontal"], horizontal,0.1f, Time.deltaTime);
+            manager.animator.SetFloat(AnimationHashes["Vertical"], vertical,0.1f, Time.deltaTime);
         }
         
         protected virtual void PlayTargetAnimation(int targetAnimation, bool cancellableAction,
@@ -34,7 +33,7 @@ namespace Characters {
         }
         
         public void PlayDeathAnimation() {
-            PlayTargetAnimation(animationHashes["Death"], false);
+            PlayTargetAnimation(AnimationHashes["Death"], false);
         }
     }
 }

@@ -36,6 +36,7 @@ namespace UI.HUD.GamePopUps {
             Sequence _sequence = DOTween.Sequence();
             _sequence.AppendInterval(fadeOutDelay);
             _sequence.Append(_canvasGroup.DOFade(0, fadeInTime));
+            gameObject.SetActive(false);
         }
     }
 }

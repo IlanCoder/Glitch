@@ -49,6 +49,11 @@ namespace Characters.Player {
             };
         }
 
+        public void RevivePlayer() {
+            CurrentHp = MaxHp;
+            CurrentStamina = MaxStamina;
+        }
+
         public void LoadCharacterAttributes(int vit, int end, int dex, int str, int cbr, int ctrl) {
             vitality = vit;
             endurance = end;
@@ -76,10 +81,6 @@ namespace Characters.Player {
 
         #region Editor Funcs
 #if UNITY_EDITOR
-        void OnValidate() {
-            //SetNewLevel();
-        }
-
         [ContextMenu("Set New Level")]
         void SetNewLevel() {
             SetStatsBasedOnAttributes();
