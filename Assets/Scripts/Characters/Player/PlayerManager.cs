@@ -1,6 +1,7 @@
 using System;
 using SaveSystem;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace Characters.Player {
@@ -18,6 +19,8 @@ namespace Characters.Player {
         [HideInInspector]public PlayerEffectsManager effectsManager;
         public override CharacterStatsManager StatsManager => statsManager;
         public override CharacterAnimManager AnimManager => animManager;
+        
+        [HideInInspector] public UnityEvent onPlayerDeath;
 
         protected override void Awake() {
             base.Awake();
@@ -67,6 +70,11 @@ namespace Characters.Player {
             statsManager.LoadCharacterAttributes(saveData.Vitality, saveData.Endurance, saveData.Dexterity,
                 saveData.Strength, saveData.Cyber, saveData.Control);
             statsManager.LoadCurrentStats(saveData.CurrentHp, saveData.CurrentStamina);
+        }
+
+        public override void HandleDeathEvent() {
+            base.HandleDeathEvent();
+            onPlayerDeath?.Invoke();
         }
     }
 }

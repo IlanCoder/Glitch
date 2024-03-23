@@ -1,14 +1,14 @@
-using Characters;
+using Characters.Player;
 using UnityEngine;
 
 namespace UI.HUD.GamePopUps {
     public class GamePopUpsManager : MonoBehaviour {
-        [SerializeField] CharacterManager characterManager;
+        [SerializeField] PlayerManager playerManager;
         [Header("Pop Ups")]
         [SerializeField] GameObject deathPopUp;
 
         void Awake() {
-            characterManager.onDeath.AddListener(ActivateDeathPopUp);
+            playerManager.onPlayerDeath.AddListener(ActivateDeathPopUp);
         }
 
         public void ActivateDeathPopUp() {

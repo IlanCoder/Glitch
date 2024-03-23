@@ -8,6 +8,8 @@ namespace UI.HUD.GamePopUps {
     public class DeathPopUpAnimator : MonoBehaviour {
         [Header("Animation Params")]
         [SerializeField] float fadeInTime;
+        [SerializeField] float fadeOutDelay;
+        [SerializeField] float targetAlpha;
         [SerializeField] float textSpacing;
         
         [Header("Objects")]
@@ -20,10 +22,20 @@ namespace UI.HUD.GamePopUps {
 
         void OnEnable() {
             _canvasGroup.alpha = 0;
-            _canvasGroup.DOFade(1, fadeInTime);
             text.characterSpacing = 0;
+            FadeIn();
+        }
+
+        void FadeIn() {
+            _canvasGroup.DOFade(targetAlpha, fadeInTime);
             DOTween.To(() => text.characterSpacing, x => text.characterSpacing = x, 
-                textSpacing, fadeInTime);
+            textSpacing, fadeInTime).OnComplete(FadeOut);
+        }
+        
+        void FadeOut() {
+            Sequence _sequence = DOTween.Sequence();
+            _sequence.AppendInterval(fadeOutDelay);
+            _sequence.Append(_canvasGroup.DOFade(0, fadeInTime));
         }
     }
 }

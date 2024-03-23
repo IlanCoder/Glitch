@@ -455,6 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705dfee7c9f73a845aacd361aacd138a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterManager: {fileID: 0}
   deathPopUp: {fileID: 2766859798560378208}
 --- !u!1 &2030794369146737183
 GameObject:
@@ -591,6 +592,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeInTime: 2
+  fadeOutDelay: 3
+  targetAlpha: 1
   textSpacing: 30
   text: {fileID: 8882243554737732558}
 --- !u!1 &3476810757122337783
