@@ -4264,6 +4264,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5475497348488880028, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: fadeOutDelay
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6160579619514259804, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_Layer
