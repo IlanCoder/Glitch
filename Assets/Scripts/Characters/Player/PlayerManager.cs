@@ -9,7 +9,9 @@ namespace Characters.Player {
      RequireComponent(typeof(PlayerInputManager)),
      RequireComponent(typeof(PlayerAnimManager)),
      RequireComponent(typeof(PlayerStatsManager)),
-     RequireComponent(typeof(PlayerEffectsManager))]
+     RequireComponent(typeof(PlayerEffectsManager)),
+     RequireComponent(typeof(PlayerInventoryManager)),
+     RequireComponent(typeof(PlayerEquipmentManager))]
     public class PlayerManager : CharacterManager {
         [SerializeField]PlayerCamera playerCamera;
         [HideInInspector]public PlayerMovementManager movementManager;
@@ -17,6 +19,8 @@ namespace Characters.Player {
         [HideInInspector]public PlayerAnimManager animManager;
         [HideInInspector]public PlayerStatsManager statsManager;
         [HideInInspector]public PlayerEffectsManager effectsManager;
+        [HideInInspector]public PlayerInventoryManager inventoryManager;
+        [HideInInspector]public PlayerEquipmentManager equipmentManager;
         public override CharacterStatsManager StatsManager => statsManager;
         public override CharacterAnimManager AnimManager => animManager;
         
@@ -29,6 +33,8 @@ namespace Characters.Player {
             movementManager = GetComponent<PlayerMovementManager>();
             statsManager = GetComponent<PlayerStatsManager>();
             effectsManager = GetComponent<PlayerEffectsManager>();
+            inventoryManager = GetComponent<PlayerInventoryManager>();
+            equipmentManager = GetComponent<PlayerEquipmentManager>();
             movementManager.playerCam = playerCamera;
             playerCamera.player = this;
             playerCamera.inputManager = inputManager;
