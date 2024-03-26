@@ -1,3 +1,4 @@
+using System;
 using Structs;
 using UnityEditor.Build;
 using UnityEngine;
@@ -27,7 +28,7 @@ namespace Items.Weapons {
         [SerializeField] protected float photonDmg;
         [SerializeField] protected float shockDmg;
         [SerializeField] protected float plasmaDmg;
-        DamageTypes _damage;
+        public DamageTypes Damage { get; protected set; }
         
         [Header("Poise & Posture")]
         [SerializeField] protected float poiseDmg;
@@ -35,5 +36,9 @@ namespace Items.Weapons {
 
         [Header("Stamina Costs")]
         [SerializeField] protected float baseStaminaCost;
+
+        public virtual void Awake() {
+            Damage.SetDamage(slashDmg, strikeDmg, thrustDmg, photonDmg, shockDmg, plasmaDmg);
+        }
     }
 }

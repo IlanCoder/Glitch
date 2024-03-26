@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d687b6f72a94abb4883dfd4caabe3f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hudManager: {fileID: 0}
-  gamePopUpsManager: {fileID: 0}
+  hudManager: {fileID: 6628204683802544537}
+  gamePopUpsManager: {fileID: 1354662148760397604}
 --- !u!223 &275327993252715764
 Canvas:
   m_ObjectHideFlags: 0

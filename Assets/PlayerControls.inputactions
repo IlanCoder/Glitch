@@ -2,6 +2,45 @@
     "name": "PlayerControls",
     "maps": [
         {
+            "name": "Player Actions",
+            "id": "aa839532-e9da-458d-b3bf-ba67b4ad28b7",
+            "actions": [
+                {
+                    "name": "Change Weapon",
+                    "type": "Button",
+                    "id": "b9aa5a7d-8440-4f81-be1a-3da81bf6db85",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "08b54f7b-a354-497a-927b-9740d6546a15",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
+                    "action": "Change Weapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39b2301b-968f-4288-9eb1-8e2d54b1bc9d",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Change Weapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Player Movement",
             "id": "132b796a-a030-44d1-aa3d-0fc93404e403",
             "actions": [

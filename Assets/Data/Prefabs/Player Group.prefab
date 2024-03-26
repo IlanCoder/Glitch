@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 7200118864363364673}
   - component: {fileID: 966062057154893486}
   - component: {fileID: 6892099787832052644}
+  - component: {fileID: 251063507548989144}
   m_Layer: 0
   m_Name: World Managers
   m_TagString: Untagged
@@ -143,6 +144,21 @@ MonoBehaviour:
   instantEffects:
   - {fileID: 11400000, guid: d538d210790f5da4a85164473f3d1a26, type: 2}
   - {fileID: 11400000, guid: a2fab64016e926745bc83c451da718cf, type: 2}
+--- !u!114 &251063507548989144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312777902183554807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ff04f26a20f32419a37973162e19e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeWeapons:
+  - {fileID: 11400000, guid: f8de61a39719dde4996ac2ee1b1eb5e0, type: 2}
+  - {fileID: 11400000, guid: 79e36a3c57b04714a97f1ef25c8fa047, type: 2}
 --- !u!1 &5987782936413589487
 GameObject:
   m_ObjectHideFlags: 0

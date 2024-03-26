@@ -4,6 +4,7 @@ using Items.Weapons;
 using Items.Weapons.MeleeWeapons;
 using Unity.Collections;
 using UnityEngine;
+using WorldManager;
 
 namespace Characters.Player {
     public class PlayerInventoryManager : MonoBehaviour {
@@ -12,36 +13,32 @@ namespace Characters.Player {
         [Header("Inventory Objs List")]
         [SerializeField] Transform weaponsParent;
         
-        [Header("Inventory Scriptable List")]
-        [SerializeField] List<BasicMeleeWeapon> _meleeWeapons = new List<BasicMeleeWeapon>();
+        [SerializeField]List<BasicMeleeWeapon> _meleeWeapons = new List<BasicMeleeWeapon>();
         public Dictionary<int, GameObject> MainWeaponsInventory { get; protected set; } = new Dictionary<int, GameObject>();
         public Dictionary<int, GameObject> OffhandWeaponsInventory { get; protected set; }= new Dictionary<int, GameObject>();
 
         void Awake() {
             _manager = GetComponent<PlayerManager>();
-            InstantiateAllWeapons();
         }
-
-        void Start() { }
 
         void InstantiateAllWeapons() {
             foreach (BasicMeleeWeapon weapon in _meleeWeapons) {
                 GameObject tempWeapon = Instantiate(weapon.WeaponPrefab, weaponsParent);
                 tempWeapon.SetActive(false);
-                MainWeaponsInventory.TryAdd(weapon.ItemID,tempWeapon);
+                MainWeaponsInventory.TryAdd(weapon.ItemID, tempWeapon);
                 if (!weapon.DualWield) continue;
                 tempWeapon = Instantiate(weapon.OffhandPrefab, weaponsParent);
                 tempWeapon.SetActive(false);
-                OffhandWeaponsInventory.TryAdd(weapon.ItemID,tempWeapon);
+                OffhandWeaponsInventory.TryAdd(weapon.ItemID, tempWeapon);
             }
         }
 
-        void EquipWeapon(BasicWeapon weapon) {
+        void EquipWeapon(int index, BasicWeapon weapon) {
             if (!weapon.DualWield) {
-                _manager.equipmentManager.EquipWeapon(weapon, MainWeaponsInventory[weapon.ItemID]);
+                _manager.equipmentManager.EquipWeapon(index, weapon, MainWeaponsInventory[weapon.ItemID]);
                 return;
             }
-            _manager.equipmentManager.EquipWeapon(weapon, MainWeaponsInventory[weapon.ItemID],
+            _manager.equipmentManager.EquipWeapon(index, weapon, MainWeaponsInventory[weapon.ItemID],
                 OffhandWeaponsInventory[weapon.ItemID]);
         }
 
@@ -51,6 +48,20 @@ namespace Characters.Player {
             if (!weapon.DualWield) return;
             OffhandWeaponsInventory[weapon.ItemID].SetActive(false);
             OffhandWeaponsInventory[weapon.ItemID].transform.SetParent(weaponsParent, false);
+        }
+
+        
+        [ContextMenu("Equip Weapons")]
+        void EquipWeapons() {
+            EquipWeapon(0, _meleeWeapons[0]);
+            EquipWeapon(1, _meleeWeapons[1]);
+        }
+
+        [ContextMenu("Load Weapons")]
+        void LoadWeaponsIntoInventory() {
+            _meleeWeapons.Add(WorldItemsManager.Instance.GetMeleeWeapon(0, transform));
+            _meleeWeapons.Add(WorldItemsManager.Instance.GetMeleeWeapon(1, transform));
+            InstantiateAllWeapons();
         }
     }
 }

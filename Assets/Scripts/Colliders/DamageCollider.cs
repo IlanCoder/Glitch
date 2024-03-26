@@ -8,41 +8,43 @@ using UnityEngine;
 using WorldManager;
 
 namespace Colliders {
+    [RequireComponent(typeof(Collider))]
     public class DamageCollider : MonoBehaviour {
         protected InstantHealthDamageEffect DamageEffect;
-        
-        [Header("Damage")]
-        [SerializeField] protected float slashDmg;
-        [SerializeField] protected float strikeDmg;
-        [SerializeField] protected float thrustDmg;
-        [SerializeField] protected float photonDmg;
-        [SerializeField] protected float shockDmg;
-        [SerializeField] protected float plasmaDmg;
-        DamageTypes _damage;
+        protected Collider DmgCollider;
 
         protected Vector3 ContactPoint;
         protected List<CharacterManager> CharactersHit = new List<CharacterManager>();
 
         void Awake() {
-            _damage.SetDamage(slashDmg, strikeDmg, thrustDmg, photonDmg, shockDmg, plasmaDmg);
-        }
-
-        void Start() {
-            DamageEffect = WorldEffectsManager.Instance.GetDamageEffectCopy(transform);
-            DamageEffect.InitializeEffect(_damage);
+            DmgCollider = GetComponent<Collider>();
         }
 
         protected void OnTriggerEnter(Collider other) {
-            if (!other.TryGetComponent(out PlayerManager target)) return;
+            if (!other.TryGetComponent(out CharacterManager target)) return;
             if (CharactersHit.Contains(target)) return;
             CharactersHit.Add(target);
             ContactPoint = other.ClosestPointOnBounds(transform.position);
             DamageTarget(target);
         }
 
-        protected virtual void DamageTarget(PlayerManager target) {
+        protected virtual void DamageTarget(CharacterManager target) {
             DamageEffect.contactPoint = ContactPoint;
-            target.effectsManager.ProcessInstantEffect(DamageEffect);
+            target.EffectsManager.ProcessInstantEffect(DamageEffect);
+        }
+
+        public virtual void EnableDamageCollider() {
+            DmgCollider.enabled = true;
+        }
+        
+        public virtual void DisableDamageCollider() {
+            CharactersHit.Clear();
+            DmgCollider.enabled = false;
+        }
+
+        public void SetDamage(DamageTypes damage) {
+            if (DamageEffect == null) DamageEffect = WorldEffectsManager.Instance.GetDamageEffectCopy(transform);
+            DamageEffect.InitializeEffect(damage);
         }
     }
 }

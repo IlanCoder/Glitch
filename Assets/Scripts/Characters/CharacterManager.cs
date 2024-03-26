@@ -8,6 +8,7 @@ namespace Characters {
         [HideInInspector]public CharacterController controller;
         public virtual CharacterStatsManager StatsManager => null;
         public virtual CharacterAnimManager AnimManager => null;
+        public virtual CharacterEffectsManager EffectsManager => null;
 
         #region Flags
         public bool isDead { get; private set; }

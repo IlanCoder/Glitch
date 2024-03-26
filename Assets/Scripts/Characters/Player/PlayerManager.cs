@@ -23,6 +23,7 @@ namespace Characters.Player {
         [HideInInspector]public PlayerEquipmentManager equipmentManager;
         public override CharacterStatsManager StatsManager => statsManager;
         public override CharacterAnimManager AnimManager => animManager;
+        public override CharacterEffectsManager EffectsManager => effectsManager;
         
         [HideInInspector] public UnityEvent onPlayerDeath;
 
@@ -87,7 +88,7 @@ namespace Characters.Player {
         public override void ReviveCharacter() {
             base.ReviveCharacter();
             statsManager.RevivePlayer();
-            animManager.Revive();
+            animManager.PlayReviveAnimation();
         }
     }
 }

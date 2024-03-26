@@ -1830,7 +1830,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponsParent: {fileID: 0}
-  _meleeWeapons: []
+  meleeWeapons:
+  - {fileID: 11400000, guid: f8de61a39719dde4996ac2ee1b1eb5e0, type: 2}
+  - {fileID: 11400000, guid: 79e36a3c57b04714a97f1ef25c8fa047, type: 2}
 --- !u!114 &8605303721872254329
 MonoBehaviour:
   m_ObjectHideFlags: 0

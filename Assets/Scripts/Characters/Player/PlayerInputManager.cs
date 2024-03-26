@@ -39,6 +39,8 @@ namespace Characters.Player {
                 
                 _playerControls.PlayerCamera.Movement.performed += i => 
                     CameraInput = i.ReadValue<Vector2>();
+
+                _playerControls.PlayerActions.ChangeWeapon.performed += i => HandleActiveWeaponChange();
             }
             _playerControls.Enable();
         }
@@ -91,6 +93,10 @@ namespace Characters.Player {
                 return;
             }
             _playerManager.movementManager.HandleSprint();
+        }
+
+        void HandleActiveWeaponChange() {
+            _playerManager.equipmentManager.ChangeActiveWeapon();
         }
     }
 }

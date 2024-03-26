@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Items {
@@ -8,5 +9,9 @@ namespace Items {
         [SerializeField, TextArea] protected string itemDescription;
         [SerializeField] protected int itemID;
         public int ItemID { get { return itemID; } }
+
+        public void SetItemID(int id) {
+            itemID = id;
+        }
     }
 }

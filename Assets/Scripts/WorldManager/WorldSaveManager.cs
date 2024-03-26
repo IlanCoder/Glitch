@@ -7,13 +7,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace WorldManager {
+    [DisallowMultipleComponent]
     public class WorldSaveManager : MonoBehaviour {
         const int GameSceneIndex = 1;
 
         [SerializeField] PlayerManager player;
         SaveFileEditor _saveFileEditor;
 
-        public int currentSaveDataIndex;
+        [Min(0)] public int currentSaveDataIndex;
         PlayerSaveData _currentSaveData = new PlayerSaveData();
         string _fileName;
 

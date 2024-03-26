@@ -5,6 +5,7 @@ using Effects.Instant;
 using UnityEngine;
 
 namespace WorldManager {
+    [DisallowMultipleComponent]
     public class WorldEffectsManager : MonoBehaviour {
         public static WorldEffectsManager Instance;
         
