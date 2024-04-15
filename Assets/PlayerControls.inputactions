@@ -347,7 +347,7 @@
                     "path": "<Mouse>/delta/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyBoard",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
