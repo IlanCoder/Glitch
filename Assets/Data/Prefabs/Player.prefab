@@ -1650,6 +1650,7 @@ GameObject:
   - component: {fileID: 4705518008009068066}
   - component: {fileID: -2887517767363528626}
   - component: {fileID: 5738588397391005857}
+  - component: {fileID: 6230370529941219925}
   - component: {fileID: 331698001150466806}
   - component: {fileID: 4593154082145648705}
   - component: {fileID: 8605303721872254329}
@@ -1799,9 +1800,22 @@ MonoBehaviour:
   effectsManager: {fileID: 0}
   inventoryManager: {fileID: 0}
   equipmentManager: {fileID: 0}
+  combatManager: {fileID: 0}
   onPlayerDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6230370529941219925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443002251341178569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f460990d825c145a75441e944bb388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &331698001150466806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1816,7 +1830,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightHandWeaponLocation: {fileID: 859001139728551959}
   leftHandWeaponLocation: {fileID: 1897553479204993376}
-  equippedWeapon: {fileID: 0}
 --- !u!114 &4593154082145648705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1830,9 +1843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponsParent: {fileID: 0}
-  meleeWeapons:
-  - {fileID: 11400000, guid: f8de61a39719dde4996ac2ee1b1eb5e0, type: 2}
-  - {fileID: 11400000, guid: 79e36a3c57b04714a97f1ef25c8fa047, type: 2}
+  _meleeWeapons: []
 --- !u!114 &8605303721872254329
 MonoBehaviour:
   m_ObjectHideFlags: 0

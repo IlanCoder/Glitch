@@ -21,11 +21,11 @@ MonoBehaviour:
   dualWield: 1
   offhandPrefab: {fileID: 5287090576274405779, guid: 0ac6cf157af962247935f6322e109ca1,
     type: 3}
-  dexReq: 10
-  strReq: 0
+  dexReq: 15
+  strReq: 10
   cyberReq: 0
   controlReq: 0
-  slashDmg: 50
+  slashDmg: 60
   strikeDmg: 0
   thrustDmg: 0
   photonDmg: 0

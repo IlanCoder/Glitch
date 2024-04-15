@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e642f77b830035d4fbbfa99180046311, type: 3}
-  m_Name: Sword
+  m_Name: Heavy Sword
   m_EditorClassIdentifier: 
-  itemName: Sword
-  icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  itemDescription: SWISH SWOOSH
-  itemID: 0
+  itemName: 
+  icon: {fileID: 0}
+  itemDescription: BIG SWISH SWOOSH
+  itemID: 2
   weaponPrefab: {fileID: 5287090576274405779, guid: 0ac6cf157af962247935f6322e109ca1,
     type: 3}
   dualWield: 0
   offhandPrefab: {fileID: 0}
   dexReq: 10
-  strReq: 10
+  strReq: 15
   cyberReq: 0
   controlReq: 0
-  slashDmg: 100
+  slashDmg: 150
   strikeDmg: 0
   thrustDmg: 0
   photonDmg: 0

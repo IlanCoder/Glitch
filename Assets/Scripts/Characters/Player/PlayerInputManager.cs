@@ -36,7 +36,6 @@ namespace Characters.Player {
                 _playerControls.PlayerMovement.Dodge.performed += i => HandleDodge();
                 _playerControls.PlayerMovement.Sprint.performed += i => _sprint = true;
                 _playerControls.PlayerMovement.Sprint.canceled += i => _sprint = false;
-                
                 _playerControls.PlayerCamera.Movement.performed += i => 
                     CameraInput = i.ReadValue<Vector2>();
 
