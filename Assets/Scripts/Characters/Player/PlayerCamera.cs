@@ -54,8 +54,6 @@ namespace Characters.Player {
             camRotation = new Vector3(_xAxisAngle, 0);
             targetRotation = Quaternion.Euler(camRotation);
             pivot.localRotation = targetRotation;
-
-            //transform.LookAt(pivot);
         }
 
         void HandleCollision() {
