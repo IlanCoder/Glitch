@@ -1,6 +1,6 @@
 using System;
+using DataContainers;
 using Enums;
-using Structs;
 using UnityEngine;
 
 namespace Items.Weapons {
@@ -28,7 +28,7 @@ namespace Items.Weapons {
         [SerializeField] protected float photonDmg;
         [SerializeField] protected float shockDmg;
         [SerializeField] protected float plasmaDmg;
-        public DamageValues Damage { get; protected set; }
+        public DamageValues Damage { get; protected set; } = new DamageValues();
         
         [Header("Poise & Posture")]
         [SerializeField] protected float poiseDmg;

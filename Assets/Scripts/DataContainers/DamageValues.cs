@@ -1,8 +1,5 @@
-using System.Reflection;
-using UnityEngine;
-
-namespace Structs {
-    public struct DamageValues{
+namespace DataContainers {
+    public class DamageValues{
         public float SlashDmg { get; private set; }
         public float StrikeDmg { get; private set; }
         public float ThrustDmg { get; private set; }

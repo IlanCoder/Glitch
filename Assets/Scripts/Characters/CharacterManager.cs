@@ -2,13 +2,17 @@
 using UnityEngine;
 
 namespace Characters {
-    [RequireComponent(typeof(CharacterController)), RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(CharacterController)), 
+     RequireComponent(typeof(Animator)),
+     RequireComponent(typeof(CharacterStatsManager)),
+     RequireComponent(typeof(CharacterAnimManager)),
+     RequireComponent(typeof(CharacterEffectsManager))]
     public class CharacterManager : MonoBehaviour {
         [HideInInspector]public Animator animator;
         [HideInInspector]public CharacterController controller;
-        public virtual CharacterStatsManager StatsManager => null;
-        public virtual CharacterAnimManager AnimManager => null;
-        public virtual CharacterEffectsManager EffectsManager => null;
+        public virtual CharacterStatsManager StatsManager => GetComponent<CharacterStatsManager>();
+        public virtual CharacterAnimManager AnimManager => GetComponent<CharacterAnimManager>();
+        public virtual CharacterEffectsManager EffectsManager => GetComponent<CharacterEffectsManager>();
 
         #region Flags
         public bool isDead { get; private set; }

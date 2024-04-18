@@ -1,7 +1,7 @@
 using Characters;
 using UnityEngine;
 using Characters.Player;
-using Structs;
+using DataContainers;
 
 namespace Effects.Instant {
     [CreateAssetMenu(fileName = "InstantHealthDamage",menuName = "Effects/Instant/Health Damage")]

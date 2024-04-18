@@ -11,11 +11,11 @@ namespace Characters {
         [SerializeField] float groundCheckSphereRadius = 1;
 
         [Header("Gravity Velocities")] 
-        [SerializeField] protected Vector3 yVel;
         [SerializeField] protected float groundedYVel = -20;
         [SerializeField] protected float gravityForce = -9.81f;
         [SerializeField] protected float fallStartVel = -5;
         [SerializeField] protected float fallMaxVel = -50;
+        protected Vector3 yVel;
         protected bool fallingVelHasBeenSet;
         protected float inAirTimer;
         readonly int _inAirTimerHash = Animator.StringToHash("InAirTimer");

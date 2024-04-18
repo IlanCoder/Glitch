@@ -11,6 +11,7 @@ namespace Characters {
         }
 
         public virtual void ProcessInstantEffect(InstantCharacterEffect effect) {
+            effect.ProcessEffect(manager);
         }
     }
 }
