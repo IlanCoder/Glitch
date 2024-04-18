@@ -16,7 +16,7 @@ namespace Characters {
         [HideInInspector] public bool rotationLocked;
         [HideInInspector] public bool movementLocked;
         [HideInInspector] public bool isSprinting;
-        public bool isJumping;
+        [HideInInspector] public bool isJumping;
         [HideInInspector] public bool isGrounded;
         #endregion
         

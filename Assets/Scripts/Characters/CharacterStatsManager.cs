@@ -66,6 +66,11 @@ namespace Characters {
             onStaminaChange?.Invoke(CurrentStamina);
             _staminaRegenTimer = staminaRegenDelay;
         }
+        
+        public bool CanPerformStaminaAction() {
+            if (manager.isPerformingAction) return false;
+            return CurrentStamina > 0;
+        }
 
         protected void SetMaxStamina(int newMaxStamina) {
             MaxStamina = newMaxStamina;

@@ -21,8 +21,8 @@ namespace Effects.Instant {
         [HideInInspector] public Vector3 contactPoint;
         
         #region Damage
-        public DamageTypes Damage;
-        int _totalDmg;
+        public DamageValues Damage;
+        float _totalDmg;
   #endregion
         
         #region Poise
@@ -30,7 +30,7 @@ namespace Effects.Instant {
         bool _poiseIsBroken;
   #endregion
 
-        public void InitializeEffect(DamageTypes dmg) {
+        public void SetEffectDamage(DamageValues dmg) {
             Damage = dmg;
         }
         
@@ -40,10 +40,9 @@ namespace Effects.Instant {
         }
 
         void CalculateHealthDamage(CharacterManager player) {
-            _totalDmg = Mathf.RoundToInt(Damage.SlashDmg + Damage.StrikeDmg + Damage.ThrustDmg + Damage.PhotonDmg +
-                                         Damage.ShockDmg + Damage.PlasmaDmg);
+            _totalDmg = Damage.TotalMultipliedDamage;
             if (_totalDmg <= 0) _totalDmg = 1;
-            player.StatsManager.ReceiveDamage(_totalDmg);
+            player.StatsManager.ReceiveDamage(Mathf.RoundToInt(_totalDmg));
         }
     }
 }

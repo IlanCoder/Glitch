@@ -15,7 +15,6 @@ namespace Characters.Player {
         [Header("Stamina Costs")] 
         [SerializeField, Min(0.1f)] float sprintCost;
         [SerializeField, Min(1)] int rollCost;
-        [SerializeField, Min(1)] int backStepCost;
         [SerializeField, Min(1)] int jumpCost;
         
         [Header("Jump")] 
@@ -73,7 +72,7 @@ namespace Characters.Player {
         }
         
         public void HandleSprint() {
-            if (!CanPerformStaminaAction() || 
+            if (!manager.statsManager.CanPerformStaminaAction() || 
                 manager.inputManager.MoveAmount < 0.5f) {
                 manager.isSprinting = false;
                 return;
@@ -89,7 +88,7 @@ namespace Characters.Player {
         }
 
         public void AttemptToDodge() {
-            if (!CanPerformStaminaAction()) return;
+            if (!manager.statsManager.CanPerformStaminaAction()) return;
             if (manager.inputManager.MoveAmount > 0) {
                 CheckRotationRelativeToCam();
                 Quaternion newRotation = Quaternion.LookRotation(_targetRotation);
@@ -99,11 +98,11 @@ namespace Characters.Player {
                 return;
             }
             manager.animManager.PlayDodgeAnimation(true);
-            manager.statsManager.UseStamina(backStepCost);
+            manager.statsManager.UseStamina(rollCost);
         }
 
         public void AttemptToJump() {
-            if (!CanPerformStaminaAction()) return;
+            if (!manager.statsManager.CanPerformStaminaAction()) return;
             if(manager.isJumping) return;
             if (!manager.isGrounded) return;
             manager.isJumping = true;
@@ -133,11 +132,6 @@ namespace Characters.Player {
                     return runningSpeed;
                 default: return 0;
             }
-        }
-        
-        bool CanPerformStaminaAction() {
-            if (manager.isPerformingAction) return false;
-            return manager.statsManager.CurrentStamina > 0;
         }
 
         Vector3 GetNormalizedHorizontalDirection() {

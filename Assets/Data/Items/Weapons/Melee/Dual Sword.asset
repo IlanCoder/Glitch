@@ -33,4 +33,4 @@ MonoBehaviour:
   plasmaDmg: 0
   poiseDmg: 0
   postureDmg: 0
-  baseStaminaCost: 0
+  baseStaminaCost: 15

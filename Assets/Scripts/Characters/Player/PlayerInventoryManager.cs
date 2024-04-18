@@ -13,7 +13,7 @@ namespace Characters.Player {
         [Header("Inventory Objs List")]
         [SerializeField] Transform weaponsParent;
         
-        [SerializeField]List<BasicMeleeWeapon> _meleeWeapons = new List<BasicMeleeWeapon>();
+        [SerializeField] List<BasicMeleeWeapon> _meleeWeapons = new List<BasicMeleeWeapon>();
         public Dictionary<int, GameObject> MainWeaponsInventory { get; protected set; } = new Dictionary<int, GameObject>();
         public Dictionary<int, GameObject> OffhandWeaponsInventory { get; protected set; }= new Dictionary<int, GameObject>();
 
@@ -50,18 +50,27 @@ namespace Characters.Player {
             OffhandWeaponsInventory[weapon.ItemID].transform.SetParent(weaponsParent, false);
         }
 
+         #region Editor Funcs
+#if UNITY_EDITOR
+        [ContextMenu("Set Test Weapons")]
+        void SetNewLevel() {
+            LoadWeaponsIntoInventory();
+            EquipWeapons();
+        }
         
-        [ContextMenu("Equip Weapons")]
         void EquipWeapons() {
             EquipWeapon(0, _meleeWeapons[0]);
             EquipWeapon(1, _meleeWeapons[1]);
+            EquipWeapon(2, _meleeWeapons[2]);
         }
 
-        [ContextMenu("Load Weapons")]
         void LoadWeaponsIntoInventory() {
             _meleeWeapons.Add(WorldItemsManager.Instance.GetMeleeWeapon(0, transform));
             _meleeWeapons.Add(WorldItemsManager.Instance.GetMeleeWeapon(1, transform));
+            _meleeWeapons.Add(WorldItemsManager.Instance.GetMeleeWeapon(2, transform));
             InstantiateAllWeapons();
         }
+#endif
+  #endregion
     }
 }

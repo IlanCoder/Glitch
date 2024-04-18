@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 01df75b86bb727548ac49bd2fcb46e36
+guid: 4a9186c10dbbdfd4b815203ad838cd23
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: 4062580546051787168
-    second: straight_sword_dw_light_attack_01
+      74: 5319088248113807286
+    second: straight_sword_main_run_attack_01
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: straight_sword_dw_light_attack_01
-      takeName: straight_sword_dw_light_attack_01
+      name: straight_sword_main_run_attack_01
+      takeName: straight_sword_main_run_attack_01
       internalID: 0
       firstFrame: 0
-      lastFrame: 53
+      lastFrame: 43
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Enums;
 using UnityEngine;
 
 namespace Characters.Player {
@@ -31,6 +32,10 @@ namespace Characters.Player {
         public void PlayEquipAnimation() {
             PlayTargetAnimation(PlayerAnimationHashes["Equip_Weapon"], true, false, 
                 false);
+        }
+
+        public void PlayAttackAnimation(AttackType attackType) {
+            PlayTargetAttackAnimation(attackType);
         }
     }
 }

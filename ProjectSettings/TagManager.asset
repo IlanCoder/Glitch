@@ -11,12 +11,12 @@ TagManager:
   - Ground
   - Water
   - UI
+  - Player
   - Character
   - 
   - 
-  - 
+  - Player Damage Collider
   - Damage Collider
-  - 
   - 
   - 
   - 

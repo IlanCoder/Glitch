@@ -1,6 +1,6 @@
 using System;
+using Enums;
 using Structs;
-using UnityEditor.Build;
 using UnityEngine;
 
 namespace Items.Weapons {
@@ -28,17 +28,31 @@ namespace Items.Weapons {
         [SerializeField] protected float photonDmg;
         [SerializeField] protected float shockDmg;
         [SerializeField] protected float plasmaDmg;
-        public DamageTypes Damage { get; protected set; }
+        public DamageValues Damage { get; protected set; }
         
         [Header("Poise & Posture")]
         [SerializeField] protected float poiseDmg;
         [SerializeField] protected float postureDmg;
 
-        [Header("Stamina Costs")]
+        [Header("Stamina Cost")]
         [SerializeField] protected float baseStaminaCost;
+        float _attackStaminaCost;
 
         public virtual void Awake() {
             Damage.SetDamage(slashDmg, strikeDmg, thrustDmg, photonDmg, shockDmg, plasmaDmg);
+        }
+
+        public virtual float GetAttackStaminaCost(AttackType attackType, int comboAttackIndex = 0) {
+            _attackStaminaCost = baseStaminaCost;
+            switch (attackType) {
+                case AttackType.Light: break;
+                case AttackType.Heavy: break;
+                case AttackType.SuperchargedLight: break;
+                case AttackType.SuperchargedHeavy: break;
+                case AttackType.Ultimate: break;
+                case AttackType.Special: break;
+            }
+            return _attackStaminaCost;
         }
     }
 }

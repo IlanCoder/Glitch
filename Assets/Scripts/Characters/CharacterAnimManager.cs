@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Enums;
 using UnityEngine;
 
 namespace Characters {
@@ -31,7 +32,19 @@ namespace Characters {
             manager.movementLocked = lockMovement;
             manager.rotationLocked = lockRotation;
         }
-        
+
+        protected virtual void PlayTargetAttackAnimation(AttackType attackType) {
+            manager.isPerformingAction = true;
+            manager.animator.applyRootMotion = true;
+            manager.movementLocked = true;
+            manager.rotationLocked = true;
+            switch (attackType) {
+                case AttackType.Light:
+                    manager.animator.CrossFade(Animator.StringToHash("Light_1"), 0.2f);
+                    break;
+            }
+        }
+
         public void PlayDeathAnimation() {
             PlayTargetAnimation(AnimationHashes["Death"], false);
         }

@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: eb60c486d52cf494da843f8dd719690d
+guid: e808f49c54f731b4eace3214dfdcaeac
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: 7911330381115545949
-    second: straight_sword_dw_light_attack_02
+      74: -919929085296881444
+    second: straight_sword_th_death_01
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -22,7 +22,10 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'straight_sword_th_death_01' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Hand_R' has translation animation
+      that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -36,11 +39,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: straight_sword_dw_light_attack_02
-      takeName: straight_sword_dw_light_attack_02
+      name: straight_sword_th_death_01
+      takeName: straight_sword_th_death_01
       internalID: 0
       firstFrame: 0
-      lastFrame: 50
+      lastFrame: 68
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

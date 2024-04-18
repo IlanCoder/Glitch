@@ -30,19 +30,19 @@ namespace Characters.Player {
             _equippedWeapons[index] = weapon;
             _rightHandWeapons[index] = rightWeapon;
             rightWeapon.transform.SetParent(rightHandWeaponLocation, false);
-            rightWeapon.GetComponent<WeaponManager>().SetWeaponDamage(weapon);
+            rightWeapon.GetComponent<WeaponManager>().SetWeapon(weapon, _manager);
             if (weapon.DualWield) return;
             if (_activeWeaponIndex != index) return;
-            ReactivateWeapon();
+            ActivateWeapon();
         }
         
         public void EquipWeapon(int index, BasicWeapon weapon, GameObject rightWeapon, GameObject leftWeapon) {
             EquipWeapon(index, weapon, rightWeapon);
             _leftHandWeapons[index] = leftWeapon;
             leftWeapon.transform.SetParent(leftHandWeaponLocation, false);
-            leftWeapon.GetComponent<WeaponManager>().SetWeaponDamage(weapon);
+            leftWeapon.GetComponent<WeaponManager>().SetWeapon(weapon, _manager);
             if (_activeWeaponIndex != index) return;
-            ReactivateWeapon();
+            ActivateWeapon();
         }
 
         void UnequipWeapon(int index) {
@@ -68,29 +68,47 @@ namespace Characters.Player {
             return false;
         }
 
-        void ReactivateWeapon() {
+        void ActivateWeapon() {
             _manager.animManager.PlayEquipAnimation();
         }
 
-        public void SwitchWeapons() {
-            DeactivateCurrentWeapon();
-            _activeWeaponIndex = _nextWeaponIndex;
-            ActivateCurrentWeapon();
-        }
-        
-        void DeactivateCurrentWeapon() {
+        void ActivateCurrentWeapon(bool active) {
             if(_equippedWeapons[_activeWeaponIndex] == null) return;
-            if (_equippedWeapons[_activeWeaponIndex].DualWield) {
-                _leftHandWeapons[_activeWeaponIndex].SetActive(false);
-            }
-            _rightHandWeapons[_activeWeaponIndex].SetActive(false);
+            _rightHandWeapons[_activeWeaponIndex].SetActive(active);
+            if (_equippedWeapons[_activeWeaponIndex].DualWield) _leftHandWeapons[_activeWeaponIndex].SetActive(active);
         }
 
-        void ActivateCurrentWeapon() {
-            _rightHandWeapons[_activeWeaponIndex].SetActive(true);
+        void SetCombatWeapon() {
+            _manager.combatManager.activeWeapon = _equippedWeapons[_activeWeaponIndex];
+            _manager.combatManager.rightHandWeaponManager =
+                _rightHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>();
+            if (_equippedWeapons[_activeWeaponIndex].DualWield) _manager.combatManager.leftHandWeaponManager =
+                _leftHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>();
+        }
+        
+        #region Animation Events
+        public void SwitchWeapons() {
+            ActivateCurrentWeapon(false);
+            _activeWeaponIndex = _nextWeaponIndex;
+            ActivateCurrentWeapon(true);
+            SetCombatWeapon();
+        }
+
+        public void EnableWeaponColliders() {
+            if(_equippedWeapons[_activeWeaponIndex] == null) return;
+            _rightHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>().EnableDamageCollider();
             if (_equippedWeapons[_activeWeaponIndex].DualWield) {
-                _leftHandWeapons[_activeWeaponIndex].SetActive(true);
+                _leftHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>().EnableDamageCollider();
             }
         }
+
+        public void DisableWeaponColliders() {
+            if(_equippedWeapons[_activeWeaponIndex] == null) return;
+            _rightHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>().DisableDamageCollider();
+            if (_equippedWeapons[_activeWeaponIndex].DualWield) {
+                _leftHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>().DisableDamageCollider();
+            }
+        }
+        #endregion
     }
 }

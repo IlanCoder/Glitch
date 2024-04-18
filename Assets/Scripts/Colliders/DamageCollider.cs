@@ -16,12 +16,16 @@ namespace Colliders {
         protected Vector3 ContactPoint;
         protected List<CharacterManager> CharactersHit = new List<CharacterManager>();
 
-        void Awake() {
+        protected virtual void Awake() {
             DmgCollider = GetComponent<Collider>();
         }
 
-        protected void OnTriggerEnter(Collider other) {
+        protected virtual void OnTriggerEnter(Collider other) {
             if (!other.TryGetComponent(out CharacterManager target)) return;
+            HitTarget(other, target);
+        }
+
+        protected virtual void HitTarget(Collider other, CharacterManager target) {
             if (CharactersHit.Contains(target)) return;
             CharactersHit.Add(target);
             ContactPoint = other.ClosestPointOnBounds(transform.position);
@@ -36,15 +40,15 @@ namespace Colliders {
         public virtual void EnableDamageCollider() {
             DmgCollider.enabled = true;
         }
-        
+
         public virtual void DisableDamageCollider() {
             CharactersHit.Clear();
             DmgCollider.enabled = false;
         }
 
-        public void SetDamage(DamageTypes damage) {
+        public void SetDamage(DamageValues damage) {
             if (DamageEffect == null) DamageEffect = WorldEffectsManager.Instance.GetDamageEffectCopy(transform);
-            DamageEffect.InitializeEffect(damage);
+            DamageEffect.SetEffectDamage(damage);
         }
     }
 }

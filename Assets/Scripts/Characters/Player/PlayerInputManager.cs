@@ -33,10 +33,12 @@ namespace Characters.Player {
                 _playerControls.PlayerMovement.Dodge.performed += i => HandleDodge();
                 _playerControls.PlayerMovement.Sprint.performed += i => _sprint = true;
                 _playerControls.PlayerMovement.Sprint.canceled += i => _sprint = false;
+                
                 _playerControls.PlayerCamera.Movement.performed += i => 
                     CameraInput = i.ReadValue<Vector2>();
 
                 _playerControls.PlayerActions.ChangeWeapon.performed += i => HandleActiveWeaponChange();
+                _playerControls.PlayerActions.LightAttack.performed += i => HandleLightAttack();
             }
             _playerControls.Enable();
         }
@@ -93,6 +95,10 @@ namespace Characters.Player {
 
         void HandleActiveWeaponChange() {
             _playerManager.equipmentManager.ChangeActiveWeapon();
+        }
+
+        void HandleLightAttack() {
+            _playerManager.combatManager.PerformLightAttack();
         }
     }
 }
