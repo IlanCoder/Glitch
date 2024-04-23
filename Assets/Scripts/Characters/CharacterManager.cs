@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 namespace Characters {
@@ -6,13 +5,17 @@ namespace Characters {
      RequireComponent(typeof(Animator)),
      RequireComponent(typeof(CharacterStatsManager)),
      RequireComponent(typeof(CharacterAnimManager)),
-     RequireComponent(typeof(CharacterEffectsManager))]
+     RequireComponent(typeof(CharacterEffectsManager)),
+     RequireComponent(typeof(CharacterVFxManager)),
+     RequireComponent(typeof(CharacterSFxManager))]
     public class CharacterManager : MonoBehaviour {
         [HideInInspector]public Animator animator;
         [HideInInspector]public CharacterController controller;
         public virtual CharacterStatsManager StatsManager => GetComponent<CharacterStatsManager>();
         public virtual CharacterAnimManager AnimManager => GetComponent<CharacterAnimManager>();
         public virtual CharacterEffectsManager EffectsManager => GetComponent<CharacterEffectsManager>();
+        public virtual CharacterVFxManager VFxManager => GetComponent<CharacterVFxManager>();
+        public virtual CharacterSFxManager SFxManager => GetComponent<CharacterSFxManager>();
 
         #region Flags
         public bool isDead { get; private set; }

@@ -1654,6 +1654,7 @@ GameObject:
   - component: {fileID: 331698001150466806}
   - component: {fileID: 4593154082145648705}
   - component: {fileID: 8605303721872254329}
+  - component: {fileID: 7257033694426047524}
   - component: {fileID: 8043861301878091408}
   - component: {fileID: 233316731465283562}
   - component: {fileID: 5697119794618443428}
@@ -1698,7 +1699,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundCheckSphereRadius: 0.3
-  yVel: {x: 0, y: 0, z: 0}
   groundedYVel: -20
   gravityForce: -9.81
   fallStartVel: -5
@@ -1712,7 +1712,6 @@ MonoBehaviour:
   freeFallSpeed: 1
   sprintCost: 3
   rollCost: 10
-  backStepCost: 20
   jumpCost: 1
   jumpHeight: 1.5
 --- !u!114 &-2887517767363528626
@@ -1801,6 +1800,7 @@ MonoBehaviour:
   inventoryManager: {fileID: 0}
   equipmentManager: {fileID: 0}
   combatManager: {fileID: 0}
+  vFxManager: {fileID: 0}
   onPlayerDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -1816,6 +1816,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f460990d825c145a75441e944bb388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeWeapon: {fileID: 0}
+  rightHandWeaponManager: {fileID: 0}
+  leftHandWeaponManager: {fileID: 0}
 --- !u!114 &331698001150466806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1857,6 +1860,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldSaveManager: {fileID: 0}
+--- !u!114 &7257033694426047524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443002251341178569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c37ca8c2cac92e845af81cb67eed8e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageVFxType: 0
 --- !u!114 &8043861301878091408
 MonoBehaviour:
   m_ObjectHideFlags: 0

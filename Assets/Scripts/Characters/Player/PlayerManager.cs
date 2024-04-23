@@ -12,7 +12,9 @@ namespace Characters.Player {
      RequireComponent(typeof(PlayerEffectsManager)),
      RequireComponent(typeof(PlayerInventoryManager)),
      RequireComponent(typeof(PlayerEquipmentManager)),
-     RequireComponent(typeof(PlayerCombatManager))]
+     RequireComponent(typeof(PlayerCombatManager)),
+     RequireComponent(typeof(PlayerVFxManager)),
+     RequireComponent(typeof(PlayerSFxManager))]
     public class PlayerManager : CharacterManager {
         [SerializeField]PlayerCamera playerCamera;
         [HideInInspector]public PlayerMovementManager movementManager;
@@ -23,9 +25,15 @@ namespace Characters.Player {
         [HideInInspector]public PlayerInventoryManager inventoryManager;
         [HideInInspector]public PlayerEquipmentManager equipmentManager;
         [HideInInspector]public PlayerCombatManager combatManager;
+        [HideInInspector]public PlayerVFxManager vFxManager;
+        [HideInInspector]public PlayerSFxManager sFxManager;
+        
         public override CharacterStatsManager StatsManager => statsManager;
         public override CharacterAnimManager AnimManager => animManager;
         public override CharacterEffectsManager EffectsManager => effectsManager;
+        public override CharacterVFxManager VFxManager => vFxManager;
+        public override CharacterSFxManager SFxManager => sFxManager;
+        
         
         [HideInInspector] public UnityEvent onPlayerDeath;
 
@@ -39,6 +47,8 @@ namespace Characters.Player {
             inventoryManager = GetComponent<PlayerInventoryManager>();
             equipmentManager = GetComponent<PlayerEquipmentManager>();
             combatManager = GetComponent<PlayerCombatManager>();
+            vFxManager = GetComponent<PlayerVFxManager>();
+            sFxManager = GetComponent<PlayerSFxManager>();
             movementManager.playerCam = playerCamera;
             playerCamera.player = this;
             playerCamera.inputManager = inputManager;

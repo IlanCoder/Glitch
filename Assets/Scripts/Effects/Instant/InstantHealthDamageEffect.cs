@@ -43,7 +43,7 @@ namespace Effects.Instant {
         }
 
         void PlayDamageVFx(CharacterManager character) {
-            character.EffectsManager.PlayDamageVFx(contactPoint);
+            character.VFxManager.PlayDamageVFx(contactPoint);
         }
 
         void PlayDamageSFx(CharacterManager character) {
