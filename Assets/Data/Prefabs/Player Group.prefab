@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1688346801368638957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6272467755777708631}
+  m_Layer: 0
+  m_Name: VFXs Instances
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6272467755777708631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688346801368638957}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7872325728363234796}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2649464354362334558
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,6 +97,7 @@ Transform:
   - {fileID: 5562497522319866972}
   - {fileID: 6674809730526408942}
   - {fileID: 5114275450988587970}
+  - {fileID: 6272467755777708631}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1233919646674979413
@@ -92,6 +124,7 @@ GameObject:
   - component: {fileID: 966062057154893486}
   - component: {fileID: 6892099787832052644}
   - component: {fileID: 251063507548989144}
+  - component: {fileID: 433442733128825150}
   m_Layer: 0
   m_Name: World Managers
   m_TagString: Untagged
@@ -160,6 +193,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f8de61a39719dde4996ac2ee1b1eb5e0, type: 2}
   - {fileID: 11400000, guid: 79e36a3c57b04714a97f1ef25c8fa047, type: 2}
   - {fileID: 11400000, guid: a8096f99955b69b4a92b0abcf26db035, type: 2}
+--- !u!114 &433442733128825150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312777902183554807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f95335ac54b63b4e80c8da3982c087a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vFxsParent: {fileID: 6272467755777708631}
+  bloodDamageVFx: {fileID: 6307363679209122882, guid: ec2e9253c32c1844c8f9f17b08cfb43b,
+    type: 3}
 --- !u!1 &5987782936413589487
 GameObject:
   m_ObjectHideFlags: 0

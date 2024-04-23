@@ -11,10 +11,6 @@ namespace Effects.Instant {
         public bool manuallySelectDamageAnimation;
         public string damageAnimation;
 
-        [Header("Sound FX")]
-        public bool willPlayDamageSfx = true;
-        public AudioClip damageSfx;
-        
         [HideInInspector] public CharacterManager characterCausingDamage;
         
         [HideInInspector] public float hitAngle;
@@ -34,15 +30,24 @@ namespace Effects.Instant {
             Damage = dmg;
         }
         
-        public override void ProcessEffect(CharacterManager player) {
-            base.ProcessEffect(player);
-            CalculateHealthDamage(player);
+        public override void ProcessEffect(CharacterManager character) {
+            if(character.isDead) return;
+            CalculateHealthDamage(character);
+            PlayDamageVFx(character);
         }
 
-        void CalculateHealthDamage(CharacterManager player) {
+        void CalculateHealthDamage(CharacterManager character) {
             _totalDmg = Damage.TotalMultipliedDamage;
             if (_totalDmg <= 0) _totalDmg = 1;
-            player.StatsManager.ReceiveDamage(Mathf.RoundToInt(_totalDmg));
+            character.StatsManager.ReceiveDamage(Mathf.RoundToInt(_totalDmg));
+        }
+
+        void PlayDamageVFx(CharacterManager character) {
+            character.EffectsManager.PlayDamageVFx(contactPoint);
+        }
+
+        void PlayDamageSFx(CharacterManager character) {
+            
         }
     }
 }

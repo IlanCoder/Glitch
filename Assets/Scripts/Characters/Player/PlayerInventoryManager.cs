@@ -10,9 +10,8 @@ namespace Characters.Player {
     public class PlayerInventoryManager : MonoBehaviour {
         PlayerManager _manager;
 
-        [Header("Inventory Objs List")]
         [SerializeField] Transform weaponsParent;
-        
+        [Header("Inventory Objs List")]
         [SerializeField] List<BasicMeleeWeapon> _meleeWeapons = new List<BasicMeleeWeapon>();
         public Dictionary<int, GameObject> MainWeaponsInventory { get; protected set; } = new Dictionary<int, GameObject>();
         public Dictionary<int, GameObject> OffhandWeaponsInventory { get; protected set; }= new Dictionary<int, GameObject>();

@@ -7,12 +7,13 @@ namespace Effects.Instant {
     public class InstantStaminaDamageEffect : InstantCharacterEffect {
         public float staminaDamage;
         
-        public override void ProcessEffect(CharacterManager player) {
-            CalculateStaminaDamage(player);
+        public override void ProcessEffect(CharacterManager character) {
+            if(character.isDead) return;
+            CalculateStaminaDamage(character);
         }
 
-        void CalculateStaminaDamage(CharacterManager player) {
-            player.StatsManager.UseStamina(staminaDamage);
+        void CalculateStaminaDamage(CharacterManager character) {
+            character.StatsManager.UseStamina(staminaDamage);
         }
     }
 }
