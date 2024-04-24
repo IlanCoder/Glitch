@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 6892099787832052644}
   - component: {fileID: 251063507548989144}
   - component: {fileID: 433442733128825150}
+  - component: {fileID: 7401951551909792429}
   m_Layer: 0
   m_Name: World Managers
   m_TagString: Untagged
@@ -208,6 +209,22 @@ MonoBehaviour:
   vFxsParent: {fileID: 6272467755777708631}
   bloodDamageVFx: {fileID: 6307363679209122882, guid: ec2e9253c32c1844c8f9f17b08cfb43b,
     type: 3}
+--- !u!114 &7401951551909792429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312777902183554807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76ecf5371e0d40a581a12b43f898b3c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fleshDamageSFxs:
+  - {fileID: 8300000, guid: db6d8887c8e0c6d459f0233f32a20858, type: 3}
+  - {fileID: 8300000, guid: 7cf0d197af47f624f95720d3ea51f5ef, type: 3}
+  - {fileID: 8300000, guid: 5ec2cc69dd4753043adb200e773301ef, type: 3}
 --- !u!1 &5987782936413589487
 GameObject:
   m_ObjectHideFlags: 0

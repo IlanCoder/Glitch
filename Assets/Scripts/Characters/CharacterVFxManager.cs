@@ -4,7 +4,7 @@ using WorldManager;
 
 namespace Characters{
 	public class CharacterVFxManager : MonoBehaviour {
-		[SerializeField] DamageVFxType damageVFxType;
+		[SerializeField] protected DamageVFxType damageVFxType;
 		
 		public virtual void PlayDamageVFx(Vector3 contactPoint) {
 			GameObject vFx = WorldVFxsManager.Instance.GetDamageVFxInstance(damageVFxType);

@@ -34,6 +34,7 @@ namespace Effects.Instant {
             if(character.isDead) return;
             CalculateHealthDamage(character);
             PlayDamageVFx(character);
+            PlayDamageSFx(character);
         }
 
         void CalculateHealthDamage(CharacterManager character) {
@@ -47,7 +48,7 @@ namespace Effects.Instant {
         }
 
         void PlayDamageSFx(CharacterManager character) {
-            
+            character.SFxManager.PlayDamageSFx();
         }
     }
 }
