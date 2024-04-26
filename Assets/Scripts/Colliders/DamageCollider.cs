@@ -12,8 +12,7 @@ namespace Colliders {
     public class DamageCollider : MonoBehaviour {
         protected InstantHealthDamageEffect DamageEffect;
         protected Collider DmgCollider;
-
-        protected Vector3 ContactPoint;
+        
         protected List<CharacterManager> CharactersHit = new List<CharacterManager>();
 
         protected virtual void Awake() {
@@ -28,12 +27,11 @@ namespace Colliders {
         protected virtual void HitTarget(Collider other, CharacterManager target) {
             if (CharactersHit.Contains(target)) return;
             CharactersHit.Add(target);
-            ContactPoint = other.ClosestPointOnBounds(transform.position);
+            DamageEffect.contactPoint = other.ClosestPoint(transform.position);
             DamageTarget(target);
         }
 
         protected virtual void DamageTarget(CharacterManager target) {
-            DamageEffect.contactPoint = ContactPoint;
             target.EffectsManager.ProcessInstantEffect(DamageEffect);
         }
 

@@ -27364,7 +27364,7 @@ GameObject:
   - component: {fileID: 5396367415182488733}
   - component: {fileID: 2018618987621658343}
   - component: {fileID: 5396367415182488738}
-  - component: {fileID: 5396367415182488737}
+  - component: {fileID: 5396367415182488742}
   - component: {fileID: 5396367415182488736}
   - component: {fileID: 5396367415182488735}
   - component: {fileID: 5396367415182488734}
@@ -27532,7 +27532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac94a21545691b41ae5667c0e524b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   controller: {fileID: 0}
   isPerformingAction: 0
   rotationLocked: 0
@@ -27564,33 +27563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74cd0d61d5a5482ba85b176b2fe2d733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5396367415182488737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4731153721466138151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31049c3ffd298ca4daca6b9edc46a2e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterName: Character
-  staminaRegen: 1
-  staminaRegenDelay: 1
-  onStaminaChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onMaxStaminaChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onHpChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onMaxHpChange:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!143 &5396367415182488738
 CharacterController:
   m_ObjectHideFlags: 0
@@ -27644,6 +27616,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageVFxType: 0
+--- !u!114 &5396367415182488742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731153721466138151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f28755ccb0ce504d847de2e3f13ffdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: Character
+  staminaRegen: 1
+  staminaRegenDelay: 1
+  onStaminaChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onMaxStaminaChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onHpChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onMaxHpChange:
+    m_PersistentCalls:
+      m_Calls: []
+  maxHp: 100000
 --- !u!4 &5418449313283663536
 Transform:
   m_ObjectHideFlags: 0

@@ -35,6 +35,7 @@ namespace Effects.Instant {
             CalculateHealthDamage(character);
             PlayDamageVFx(character);
             PlayDamageSFx(character);
+            PlayDamageAnimation(character);
         }
 
         void CalculateHealthDamage(CharacterManager character) {
@@ -49,6 +50,10 @@ namespace Effects.Instant {
 
         void PlayDamageSFx(CharacterManager character) {
             character.SFxManager.PlayDamageSFx();
+        }
+
+        void PlayDamageAnimation(CharacterManager character) {
+            character.AnimManager.PlayStaggerAnimation(hitAngle);
         }
     }
 }

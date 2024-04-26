@@ -18,8 +18,6 @@ namespace Characters {
         protected Vector3 yVel;
         protected bool fallingVelHasBeenSet;
         protected float inAirTimer;
-        readonly int _inAirTimerHash = Animator.StringToHash("InAirTimer");
-        readonly int _isGroundedHash = Animator.StringToHash("IsGrounded");
 
         protected virtual void Awake() {
             manager = GetComponent<T>();
@@ -27,7 +25,7 @@ namespace Characters {
 
         protected void Update() {
             HandleGroundCheck();
-            manager.animator.SetBool(_isGroundedHash, manager.isGrounded);
+            manager.AnimManager.SetGroundedBool(manager.isGrounded);
             GetYVel();
             manager.controller.Move(yVel * Time.deltaTime);
         }
@@ -45,7 +43,7 @@ namespace Characters {
                 fallingVelHasBeenSet = true;
             }
             inAirTimer += Time.deltaTime;
-            manager.animator.SetFloat(_inAirTimerHash, inAirTimer);
+            manager.AnimManager.SetAirTimerFloat(inAirTimer);
             if (yVel.y <= fallMaxVel) return;
             yVel.y += gravityForce * Time.deltaTime;
         }

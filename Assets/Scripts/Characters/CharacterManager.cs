@@ -9,7 +9,7 @@ namespace Characters {
      RequireComponent(typeof(CharacterVFxManager)),
      RequireComponent(typeof(CharacterSFxManager))]
     public class CharacterManager : MonoBehaviour {
-        [HideInInspector]public Animator animator;
+        
         [HideInInspector]public CharacterController controller;
         public virtual CharacterStatsManager StatsManager => GetComponent<CharacterStatsManager>();
         public virtual CharacterAnimManager AnimManager => GetComponent<CharacterAnimManager>();
@@ -29,7 +29,6 @@ namespace Characters {
         
         protected virtual void Awake() {
             controller = GetComponent<CharacterController>();
-            animator = GetComponent<Animator>();
         }
 
         protected virtual void Update() {
