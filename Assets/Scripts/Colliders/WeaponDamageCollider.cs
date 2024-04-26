@@ -16,9 +16,8 @@ namespace Colliders{
 		protected override void OnTriggerEnter(Collider other) {
 			if (!other.TryGetComponent(out CharacterManager target)) return;
 			if (target == Wielder) return;
-			DamageEffect.hitAngle = Vector3.SignedAngle(-Wielder.transform.forward, other.transform.forward, 
+			DamageEffect.hitAngle = Vector3.SignedAngle(Wielder.transform.forward, other.transform.forward, 
 				Vector3.up);
-			Debug.Log(DamageEffect.hitAngle);
 			HitTarget(other, target);
 		}
 	}

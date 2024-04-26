@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Enums;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Characters {
     [RequireComponent(typeof(CharacterManager))]
@@ -11,10 +12,11 @@ namespace Characters {
         #region Animation String Hashes
         readonly protected Dictionary<string, int> AnimationHashes = new Dictionary<string, int> {
             { "Death", Animator.StringToHash("Death") },
-            { "Stagger", Animator.StringToHash("Stagger") },
+            { "Stagger_F", Animator.StringToHash("Stagger_F") },
+            { "Stagger_L", Animator.StringToHash("Stagger_L") },
+            { "Stagger_B", Animator.StringToHash("Stagger_B") },
+            { "Stagger_R", Animator.StringToHash("Stagger_R") },
         };
-
-        readonly int _staggerAngleFloatHash = Animator.StringToHash("StaggerAngle");
         readonly int _horizontalInputFloatHash = Animator.StringToHash("Horizontal");
         readonly int _verticalInputFloatHash = Animator.StringToHash("Vertical");
         readonly int _inAirTimerFloatHash = Animator.StringToHash("InAirTimer");
@@ -65,8 +67,14 @@ namespace Characters {
         }
 
         public void PlayStaggerAnimation(float staggerAngle) {
-            animator.SetFloat(_staggerAngleFloatHash, staggerAngle);
-            PlayTargetAnimation(AnimationHashes["Stagger"], false);
+            int hash = staggerAngle switch {
+                >= 135 => AnimationHashes["Stagger_F"],
+                >= 45 => AnimationHashes["Stagger_R"],
+                >= -45 => AnimationHashes["Stagger_B"],
+                >= -135 => AnimationHashes["Stagger_L"],
+                _ => AnimationHashes["Stagger_F"]
+            };
+            PlayTargetAnimation(hash, false);
         }
     }
 }

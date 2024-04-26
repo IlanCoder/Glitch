@@ -92,6 +92,7 @@ namespace Characters.Player {
             statsManager.LoadCurrentStats(saveData.CurrentHp, saveData.CurrentStamina);
         }
 
+        [ContextMenu("Kill")]
         public override void HandleDeathEvent() {
             base.HandleDeathEvent();
             onPlayerDeath?.Invoke();
