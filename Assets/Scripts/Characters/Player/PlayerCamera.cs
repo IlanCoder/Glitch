@@ -67,7 +67,6 @@ namespace Characters.Player {
             if (Mathf.Abs(_targetCamZPos) < camCollisionRadius) {
                   _targetCamZPos = -camCollisionRadius;
             }
-
             _camPosition.z = Mathf.Lerp(cam.transform.localPosition.z, _targetCamZPos, 0.2f);
             cam.transform.localPosition = _camPosition;
         }
