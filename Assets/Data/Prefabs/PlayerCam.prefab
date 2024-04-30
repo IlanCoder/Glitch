@@ -58,6 +58,13 @@ MonoBehaviour:
   camCollisionLayer:
     serializedVersion: 2
     m_Bits: 1
+  maxLockOnDistance: 100
+  lockOnLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  lockOnObstructLayer:
+    serializedVersion: 2
+    m_Bits: 25
 --- !u!1 &7525426520785487530
 GameObject:
   m_ObjectHideFlags: 0

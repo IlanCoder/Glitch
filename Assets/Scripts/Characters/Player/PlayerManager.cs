@@ -31,10 +31,10 @@ namespace Characters.Player {
         public override CharacterStatsManager StatsManager => statsManager;
         public override CharacterAnimManager AnimManager => animManager;
         public override CharacterEffectsManager EffectsManager => effectsManager;
+        public override CharacterCombatManager CombatManager => combatManager;
         public override CharacterVFxManager VFxManager => vFxManager;
         public override CharacterSFxManager SFxManager => sFxManager;
-        
-        
+
         [HideInInspector] public UnityEvent onPlayerDeath;
 
         protected override void Awake() {
@@ -57,13 +57,15 @@ namespace Characters.Player {
         protected override void Update() {
             base.Update();
             movementManager.HandleMovement();
+            HandleLockOn();
         }
 
         protected override void LateUpdate() {
             base.LateUpdate();
             playerCamera.HandleCamera();
         }
-
+        
+        #region Save & Load
         public void SavePlayerData(ref PlayerSaveData saveData) {
             saveData.PlayerName = statsManager.characterName;
             Vector3 position = transform.position;
@@ -91,6 +93,7 @@ namespace Characters.Player {
                 saveData.Strength, saveData.Cyber, saveData.Control);
             statsManager.LoadCurrentStats(saveData.CurrentHp, saveData.CurrentStamina);
         }
+        #endregion
 
         [ContextMenu("Kill")]
         public override void HandleDeathEvent() {
@@ -104,5 +107,22 @@ namespace Characters.Player {
             statsManager.RevivePlayer();
             animManager.PlayReviveAnimation();
         }
+
+        #region Lock On
+        public override void HandleLockOn() {
+            if (!isLockedOn) return;
+            if (!combatManager.LockOnTarget.isDead) return;
+            //Find new target or Unlock
+        }
+
+        public void LockOn() {
+            playerCamera.FindLockOnTargets();
+        }
+
+        public void DisableLockOn() {
+            
+        }
+  #endregion
+        
     }
 }

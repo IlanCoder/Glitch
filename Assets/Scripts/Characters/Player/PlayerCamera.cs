@@ -17,6 +17,11 @@ namespace Characters.Player {
         [SerializeField] float camCollisionRadius = 0.2f;
         [SerializeField] LayerMask camCollisionLayer;
         
+        [Header("Lock On")]
+        [SerializeField] float maxLockOnDistance = 100f;
+        [SerializeField] LayerMask lockOnLayer;
+        [SerializeField] LayerMask lockOnObstructLayer;
+        
         Vector3 _camVelocity;
         Vector3 _camPosition;
         float _yAxisAngle = 0;
@@ -69,6 +74,27 @@ namespace Characters.Player {
             }
             _camPosition.z = Mathf.Lerp(cam.transform.localPosition.z, _targetCamZPos, 0.2f);
             cam.transform.localPosition = _camPosition;
+        }
+
+        public void FindLockOnTargets() {
+            float shortestDistance = maxLockOnDistance;
+            float angleToTarget;
+            Vector3 targetDirection= Vector3.zero;
+            
+            Collider[] colliders = Physics.OverlapSphere(transform.position, maxLockOnDistance, lockOnLayer);
+
+            foreach (Collider col in colliders) {
+                if (!col.TryGetComponent(out CharacterManager target)) continue;
+                if (target.isDead) continue;
+                
+                targetDirection = target.transform.position - transform.position;
+                angleToTarget = Vector3.Angle(cam.transform.forward, targetDirection);
+                
+                if (angleToTarget > cam.fieldOfView) continue;
+                if (Physics.Linecast(cam.transform.position, target.CombatManager.LockOnPivot.position,
+                    lockOnObstructLayer)) continue;
+                
+            }
         }
     }
 }

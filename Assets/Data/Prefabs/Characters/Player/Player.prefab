@@ -1785,7 +1785,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150d3e813d251f34bbff8bfe7162b8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   controller: {fileID: 0}
   isPerformingAction: 0
   rotationLocked: 0
@@ -1793,6 +1792,7 @@ MonoBehaviour:
   isSprinting: 0
   isJumping: 0
   isGrounded: 0
+  isLockedOn: 0
   playerCamera: {fileID: 0}
   movementManager: {fileID: 0}
   inputManager: {fileID: 0}
@@ -1819,6 +1819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f460990d825c145a75441e944bb388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  centerLockOnPivot: {fileID: 8446883103538547758}
   activeWeapon: {fileID: 0}
   rightHandWeaponManager: {fileID: 0}
   leftHandWeaponManager: {fileID: 0}

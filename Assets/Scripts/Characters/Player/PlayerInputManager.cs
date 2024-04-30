@@ -36,6 +36,7 @@ namespace Characters.Player {
                 
                 _playerControls.PlayerCamera.Movement.performed += i => 
                     CameraInput = i.ReadValue<Vector2>();
+                _playerControls.PlayerCamera.LockOn.performed += i => HandleLockOn();
 
                 _playerControls.PlayerActions.ChangeWeapon.performed += i => HandleActiveWeaponChange();
                 _playerControls.PlayerActions.LightAttack.performed += i => HandleLightAttack();
@@ -99,6 +100,14 @@ namespace Characters.Player {
 
         void HandleLightAttack() {
             _playerManager.combatManager.PerformLightAttack();
+        }
+
+        void HandleLockOn() {
+            if (_playerManager.isLockedOn) {
+                _playerManager.DisableLockOn();
+                return;
+            }
+            _playerManager.LockOn();
         }
     }
 }
