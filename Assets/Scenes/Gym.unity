@@ -4339,11 +4339,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 6952895938145275405, guid: 752639fa95abbd2409c2234008a1899e,
-        type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 6959787394734292369, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_Layer
@@ -11075,6 +11070,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dummy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679139498382658988, guid: c210c84b41d7cf949be5c1a256280514,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4576442581258687049, guid: c210c84b41d7cf949be5c1a256280514,
         type: 3}

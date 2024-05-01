@@ -12,6 +12,9 @@ namespace Characters{
 		
 		protected virtual void Awake() {
 		}
-		
+
+		public virtual void ChangeTarget(CharacterManager newTarget) {
+			LockOnTarget = newTarget;
+		}
 	}
 }

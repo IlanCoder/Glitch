@@ -111,16 +111,19 @@ namespace Characters.Player {
         #region Lock On
         public override void HandleLockOn() {
             if (!isLockedOn) return;
+            if (!combatManager.LockOnTarget) return;
             if (!combatManager.LockOnTarget.isDead) return;
             //Find new target or Unlock
         }
 
         public void LockOn() {
             playerCamera.FindLockOnTargets();
+            isLockedOn = true;
         }
 
         public void DisableLockOn() {
-            
+            isLockedOn = false;
+            combatManager.ChangeTarget(null);
         }
   #endregion
         

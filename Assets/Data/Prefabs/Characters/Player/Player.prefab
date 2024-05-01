@@ -1702,7 +1702,7 @@ MonoBehaviour:
     m_Bits: 64
   groundCheckSphereRadius: 0.3
   groundedYVel: -20
-  gravityForce: -9.81
+  gravityForce: -10
   fallStartVel: -5
   fallMaxVel: -20
   playerCam: {fileID: 0}

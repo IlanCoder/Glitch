@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Characters.Player {
@@ -9,7 +10,7 @@ namespace Characters.Player {
         [SerializeField] Transform pivot;
 
         [Header("Camera Settings")]
-        [SerializeField] float camSmoothSpeed = 1;
+        [SerializeField] float camSmoothTime = 1;
         [SerializeField] float yAxisSpeed = 220;
         [SerializeField] float xAxisSpeed = 160;
         [SerializeField] float minimumPivot = -60;
@@ -18,11 +19,12 @@ namespace Characters.Player {
         [SerializeField] LayerMask camCollisionLayer;
         
         [Header("Lock On")]
+        [SerializeField] float lockOnSmoothSpeed = 1;
         [SerializeField] float maxLockOnDistance = 100f;
         [SerializeField] LayerMask lockOnLayer;
         [SerializeField] LayerMask lockOnObstructLayer;
         
-        Vector3 _camVelocity;
+        Vector3 _camVelocity = Vector3.zero;
         Vector3 _camPosition;
         float _yAxisAngle = 0;
         float _xAxisAngle = 0;
@@ -43,22 +45,45 @@ namespace Characters.Player {
 
         void HandleFollowPlayer() {
             Vector3 targetCameraPos = Vector3.SmoothDamp(transform.position, player.transform.position,
-                ref _camVelocity, camSmoothSpeed * Time.deltaTime);
+                ref _camVelocity, camSmoothTime);
             transform.position = targetCameraPos;
         }
 
         void HandleRotation() {
+            if (player.isLockedOn) {
+                HandleLockedRotation();
+                return;
+            }
+            HandleUnlockedRotation();
+        }
+
+        void HandleLockedRotation() {
+            Vector3 lockOnPos = player.combatManager.LockOnTarget.CombatManager.LockOnPivot.position;
+            Vector3 rotationDirection = lockOnPos - transform.position;
+            rotationDirection.y = 0;
+            rotationDirection.Normalize();
+   
+            Quaternion targetRotation = Quaternion.LookRotation(rotationDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lockOnSmoothSpeed);
+
+            rotationDirection = lockOnPos - pivot.transform.position;
+            rotationDirection.Normalize();
+
+            targetRotation = Quaternion.LookRotation(rotationDirection);
+            pivot.transform.rotation = Quaternion.Slerp(pivot.transform.rotation, targetRotation, lockOnSmoothSpeed);
+            
+            _xAxisAngle = pivot.transform.rotation.x;
+            _yAxisAngle = transform.rotation.y;
+        }
+
+        void HandleUnlockedRotation() {
             _yAxisAngle += inputManager.CameraInput.x * yAxisSpeed * Time.deltaTime;
             _xAxisAngle -= inputManager.CameraInput.y * xAxisSpeed * Time.deltaTime;
             _xAxisAngle = Mathf.Clamp(_xAxisAngle, minimumPivot, maximumPivot);
-
-            Vector3 camRotation = new Vector3(0, _yAxisAngle);
-            Quaternion targetRotation = Quaternion.Euler(camRotation);
-            transform.rotation = targetRotation;
             
-            camRotation = new Vector3(_xAxisAngle, 0);
-            targetRotation = Quaternion.Euler(camRotation);
-            pivot.localRotation = targetRotation;
+            transform.rotation = Quaternion.Euler(new Vector3(0, _yAxisAngle));
+            
+            pivot.localRotation = Quaternion.Euler(new Vector3(_xAxisAngle, 0));
         }
 
         void HandleCollision() {
@@ -79,22 +104,32 @@ namespace Characters.Player {
         public void FindLockOnTargets() {
             float shortestDistance = maxLockOnDistance;
             float angleToTarget;
+            float distanceToTarget;
             Vector3 targetDirection= Vector3.zero;
             
-            Collider[] colliders = Physics.OverlapSphere(transform.position, maxLockOnDistance, lockOnLayer);
+            Collider[] colliders = Physics.OverlapSphere(player.transform.position, maxLockOnDistance, lockOnLayer);
 
             foreach (Collider col in colliders) {
                 if (!col.TryGetComponent(out CharacterManager target)) continue;
                 if (target.isDead) continue;
                 
-                targetDirection = target.transform.position - transform.position;
+                targetDirection = target.transform.position - player.transform.position;
                 angleToTarget = Vector3.Angle(cam.transform.forward, targetDirection);
                 
                 if (angleToTarget > cam.fieldOfView) continue;
                 if (Physics.Linecast(cam.transform.position, target.CombatManager.LockOnPivot.position,
                     lockOnObstructLayer)) continue;
                 
+                distanceToTarget = Vector3.Distance(player.transform.position, target.transform.position);
+                
+                if (distanceToTarget > shortestDistance) continue;
+                shortestDistance = distanceToTarget;
+                ChangeTarget(target);
             }
+        }
+
+        void ChangeTarget(CharacterManager newTarget) {
+            player.combatManager.ChangeTarget(newTarget);
         }
     }
 }

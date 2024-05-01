@@ -49,7 +49,7 @@ MonoBehaviour:
   player: {fileID: 0}
   inputManager: {fileID: 0}
   pivot: {fileID: 1895925016474867351}
-  camSmoothSpeed: 1
+  camSmoothTime: 0.15
   yAxisSpeed: 250
   xAxisSpeed: 200
   minimumPivot: -30
@@ -58,6 +58,7 @@ MonoBehaviour:
   camCollisionLayer:
     serializedVersion: 2
     m_Bits: 1
+  lockOnSmoothSpeed: 0.15
   maxLockOnDistance: 100
   lockOnLayer:
     serializedVersion: 2
@@ -92,13 +93,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7525426520785487530}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.7}
+  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1895925016474867351}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
 --- !u!20 &648073015579423002
 Camera:
   m_ObjectHideFlags: 0
@@ -312,7 +313,7 @@ Transform:
   m_GameObject: {fileID: 8752328119530040030}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -758,6 +758,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4705518008009068066, guid: 6169ed57bd56a1144932ccb03668fe8b,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705518008009068066, guid: 6169ed57bd56a1144932ccb03668fe8b,
+        type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4730710852621221310, guid: 6169ed57bd56a1144932ccb03668fe8b,
         type: 3}
       propertyPath: m_Layer
@@ -1084,17 +1094,17 @@ PrefabInstance:
     - target: {fileID: 3282358453330032024, guid: dd1ff2405a10fad49942ea60e937909a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3282358453330032024, guid: dd1ff2405a10fad49942ea60e937909a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3282358453330032024, guid: dd1ff2405a10fad49942ea60e937909a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3282358453330032024, guid: dd1ff2405a10fad49942ea60e937909a,
         type: 3}
