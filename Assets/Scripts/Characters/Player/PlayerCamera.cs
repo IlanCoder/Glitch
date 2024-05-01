@@ -73,7 +73,7 @@ namespace Characters.Player {
             pivot.transform.rotation = Quaternion.Slerp(pivot.transform.rotation, targetRotation, lockOnSmoothSpeed);
             
             _xAxisAngle = pivot.transform.rotation.x;
-            _yAxisAngle = transform.rotation.y;
+            _yAxisAngle = pivot.transform.rotation.y;
         }
 
         void HandleUnlockedRotation() {
