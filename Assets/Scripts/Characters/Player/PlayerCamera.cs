@@ -64,7 +64,7 @@ namespace Characters.Player {
             rotationDirection.Normalize();
    
             Quaternion targetRotation = Quaternion.LookRotation(rotationDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lockOnSmoothSpeed);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lockOnSmoothSpeed);
 
             rotationDirection = lockOnPos - pivot.transform.position;
             rotationDirection.Normalize();
