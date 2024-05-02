@@ -59,21 +59,18 @@ namespace Characters.Player {
 
         void HandleLockedRotation() {
             Vector3 lockOnPos = player.combatManager.LockOnTarget.CombatManager.LockOnPivot.position;
-            Vector3 rotationDirection = lockOnPos - transform.position;
-            rotationDirection.y = 0;
-            rotationDirection.Normalize();
-   
+            Vector3 rotationDirection = lockOnPos - pivot.transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(rotationDirection);
-            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lockOnSmoothSpeed);
+            rotationDirection = targetRotation.eulerAngles;
 
-            rotationDirection = lockOnPos - pivot.transform.position;
-            rotationDirection.Normalize();
-
-            targetRotation = Quaternion.LookRotation(rotationDirection);
-            pivot.transform.rotation = Quaternion.Slerp(pivot.transform.rotation, targetRotation, lockOnSmoothSpeed);
+            targetRotation = Quaternion.Euler(new Vector3(0, rotationDirection.y));
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lockOnSmoothSpeed);
             
-            _xAxisAngle = pivot.transform.rotation.x;
-            _yAxisAngle = pivot.transform.rotation.y;
+            targetRotation = Quaternion.Euler(new Vector3(rotationDirection.x, 0));
+            pivot.localRotation = Quaternion.Slerp(pivot.transform.localRotation, targetRotation, lockOnSmoothSpeed);
+
+            _xAxisAngle = pivot.transform.localRotation.eulerAngles.x;
+            _yAxisAngle = transform.rotation.eulerAngles.y;
         }
 
         void HandleUnlockedRotation() {
@@ -105,7 +102,7 @@ namespace Characters.Player {
             float shortestDistance = maxLockOnDistance;
             float angleToTarget;
             float distanceToTarget;
-            Vector3 targetDirection= Vector3.zero;
+            Vector3 targetDirection = Vector3.zero;
             
             Collider[] colliders = Physics.OverlapSphere(player.transform.position, maxLockOnDistance, lockOnLayer);
 
