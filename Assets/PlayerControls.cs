@@ -151,7 +151,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""32a3262e-cdd7-4948-9fc8-21a83236607b"",
                     ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
@@ -162,7 +162,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""6777a655-e55f-4205-8db1-c7c63e5fc48d"",
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
@@ -173,7 +173,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""8812351a-5fff-4b3c-8389-54fd052bffbf"",
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
@@ -184,7 +184,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""4eba5b64-4860-426b-8b30-77acff9a5f2d"",
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
@@ -334,6 +334,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Change Lock On Target"",
+                    ""type"": ""Button"",
+                    ""id"": ""b2dee560-8402-435a-affc-7f0b5ecf7828"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -353,7 +362,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""f6eb943d-0350-4bae-89cf-938829b3189a"",
                     ""path"": ""<Gamepad>/rightStick/up"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
@@ -364,7 +373,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""cb084c79-b1dc-4714-89da-dd74a553563f"",
                     ""path"": ""<Gamepad>/rightStick/down"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
@@ -375,7 +384,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""d70a7262-0de2-476b-a1e5-6490b552b832"",
                     ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
@@ -386,7 +395,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""a4cc7b17-a1fe-45df-8fc8-07407b8ab68c"",
                     ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
@@ -468,6 +477,72 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Lock On"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Right Stick"",
+                    ""id"": ""b969ce31-1882-4544-a02d-a84109ec28dc"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Change Lock On Target"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""563f6e88-c1ef-48f0-86f0-7b069beae5d3"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Change Lock On Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""5ecfa716-faef-41c7-9f6f-0b96742f2aca"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Change Lock On Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""58f7b11e-f593-441f-949b-836805f0d411"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Change Lock On Target"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""681014f1-8e11-420e-ac6c-3a4413e08ba7"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""Change Lock On Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""2bf79878-2180-42e6-b36b-dcf75803bc5d"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""Change Lock On Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -561,6 +636,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerCamera = asset.FindActionMap("Player Camera", throwIfNotFound: true);
         m_PlayerCamera_Movement = m_PlayerCamera.FindAction("Movement", throwIfNotFound: true);
         m_PlayerCamera_LockOn = m_PlayerCamera.FindAction("Lock On", throwIfNotFound: true);
+        m_PlayerCamera_ChangeLockOnTarget = m_PlayerCamera.FindAction("Change Lock On Target", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_SecondarySelect = m_UI.FindAction("Secondary Select", throwIfNotFound: true);
@@ -751,12 +827,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerCameraActions> m_PlayerCameraActionsCallbackInterfaces = new List<IPlayerCameraActions>();
     private readonly InputAction m_PlayerCamera_Movement;
     private readonly InputAction m_PlayerCamera_LockOn;
+    private readonly InputAction m_PlayerCamera_ChangeLockOnTarget;
     public struct PlayerCameraActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerCameraActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerCamera_Movement;
         public InputAction @LockOn => m_Wrapper.m_PlayerCamera_LockOn;
+        public InputAction @ChangeLockOnTarget => m_Wrapper.m_PlayerCamera_ChangeLockOnTarget;
         public InputActionMap Get() { return m_Wrapper.m_PlayerCamera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -772,6 +850,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LockOn.started += instance.OnLockOn;
             @LockOn.performed += instance.OnLockOn;
             @LockOn.canceled += instance.OnLockOn;
+            @ChangeLockOnTarget.started += instance.OnChangeLockOnTarget;
+            @ChangeLockOnTarget.performed += instance.OnChangeLockOnTarget;
+            @ChangeLockOnTarget.canceled += instance.OnChangeLockOnTarget;
         }
 
         private void UnregisterCallbacks(IPlayerCameraActions instance)
@@ -782,6 +863,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LockOn.started -= instance.OnLockOn;
             @LockOn.performed -= instance.OnLockOn;
             @LockOn.canceled -= instance.OnLockOn;
+            @ChangeLockOnTarget.started -= instance.OnChangeLockOnTarget;
+            @ChangeLockOnTarget.performed -= instance.OnChangeLockOnTarget;
+            @ChangeLockOnTarget.canceled -= instance.OnChangeLockOnTarget;
         }
 
         public void RemoveCallbacks(IPlayerCameraActions instance)
@@ -879,6 +963,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
+        void OnChangeLockOnTarget(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

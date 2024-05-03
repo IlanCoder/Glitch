@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Enums;
 using Items.Weapons;
 using UnityEngine;
@@ -27,6 +28,23 @@ namespace Characters.Player{
 			activeWeapon.Damage.SetMultipliedDamage(1, 1);
 			rightHandWeaponManager.SetWeaponDamage(activeWeapon);
 			if(activeWeapon.DualWield) leftHandWeaponManager.SetWeaponDamage(activeWeapon);
+		}
+
+		public override void ChangeTarget(CharacterManager newTarget) {
+			if (LockOnTarget) {
+				LockOnTarget.onCharacterDeath.RemoveListener(WaitForTargetToDie);
+			}
+			if (newTarget) {
+				newTarget.onCharacterDeath.AddListener(WaitForTargetToDie);
+			}
+			base.ChangeTarget(newTarget);
+		}
+		
+		async void WaitForTargetToDie() {
+			while (_manager.isPerformingAction) {
+				await Task.Delay(10);
+			}
+			_manager.TryNewLockOn();
 		}
 
 		#region Animation Events

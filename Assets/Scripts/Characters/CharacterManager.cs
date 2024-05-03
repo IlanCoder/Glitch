@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Characters {
     [RequireComponent(typeof(CharacterController)), 
@@ -19,6 +20,8 @@ namespace Characters {
         public virtual CharacterVFxManager VFxManager => GetComponent<CharacterVFxManager>();
         public virtual CharacterSFxManager SFxManager => GetComponent<CharacterSFxManager>();
 
+        [HideInInspector] public UnityEvent onCharacterDeath;
+        
         #region Flags
         public bool isDead { get; private set; }
         [HideInInspector] public bool isPerformingAction;
@@ -42,11 +45,12 @@ namespace Characters {
 
         public virtual void HandleDeathEvent() {
             isDead = true;
+            onCharacterDeath?.Invoke();
             AnimManager.PlayDeathAnimation();
         }
 
         public virtual void ReviveCharacter() {
-            
+            isDead = false;
         }
         
         public virtual void HandleLockOn() {

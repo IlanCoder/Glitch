@@ -1,4 +1,3 @@
-using System;
 using Enums;
 using UnityEngine;
 
@@ -10,11 +9,11 @@ namespace Characters{
 		public CharacterManager LockOnTarget { get; private set; }
 		protected AttackType CurrentAttackType;
 		
-		protected virtual void Awake() {
-		}
+		protected virtual void Awake() { }
 
 		public virtual void ChangeTarget(CharacterManager newTarget) {
 			LockOnTarget = newTarget;
 		}
+		
 	}
 }

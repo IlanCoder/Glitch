@@ -1,3 +1,4 @@
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using WorldManager;
@@ -37,6 +38,8 @@ namespace Characters.Player {
                 _playerControls.PlayerCamera.Movement.performed += i => 
                     CameraInput = i.ReadValue<Vector2>();
                 _playerControls.PlayerCamera.LockOn.performed += i => HandleLockOn();
+                _playerControls.PlayerCamera.ChangeLockOnTarget.performed += i => 
+                    HandleLockOnChange(i.ReadValue<float>());
 
                 _playerControls.PlayerActions.ChangeWeapon.performed += i => HandleActiveWeaponChange();
                 _playerControls.PlayerActions.LightAttack.performed += i => HandleLightAttack();
@@ -108,6 +111,12 @@ namespace Characters.Player {
                 return;
             }
             _playerManager.LockOn();
+        }
+
+        void HandleLockOnChange(float value) {
+            if (!_playerManager.isLockedOn) return;
+            if (value == 0) return;
+            _playerManager.SwitchLockOn(value);
         }
     }
 }

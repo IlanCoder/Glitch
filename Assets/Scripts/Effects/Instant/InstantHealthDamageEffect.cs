@@ -32,10 +32,10 @@ namespace Effects.Instant {
         
         public override void ProcessEffect(CharacterManager character) {
             if(character.isDead) return;
-            CalculateHealthDamage(character);
             PlayDamageVFx(character);
             PlayDamageSFx(character);
             PlayDamageAnimation(character);
+            CalculateHealthDamage(character);
         }
 
         void CalculateHealthDamage(CharacterManager character) {

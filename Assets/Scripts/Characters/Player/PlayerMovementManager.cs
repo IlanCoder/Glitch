@@ -30,6 +30,7 @@ namespace Characters.Player {
         Vector2 _inputMovement;
         
         public void HandleMovement() {
+            if (manager.isDead) return;
             GetCameraTransforms();
             HandleGroundMovement();
             HandleJumpMovement();
@@ -47,6 +48,10 @@ namespace Characters.Player {
             _inputMovement = manager.inputManager.MovementInput;
             _moveDirection = GetNormalizedHorizontalDirection();
             manager.controller.Move(GetGroundSpeed() * Time.deltaTime * _moveDirection);
+            if (manager.isLockedOn && !manager.isSprinting) {
+                manager.animManager.UpdateMovementParameters(_inputMovement.x, _inputMovement.y);
+                return;
+            }
             manager.animManager.UpdateMovementParameters(0, manager.inputManager.MoveAmount);
         }
 
@@ -63,14 +68,30 @@ namespace Characters.Player {
 
         void HandleRotation() {
             if (manager.rotationLocked) return;
-            CheckRotationRelativeToCam();
-            if (_targetRotation == Vector3.zero) return;
-            Quaternion newRotation = Quaternion.LookRotation(_targetRotation);
-            Quaternion targetRotation =
-                Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
-            transform.rotation = targetRotation;
+            if (manager.isLockedOn && !manager.isSprinting) {
+                HandleLockedRotation();
+                return;
+            }
+            HandleUnlockedRotation();
+        }
+
+        void HandleLockedRotation() {
+            Vector3 targetDirection = manager.combatManager.LockOnTarget.transform.position - transform.position;
+            targetDirection.y = 0;
+            targetDirection.Normalize();
+
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
         
+        void HandleUnlockedRotation() {
+            CheckRotationRelativeToCam();
+            if (_targetRotation == Vector3.zero) return;
+            
+            Quaternion newRotation = Quaternion.LookRotation(_targetRotation);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
+        }
+
         public void HandleSprint() {
             if (!manager.statsManager.CanPerformStaminaAction() || 
                 manager.inputManager.MoveAmount < 0.5f) {

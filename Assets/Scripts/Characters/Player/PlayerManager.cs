@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using SaveSystem;
 using UnityEngine;
 using UnityEngine.Events;
@@ -109,21 +110,33 @@ namespace Characters.Player {
         }
 
         #region Lock On
-        public override void HandleLockOn() {
-            if (!isLockedOn) return;
-            if (!combatManager.LockOnTarget) return;
-            if (!combatManager.LockOnTarget.isDead) return;
-            //Find new target or Unlock
-        }
-
         public void LockOn() {
-            playerCamera.FindLockOnTargets();
+            if (!playerCamera.FindClosestLockOnTarget(out CharacterManager target)) return;
+            combatManager.ChangeTarget(target);
             isLockedOn = true;
         }
 
         public void DisableLockOn() {
             isLockedOn = false;
             combatManager.ChangeTarget(null);
+        }
+
+        public void TryNewLockOn() {
+            if (!playerCamera.FindClosestLockOnTarget(out CharacterManager target)) {
+                DisableLockOn();
+            }
+            combatManager.ChangeTarget(target);
+        }
+        
+        public void SwitchLockOn(float value) {
+            CharacterManager target;
+            if (value > 0) {
+                if (!playerCamera.FindClosestRightLockOnTarget(out target)) return;
+                combatManager.ChangeTarget(target);
+                return;
+            }
+            if (!playerCamera.FindClosestLeftLockOnTarget(out target)) return;
+            combatManager.ChangeTarget(target);
         }
   #endregion
         

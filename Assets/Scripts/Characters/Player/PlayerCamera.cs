@@ -34,7 +34,8 @@ namespace Characters.Player {
         void Awake() {
             //Cursor.visible = false;
             //Cursor.lockState = CursorLockMode.Locked;
-            _camZPosition = cam.transform.localPosition.z;
+            _camPosition = cam.transform.localPosition;
+            _camZPosition = _camPosition.z;
         }
 
         public void HandleCamera() {
@@ -68,8 +69,9 @@ namespace Characters.Player {
             
             targetRotation = Quaternion.Euler(new Vector3(rotationDirection.x, 0));
             pivot.localRotation = Quaternion.Slerp(pivot.transform.localRotation, targetRotation, lockOnSmoothSpeed);
-
+            
             _xAxisAngle = pivot.transform.localRotation.eulerAngles.x;
+            if (_xAxisAngle > 180) _xAxisAngle -= 360;
             _yAxisAngle = transform.rotation.eulerAngles.y;
         }
 
@@ -98,35 +100,79 @@ namespace Characters.Player {
             cam.transform.localPosition = _camPosition;
         }
 
-        public void FindLockOnTargets() {
+        public bool FindClosestLockOnTarget(out CharacterManager closestTarget) {
             float shortestDistance = maxLockOnDistance;
-            float angleToTarget;
-            float distanceToTarget;
-            Vector3 targetDirection = Vector3.zero;
+            closestTarget = null;
             
             Collider[] colliders = Physics.OverlapSphere(player.transform.position, maxLockOnDistance, lockOnLayer);
-
+            
             foreach (Collider col in colliders) {
-                if (!col.TryGetComponent(out CharacterManager target)) continue;
-                if (target.isDead) continue;
-                
-                targetDirection = target.transform.position - player.transform.position;
-                angleToTarget = Vector3.Angle(cam.transform.forward, targetDirection);
-                
-                if (angleToTarget > cam.fieldOfView) continue;
-                if (Physics.Linecast(cam.transform.position, target.CombatManager.LockOnPivot.position,
-                    lockOnObstructLayer)) continue;
-                
-                distanceToTarget = Vector3.Distance(player.transform.position, target.transform.position);
+                if (!CanBeTargeted(col, out CharacterManager target)) continue;
+
+                float distanceToTarget = Vector3.Distance(player.transform.position, target.transform.position);
                 
                 if (distanceToTarget > shortestDistance) continue;
                 shortestDistance = distanceToTarget;
-                ChangeTarget(target);
+                closestTarget = target;
             }
+            return closestTarget != null;
         }
 
-        void ChangeTarget(CharacterManager newTarget) {
-            player.combatManager.ChangeTarget(newTarget);
+        public bool FindClosestRightLockOnTarget(out CharacterManager closestTarget) {
+            float distanceToTarget = maxLockOnDistance;
+            float currentTargetRelativePos = cam.transform
+                .InverseTransformPoint(player.combatManager.LockOnTarget.transform.position).x;
+            closestTarget = null;
+
+            Collider[] colliders = Physics.OverlapSphere(player.transform.position, maxLockOnDistance, lockOnLayer);
+
+            foreach (Collider col in colliders) {
+                if (!CanBeTargeted(col, out CharacterManager target)) continue;
+                
+                float relativeTargetPos = cam.transform.InverseTransformPoint(target.transform.position).x;
+                relativeTargetPos -= currentTargetRelativePos;
+
+                if (relativeTargetPos <= 0) continue;
+                if (relativeTargetPos >= distanceToTarget) continue;
+                distanceToTarget = relativeTargetPos;
+                closestTarget = target;
+            }
+            return closestTarget != null;
+        }
+        
+        public bool FindClosestLeftLockOnTarget(out CharacterManager closestTarget) {
+            float distanceToTarget = -maxLockOnDistance;
+            float currentTargetRelativePos = cam.transform
+                .InverseTransformPoint(player.combatManager.LockOnTarget.transform.position).x;
+            closestTarget = null;
+
+            Collider[] colliders = Physics.OverlapSphere(player.transform.position, maxLockOnDistance, lockOnLayer);
+
+            foreach (Collider col in colliders) {
+                if (!CanBeTargeted(col, out CharacterManager target)) continue;
+                
+                float relativeTargetPos = cam.transform.InverseTransformPoint(target.transform.position).x;
+                relativeTargetPos -= currentTargetRelativePos;
+
+                if (relativeTargetPos >= 0) continue;
+                if (relativeTargetPos <= distanceToTarget) continue;
+                distanceToTarget = relativeTargetPos;
+                closestTarget = target;
+            }
+            return closestTarget != null;
+        }
+        
+        bool CanBeTargeted(Collider col, out CharacterManager target) {
+            if (!col.TryGetComponent(out target)) return false;
+            if (target.isDead) return false;
+            if (target == player.combatManager.LockOnTarget) return false;
+
+            Vector3 targetDirection = target.transform.position - player.transform.position;
+            float angleToTarget = Vector3.Angle(cam.transform.forward, targetDirection);
+
+            if (angleToTarget > cam.fieldOfView) return false;
+            return !Physics.Linecast(cam.transform.position, target.CombatManager.LockOnPivot.position,
+            lockOnObstructLayer);
         }
     }
 }

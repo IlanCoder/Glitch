@@ -10,7 +10,7 @@ namespace AnimatorScripts {
             _character.rotationLocked = false;
             _character.movementLocked = false;
             _character.isJumping = false;
-            animator.applyRootMotion = false;  
+            animator.applyRootMotion = false;
         }
     }
 }

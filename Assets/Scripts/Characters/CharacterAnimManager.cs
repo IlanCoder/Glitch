@@ -67,6 +67,7 @@ namespace Characters {
         }
 
         public void PlayStaggerAnimation(float staggerAngle) {
+            if(manager.isDead) return;
             int hash = staggerAngle switch {
                 >= 135 => AnimationHashes["Stagger_F"],
                 >= 45 => AnimationHashes["Stagger_R"],
