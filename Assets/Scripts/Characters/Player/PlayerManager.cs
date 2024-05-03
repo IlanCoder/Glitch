@@ -118,6 +118,7 @@ namespace Characters.Player {
 
         public void DisableLockOn() {
             isLockedOn = false;
+            playerCamera.UnlockCamera();
             combatManager.ChangeTarget(null);
         }
 

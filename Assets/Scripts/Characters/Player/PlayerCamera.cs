@@ -30,6 +30,9 @@ namespace Characters.Player {
         float _xAxisAngle = 0;
         float _camZPosition;
         float _targetCamZPos;
+
+        float _clampLerpPivot;
+        bool _lerpingToClamp = false;
         
         void Awake() {
             //Cursor.visible = false;
@@ -69,20 +72,30 @@ namespace Characters.Player {
             
             targetRotation = Quaternion.Euler(new Vector3(rotationDirection.x, 0));
             pivot.localRotation = Quaternion.Slerp(pivot.transform.localRotation, targetRotation, lockOnSmoothSpeed);
-            
-            _xAxisAngle = pivot.transform.localRotation.eulerAngles.x;
-            if (_xAxisAngle > 180) _xAxisAngle -= 360;
-            _yAxisAngle = transform.rotation.eulerAngles.y;
         }
 
         void HandleUnlockedRotation() {
-            _yAxisAngle += inputManager.CameraInput.x * yAxisSpeed * Time.deltaTime;
-            _xAxisAngle -= inputManager.CameraInput.y * xAxisSpeed * Time.deltaTime;
-            _xAxisAngle = Mathf.Clamp(_xAxisAngle, minimumPivot, maximumPivot);
+            if (!_lerpingToClamp) {
+                _xAxisAngle -= inputManager.CameraInput.y * xAxisSpeed * Time.deltaTime;
+                _xAxisAngle = Mathf.Clamp(_xAxisAngle, minimumPivot, maximumPivot);
+            } else {
+                LerpToClamp();
+            }
             
+            _yAxisAngle += inputManager.CameraInput.x * yAxisSpeed * Time.deltaTime;
+
             transform.rotation = Quaternion.Euler(new Vector3(0, _yAxisAngle));
             
             pivot.localRotation = Quaternion.Euler(new Vector3(_xAxisAngle, 0));
+        }
+
+        void LerpToClamp() {
+            float distance = Mathf.Abs(_xAxisAngle - _clampLerpPivot);
+            if (distance >= 0.1f) {
+                _xAxisAngle = Mathf.LerpAngle(_xAxisAngle, _clampLerpPivot, camSmoothTime);
+                return;
+            }
+            _lerpingToClamp = false;
         }
 
         void HandleCollision() {
@@ -98,6 +111,19 @@ namespace Characters.Player {
             }
             _camPosition.z = Mathf.Lerp(cam.transform.localPosition.z, _targetCamZPos, 0.2f);
             cam.transform.localPosition = _camPosition;
+        }
+
+        public void UnlockCamera() {
+            _yAxisAngle = transform.rotation.eulerAngles.y;
+            _xAxisAngle = pivot.transform.localRotation.eulerAngles.x;
+            if (_xAxisAngle > 180) _xAxisAngle -= 360;
+            if (_xAxisAngle < minimumPivot) {
+                _clampLerpPivot = minimumPivot;
+                _lerpingToClamp = true;
+            }else if (_xAxisAngle > minimumPivot) {
+                _clampLerpPivot = maximumPivot;
+                _lerpingToClamp = true;
+            }
         }
 
         public bool FindClosestLockOnTarget(out CharacterManager closestTarget) {
