@@ -77,5 +77,9 @@ namespace Characters {
             };
             PlayTargetAnimation(hash, false);
         }
+
+        public void ApplyRootMotion(bool applyRootMotion) {
+            animator.applyRootMotion = applyRootMotion;
+        }
     }
 }

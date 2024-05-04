@@ -26,39 +26,39 @@ namespace Characters.Player {
         
         Vector3 _camVelocity = Vector3.zero;
         Vector3 _camPosition;
-        float _yAxisAngle = 0;
-        float _xAxisAngle = 0;
+        Vector3 _pivotNeckPosition;
+        float _yAxisAngle;
+        float _xAxisAngle;
         float _camZPosition;
+        float _lockedCamZPosition;
         float _targetCamZPos;
 
         float _clampLerpPivot;
-        bool _lerpingToClamp = false;
+        bool _lerpToClamp;
         
         void Awake() {
             //Cursor.visible = false;
             //Cursor.lockState = CursorLockMode.Locked;
             _camPosition = cam.transform.localPosition;
             _camZPosition = _camPosition.z;
+            _pivotNeckPosition = pivot.transform.localPosition;
         }
 
         public void HandleCamera() {
             HandleFollowPlayer();
-            HandleRotation();
-            HandleCollision();  
+            if (player.isLockedOn) {
+                HandleLockedRotation();
+                HandleCollision(_lockedCamZPosition);
+                return;
+            }
+            HandleUnlockedRotation();
+            HandleCollision(_camZPosition);  
         }
 
         void HandleFollowPlayer() {
             Vector3 targetCameraPos = Vector3.SmoothDamp(transform.position, player.transform.position,
                 ref _camVelocity, camSmoothTime);
             transform.position = targetCameraPos;
-        }
-
-        void HandleRotation() {
-            if (player.isLockedOn) {
-                HandleLockedRotation();
-                return;
-            }
-            HandleUnlockedRotation();
         }
 
         void HandleLockedRotation() {
@@ -69,24 +69,69 @@ namespace Characters.Player {
 
             targetRotation = Quaternion.Euler(new Vector3(0, rotationDirection.y));
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lockOnSmoothSpeed);
+
+            HandleLockedPivotPosition();
             
             targetRotation = Quaternion.Euler(new Vector3(rotationDirection.x, 0));
             pivot.localRotation = Quaternion.Slerp(pivot.transform.localRotation, targetRotation, lockOnSmoothSpeed);
         }
 
+        void HandleLockedPivotPosition() {
+            Vector3 target = player.combatManager.LockOnTarget.transform.position;
+            Vector3 targetDir = target - player.transform.position;
+            Vector3 targetPos = Vector3.zero;
+            if (targetDir.magnitude > maxLockOnDistance) {
+                player.DisableLockOn();
+                return;
+            }
+            targetPos.z = targetDir.magnitude / 2;
+            targetPos.y = (_pivotNeckPosition.y + targetPos.y) * 2 / 3;
+            LerpCamPivot(targetPos);
+        }
+
+        void LerpCamPivot(Vector3 targetPos) {
+            targetPos = Vector3.Lerp(pivot.transform.localPosition, targetPos, camSmoothTime);
+            pivot.transform.localPosition = targetPos;
+            _lockedCamZPosition = -targetPos.z + _camZPosition;
+        }
+
         void HandleUnlockedRotation() {
-            if (!_lerpingToClamp) {
+            if (pivot.transform.localPosition.z != 0) {
+                HandleUnlockPivotPosition();
+            }
+            if (!_lerpToClamp) {
                 _xAxisAngle -= inputManager.CameraInput.y * xAxisSpeed * Time.deltaTime;
                 _xAxisAngle = Mathf.Clamp(_xAxisAngle, minimumPivot, maximumPivot);
             } else {
                 LerpToClamp();
             }
-            
             _yAxisAngle += inputManager.CameraInput.x * yAxisSpeed * Time.deltaTime;
 
             transform.rotation = Quaternion.Euler(new Vector3(0, _yAxisAngle));
             
             pivot.localRotation = Quaternion.Euler(new Vector3(_xAxisAngle, 0));
+        }
+
+        void HandleUnlockPivotPosition() {
+            LerpCamPivot(_pivotNeckPosition);
+            if (Vector3.Distance(pivot.transform.localPosition, _pivotNeckPosition) > 0.1f) return;
+            pivot.transform.localPosition = _pivotNeckPosition;
+            cam.transform.localPosition = new Vector3(0, 0, _camZPosition);
+        }
+        
+        void HandleCollision(float targetZPos) {
+            _targetCamZPos = targetZPos;
+            Vector3 direction = -cam.transform.forward.normalized;
+            if (Physics.SphereCast(pivot.position, camCollisionRadius, direction, out RaycastHit hit,
+                Mathf.Abs(targetZPos), camCollisionLayer)) {
+                float hitObjectDistance = Vector3.Distance(pivot.position, hit.point);
+                _targetCamZPos = -(hitObjectDistance - camCollisionRadius);
+            }
+            if (Mathf.Abs(_targetCamZPos) < camCollisionRadius) {
+                _targetCamZPos = -camCollisionRadius;
+            }
+            _camPosition.z = Mathf.Lerp(cam.transform.localPosition.z, _targetCamZPos, camSmoothTime);
+            cam.transform.localPosition = _camPosition;
         }
 
         void LerpToClamp() {
@@ -95,22 +140,7 @@ namespace Characters.Player {
                 _xAxisAngle = Mathf.LerpAngle(_xAxisAngle, _clampLerpPivot, camSmoothTime);
                 return;
             }
-            _lerpingToClamp = false;
-        }
-
-        void HandleCollision() {
-            _targetCamZPos = _camZPosition;
-            Vector3 direction = -cam.transform.forward.normalized;
-            if (Physics.SphereCast(pivot.position, camCollisionRadius, direction, out RaycastHit hit,
-                Mathf.Abs(_camZPosition), camCollisionLayer)) {
-                float hitObjectDistance = Vector3.Distance(pivot.position, hit.point);
-                _targetCamZPos = -(hitObjectDistance - camCollisionRadius);
-            }
-            if (Mathf.Abs(_targetCamZPos) < camCollisionRadius) {
-                  _targetCamZPos = -camCollisionRadius;
-            }
-            _camPosition.z = Mathf.Lerp(cam.transform.localPosition.z, _targetCamZPos, 0.2f);
-            cam.transform.localPosition = _camPosition;
+            _lerpToClamp = false;
         }
 
         public void UnlockCamera() {
@@ -119,10 +149,10 @@ namespace Characters.Player {
             if (_xAxisAngle > 180) _xAxisAngle -= 360;
             if (_xAxisAngle < minimumPivot) {
                 _clampLerpPivot = minimumPivot;
-                _lerpingToClamp = true;
-            }else if (_xAxisAngle > minimumPivot) {
+                _lerpToClamp = true;
+            }else if (_xAxisAngle > maximumPivot) {
                 _clampLerpPivot = maximumPivot;
-                _lerpingToClamp = true;
+                _lerpToClamp = true;
             }
         }
 
@@ -193,7 +223,7 @@ namespace Characters.Player {
             if (target.isDead) return false;
             if (target == player.combatManager.LockOnTarget) return false;
 
-            Vector3 targetDirection = target.transform.position - player.transform.position;
+            Vector3 targetDirection = target.transform.position - cam.transform.position;
             float angleToTarget = Vector3.Angle(cam.transform.forward, targetDirection);
 
             if (angleToTarget > cam.fieldOfView) return false;

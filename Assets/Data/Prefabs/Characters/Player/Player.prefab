@@ -1786,6 +1786,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+  onCharacterDeath:
+    m_PersistentCalls:
+      m_Calls: []
   isPerformingAction: 0
   rotationLocked: 0
   movementLocked: 0

@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -3229,6 +3229,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dummy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1679139498382658988, guid: c210c84b41d7cf949be5c1a256280514,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4576442581258687049, guid: c210c84b41d7cf949be5c1a256280514,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4327,6 +4332,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5144202951158204333, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: maxLockOnDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5213576337233769746, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_Layer
@@ -4411,6 +4421,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6952895938145275405, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6959787394734292369, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
@@ -26453,6 +26468,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5856906956033651773, guid: c210c84b41d7cf949be5c1a256280514,
+        type: 3}
+      propertyPath: m_Name
+      value: Lock On Pivot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

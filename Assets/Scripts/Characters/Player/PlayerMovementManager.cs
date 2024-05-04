@@ -46,13 +46,14 @@ namespace Characters.Player {
         void HandleGroundMovement() {
             if (manager.movementLocked) return;
             _inputMovement = manager.inputManager.MovementInput;
-            _moveDirection = GetNormalizedHorizontalDirection();
-            manager.controller.Move(GetGroundSpeed() * Time.deltaTime * _moveDirection);
             if (manager.isLockedOn && !manager.isSprinting) {
                 manager.animManager.UpdateMovementParameters(_inputMovement.x, _inputMovement.y);
-                return;
+                _moveDirection = GetNormalizedHorizontalDirection(transform);
+            } else {
+                _moveDirection = GetNormalizedHorizontalDirection(_camManagerTransform);
+                manager.animManager.UpdateMovementParameters(0, manager.inputManager.MoveAmount);
             }
-            manager.animManager.UpdateMovementParameters(0, manager.inputManager.MoveAmount);
+            manager.controller.Move(GetGroundSpeed() * Time.deltaTime * _moveDirection);
         }
 
         void HandleJumpMovement() {
@@ -62,7 +63,7 @@ namespace Characters.Player {
 
         void HandleFreeFallMovement() {
             if (manager.isGrounded) return;
-            Vector3 freeFallDirection = GetNormalizedHorizontalDirection();
+            Vector3 freeFallDirection = GetNormalizedHorizontalDirection(_camManagerTransform);
             manager.controller.Move(freeFallSpeed * Time.deltaTime * freeFallDirection);
         }
 
@@ -129,7 +130,7 @@ namespace Characters.Player {
             manager.isJumping = true;
             manager.animManager.PlayJumpAnimation();
             manager.statsManager.UseStamina(jumpCost);
-            _jumpDirection = GetNormalizedHorizontalDirection();
+            _jumpDirection = GetNormalizedHorizontalDirection(_camManagerTransform);
             _jumpDirection *= GetJumpSpeed();
         }
 
@@ -155,9 +156,9 @@ namespace Characters.Player {
             }
         }
 
-        Vector3 GetNormalizedHorizontalDirection() {
-            Vector3 direction = _camManagerTransform.forward * _inputMovement.y + 
-                             _camManagerTransform.right * _inputMovement.x;
+        Vector3 GetNormalizedHorizontalDirection(Transform guideTransform) {
+            Vector3 direction = guideTransform.forward * _inputMovement.y + 
+                                guideTransform.right * _inputMovement.x;
             direction.y = 0;
             direction.Normalize();
             return direction;
@@ -166,6 +167,7 @@ namespace Characters.Player {
         #region Animation Events
         public void ApplyJumpingVelocity() {
             yVel.y = Mathf.Sqrt(jumpHeight * -2 * gravityForce);
+            manager.animManager.ApplyRootMotion(false);
         }
         #endregion
     }
