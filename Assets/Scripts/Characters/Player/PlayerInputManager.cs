@@ -34,7 +34,7 @@ namespace Characters.Player {
                 _playerControls.PlayerMovement.Dodge.performed += i => HandleDodge();
                 _playerControls.PlayerMovement.Sprint.performed += i => _sprint = true;
                 _playerControls.PlayerMovement.Sprint.canceled += i => _sprint = false;
-                
+
                 _playerControls.PlayerCamera.Movement.performed += i => 
                     CameraInput = i.ReadValue<Vector2>();
                 _playerControls.PlayerCamera.LockOn.performed += i => HandleLockOn();
@@ -43,6 +43,7 @@ namespace Characters.Player {
 
                 _playerControls.PlayerActions.ChangeWeapon.performed += i => HandleActiveWeaponChange();
                 _playerControls.PlayerActions.LightAttack.performed += i => HandleLightAttack();
+                _playerControls.PlayerActions.HeavyAttack.performed += i => HandleHeavyAttack();
             }
             _playerControls.Enable();
         }
@@ -103,6 +104,10 @@ namespace Characters.Player {
 
         void HandleLightAttack() {
             _playerManager.combatManager.PerformLightAttack();
+        }
+
+        void HandleHeavyAttack() {
+            _playerManager.combatManager.PerformHeavyAttack();
         }
 
         void HandleLockOn() {

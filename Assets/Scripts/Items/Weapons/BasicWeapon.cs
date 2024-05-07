@@ -50,7 +50,6 @@ namespace Items.Weapons {
                 case AttackType.SuperchargedLight: break;
                 case AttackType.SuperchargedHeavy: break;
                 case AttackType.Ultimate: break;
-                case AttackType.Special: break;
             }
             return _attackStaminaCost;
         }

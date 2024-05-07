@@ -10,13 +10,19 @@ namespace Characters {
         protected Animator animator;
 
         #region Animation String Hashes
-        readonly protected Dictionary<string, int> AnimationHashes = new Dictionary<string, int> {
+        readonly protected Dictionary<string, int> DamageAnimationHashes = new Dictionary<string, int> {
             { "Death", Animator.StringToHash("Death") },
             { "Stagger_F", Animator.StringToHash("Stagger_F") },
             { "Stagger_L", Animator.StringToHash("Stagger_L") },
             { "Stagger_B", Animator.StringToHash("Stagger_B") },
             { "Stagger_R", Animator.StringToHash("Stagger_R") },
         };
+        
+        readonly protected Dictionary<string, int> AttackAnimationHashes = new Dictionary<string, int> {
+            { "Light_1", Animator.StringToHash("Light_1") },
+            { "Heavy_1", Animator.StringToHash("Heavy_1") },
+        };
+        
         readonly int _horizontalInputFloatHash = Animator.StringToHash("Horizontal");
         readonly int _verticalInputFloatHash = Animator.StringToHash("Vertical");
         readonly int _inAirTimerFloatHash = Animator.StringToHash("InAirTimer");
@@ -57,23 +63,26 @@ namespace Characters {
             manager.rotationLocked = true;
             switch (attackType) {
                 case AttackType.Light:
-                    animator.CrossFade(Animator.StringToHash("Light_1"), 0.2f);
+                    animator.CrossFade(AttackAnimationHashes["Light_1"], 0.1f);
+                    break;
+                case AttackType.Heavy:
+                    animator.CrossFade(AttackAnimationHashes["Heavy_1"], 0.1f);
                     break;
             }
         }
 
         public void PlayDeathAnimation() {
-            PlayTargetAnimation(AnimationHashes["Death"], false);
+            PlayTargetAnimation(DamageAnimationHashes["Death"], false);
         }
 
         public void PlayStaggerAnimation(float staggerAngle) {
             if(manager.isDead) return;
             int hash = staggerAngle switch {
-                >= 135 => AnimationHashes["Stagger_F"],
-                >= 45 => AnimationHashes["Stagger_R"],
-                >= -45 => AnimationHashes["Stagger_B"],
-                >= -135 => AnimationHashes["Stagger_L"],
-                _ => AnimationHashes["Stagger_F"]
+                >= 135 => DamageAnimationHashes["Stagger_F"],
+                >= 45 => DamageAnimationHashes["Stagger_R"],
+                >= -45 => DamageAnimationHashes["Stagger_B"],
+                >= -135 => DamageAnimationHashes["Stagger_L"],
+                _ => DamageAnimationHashes["Stagger_F"]
             };
             PlayTargetAnimation(hash, false);
         }

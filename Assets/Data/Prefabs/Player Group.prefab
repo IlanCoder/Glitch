@@ -760,11 +760,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4705518008009068066, guid: 6169ed57bd56a1144932ccb03668fe8b,
         type: 3}
-      propertyPath: jumpHeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4705518008009068066, guid: 6169ed57bd56a1144932ccb03668fe8b,
-        type: 3}
       propertyPath: groundLayer.m_Bits
       value: 8
       objectReference: {fileID: 0}

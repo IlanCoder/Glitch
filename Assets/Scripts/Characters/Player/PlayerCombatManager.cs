@@ -24,6 +24,15 @@ namespace Characters.Player{
 			ApplyAttackModifiers();
 		}
 
+		public void PerformHeavyAttack() {
+			if (activeWeapon == null) return;
+			if (!_manager.isGrounded) return;
+			if (!_manager.statsManager.CanPerformStaminaAction()) return;
+			_manager.animManager.PlayAttackAnimation(AttackType.Heavy);
+			CurrentAttackType = AttackType.Heavy;
+			ApplyAttackModifiers();
+		}
+
 		void ApplyAttackModifiers() {
 			activeWeapon.Damage.SetMultipliedDamage(1, 1);
 			rightHandWeaponManager.SetWeaponDamage(activeWeapon);
