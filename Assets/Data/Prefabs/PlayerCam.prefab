@@ -59,7 +59,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 9
   lockOnSmoothSpeed: 0.15
-  maxLockOnDistance: 50
+  maxLockOnDistance: 20
+  lockOnCamHeight: 0.4
   lockOnLayer:
     serializedVersion: 2
     m_Bits: 128

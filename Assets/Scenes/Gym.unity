@@ -4334,8 +4334,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5144202951158204333, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
+      propertyPath: testRange
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144202951158204333, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
       propertyPath: maxLockOnDistance
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5213576337233769746, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
