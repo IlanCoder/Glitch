@@ -10,7 +10,7 @@ namespace Characters.Player {
         [SerializeField] Transform pivot;
 
         [Header("Camera Settings")]
-        [SerializeField] float camSmoothTime = 1;
+        [SerializeField, Min(0.1f)] float camSmoothTime = 1;
         [SerializeField] float yAxisSpeed = 220;
         [SerializeField] float xAxisSpeed = 160;
         [SerializeField] float minimumPivot = -60;
@@ -22,6 +22,7 @@ namespace Characters.Player {
         [SerializeField, Min(0.1f)] float lockOnSmoothSpeed = 1;
         [SerializeField] float maxLockOnDistance = 100f;
         [SerializeField] float lockOnCamHeight = 0.5f;
+        [SerializeField, Min(0.1f)] float camHeightSmoothSpeed = 0.05f;
         [SerializeField] LayerMask lockOnLayer;
         [SerializeField] LayerMask lockOnObstructLayer;
 
@@ -99,7 +100,9 @@ namespace Characters.Player {
                 targetPos.y = lockOnCamHeight;
             }
             targetPos.z = _targetCamZPos;
-            cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, targetPos, camSmoothTime);
+            targetPos.y = Mathf.Lerp(cam.transform.localPosition.y, targetPos.y, camHeightSmoothSpeed);
+            targetPos.z = Mathf.Lerp(cam.transform.localPosition.z, targetPos.z, 0.2f);
+            cam.transform.localPosition = targetPos;
         }
 
         void LerpToClamp() {

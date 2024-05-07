@@ -4057,6 +4057,12 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 601920524890959784, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 773873719003917815, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_Layer
@@ -4336,11 +4342,6 @@ PrefabInstance:
         type: 3}
       propertyPath: testRange
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144202951158204333, guid: 752639fa95abbd2409c2234008a1899e,
-        type: 3}
-      propertyPath: maxLockOnDistance
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5213576337233769746, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
