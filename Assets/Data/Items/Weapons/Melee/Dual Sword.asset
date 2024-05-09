@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dual Sword
   m_EditorClassIdentifier: 
   itemName: Dual Sword
-  icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: f39558999161a8647952f25f6f39b543, type: 3}
   itemDescription: DOUBLE SWISH SWOOSH
   itemID: 1
   weaponPrefab: {fileID: 5287090576274405779, guid: 0ac6cf157af962247935f6322e109ca1,

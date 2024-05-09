@@ -1,11 +1,11 @@
 using System;
 using Items.Weapons;
 using UnityEngine;
+using UnityEngine.Events;
 using Weapons;
 
 
 namespace Characters.Player {
-    
     public class PlayerEquipmentManager : MonoBehaviour {
         const int WeaponSlotsCount = 3;
         
@@ -21,6 +21,10 @@ namespace Characters.Player {
         GameObject[] _rightHandWeapons = new GameObject[WeaponSlotsCount];
         GameObject[] _leftHandWeapons = new GameObject[WeaponSlotsCount];
 
+        [HideInInspector] public UnityEvent<int, Sprite> onEquipWeapon;
+        [HideInInspector] public UnityEvent<int> onUnequipWeapon;
+        [HideInInspector] public UnityEvent<int, int> onActiveWeaponSwitch;
+        
         void Awake() {
             _manager = GetComponent<PlayerManager>();
         }
@@ -32,8 +36,7 @@ namespace Characters.Player {
             rightWeapon.transform.SetParent(rightHandWeaponLocation, false);
             rightWeapon.GetComponent<WeaponManager>().SetWeapon(weapon, _manager);
             if (weapon.DualWield) return;
-            if (_activeWeaponIndex != index) return;
-            ActivateWeapon();
+            SetWeaponSlot(index, weapon);
         }
         
         public void EquipWeapon(int index, BasicWeapon weapon, GameObject rightWeapon, GameObject leftWeapon) {
@@ -41,6 +44,11 @@ namespace Characters.Player {
             _leftHandWeapons[index] = leftWeapon;
             leftWeapon.transform.SetParent(leftHandWeaponLocation, false);
             leftWeapon.GetComponent<WeaponManager>().SetWeapon(weapon, _manager);
+            SetWeaponSlot(index, weapon);
+        }
+
+        void SetWeaponSlot(int index, BasicWeapon weapon) {
+            onEquipWeapon?.Invoke(index, weapon.Icon);
             if (_activeWeaponIndex != index) return;
             ActivateWeapon();
         }
@@ -49,6 +57,7 @@ namespace Characters.Player {
             if (_equippedWeapons[index] == null) return;
             _manager.inventoryManager.UnequipWeapon(_equippedWeapons[index]);
             _equippedWeapons[index] = null;
+            onUnequipWeapon?.Invoke(index);
         }
 
         public void ChangeActiveWeapon() {
@@ -88,6 +97,7 @@ namespace Characters.Player {
         
         #region Animation Events
         public void SwitchWeapons() {
+            onActiveWeaponSwitch?.Invoke(_activeWeaponIndex, _nextWeaponIndex);
             ActivateCurrentWeapon(false);
             _activeWeaponIndex = _nextWeaponIndex;
             ActivateCurrentWeapon(true);

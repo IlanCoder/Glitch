@@ -6,6 +6,7 @@ namespace Items {
         [Header("Basic Info")]
         [SerializeField] protected string itemName;
         [SerializeField] protected Sprite icon;
+        public Sprite Icon { get { return icon; } }
         [SerializeField, TextArea] protected string itemDescription;
         [SerializeField] protected int itemID;
         public int ItemID { get { return itemID; } }

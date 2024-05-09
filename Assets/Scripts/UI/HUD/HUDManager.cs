@@ -1,36 +1,71 @@
-using Characters;
+using System;
+using Characters.Player;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace UI.HUD {
     public class HUDManager : MonoBehaviour {
-        [SerializeField] CharacterStatsManager statsManager;
+        [SerializeField] PlayerManager player;
+        
         [Header("HUD Bars")]
         [SerializeField] UIStatBar healthBar;
         [SerializeField] UIStatBar staminaBar;
         [SerializeField] UIStatBar energyBar;
 
+        [Header("Weapon Slots")]
+        [SerializeField] UIWeaponSlot[] weaponSlots = new UIWeaponSlot[3];
+
         void Awake() {
-            statsManager.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
-            statsManager.onStaminaChange.AddListener(SetNewStaminaValue);
-            statsManager.onMaxHpChange.AddListener(SetNewMaxHpValue);
-            statsManager.onHpChange.AddListener(SetNewHpValue);
+            SetStatBarsListeners();
+            SetWeaponSlotsListeners();
         }
 
-        public void SetNewStaminaValue(float newValue) {
+        void SetStatBarsListeners() {
+            player.statsManager.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
+            player.statsManager.onStaminaChange.AddListener(SetNewStaminaValue);
+            player.statsManager.onMaxHpChange.AddListener(SetNewMaxHpValue);
+            player.statsManager.onHpChange.AddListener(SetNewHpValue);
+        }
+
+        void SetWeaponSlotsListeners() {
+            player.equipmentManager.onEquipWeapon.AddListener(SetWeaponSlotSprite);
+            player.equipmentManager.onUnequipWeapon.AddListener(RemoveWeaponSlotSprite);
+            player.equipmentManager.onActiveWeaponSwitch.AddListener(SwitchActiveWeapon);
+        }
+
+        #region Stat Bars
+        void SetNewStaminaValue(float newValue) {
             staminaBar.SetStat(newValue);
         }
 
-        public void SetNewMaxStaminaValue(int newMax) {
+        void SetNewMaxStaminaValue(int newMax) {
             staminaBar.SetMaxStat(newMax);
         }
         
-        public void SetNewHpValue(int newValue) {
+        void SetNewHpValue(int newValue) {
             healthBar.SetStat(newValue);
         }
 
-        public void SetNewMaxHpValue(int newMax) {
+        void SetNewMaxHpValue(int newMax) {
             healthBar.SetMaxStat(newMax);
         }
+#endregion
+
+        #region Weapon Slots
+        void SetWeaponSlotSprite(int index, Sprite sprite) {
+            weaponSlots[index].SetSprite(sprite);
+            weaponSlots[index].gameObject.SetActive(true);
+        }
+        
+        void RemoveWeaponSlotSprite(int index) {
+            weaponSlots[index].SetSprite(null);
+            weaponSlots[index].gameObject.SetActive(false);
+        }
+
+        void SwitchActiveWeapon(int currentIndex, int newIndex) {
+            if(weaponSlots[newIndex].IsBig) return;
+            weaponSlots[currentIndex].GoSmall();
+            weaponSlots[newIndex].GoBig();
+        }
+#endregion
     }
 }

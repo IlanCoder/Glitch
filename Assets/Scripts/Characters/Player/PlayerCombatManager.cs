@@ -59,6 +59,7 @@ namespace Characters.Player{
 		#region Animation Events
 		public virtual void DrainAttackStamina() {
 			_manager.statsManager.UseStamina(activeWeapon.GetAttackStaminaCost(CurrentAttackType));
+			_manager.equipmentManager.EnableWeaponColliders();
 		}
         #endregion
 	}

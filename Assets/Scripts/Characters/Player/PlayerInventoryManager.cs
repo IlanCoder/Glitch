@@ -33,6 +33,7 @@ namespace Characters.Player {
         }
 
         void EquipWeapon(int index, BasicWeapon weapon) {
+            if (weapon == null) return;
             if (!weapon.DualWield) {
                 _manager.equipmentManager.EquipWeapon(index, weapon, MainWeaponsInventory[weapon.ItemID]);
                 return;

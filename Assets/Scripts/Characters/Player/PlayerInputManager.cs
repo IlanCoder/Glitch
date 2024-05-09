@@ -65,6 +65,7 @@ namespace Characters.Player {
             enabled = newScene.buildIndex == worldSaveManager.GetSceneIndex();
         }
 
+        #region Locomotion
         void HandleMovement() {
             MoveAmount = Mathf.Clamp01(Mathf.Abs(MovementInput.x) + Mathf.Abs(MovementInput.y));
             if (_playerManager.isSprinting) {
@@ -97,7 +98,8 @@ namespace Characters.Player {
             }
             _playerManager.movementManager.HandleSprint();
         }
-
+  #endregion
+        
         void HandleActiveWeaponChange() {
             _playerManager.equipmentManager.ChangeActiveWeapon();
         }
@@ -110,6 +112,7 @@ namespace Characters.Player {
             _playerManager.combatManager.PerformHeavyAttack();
         }
 
+        #region LockOn
         void HandleLockOn() {
             if (_playerManager.isLockedOn) {
                 _playerManager.DisableLockOn();
@@ -123,5 +126,6 @@ namespace Characters.Player {
             if (value == 0) return;
             _playerManager.SwitchLockOn(value);
         }
+#endregion
     }
 }

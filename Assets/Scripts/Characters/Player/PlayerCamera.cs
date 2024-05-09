@@ -1,5 +1,3 @@
-using System;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Characters.Player {
@@ -127,6 +125,7 @@ namespace Characters.Player {
             }
         }
 
+        #region Lock-On Targeting
         public bool FindClosestLockOnTarget(out CharacterManager closestTarget) {
             float shortestDistance = maxLockOnDistance;
             closestTarget = null;
@@ -201,5 +200,6 @@ namespace Characters.Player {
             return !Physics.Linecast(cam.transform.position, target.CombatManager.LockOnPivot.position,
             lockOnObstructLayer);
         }
+#endregion
     }
 }
