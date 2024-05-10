@@ -19,7 +19,7 @@ namespace DataContainers {
             TotalBaseDamage = SlashDmg + StrikeDmg + ThrustDmg + PhotonDmg + ShockDmg + PlasmaDmg;
         }
 
-        public void SetMultipliedDamage(float motionMultiplier, float attackMultiplier) {
+        public void SetMultipliedDamage(float motionMultiplier, float attackMultiplier = 1) {
             TotalMultipliedDamage = TotalBaseDamage * motionMultiplier * attackMultiplier;
         }
     }

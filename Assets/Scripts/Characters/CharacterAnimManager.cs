@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Enums;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace Characters {
     [RequireComponent(typeof(CharacterManager))]
@@ -17,12 +16,6 @@ namespace Characters {
             { "Stagger_B", Animator.StringToHash("Stagger_B") },
             { "Stagger_R", Animator.StringToHash("Stagger_R") },
         };
-        
-        readonly protected Dictionary<string, int> AttackAnimationHashes = new Dictionary<string, int> {
-            { "Light_1", Animator.StringToHash("Light_1") },
-            { "Heavy_1", Animator.StringToHash("Heavy_1") },
-        };
-        
         readonly int _horizontalInputFloatHash = Animator.StringToHash("Horizontal");
         readonly int _verticalInputFloatHash = Animator.StringToHash("Vertical");
         readonly int _inAirTimerFloatHash = Animator.StringToHash("InAirTimer");
@@ -54,21 +47,6 @@ namespace Characters {
             animator.CrossFade(targetAnimation, 0.2f);
             manager.movementLocked = lockMovement;
             manager.rotationLocked = lockRotation;
-        }
-
-        protected virtual void PlayTargetAttackAnimation(AttackType attackType) {
-            manager.isPerformingAction = true;
-            animator.applyRootMotion = true;
-            manager.movementLocked = true;
-            manager.rotationLocked = true;
-            switch (attackType) {
-                case AttackType.Light:
-                    animator.CrossFade(AttackAnimationHashes["Light_1"], 0.1f);
-                    break;
-                case AttackType.Heavy:
-                    animator.CrossFade(AttackAnimationHashes["Heavy_1"], 0.1f);
-                    break;
-            }
         }
 
         public void PlayDeathAnimation() {

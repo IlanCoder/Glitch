@@ -1,4 +1,5 @@
 using System;
+using Attacks;
 using DataContainers;
 using Enums;
 using UnityEngine;
@@ -38,20 +39,24 @@ namespace Items.Weapons {
         [SerializeField] protected float baseStaminaCost;
         float _attackStaminaCost;
 
+        [Header("Combos")]
+        [SerializeField] protected PlayerCombo[] combos;
+        public PlayerCombo[] Combos { get { return combos; } }
+
         public virtual void Awake() {
             Damage.SetDamage(slashDmg, strikeDmg, thrustDmg, photonDmg, shockDmg, plasmaDmg);
         }
 
-        public virtual float GetAttackStaminaCost(AttackType attackType, int comboAttackIndex = 0) {
-            _attackStaminaCost = baseStaminaCost;
-            switch (attackType) {
-                case AttackType.Light: break;
-                case AttackType.Heavy: break;
-                case AttackType.SuperchargedLight: break;
-                case AttackType.SuperchargedHeavy: break;
-                case AttackType.Ultimate: break;
-            }
-            return _attackStaminaCost;
+        public virtual float GetAttackStaminaCost(int comboIndex, int comboAttackIndex = 0) {
+            return baseStaminaCost * combos[comboIndex].GetAttackInfo(comboAttackIndex).StaminaCostMultiplier;
+        }
+
+        public virtual float GetAttackMotionMultiplier(PlayerCombo combo, int comboAttackIndex = 0) {
+            return combo.GetAttackInfo(comboAttackIndex).MotionCostMultiplier;
+        }
+
+        public AnimationClip GetAttackAnimation(int comboIndex, int comboAttackIndex = 0) {
+            return combos[comboIndex].GetAttackInfo(comboAttackIndex).AttackAnimation;
         }
     }
 }

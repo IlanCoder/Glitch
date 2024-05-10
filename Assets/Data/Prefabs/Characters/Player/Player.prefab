@@ -1656,6 +1656,7 @@ GameObject:
   - component: {fileID: 8605303721872254329}
   - component: {fileID: 7257033694426047524}
   - component: {fileID: 8043861301878091408}
+  - component: {fileID: 2385595446979143259}
   - component: {fileID: 233316731465283562}
   - component: {fileID: 8397120296693354487}
   - component: {fileID: 5697119794618443428}
@@ -1800,6 +1801,7 @@ MonoBehaviour:
   movementManager: {fileID: 0}
   inputManager: {fileID: 0}
   animManager: {fileID: 0}
+  animOverrider: {fileID: 0}
   statsManager: {fileID: 0}
   effectsManager: {fileID: 0}
   inventoryManager: {fileID: 0}
@@ -1840,6 +1842,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightHandWeaponLocation: {fileID: 859001139728551959}
   leftHandWeaponLocation: {fileID: 1897553479204993376}
+  onEquipWeapon:
+    m_PersistentCalls:
+      m_Calls: []
+  onUnequipWeapon:
+    m_PersistentCalls:
+      m_Calls: []
+  onActiveWeaponSwitch:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4593154082145648705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1890,6 +1901,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8f49b8164cc4837a267e48f53e5effb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2385595446979143259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443002251341178569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f62932fe604eb18c50427e7b4f26a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &233316731465283562

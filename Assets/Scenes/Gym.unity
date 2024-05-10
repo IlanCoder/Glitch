@@ -4413,6 +4413,12 @@ PrefabInstance:
       propertyPath: fadeOutDelay
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5661434344481631935, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: testClip
+      value: 
+      objectReference: {fileID: -2746501166638713497, guid: c6cb707ce52fd864d8b535a07ad3e0cd,
+        type: 3}
     - target: {fileID: 6160579619514259804, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_Layer

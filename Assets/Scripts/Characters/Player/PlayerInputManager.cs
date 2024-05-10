@@ -1,3 +1,4 @@
+using Enums;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -105,11 +106,11 @@ namespace Characters.Player {
         }
 
         void HandleLightAttack() {
-            _playerManager.combatManager.PerformLightAttack();
+            _playerManager.combatManager.PerformNormalAttack(AttackType.Light);
         }
 
         void HandleHeavyAttack() {
-            _playerManager.combatManager.PerformHeavyAttack();
+            _playerManager.combatManager.PerformNormalAttack(AttackType.Heavy);
         }
 
         #region LockOn

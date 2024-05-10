@@ -9,18 +9,20 @@ namespace Characters.Player {
     [RequireComponent(typeof(PlayerMovementManager)),
      RequireComponent(typeof(PlayerInputManager)),
      RequireComponent(typeof(PlayerAnimManager)),
+     RequireComponent(typeof(PlayerAnimOverrider)),
      RequireComponent(typeof(PlayerStatsManager)),
      RequireComponent(typeof(PlayerEffectsManager)),
      RequireComponent(typeof(PlayerInventoryManager)),
      RequireComponent(typeof(PlayerEquipmentManager)),
      RequireComponent(typeof(PlayerCombatManager)),
      RequireComponent(typeof(PlayerVFxManager)),
-     RequireComponent(typeof(PlayerSFxManager))]
+     RequireComponent(typeof(PlayerSFxManager)),]
     public class PlayerManager : CharacterManager {
         [SerializeField]PlayerCamera playerCamera;
         [HideInInspector]public PlayerMovementManager movementManager;
         [HideInInspector]public PlayerInputManager inputManager;
         [HideInInspector]public PlayerAnimManager animManager;
+        [HideInInspector]public PlayerAnimOverrider animOverrider;
         [HideInInspector]public PlayerStatsManager statsManager;
         [HideInInspector]public PlayerEffectsManager effectsManager;
         [HideInInspector]public PlayerInventoryManager inventoryManager;
@@ -41,6 +43,7 @@ namespace Characters.Player {
         protected override void Awake() {
             base.Awake();
             animManager = GetComponent<PlayerAnimManager>();
+            animOverrider = GetComponent<PlayerAnimOverrider>();
             inputManager = GetComponent<PlayerInputManager>();
             movementManager = GetComponent<PlayerMovementManager>();
             statsManager = GetComponent<PlayerStatsManager>();

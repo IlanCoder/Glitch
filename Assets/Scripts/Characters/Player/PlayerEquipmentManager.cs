@@ -88,7 +88,7 @@ namespace Characters.Player {
         }
 
         void SetCombatWeapon() {
-            _manager.combatManager.activeWeapon = _equippedWeapons[_activeWeaponIndex];
+            _manager.combatManager.SetActiveWeapon(_equippedWeapons[_activeWeaponIndex]); 
             _manager.combatManager.rightHandWeaponManager =
                 _rightHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>();
             if (_equippedWeapons[_activeWeaponIndex].DualWield) _manager.combatManager.leftHandWeaponManager =

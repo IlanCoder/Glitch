@@ -14,6 +14,5 @@ namespace Characters{
 		public virtual void ChangeTarget(CharacterManager newTarget) {
 			LockOnTarget = newTarget;
 		}
-		
 	}
 }
