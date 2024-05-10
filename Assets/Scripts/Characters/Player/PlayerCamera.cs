@@ -43,6 +43,7 @@ namespace Characters.Player {
             HandleFollowPlayer();
             if (player.isLockedOn) {
                 HandleLockedRotation();
+                CheckIfTargetIsInRange();
             } else {
                 HandleUnlockedRotation();
             }
@@ -66,6 +67,13 @@ namespace Characters.Player {
 
             targetRotation = Quaternion.Euler(new Vector3(rotationDirection.x, 0));
             pivot.localRotation = Quaternion.Slerp(pivot.transform.localRotation, targetRotation, lockOnSmoothSpeed);
+        }
+
+        void CheckIfTargetIsInRange() {
+            float distToTarget = Vector3.Distance(player.combatManager.LockOnTarget.transform.position,
+                player.transform.position);
+            if (distToTarget <= maxLockOnDistance) return;
+            player.DisableLockOn();
         }
 
         void HandleUnlockedRotation() {
