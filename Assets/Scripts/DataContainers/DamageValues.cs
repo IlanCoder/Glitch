@@ -6,9 +6,14 @@ namespace DataContainers {
         public float PhotonDmg { get; private set; }
         public float ShockDmg { get; private set; }
         public float PlasmaDmg { get; private set; }
-        public float TotalBaseDamage { get; private set; }
-        public float TotalMultipliedDamage { get; private set; }
+        public float TotalBaseDamage { get; private set; } = 1;
+        public float TotalMultipliedDamage { get; private set; } = 1;
 
+        public void SetDamage(DamageValues dmg) {
+            SetDamage(dmg.SlashDmg, dmg.StrikeDmg, dmg.ThrustDmg, dmg.PhotonDmg, dmg.ShockDmg, dmg.PlasmaDmg);
+            TotalMultipliedDamage = dmg.TotalMultipliedDamage;
+        }
+        
         public void SetDamage(float slash, float strike, float thrust, float photon, float shock, float plasma) {
             SlashDmg = slash;
             StrikeDmg = strike;

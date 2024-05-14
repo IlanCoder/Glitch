@@ -15,5 +15,5 @@ MonoBehaviour:
   attackAnimation: {fileID: -7536146537415446483, guid: d4fcc6da733f1b3458da71ac40af1f46,
     type: 3}
   motionMultiplier: 1.5
-  staminaCostMultiplier: 1.5
+  staminaCostMultiplier: 5
   input: 1

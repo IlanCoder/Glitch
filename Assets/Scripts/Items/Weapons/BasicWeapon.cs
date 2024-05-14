@@ -2,6 +2,7 @@ using System;
 using Attacks;
 using DataContainers;
 using Enums;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Items.Weapons {
@@ -39,6 +40,9 @@ namespace Items.Weapons {
         [SerializeField] protected float baseStaminaCost;
         float _attackStaminaCost;
 
+        [Header("Energy Gains")]
+        [SerializeField] protected float baseAttackEnergyGain;
+
         [Header("Combos")]
         [SerializeField] protected PlayerCombo[] combos;
         public PlayerCombo[] Combos { get { return combos; } }
@@ -47,16 +51,35 @@ namespace Items.Weapons {
             Damage.SetDamage(slashDmg, strikeDmg, thrustDmg, photonDmg, shockDmg, plasmaDmg);
         }
 
-        public virtual float GetAttackStaminaCost(int comboIndex, int comboAttackIndex = 0) {
-            return baseStaminaCost * combos[comboIndex].GetAttackInfo(comboAttackIndex).StaminaCostMultiplier;
+        public virtual float GetAttackStaminaCost(PlayerCombo combo, int comboAttackIndex = 0) {
+            try {
+                return baseStaminaCost * combo.GetAttackInfo(comboAttackIndex).StaminaCostMultiplier;
+            }
+            catch {
+                Debug.LogError($"{itemName}'s weapon combo indexes out of range to get Stamina Cost");
+                return 0;
+            }
+        }
+
+        public virtual float GetAttackEnergyGain(PlayerCombo combo, int comboAttackIndex = 0) {
+            try {
+                return baseAttackEnergyGain * combo.GetAttackInfo(comboAttackIndex).EnergyGainMultiplier;
+            }
+            catch {
+                Debug.LogError($"{itemName}'s weapon combo indexes out of range to get Energy Gain");
+                return 0;
+            }
         }
 
         public virtual float GetAttackMotionMultiplier(PlayerCombo combo, int comboAttackIndex = 0) {
-            return combo.GetAttackInfo(comboAttackIndex).MotionCostMultiplier;
-        }
-
-        public AnimationClip GetAttackAnimation(int comboIndex, int comboAttackIndex = 0) {
-            return combos[comboIndex].GetAttackInfo(comboAttackIndex).AttackAnimation;
+            try {
+                return combo.GetAttackInfo(comboAttackIndex).MotionCostMultiplier;
+            }
+            catch {
+                Debug.LogError($"{itemName}'s weapon combo indexes out of range to get Motion Multipliers");
+                return 0;
+            }
+            
         }
     }
 }

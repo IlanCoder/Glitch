@@ -22,8 +22,12 @@ namespace UI.HUD {
         void SetStatBarsListeners() {
             player.statsManager.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
             player.statsManager.onStaminaChange.AddListener(SetNewStaminaValue);
+            
             player.statsManager.onMaxHpChange.AddListener(SetNewMaxHpValue);
             player.statsManager.onHpChange.AddListener(SetNewHpValue);
+            
+            player.statsManager.onMaxEnergyChange.AddListener(SetNewMaxEnergyValue);
+            player.statsManager.onEnergyChange.AddListener(SetNewEnergyValue);
         }
 
         void SetWeaponSlotsListeners() {
@@ -47,6 +51,14 @@ namespace UI.HUD {
 
         void SetNewMaxHpValue(int newMax) {
             healthBar.SetMaxStat(newMax);
+        }
+
+        void SetNewEnergyValue(float newValue) {
+            energyBar.SetStat(newValue);
+        }
+        
+        void SetNewMaxEnergyValue(int newMax) {
+            energyBar.SetMaxStat(newMax);
         }
 #endregion
 

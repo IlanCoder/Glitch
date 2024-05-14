@@ -23,6 +23,7 @@ namespace SaveSystem {
         #region Player Stats
         public int CurrentHp;
         public float CurrentStamina;
+        public float CurrentEnergy;
   #endregion
     }
 }

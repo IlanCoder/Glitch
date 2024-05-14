@@ -1,5 +1,7 @@
+using System;
 using Characters;
 using Colliders;
+using DataContainers;
 using Items.Weapons;
 using UnityEngine;
 
@@ -8,12 +10,16 @@ namespace Weapons{
 		[SerializeField] WeaponDamageCollider damageCollider;
 
 		public void SetWeapon(BasicWeapon weapon, CharacterManager wielder) {
-			SetWeaponDamage(weapon);
+			damageCollider.SetDamage(weapon.Damage);
 			damageCollider.SetWielder(wielder);
 		}
 		
-		public void SetWeaponDamage(BasicWeapon weapon) {
-			damageCollider.SetDamage(weapon.Damage);
+		public void SetWeaponDamageMultipliers(float motionMultiplier, float attackMultiplier = 1) {
+			damageCollider.SetAttackModifier(motionMultiplier, attackMultiplier);
+		}
+
+		public void SetWeaponEnergyGain(float energyGain) {
+			damageCollider.SetEnergyGain(energyGain);
 		}
 
 		public void EnableDamageCollider() {

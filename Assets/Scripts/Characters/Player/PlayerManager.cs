@@ -79,6 +79,7 @@ namespace Characters.Player {
             SavePlayerAttributes(ref saveData);
             saveData.CurrentHp = statsManager.CurrentHp;
             saveData.CurrentStamina = statsManager.CurrentStamina;
+            saveData.CurrentEnergy = statsManager.CurrentEnergy;
         }
 
         void SavePlayerAttributes(ref PlayerSaveData saveData) {
@@ -95,7 +96,7 @@ namespace Characters.Player {
             transform.position = new Vector3(saveData.PlayerXPos, saveData.PlayerYPos, saveData.PlayerZPos);
             statsManager.LoadCharacterAttributes(saveData.Vitality, saveData.Endurance, saveData.Dexterity,
                 saveData.Strength, saveData.Cyber, saveData.Control);
-            statsManager.LoadCurrentStats(saveData.CurrentHp, saveData.CurrentStamina);
+            statsManager.LoadCurrentStats(saveData.CurrentHp, saveData.CurrentStamina, saveData.CurrentEnergy);
         }
         #endregion
 

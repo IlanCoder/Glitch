@@ -17,9 +17,13 @@ namespace Effects.Instant {
         [HideInInspector] public Vector3 contactPoint;
         
         #region Damage
-        public DamageValues Damage;
+        DamageValues _damage = new DamageValues();
         float _totalDmg;
   #endregion
+        
+        #region Energy
+        float _baseEnergyGain;
+        #endregion
         
         #region Poise
         [HideInInspector] public float poiseDmg;
@@ -27,21 +31,34 @@ namespace Effects.Instant {
   #endregion
 
         public void SetEffectDamage(DamageValues dmg) {
-            Damage = dmg;
+            _damage.SetDamage(dmg);
+        }
+
+        public void SetEffectDamageMultiplier(float motionMultiplier, float attackMultiplier = 1) {
+            _damage.SetMultipliedDamage(motionMultiplier, attackMultiplier);
+        }
+
+        public void SetEffectEnergyGain(float energy) {
+            _baseEnergyGain = energy;
         }
         
         public override void ProcessEffect(CharacterManager character) {
             if(character.isDead) return;
+            CalculateHealthDamage(character);
+            CalculateEnergyGained();
             PlayDamageVFx(character);
             PlayDamageSFx(character);
             PlayDamageAnimation(character);
-            CalculateHealthDamage(character);
         }
 
         void CalculateHealthDamage(CharacterManager character) {
-            _totalDmg = Damage.TotalMultipliedDamage;
+            _totalDmg = _damage.TotalMultipliedDamage;
             if (_totalDmg <= 0) _totalDmg = 1;
             character.StatsManager.ReceiveDamage(Mathf.RoundToInt(_totalDmg));
+        }
+
+        void CalculateEnergyGained() {
+            characterCausingDamage.StatsManager.GainEnergy(_baseEnergyGain);
         }
 
         void PlayDamageVFx(CharacterManager character) {

@@ -21,11 +21,15 @@ namespace Characters {
         [HideInInspector] public UnityEvent<int> onMaxStaminaChange;
         [HideInInspector] public UnityEvent<int> onHpChange;
         [HideInInspector] public UnityEvent<int> onMaxHpChange;
+        [HideInInspector] public UnityEvent<float> onEnergyChange;
+        [HideInInspector] public UnityEvent<int> onMaxEnergyChange;
         
         public int MaxStamina { get; protected set; }
         public float CurrentStamina { get; protected set; }
         public int MaxHp { get; protected set; }
         public int CurrentHp { get; protected set; }
+        public int MaxEnergy { get; protected set; }
+        public float CurrentEnergy { get; protected set; }
 
         protected virtual void Awake() {
             manager = GetComponent<CharacterManager>();
@@ -51,6 +55,7 @@ namespace Characters {
                 return;
             }
             CurrentStamina += staminaRegen * Time.deltaTime;
+            if (CurrentStamina > MaxStamina) CurrentStamina = MaxStamina;
             onStaminaChange?.Invoke(CurrentStamina);
         }
 
@@ -66,6 +71,12 @@ namespace Characters {
             onStaminaChange?.Invoke(CurrentStamina);
             _staminaRegenTimer = staminaRegenDelay;
         }
+
+        public void GainEnergy(float energyGained) {
+            CurrentEnergy += energyGained;
+            if (CurrentEnergy > MaxEnergy) CurrentEnergy = MaxEnergy;
+            onEnergyChange?.Invoke(CurrentEnergy);
+        }
         
         public bool CanPerformStaminaAction() {
             if (manager.isPerformingAction) return false;
@@ -80,6 +91,11 @@ namespace Characters {
         protected void SetMaxHp(int newMaxHp) {
             MaxHp = newMaxHp;
             onMaxHpChange?.Invoke(MaxHp);
+        }
+
+        protected void SetMaxEnergy(int newMaxEnergy) {
+            MaxEnergy = newMaxEnergy;
+            onMaxEnergyChange?.Invoke(MaxEnergy);
         }
     }
 }

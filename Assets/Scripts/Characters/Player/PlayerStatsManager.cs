@@ -29,6 +29,7 @@ namespace Characters.Player {
         void SetStatsBasedOnAttributes() {
             SetMaxStamina(SetStaminaBasedOnLevel());
             SetMaxHp(SetHPBasedOnLevel());
+            SetMaxEnergy(100);
         }
         
         int SetStaminaBasedOnLevel() {
@@ -64,9 +65,10 @@ namespace Characters.Player {
             SetStatsBasedOnAttributes();
         }
 
-        public void LoadCurrentStats(int hp, float stamina) {
+        public void LoadCurrentStats(int hp, float stamina, float energy) {
             LoadCurrentHp(hp);
             LoadCurrentStamina(stamina);
+            LoadCurrentEnergy(energy);
         }
         
         void LoadCurrentHp(int hp) {
@@ -79,12 +81,17 @@ namespace Characters.Player {
             onStaminaChange?.Invoke(CurrentStamina);
         }
 
+        void LoadCurrentEnergy(float energy) {
+            CurrentEnergy = energy >= MaxEnergy ? MaxEnergy : energy;
+            onEnergyChange?.Invoke(CurrentEnergy);
+        }
+
         #region Editor Funcs
 #if UNITY_EDITOR
         [ContextMenu("Set New Level")]
         void SetNewLevel() {
             SetStatsBasedOnAttributes();
-            LoadCurrentStats(MaxHp, MaxStamina);
+            LoadCurrentStats(MaxHp, MaxStamina, CurrentEnergy);
         }
 #endif
   #endregion

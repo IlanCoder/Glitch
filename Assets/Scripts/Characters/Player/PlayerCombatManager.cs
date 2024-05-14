@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Attacks;
+using DataContainers;
 using Enums;
 using Items.Weapons;
 using UnityEngine;
@@ -83,9 +84,13 @@ namespace Characters.Player{
 		}
 
 		void ApplyAttackModifiers() {
-			activeWeapon.Damage.SetMultipliedDamage(activeWeapon.GetAttackMotionMultiplier(_activeCombo, _comboIndex));
-			rightHandWeaponManager.SetWeaponDamage(activeWeapon);
-			if(activeWeapon.DualWield) leftHandWeaponManager.SetWeaponDamage(activeWeapon);
+			float motionMultiplier = activeWeapon.GetAttackMotionMultiplier(_activeCombo, _comboIndex);
+			float energyGain = activeWeapon.GetAttackEnergyGain(_activeCombo, _comboIndex);
+			rightHandWeaponManager.SetWeaponDamageMultipliers(motionMultiplier);
+			rightHandWeaponManager.SetWeaponEnergyGain(energyGain);
+			if (!activeWeapon.DualWield) return;
+			leftHandWeaponManager.SetWeaponDamageMultipliers(motionMultiplier);
+			leftHandWeaponManager.SetWeaponEnergyGain(energyGain);
 		}
 
 		public override void ChangeTarget(CharacterManager newTarget) {
@@ -107,7 +112,7 @@ namespace Characters.Player{
 
 		#region Animation Events
 		public virtual void DrainAttackStamina() {
-			_manager.statsManager.UseStamina(activeWeapon.GetAttackStaminaCost(_comboIndex));
+			_manager.statsManager.UseStamina(activeWeapon.GetAttackStaminaCost(_activeCombo, _comboIndex));
 			_manager.equipmentManager.EnableWeaponColliders();
 		}
         #endregion
