@@ -33,3 +33,5 @@ MonoBehaviour:
   poiseDmg: 0
   postureDmg: 0
   baseStaminaCost: 30
+  baseAttackEnergyGain: 30
+  combos: []

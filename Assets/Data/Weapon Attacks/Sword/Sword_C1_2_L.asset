@@ -16,3 +16,5 @@ MonoBehaviour:
     type: 3}
   motionMultiplier: 1.1
   staminaCostMultiplier: 1.1
+  energyGainMultiplier: 1.1
+  input: 0
