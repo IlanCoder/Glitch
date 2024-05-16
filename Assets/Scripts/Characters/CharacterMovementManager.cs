@@ -53,7 +53,7 @@ namespace Characters {
         }
         
         #if UNITY_EDITOR
-        void OnDrawGizmosSelected() {
+        protected void OnDrawGizmosSelected() {
             Gizmos.color = Color.yellow;
             Gizmos.DrawSphere(transform.position, groundCheckSphereRadius);
         }

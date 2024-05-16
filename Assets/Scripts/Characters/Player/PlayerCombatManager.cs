@@ -95,7 +95,7 @@ namespace Characters.Player{
 
 		public override void ChangeTarget(CharacterManager newTarget) {
 			if (LockOnTarget) {
-				LockOnTarget.onCharacterDeath.RemoveListener(WaitForTargetToDie);
+				LockOnTarget?.onCharacterDeath.RemoveListener(WaitForTargetToDie);
 			}
 			if (newTarget) {
 				newTarget.onCharacterDeath.AddListener(WaitForTargetToDie);

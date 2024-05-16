@@ -144,6 +144,5 @@ namespace Characters.Player {
             combatManager.ChangeTarget(target);
         }
   #endregion
-        
     }
 }

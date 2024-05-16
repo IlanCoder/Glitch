@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -42,6 +43,8 @@ namespace Characters {
 
         protected virtual void LateUpdate() {
         }
+
+        protected virtual void FixedUpdate() { }
 
         public virtual void HandleDeathEvent() {
             isDead = true;
