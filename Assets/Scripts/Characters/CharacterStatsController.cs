@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace Characters {
-    public class CharacterStatsManager : MonoBehaviour {
+    public class CharacterStatsController : MonoBehaviour {
         protected CharacterManager manager;
 
         public string characterName = "Character";

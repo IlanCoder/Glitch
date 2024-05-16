@@ -32,7 +32,7 @@ namespace Colliders {
         }
 
         protected virtual void DamageTarget(CharacterManager target) {
-            target.EffectsManager.ProcessInstantEffect(DamageEffect);
+            target.EffectsController.ProcessInstantEffect(DamageEffect);
         }
 
         public virtual void EnableDamageCollider() {

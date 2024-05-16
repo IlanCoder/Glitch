@@ -36750,6 +36750,7 @@ GameObject:
   - component: {fileID: 6905803301829775346}
   - component: {fileID: 8552206443431625018}
   - component: {fileID: 8552206443431625017}
+  - component: {fileID: 8552206443431625019}
   - component: {fileID: 4060192310346367407}
   - component: {fileID: 5258224398477134710}
   m_Layer: 7
@@ -36844,7 +36845,7 @@ MonoBehaviour:
   isJumping: 0
   isGrounded: 0
   isLockedOn: 0
-  combatManager: {fileID: 0}
+  combatController: {fileID: 0}
 --- !u!114 &8552206443431625018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36867,6 +36868,26 @@ MonoBehaviour:
   eyes: {fileID: 1325622439}
   lineSightRadius: 6.92881
   lineSightAngle: 28.788738
+--- !u!114 &8552206443431625019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8279060866572335118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77618bfa160caf845aff8e9bc9fb6713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckSphereRadius: 1
+  groundedYVel: -20
+  gravityForce: -9.81
+  fallStartVel: -5
+  fallMaxVel: -50
 --- !u!1 &8587409883975353183
 GameObject:
   m_ObjectHideFlags: 0

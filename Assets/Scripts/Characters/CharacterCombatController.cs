@@ -3,7 +3,7 @@ using Enums;
 using UnityEngine;
 
 namespace Characters{
-	public class CharacterCombatManager : MonoBehaviour {
+	public class CharacterCombatController : MonoBehaviour {
 		[SerializeField] protected Transform centerLockOnPivot;
 		public Transform LockOnPivot => centerLockOnPivot;
 		

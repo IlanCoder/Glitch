@@ -3,7 +3,7 @@ using Characters;
 using UnityEngine;
 
 namespace Gym{
-	public class DummyStatManager : CharacterStatsManager {
+	public class DummyStatController : CharacterStatsController {
 		[SerializeField] int maxHp;
 		protected override void Awake() {
 			base.Awake();

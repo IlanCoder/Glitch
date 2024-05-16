@@ -6,61 +6,61 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace Characters.Player {
-    [RequireComponent(typeof(PlayerMovementManager)),
-     RequireComponent(typeof(PlayerInputManager)),
-     RequireComponent(typeof(PlayerAnimManager)),
+    [RequireComponent(typeof(PlayerMovementController)),
+     RequireComponent(typeof(PlayerInputController)),
+     RequireComponent(typeof(PlayerAnimController)),
      RequireComponent(typeof(PlayerAnimOverrider)),
-     RequireComponent(typeof(PlayerStatsManager)),
-     RequireComponent(typeof(PlayerEffectsManager)),
-     RequireComponent(typeof(PlayerInventoryManager)),
+     RequireComponent(typeof(PlayerStatsController)),
+     RequireComponent(typeof(PlayerEffectsController)),
+     RequireComponent(typeof(PlayerInventoryController)),
      RequireComponent(typeof(PlayerEquipmentManager)),
-     RequireComponent(typeof(PlayerCombatManager)),
-     RequireComponent(typeof(PlayerVFxManager)),
-     RequireComponent(typeof(PlayerSFxManager)),]
+     RequireComponent(typeof(PlayerCombatController)),
+     RequireComponent(typeof(PlayerVFxController)),
+     RequireComponent(typeof(PlayerSFxController)),]
     public class PlayerManager : CharacterManager {
         [SerializeField]PlayerCamera playerCamera;
-        [HideInInspector]public PlayerMovementManager movementManager;
-        [HideInInspector]public PlayerInputManager inputManager;
-        [HideInInspector]public PlayerAnimManager animManager;
+        [HideInInspector]public PlayerMovementController movementController;
+        [HideInInspector]public PlayerInputController inputController;
+        [HideInInspector]public PlayerAnimController animController;
         [HideInInspector]public PlayerAnimOverrider animOverrider;
-        [HideInInspector]public PlayerStatsManager statsManager;
-        [HideInInspector]public PlayerEffectsManager effectsManager;
-        [HideInInspector]public PlayerInventoryManager inventoryManager;
+        [HideInInspector]public PlayerStatsController statsController;
+        [HideInInspector]public PlayerEffectsController effectsController;
+        [HideInInspector]public PlayerInventoryController inventoryController;
         [HideInInspector]public PlayerEquipmentManager equipmentManager;
-        [HideInInspector]public PlayerCombatManager combatManager;
-        [HideInInspector]public PlayerVFxManager vFxManager;
-        [HideInInspector]public PlayerSFxManager sFxManager;
+        [HideInInspector]public PlayerCombatController combatController;
+        [HideInInspector]public PlayerVFxController vFxController;
+        [HideInInspector]public PlayerSFxController sFxController;
         
-        public override CharacterStatsManager StatsManager => statsManager;
-        public override CharacterAnimManager AnimManager => animManager;
-        public override CharacterEffectsManager EffectsManager => effectsManager;
-        public override CharacterCombatManager CombatManager => combatManager;
-        public override CharacterVFxManager VFxManager => vFxManager;
-        public override CharacterSFxManager SFxManager => sFxManager;
+        public override CharacterStatsController StatsController => statsController;
+        public override CharacterAnimController AnimController => animController;
+        public override CharacterEffectsController EffectsController => effectsController;
+        public override CharacterCombatController CombatController => combatController;
+        public override CharacterVFxController VFxController => vFxController;
+        public override CharacterSFxController SFxController => sFxController;
 
         [HideInInspector] public UnityEvent onPlayerDeath;
 
         protected override void Awake() {
             base.Awake();
-            animManager = GetComponent<PlayerAnimManager>();
+            animController = GetComponent<PlayerAnimController>();
             animOverrider = GetComponent<PlayerAnimOverrider>();
-            inputManager = GetComponent<PlayerInputManager>();
-            movementManager = GetComponent<PlayerMovementManager>();
-            statsManager = GetComponent<PlayerStatsManager>();
-            effectsManager = GetComponent<PlayerEffectsManager>();
-            inventoryManager = GetComponent<PlayerInventoryManager>();
+            inputController = GetComponent<PlayerInputController>();
+            movementController = GetComponent<PlayerMovementController>();
+            statsController = GetComponent<PlayerStatsController>();
+            effectsController = GetComponent<PlayerEffectsController>();
+            inventoryController = GetComponent<PlayerInventoryController>();
             equipmentManager = GetComponent<PlayerEquipmentManager>();
-            combatManager = GetComponent<PlayerCombatManager>();
-            vFxManager = GetComponent<PlayerVFxManager>();
-            sFxManager = GetComponent<PlayerSFxManager>();
-            movementManager.playerCam = playerCamera;
+            combatController = GetComponent<PlayerCombatController>();
+            vFxController = GetComponent<PlayerVFxController>();
+            sFxController = GetComponent<PlayerSFxController>();
+            movementController.playerCam = playerCamera;
             playerCamera.player = this;
-            playerCamera.inputManager = inputManager;
+            playerCamera.inputController = inputController;
         }
         
         protected override void Update() {
             base.Update();
-            movementManager.HandleMovement();
+            movementController.HandleMovement();
             HandleLockOn();
         }
 
@@ -71,32 +71,32 @@ namespace Characters.Player {
         
         #region Save & Load
         public void SavePlayerData(ref PlayerSaveData saveData) {
-            saveData.PlayerName = statsManager.characterName;
+            saveData.PlayerName = statsController.characterName;
             Vector3 position = transform.position;
             saveData.PlayerXPos = position.x;
             saveData.PlayerYPos = position.y;
             saveData.PlayerZPos = position.z;
             SavePlayerAttributes(ref saveData);
-            saveData.CurrentHp = statsManager.CurrentHp;
-            saveData.CurrentStamina = statsManager.CurrentStamina;
-            saveData.CurrentEnergy = statsManager.CurrentEnergy;
+            saveData.CurrentHp = statsController.CurrentHp;
+            saveData.CurrentStamina = statsController.CurrentStamina;
+            saveData.CurrentEnergy = statsController.CurrentEnergy;
         }
 
         void SavePlayerAttributes(ref PlayerSaveData saveData) {
-            saveData.Vitality = statsManager.Vitality;
-            saveData.Endurance = statsManager.Endurance;
-            saveData.Dexterity = statsManager.Dexterity;
-            saveData.Strength = statsManager.Strength;
-            saveData.Cyber = statsManager.Cyber;
-            saveData.Control = statsManager.Control;
+            saveData.Vitality = statsController.Vitality;
+            saveData.Endurance = statsController.Endurance;
+            saveData.Dexterity = statsController.Dexterity;
+            saveData.Strength = statsController.Strength;
+            saveData.Cyber = statsController.Cyber;
+            saveData.Control = statsController.Control;
         }
 
         public void LoadPlayerData(ref PlayerSaveData saveData) {
-            statsManager.characterName = saveData.PlayerName;
+            statsController.characterName = saveData.PlayerName;
             transform.position = new Vector3(saveData.PlayerXPos, saveData.PlayerYPos, saveData.PlayerZPos);
-            statsManager.LoadCharacterAttributes(saveData.Vitality, saveData.Endurance, saveData.Dexterity,
+            statsController.LoadCharacterAttributes(saveData.Vitality, saveData.Endurance, saveData.Dexterity,
                 saveData.Strength, saveData.Cyber, saveData.Control);
-            statsManager.LoadCurrentStats(saveData.CurrentHp, saveData.CurrentStamina, saveData.CurrentEnergy);
+            statsController.LoadCurrentStats(saveData.CurrentHp, saveData.CurrentStamina, saveData.CurrentEnergy);
         }
         #endregion
 
@@ -109,39 +109,39 @@ namespace Characters.Player {
         [ContextMenu("Revive")]
         public override void ReviveCharacter() {
             base.ReviveCharacter();
-            statsManager.RevivePlayer();
-            animManager.PlayReviveAnimation();
+            statsController.RevivePlayer();
+            animController.PlayReviveAnimation();
         }
 
         #region Lock On
         public void LockOn() {
             if (!playerCamera.FindClosestLockOnTarget(out CharacterManager target)) return;
-            combatManager.ChangeTarget(target);
+            combatController.ChangeTarget(target);
             isLockedOn = true;
         }
 
         public void DisableLockOn() {
             isLockedOn = false;
             playerCamera.UnlockCamera();
-            combatManager.ChangeTarget(null);
+            combatController.ChangeTarget(null);
         }
 
         public void TryNewLockOn() {
             if (!playerCamera.FindClosestLockOnTarget(out CharacterManager target)) {
                 DisableLockOn();
             }
-            combatManager.ChangeTarget(target);
+            combatController.ChangeTarget(target);
         }
         
         public void SwitchLockOn(float value) {
             CharacterManager target;
             if (value > 0) {
                 if (!playerCamera.FindClosestRightLockOnTarget(out target)) return;
-                combatManager.ChangeTarget(target);
+                combatController.ChangeTarget(target);
                 return;
             }
             if (!playerCamera.FindClosestLeftLockOnTarget(out target)) return;
-            combatManager.ChangeTarget(target);
+            combatController.ChangeTarget(target);
         }
   #endregion
     }

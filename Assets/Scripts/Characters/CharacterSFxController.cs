@@ -4,7 +4,7 @@ using UnityEngine;
 using WorldManager;
 
 namespace Characters{
-	public class CharacterSFxManager : MonoBehaviour {
+	public class CharacterSFxController : MonoBehaviour {
 		[SerializeField] protected DamageSFxType damageSFxType;
 
 		[Header("Audio Source Controllers")]

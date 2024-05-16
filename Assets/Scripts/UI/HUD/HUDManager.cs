@@ -20,14 +20,14 @@ namespace UI.HUD {
         }
 
         void SetStatBarsListeners() {
-            player.statsManager.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
-            player.statsManager.onStaminaChange.AddListener(SetNewStaminaValue);
+            player.statsController.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
+            player.statsController.onStaminaChange.AddListener(SetNewStaminaValue);
             
-            player.statsManager.onMaxHpChange.AddListener(SetNewMaxHpValue);
-            player.statsManager.onHpChange.AddListener(SetNewHpValue);
+            player.statsController.onMaxHpChange.AddListener(SetNewMaxHpValue);
+            player.statsController.onHpChange.AddListener(SetNewHpValue);
             
-            player.statsManager.onMaxEnergyChange.AddListener(SetNewMaxEnergyValue);
-            player.statsManager.onEnergyChange.AddListener(SetNewEnergyValue);
+            player.statsController.onMaxEnergyChange.AddListener(SetNewMaxEnergyValue);
+            player.statsController.onEnergyChange.AddListener(SetNewEnergyValue);
         }
 
         void SetWeaponSlotsListeners() {

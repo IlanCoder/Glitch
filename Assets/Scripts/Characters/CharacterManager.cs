@@ -5,21 +5,21 @@ using UnityEngine.Events;
 namespace Characters {
     [RequireComponent(typeof(CharacterController)), 
      RequireComponent(typeof(Animator)),
-     RequireComponent(typeof(CharacterStatsManager)),
-     RequireComponent(typeof(CharacterAnimManager)),
-     RequireComponent(typeof(CharacterEffectsManager)),
-     RequireComponent(typeof(CharacterCombatManager)),
-     RequireComponent(typeof(CharacterVFxManager)),
-     RequireComponent(typeof(CharacterSFxManager))]
+     RequireComponent(typeof(CharacterStatsController)),
+     RequireComponent(typeof(CharacterAnimController)),
+     RequireComponent(typeof(CharacterEffectsController)),
+     RequireComponent(typeof(CharacterCombatController)),
+     RequireComponent(typeof(CharacterVFxController)),
+     RequireComponent(typeof(CharacterSFxController))]
     public class CharacterManager : MonoBehaviour {
         
         [HideInInspector]public CharacterController controller;
-        public virtual CharacterStatsManager StatsManager => GetComponent<CharacterStatsManager>();
-        public virtual CharacterAnimManager AnimManager => GetComponent<CharacterAnimManager>();
-        public virtual CharacterEffectsManager EffectsManager => GetComponent<CharacterEffectsManager>();
-        public virtual CharacterCombatManager CombatManager => GetComponent<CharacterCombatManager>();
-        public virtual CharacterVFxManager VFxManager => GetComponent<CharacterVFxManager>();
-        public virtual CharacterSFxManager SFxManager => GetComponent<CharacterSFxManager>();
+        public virtual CharacterStatsController StatsController => GetComponent<CharacterStatsController>();
+        public virtual CharacterAnimController AnimController => GetComponent<CharacterAnimController>();
+        public virtual CharacterEffectsController EffectsController => GetComponent<CharacterEffectsController>();
+        public virtual CharacterCombatController CombatController => GetComponent<CharacterCombatController>();
+        public virtual CharacterVFxController VFxController => GetComponent<CharacterVFxController>();
+        public virtual CharacterSFxController SFxController => GetComponent<CharacterSFxController>();
 
         [HideInInspector] public UnityEvent onCharacterDeath;
         
@@ -49,7 +49,7 @@ namespace Characters {
         public virtual void HandleDeathEvent() {
             isDead = true;
             onCharacterDeath?.Invoke();
-            AnimManager.PlayDeathAnimation();
+            AnimController.PlayDeathAnimation();
         }
 
         public virtual void ReviveCharacter() {

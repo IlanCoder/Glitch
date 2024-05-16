@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Characters.Player {
     
-    public class PlayerAnimManager : CharacterAnimManager {
+    public class PlayerAnimController : CharacterAnimController {
         readonly protected Dictionary<string, int> PlayerAnimationHashes = new Dictionary<string, int>() {
             { "Dodge_F", Animator.StringToHash("Dodge_F") },
             { "Dodge_B", Animator.StringToHash("Dodge_B") },

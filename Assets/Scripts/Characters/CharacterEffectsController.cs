@@ -4,7 +4,7 @@ using UnityEngine;
 using WorldManager;
 
 namespace Characters {
-    public class CharacterEffectsManager : MonoBehaviour {
+    public class CharacterEffectsController : MonoBehaviour {
         protected CharacterManager manager;
 
         protected virtual void Awake() {

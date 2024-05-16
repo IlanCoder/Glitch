@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Characters {
     [RequireComponent(typeof(CharacterManager))]
-    public class CharacterAnimManager : MonoBehaviour {
+    public class CharacterAnimController : MonoBehaviour {
         protected CharacterManager manager;
         protected Animator animator;
 

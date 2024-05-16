@@ -3,7 +3,7 @@ using Enums;
 using WorldManager;
 
 namespace Characters{
-	public class CharacterVFxManager : MonoBehaviour {
+	public class CharacterVFxController : MonoBehaviour {
 		[SerializeField] protected DamageVFxType damageVFxType;
 		
 		public virtual void PlayDamageVFx(Vector3 contactPoint) {

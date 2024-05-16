@@ -54,23 +54,23 @@ namespace Effects.Instant {
         void CalculateHealthDamage(CharacterManager character) {
             _totalDmg = _damage.TotalMultipliedDamage;
             if (_totalDmg <= 0) _totalDmg = 1;
-            character.StatsManager.ReceiveDamage(Mathf.RoundToInt(_totalDmg));
+            character.StatsController.ReceiveDamage(Mathf.RoundToInt(_totalDmg));
         }
 
         void CalculateEnergyGained() {
-            characterCausingDamage.StatsManager.GainEnergy(_baseEnergyGain);
+            characterCausingDamage.StatsController.GainEnergy(_baseEnergyGain);
         }
 
         void PlayDamageVFx(CharacterManager character) {
-            character.VFxManager.PlayDamageVFx(contactPoint);
+            character.VFxController.PlayDamageVFx(contactPoint);
         }
 
         void PlayDamageSFx(CharacterManager character) {
-            character.SFxManager.PlayDamageSFx();
+            character.SFxController.PlayDamageSFx();
         }
 
         void PlayDamageAnimation(CharacterManager character) {
-            character.AnimManager.PlayStaggerAnimation(hitAngle);
+            character.AnimController.PlayStaggerAnimation(hitAngle);
         }
     }
 }

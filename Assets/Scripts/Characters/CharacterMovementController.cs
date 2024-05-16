@@ -3,7 +3,7 @@ using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 namespace Characters {
-    public class CharacterMovementManager<T> : MonoBehaviour where T : CharacterManager {
+    public class CharacterMovementController<T> : MonoBehaviour where T : CharacterManager {
         protected T manager;
         
         [Header("Ground Check")] 
@@ -25,7 +25,7 @@ namespace Characters {
 
         protected void Update() {
             HandleGroundCheck();
-            manager.AnimManager.SetGroundedBool(manager.isGrounded);
+            manager.AnimController.SetGroundedBool(manager.isGrounded);
             GetYVel();
             manager.controller.Move(yVel * Time.deltaTime);
         }
@@ -43,7 +43,7 @@ namespace Characters {
                 fallingVelHasBeenSet = true;
             }
             inAirTimer += Time.deltaTime;
-            manager.AnimManager.SetAirTimerFloat(inAirTimer);
+            manager.AnimController.SetAirTimerFloat(inAirTimer);
             if (yVel.y <= fallMaxVel) return;
             yVel.y += gravityForce * Time.deltaTime;
         }

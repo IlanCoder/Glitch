@@ -3,19 +3,19 @@ using UnityEngine;
 using UnityEditor;
 
 namespace CustomEditors.Scripts{
-	[CustomEditor(typeof(NpcCombatManager))]
+	[CustomEditor(typeof(NpcCombatController))]
 	public class NpcCombatManagerEditor : Editor {
-		NpcCombatManager _manager;
+		NpcCombatController _controller;
 		Transform objTransform;
 		void OnSceneGUI() {
-			_manager = target as NpcCombatManager;
-			objTransform = _manager.transform;
+			_controller = target as NpcCombatController;
+			objTransform = _controller.transform;
 			DrawSightCone();
 		}
 
 		void DrawSightCone() {
-			float radius = _manager.EditorLineSightRadius;
-			float angle = _manager.EditorLineSightAngle;
+			float radius = _controller.EditorLineSightRadius;
+			float angle = _controller.EditorLineSightAngle;
 			Vector3 arcOrigin = Quaternion.AngleAxis(-angle, objTransform.up) * objTransform.forward;
 			Vector3 arcEnd = Quaternion.AngleAxis(angle, objTransform.up) * objTransform.forward;
 
@@ -26,11 +26,11 @@ namespace CustomEditors.Scripts{
 
 			radius = Handles.ScaleValueHandle(radius, objTransform.position + objTransform.forward * radius,
 			objTransform.rotation, 1, Handles.CubeHandleCap, 0.1f);
-			_manager.EditorLineSightRadius = Mathf.Clamp(radius, 0, 1000);
+			_controller.EditorLineSightRadius = Mathf.Clamp(radius, 0, 1000);
 
 			angle = Handles.ScaleValueHandle(angle, objTransform.position + objTransform.forward * radius,
 			Quaternion.AngleAxis(90, Vector3.up) * objTransform.rotation, 5, Handles.ArrowHandleCap, 0.1f);
-			_manager.EditorLineSightAngle = Mathf.Clamp(angle, 0, 180);
+			_controller.EditorLineSightAngle = Mathf.Clamp(angle, 0, 180);
 		}
 	}
 }

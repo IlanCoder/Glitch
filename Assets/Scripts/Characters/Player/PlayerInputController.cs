@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using WorldManager;
 
 namespace Characters.Player {
-    public class PlayerInputManager : MonoBehaviour {
+    public class PlayerInputController : MonoBehaviour {
         [SerializeField] WorldSaveManager worldSaveManager;
         PlayerControls _playerControls;
         PlayerManager _playerManager;
@@ -84,11 +84,11 @@ namespace Characters.Player {
         }
 
         void HandleJump() {
-            _playerManager.movementManager.AttemptToJump();
+            _playerManager.movementController.AttemptToJump();
         }
         
         void HandleDodge() {
-            _playerManager.movementManager.AttemptToDodge();
+            _playerManager.movementController.AttemptToDodge();
         }
 
         void HandleSprint() {
@@ -97,7 +97,7 @@ namespace Characters.Player {
                 _playerManager.isSprinting = false;
                 return;
             }
-            _playerManager.movementManager.HandleSprint();
+            _playerManager.movementController.HandleSprint();
         }
   #endregion
         
@@ -106,11 +106,11 @@ namespace Characters.Player {
         }
 
         void HandleLightAttack() {
-            _playerManager.combatManager.PerformNormalAttack(AttackType.Light);
+            _playerManager.combatController.PerformNormalAttack(AttackType.Light);
         }
 
         void HandleHeavyAttack() {
-            _playerManager.combatManager.PerformNormalAttack(AttackType.Heavy);
+            _playerManager.combatController.PerformNormalAttack(AttackType.Heavy);
         }
 
         #region LockOn

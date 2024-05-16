@@ -4,7 +4,7 @@ namespace Characters.Player {
     public class PlayerCamera : MonoBehaviour {
         public Camera cam;
         [HideInInspector] public PlayerManager player;
-        [HideInInspector] public PlayerInputManager inputManager;
+        [HideInInspector] public PlayerInputController inputController;
         [SerializeField] Transform pivot;
 
         [Header("Camera Settings")]
@@ -57,7 +57,7 @@ namespace Characters.Player {
         }
 
         void HandleLockedRotation() {
-            Vector3 lockOnPos = player.combatManager.LockOnTarget.CombatManager.LockOnPivot.position;
+            Vector3 lockOnPos = player.combatController.LockOnTarget.CombatController.LockOnPivot.position;
             Vector3 rotationDirection = lockOnPos - pivot.transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(rotationDirection);
             rotationDirection = targetRotation.eulerAngles;
@@ -70,7 +70,7 @@ namespace Characters.Player {
         }
 
         void CheckIfTargetIsInRange() {
-            float distToTarget = Vector3.Distance(player.combatManager.LockOnTarget.transform.position,
+            float distToTarget = Vector3.Distance(player.combatController.LockOnTarget.transform.position,
                 player.transform.position);
             if (distToTarget <= maxLockOnDistance) return;
             player.DisableLockOn();
@@ -78,12 +78,12 @@ namespace Characters.Player {
 
         void HandleUnlockedRotation() {
             if (!_lerpToClamp) {
-                _xAxisAngle -= inputManager.CameraInput.y * xAxisSpeed * Time.deltaTime;
+                _xAxisAngle -= inputController.CameraInput.y * xAxisSpeed * Time.deltaTime;
                 _xAxisAngle = Mathf.Clamp(_xAxisAngle, minimumPivot, maximumPivot);
             } else {
                 LerpToClamp();
             }
-            _yAxisAngle += inputManager.CameraInput.x * yAxisSpeed * Time.deltaTime;
+            _yAxisAngle += inputController.CameraInput.x * yAxisSpeed * Time.deltaTime;
 
             transform.rotation = Quaternion.Euler(new Vector3(0, _yAxisAngle));
             
@@ -155,7 +155,7 @@ namespace Characters.Player {
         public bool FindClosestRightLockOnTarget(out CharacterManager closestTarget) {
             float distanceToTarget = maxLockOnDistance;
             float currentTargetRelativePos = cam.transform
-                .InverseTransformPoint(player.combatManager.LockOnTarget.transform.position).x;
+                .InverseTransformPoint(player.combatController.LockOnTarget.transform.position).x;
             closestTarget = null;
 
             Collider[] colliders = Physics.OverlapSphere(player.transform.position, maxLockOnDistance, lockOnLayer);
@@ -177,7 +177,7 @@ namespace Characters.Player {
         public bool FindClosestLeftLockOnTarget(out CharacterManager closestTarget) {
             float distanceToTarget = -maxLockOnDistance;
             float currentTargetRelativePos = cam.transform
-                .InverseTransformPoint(player.combatManager.LockOnTarget.transform.position).x;
+                .InverseTransformPoint(player.combatController.LockOnTarget.transform.position).x;
             closestTarget = null;
 
             Collider[] colliders = Physics.OverlapSphere(player.transform.position, maxLockOnDistance, lockOnLayer);
@@ -199,13 +199,13 @@ namespace Characters.Player {
         bool CanBeTargeted(Collider col, out CharacterManager target) {
             if (!col.TryGetComponent(out target)) return false;
             if (target.isDead) return false;
-            if (target == player.combatManager.LockOnTarget) return false;
+            if (target == player.combatController.LockOnTarget) return false;
 
             Vector3 targetDirection = target.transform.position - cam.transform.position;
             float angleToTarget = Vector3.Angle(cam.transform.forward, targetDirection);
 
             if (angleToTarget > cam.fieldOfView) return false;
-            return !Physics.Linecast(cam.transform.position, target.CombatManager.LockOnPivot.position,
+            return !Physics.Linecast(cam.transform.position, target.CombatController.LockOnPivot.position,
             lockOnObstructLayer);
         }
 #endregion

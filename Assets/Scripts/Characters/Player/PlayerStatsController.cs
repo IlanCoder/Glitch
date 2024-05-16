@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR;
 
 namespace Characters.Player {
-    public class PlayerStatsManager : CharacterStatsManager {
+    public class PlayerStatsController : CharacterStatsController {
         [Header("Main Attributes")] 
         [SerializeField,Range(1, 99)] protected int vitality = 1;
         [SerializeField,Range(1, 99)] protected int endurance = 1;

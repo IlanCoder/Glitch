@@ -10,7 +10,7 @@ using UnityEngine;
 using Weapons;
 
 namespace Characters.Player{
-	public class PlayerCombatManager : CharacterCombatManager {
+	public class PlayerCombatController : CharacterCombatController {
 		PlayerManager _manager;
 		[HideInInspector] public BasicWeapon activeWeapon;
 		[HideInInspector] public WeaponManager rightHandWeaponManager;
@@ -28,7 +28,7 @@ namespace Characters.Player{
 		public void PerformNormalAttack(AttackType attackType) {
 			if (activeWeapon == null) return;
 			if (!_manager.isGrounded) return;
-			if (!_manager.statsManager.CanPerformStaminaAction()) return;
+			if (!_manager.statsController.CanPerformStaminaAction()) return;
 			CurrentAttackType = attackType;
 			if (!InputIsInCombos()) return;
 			HandleAttackAnimation();
@@ -43,7 +43,7 @@ namespace Characters.Player{
 				_activeCombo = _availableCombos[0];
 				_manager.animOverrider.OverrideCombos(_activeCombo.ComboAttacks, _comboIndex);
 			}
-			_manager.animManager.PlayAttackAnimation(_comboIndex);
+			_manager.animController.PlayAttackAnimation(_comboIndex);
 		}
 		
 		bool InputIsInCombos() {
@@ -112,7 +112,7 @@ namespace Characters.Player{
 
 		#region Animation Events
 		public virtual void DrainAttackStamina() {
-			_manager.statsManager.UseStamina(activeWeapon.GetAttackStaminaCost(_activeCombo, _comboIndex));
+			_manager.statsController.UseStamina(activeWeapon.GetAttackStaminaCost(_activeCombo, _comboIndex));
 			_manager.equipmentManager.EnableWeaponColliders();
 		}
         #endregion

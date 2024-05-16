@@ -7,7 +7,7 @@ namespace AIStates {
     public class IdleState : AIState {
         override public void EnterState(NpcManager manager) {
             base.EnterState(manager);
-            Manager.AnimManager.UpdateMovementParameters(0, 0);
+            Manager.AnimController.UpdateMovementParameters(0, 0);
         }
 
         override public AIState Tick() {
@@ -16,7 +16,7 @@ namespace AIStates {
         }
 
         protected virtual bool CheckForEnemy() {
-            if (!Manager.combatManager.CheckLineSightRadius(out CharacterManager target)) return false;
+            if (!Manager.combatController.CheckLineSightRadius(out CharacterManager target)) return false;
             Manager.LockOn(target);
             return true;
         }

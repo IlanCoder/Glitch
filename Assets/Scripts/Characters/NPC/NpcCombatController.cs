@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Characters.NPC {
-    public class NpcCombatManager : CharacterCombatManager {
+    public class NpcCombatController : CharacterCombatController {
         protected NpcManager Npc;
         
         [Header("Lock On")]
@@ -30,13 +30,13 @@ namespace Characters.NPC {
         bool CanBeTargeted(Collider col, out CharacterManager target) {
             if (!col.TryGetComponent(out target)) return false;
             if (target.isDead) return false;
-            if (target == Npc.combatManager.LockOnTarget) return false;
+            if (target == Npc.combatController.LockOnTarget) return false;
 
             Vector3 targetDirection = target.transform.position - Npc.transform.position;
             float angleToTarget = Vector3.Angle(eyes.transform.forward, targetDirection);
 
             if (angleToTarget > lineSightAngle) return false;
-            return !Physics.Linecast(eyes.transform.position, target.CombatManager.LockOnPivot.position,
+            return !Physics.Linecast(eyes.transform.position, target.CombatController.LockOnPivot.position,
             lockOnObstructLayer);
         }
 

@@ -55,14 +55,14 @@ namespace Characters.Player {
 
         void UnequipWeapon(int index) {
             if (_equippedWeapons[index] == null) return;
-            _manager.inventoryManager.UnequipWeapon(_equippedWeapons[index]);
+            _manager.inventoryController.UnequipWeapon(_equippedWeapons[index]);
             _equippedWeapons[index] = null;
             onUnequipWeapon?.Invoke(index);
         }
 
         public void ChangeActiveWeapon() {
             if (!TryGetNextEquippedWeapon(out int index)) return;
-            _manager.animManager.PlayEquipAnimation();
+            _manager.animController.PlayEquipAnimation();
             _nextWeaponIndex = index;
         }
 
@@ -78,7 +78,7 @@ namespace Characters.Player {
         }
 
         void ActivateWeapon() {
-            _manager.animManager.PlayEquipAnimation();
+            _manager.animController.PlayEquipAnimation();
         }
 
         void ActivateCurrentWeapon(bool active) {
@@ -88,10 +88,10 @@ namespace Characters.Player {
         }
 
         void SetCombatWeapon() {
-            _manager.combatManager.SetActiveWeapon(_equippedWeapons[_activeWeaponIndex]); 
-            _manager.combatManager.rightHandWeaponManager =
+            _manager.combatController.SetActiveWeapon(_equippedWeapons[_activeWeaponIndex]); 
+            _manager.combatController.rightHandWeaponManager =
                 _rightHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>();
-            if (_equippedWeapons[_activeWeaponIndex].DualWield) _manager.combatManager.leftHandWeaponManager =
+            if (_equippedWeapons[_activeWeaponIndex].DualWield) _manager.combatController.leftHandWeaponManager =
                 _leftHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>();
         }
         

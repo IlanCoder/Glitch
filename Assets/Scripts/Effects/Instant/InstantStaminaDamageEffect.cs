@@ -13,7 +13,7 @@ namespace Effects.Instant {
         }
 
         void CalculateStaminaDamage(CharacterManager character) {
-            character.StatsManager.UseStamina(staminaDamage);
+            character.StatsController.UseStamina(staminaDamage);
         }
     }
 }

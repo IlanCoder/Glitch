@@ -7,7 +7,7 @@ using UnityEngine;
 using WorldManager;
 
 namespace Characters.Player {
-    public class PlayerInventoryManager : MonoBehaviour {
+    public class PlayerInventoryController : MonoBehaviour {
         PlayerManager _manager;
 
         [SerializeField] Transform weaponsParent;

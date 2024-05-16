@@ -2,18 +2,18 @@ using AIStates;
 using UnityEngine;
 
 namespace Characters.NPC {
-	[RequireComponent(typeof(NpcCombatManager))]
+	[RequireComponent(typeof(NpcCombatController))]
 	public class NpcManager : CharacterManager {
 		protected AIState CurrentState;
 		protected AIState NextState;
 		
-		[HideInInspector]public NpcCombatManager combatManager;
+		[HideInInspector]public NpcCombatController combatController;
 		
-		public override CharacterCombatManager CombatManager => combatManager;
+		public override CharacterCombatController CombatController => combatController;
 
 		protected override void Awake() {
 			base.Awake();
-			combatManager = GetComponent<NpcCombatManager>();
+			combatController = GetComponent<NpcCombatController>();
 			CurrentState = new IdleState();
 			CurrentState.EnterState(this);
 		}
@@ -33,7 +33,7 @@ namespace Characters.NPC {
 		}
 
 		public virtual void LockOn(CharacterManager target) {
-			combatManager.ChangeTarget(target);
+			combatController.ChangeTarget(target);
 		}
 	}
 }
