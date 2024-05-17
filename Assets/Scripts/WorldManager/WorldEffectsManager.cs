@@ -19,7 +19,7 @@ namespace WorldManager {
             if (Instance == null) {
                 Instance = this;
             } else {
-                Destroy(gameObject);
+                Destroy(this);
             }
             GenerateEffectsIDs();
         }

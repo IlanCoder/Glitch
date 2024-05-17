@@ -7,7 +7,7 @@ namespace AIStates {
     public class IdleState : AIState {
         override public void EnterState(NpcManager manager) {
             base.EnterState(manager);
-            Manager.AnimController.UpdateMovementParameters(0, 0);
+            Manager.movementController.GoIdle();
         }
 
         override public AIState Tick() {

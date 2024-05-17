@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using WorldManager;
 
 namespace Characters.NPC {
     public class NpcCombatController : CharacterCombatController {
@@ -31,6 +32,7 @@ namespace Characters.NPC {
             if (!col.TryGetComponent(out target)) return false;
             if (target.isDead) return false;
             if (target == Npc.combatController.LockOnTarget) return false;
+            if (!WorldCombatManager.Instance.IsTargetEnemy(team, target.CombatController.Team)) return false;
 
             Vector3 targetDirection = target.transform.position - Npc.transform.position;
             float angleToTarget = Vector3.Angle(eyes.transform.forward, targetDirection);

@@ -1,4 +1,5 @@
 using UnityEngine;
+using WorldManager;
 
 namespace Characters.Player {
     public class PlayerCamera : MonoBehaviour {
@@ -200,6 +201,8 @@ namespace Characters.Player {
             if (!col.TryGetComponent(out target)) return false;
             if (target.isDead) return false;
             if (target == player.combatController.LockOnTarget) return false;
+            if (!WorldCombatManager.Instance.IsTargetEnemy(player.combatController.Team, target.CombatController.Team))
+                return false;
 
             Vector3 targetDirection = target.transform.position - cam.transform.position;
             float angleToTarget = Vector3.Angle(cam.transform.forward, targetDirection);

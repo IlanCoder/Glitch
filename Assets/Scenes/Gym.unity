@@ -5138,8 +5138,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000,
-        type: 0}
+      objectReference: {fileID: 0}
     - target: {fileID: 773873719003917815, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_Layer
@@ -5444,6 +5443,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078414045349799654, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5144202951158204333, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
@@ -15435,7 +15439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 990371749}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: NPCs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34673,18 +34677,6 @@ Transform:
   - {fileID: 285969319484493730}
   m_Father: {fileID: 452324892238789863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &856134418864297801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8279060866572335118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74cd0d61d5a5482ba85b176b2fe2d733, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &913944873150813493
 Transform:
   m_ObjectHideFlags: 0
@@ -36744,11 +36736,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6497123900087461867}
   - component: {fileID: 7753380753882218013}
-  - component: {fileID: 856134418864297801}
   - component: {fileID: 8552206443431625016}
   - component: {fileID: 133197673399483970}
   - component: {fileID: 6905803301829775346}
   - component: {fileID: 8552206443431625018}
+  - component: {fileID: 8552206443431625020}
   - component: {fileID: 8552206443431625017}
   - component: {fileID: 8552206443431625019}
   - component: {fileID: 4060192310346367407}
@@ -36845,7 +36837,9 @@ MonoBehaviour:
   isJumping: 0
   isGrounded: 0
   isLockedOn: 0
+  movementController: {fileID: 0}
   combatController: {fileID: 0}
+  animController: {fileID: 0}
 --- !u!114 &8552206443431625018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36859,6 +36853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerLockOnPivot: {fileID: 1960427948415579212}
+  team: 3
   lockOnLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -36883,11 +36878,23 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  groundCheckSphereRadius: 1
+  groundCheckSphereRadius: 0.2
   groundedYVel: -20
   gravityForce: -9.81
   fallStartVel: -5
   fallMaxVel: -50
+--- !u!114 &8552206443431625020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8279060866572335118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb79072d8cc43c392993f6f9604e08d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8587409883975353183
 GameObject:
   m_ObjectHideFlags: 0

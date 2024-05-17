@@ -44,8 +44,6 @@ namespace Characters {
         protected virtual void LateUpdate() {
         }
 
-        protected virtual void FixedUpdate() { }
-
         public virtual void HandleDeathEvent() {
             isDead = true;
             onCharacterDeath?.Invoke();

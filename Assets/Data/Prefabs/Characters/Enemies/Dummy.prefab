@@ -411,6 +411,12 @@ MonoBehaviour:
   onMaxHpChange:
     m_PersistentCalls:
       m_Calls: []
+  onEnergyChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onMaxEnergyChange:
+    m_PersistentCalls:
+      m_Calls: []
   maxHp: 100000
 --- !u!114 &7946944811664728811
 MonoBehaviour:
@@ -499,6 +505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerLockOnPivot: {fileID: 9123298136155111918}
+  team: 1
 --- !u!1 &1912788618216243678
 GameObject:
   m_ObjectHideFlags: 0
