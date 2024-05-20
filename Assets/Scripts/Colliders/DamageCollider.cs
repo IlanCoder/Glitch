@@ -20,7 +20,8 @@ namespace Colliders {
         }
 
         protected virtual void OnTriggerEnter(Collider other) {
-            if (!other.TryGetComponent(out CharacterManager target)) return;
+            CharacterManager target = other.GetComponentInParent<CharacterManager>();
+            if (!target) return;
             HitTarget(other, target);
         }
 

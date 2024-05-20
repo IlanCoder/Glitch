@@ -3,7 +3,6 @@ using Enums;
 using UnityEngine;
 
 namespace Characters {
-    [RequireComponent(typeof(CharacterManager))]
     public class CharacterAnimController : MonoBehaviour {
         protected CharacterManager manager;
         protected Animator animator;

@@ -11,14 +11,12 @@ namespace AIStates {
         }
 
         override public AIState Tick() {
-            if (CheckForEnemy()) return null;
+            if (CheckForEnemy(out CharacterManager target)) return new PursueState(target);
             return this;
         }
 
-        protected virtual bool CheckForEnemy() {
-            if (!Manager.combatController.CheckLineSightRadius(out CharacterManager target)) return false;
-            Manager.LockOn(target);
-            return true;
+        protected virtual bool CheckForEnemy(out CharacterManager target) {
+            return Manager.combatController.CheckLineSightRadius(out target);
         }
     }
 }
