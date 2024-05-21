@@ -31,6 +31,7 @@ namespace Characters.Player {
         [HideInInspector]public PlayerVFxController vFxController;
         [HideInInspector]public PlayerSFxController sFxController;
         
+        public override CharacterMovementController MovementController => movementController;
         public override CharacterStatsController StatsController => statsController;
         public override CharacterAnimController AnimController => animController;
         public override CharacterEffectsController EffectsController => effectsController;

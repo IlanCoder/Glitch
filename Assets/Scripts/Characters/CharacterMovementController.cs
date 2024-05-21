@@ -3,8 +3,8 @@ using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 namespace Characters {
-    public class CharacterMovementController<T> : MonoBehaviour where T : CharacterManager {
-        protected T manager;
+    public class CharacterMovementController : MonoBehaviour {
+        private CharacterManager _manager;
         
         [Header("Ground Check")] 
         [SerializeField] LayerMask groundLayer;
@@ -20,36 +20,37 @@ namespace Characters {
         protected float inAirTimer;
 
         protected virtual void Awake() {
-            manager = GetComponent<T>();
-        }
-
-        protected void Update() {
-            HandleGroundCheck();
-            manager.AnimController.SetGroundedBool(manager.isGrounded);
-            GetYVel();
-            manager.controller.Move(yVel * Time.deltaTime);
+            _manager = GetComponent<CharacterManager>();
         }
 
         void GetYVel() {
-            if (manager.isGrounded) {
+            if (_manager.isGrounded) {
                 if (yVel.y > 0) return;
                 inAirTimer = 0;
                 fallingVelHasBeenSet = false;
                 yVel.y = groundedYVel;
                 return;
             }
-            if (!manager.isJumping && !fallingVelHasBeenSet) {
+            if (!_manager.isJumping && !fallingVelHasBeenSet) {
                 yVel.y = fallStartVel;
                 fallingVelHasBeenSet = true;
             }
             inAirTimer += Time.deltaTime;
-            manager.AnimController.SetAirTimerFloat(inAirTimer);
+            _manager.AnimController.SetAirTimerFloat(inAirTimer);
             if (yVel.y <= fallMaxVel) return;
             yVel.y += gravityForce * Time.deltaTime;
         }
 
-        void HandleGroundCheck() {
-            manager.isGrounded = Physics.CheckSphere(transform.position, groundCheckSphereRadius, groundLayer);
+        public virtual void HandleGravity() {
+            GetYVel();
+            _manager.characterController.Move(yVel * Time.deltaTime);
+        }
+        
+        public void HandleGroundCheck() {
+            bool grounded = Physics.CheckSphere(transform.position, groundCheckSphereRadius, groundLayer);
+            if (grounded == _manager.isGrounded) return;
+            _manager.isGrounded = grounded;
+            _manager.AnimController.SetGroundedBool(_manager.isGrounded);
         }
         
         #if UNITY_EDITOR

@@ -1,8 +1,10 @@
 using AIStates;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Characters.NPC {
-	[RequireComponent(typeof(NpcMovementController)),
+	[RequireComponent(typeof(NavMeshAgent)),
+	 RequireComponent(typeof(NpcMovementController)),
 	 RequireComponent(typeof(NpcCombatController)),
 	 RequireComponent(typeof(NpcAnimController))]
 	public class NpcManager : CharacterManager {
@@ -13,6 +15,7 @@ namespace Characters.NPC {
 		[HideInInspector] public NpcCombatController combatController;
 		[HideInInspector] public NpcAnimController animController;
 		
+		public override CharacterMovementController MovementController => movementController;
 		public override CharacterCombatController CombatController => combatController;
 		public override CharacterAnimController AnimController => animController;
 
@@ -28,7 +31,7 @@ namespace Characters.NPC {
 			CurrentState.EnterState(this);
 		}
 
-		protected override void Update() {
+		protected virtual void FixedUpdate() {
 			ProcessCurrentState();
 		}
 		

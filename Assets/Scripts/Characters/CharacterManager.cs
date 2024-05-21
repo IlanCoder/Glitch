@@ -5,6 +5,7 @@ using UnityEngine.Events;
 namespace Characters {
     [RequireComponent(typeof(CharacterController)), 
      RequireComponent(typeof(Animator)),
+     RequireComponent(typeof(CharacterMovementController)),
      RequireComponent(typeof(CharacterStatsController)),
      RequireComponent(typeof(CharacterAnimController)),
      RequireComponent(typeof(CharacterEffectsController)),
@@ -13,7 +14,8 @@ namespace Characters {
      RequireComponent(typeof(CharacterSFxController))]
     public class CharacterManager : MonoBehaviour {
         
-        [HideInInspector]public CharacterController controller;
+        [HideInInspector]public CharacterController characterController;
+        public virtual CharacterMovementController MovementController => GetComponent<CharacterMovementController>();
         public virtual CharacterStatsController StatsController => GetComponent<CharacterStatsController>();
         public virtual CharacterAnimController AnimController => GetComponent<CharacterAnimController>();
         public virtual CharacterEffectsController EffectsController => GetComponent<CharacterEffectsController>();
@@ -35,10 +37,12 @@ namespace Characters {
         #endregion
         
         protected virtual void Awake() {
-            controller = GetComponent<CharacterController>();
+            characterController = GetComponent<CharacterController>();
         }
 
         protected virtual void Update() {
+            MovementController.HandleGroundCheck();
+            MovementController.HandleGravity();
         }
 
         protected virtual void LateUpdate() {

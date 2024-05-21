@@ -14,6 +14,8 @@ namespace AIStates {
             if (CheckForEnemy(out CharacterManager target)) return new PursueState(target);
             return this;
         }
+        
+        override public void ExitState(){}
 
         protected virtual bool CheckForEnemy(out CharacterManager target) {
             return Manager.combatController.CheckLineSightRadius(out target);
