@@ -7,29 +7,27 @@ namespace Characters.NPC {
 		protected NavMeshAgent NavAgent;
 		protected NpcManager Manager;
 
+		[Header("Movement Speeds")]
+		[SerializeField] protected float runningSpeed;
+		
 		[Header("Nav Mesh")]
 		[SerializeField] protected float lockOnDistance;
-		[SerializeField] protected float walkingSpeed;
 
 		protected override void Awake() {
 			base.Awake();
 			Manager = GetComponent<NpcManager>();
 			NavAgent = GetComponent<NavMeshAgent>();
 			NavAgent.stoppingDistance = lockOnDistance;
-			NavAgent.speed = walkingSpeed;
+			NavAgent.updatePosition = false;
 		}
-
-		override public void HandleGravity() {
-			if (Manager.isGrounded != NavAgent.enabled) {
-				Manager.characterController.enabled = !Manager.isGrounded;
-				NavAgent.enabled = Manager.isGrounded;
-			}
-			if (!Manager.characterController.enabled) return;
-			base.HandleGravity();
-		}
-
+		
 		public void GoIdle() {
 			Manager.AnimController.UpdateMovementParameters(0, 0);
+		}
+
+		public void StartChasing() {
+			NavAgent.speed = runningSpeed;
+			EnableNavMeshAgent();
 		}
 
 		public void EnableNavMeshAgent(bool enable = true) {
@@ -39,6 +37,7 @@ namespace Characters.NPC {
 
 		public void SetNavMeshDestination(Vector3 targetPos) {
 			NavAgent.SetDestination(targetPos);
+			NavAgent.nextPosition = transform.position;
 		}
 
 		public bool HasArrivedToLockOnRange() {

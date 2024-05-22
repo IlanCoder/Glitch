@@ -11,11 +11,12 @@ namespace AIStates {
         
         public override void EnterState(NpcManager manager) {
             base.EnterState(manager);
-            Manager.movementController.EnableNavMeshAgent();
+            Manager.movementController.StartChasing();
         }
 
         public override AIState Tick() {
             Manager.movementController.SetNavMeshDestination(_target.transform.position);
+            Manager.animController.UpdateMovementParameters(0, 1);
             if (Manager.movementController.HasArrivedToLockOnRange()) return new IdleState();
             return this;
         }

@@ -136,8 +136,8 @@ MonoBehaviour:
   gravityForce: -10
   fallStartVel: -5
   fallMaxVel: -50
-  lockOnDistance: 3
-  walkingSpeed: 1
+  runningSpeed: 5
+  lockOnDistance: 2
 --- !u!114 &894213957332525104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ MonoBehaviour:
     m_Bits: 9
   eyes: {fileID: 2264434064256346313}
   lineSightRadius: 10
-  lineSightAngle: 30
+  lineSightAngle: 60
 --- !u!114 &2214719120477404899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,10 +248,10 @@ Animator:
   m_GameObject: {fileID: 449377457554804151}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: bc94ebdaf1961fb48bc2c07d7b852625, type: 3}
-  m_Controller: {fileID: 9100000, guid: fadcfbc54eafc5a4c9f5bf14505269e4, type: 2}
+  m_Controller: {fileID: 9100000, guid: ca26046c6fd30014baf6abcde8d6ebe2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

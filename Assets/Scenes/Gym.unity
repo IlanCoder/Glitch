@@ -15533,7 +15533,7 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: d9f7bb88616825941ac586927184b902, type: 2}
-  m_BuildHeightMesh: 0
+  m_BuildHeightMesh: 1
 --- !u!4 &1007104021
 Transform:
   m_ObjectHideFlags: 0
@@ -34375,6 +34375,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 3493666990746572942, guid: fb8970df72043a14a8450ab56a81ac0e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6469469488817391970, guid: fb8970df72043a14a8450ab56a81ac0e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -34424,6 +34429,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773442675942537494, guid: fb8970df72043a14a8450ab56a81ac0e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
