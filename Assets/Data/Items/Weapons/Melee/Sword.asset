@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: f3f3232f854f51c4581ecd23e5206a74, type: 3}
   itemDescription: SWISH SWOOSH
   itemID: 0
-  weaponPrefab: {fileID: 5287090576274405779, guid: 0ac6cf157af962247935f6322e109ca1,
+  weaponPrefab: {fileID: 3418011884731919454, guid: 29b475577bd142043a2ccad80f84455f,
     type: 3}
   dualWield: 0
   offhandPrefab: {fileID: 0}
