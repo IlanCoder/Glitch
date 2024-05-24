@@ -12,6 +12,7 @@ namespace AIStates {
         public override void EnterState(NpcManager manager) {
             base.EnterState(manager);
             Manager.movementController.StartChasing();
+            Manager.animController.ApplyRootMotion(true);
         }
 
         public override AIState Tick() {

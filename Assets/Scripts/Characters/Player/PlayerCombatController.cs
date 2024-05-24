@@ -17,6 +17,7 @@ namespace Characters.Player{
 		[HideInInspector] public WeaponManager leftHandWeaponManager;
 
 		int _comboIndex;
+		int _currentAttackIndex;
 		PlayerCombo _activeCombo;
 		List<PlayerCombo> _activeWeaponCombos;
 		List<PlayerCombo> _availableCombos;
@@ -33,6 +34,7 @@ namespace Characters.Player{
 			if (!InputIsInCombos()) return;
 			HandleAttackAnimation();
 			ApplyAttackModifiers();
+			_currentAttackIndex = _comboIndex;
 			_comboIndex++;
 			if (CanContinueCombo()) return;
 			ResetCombo();
@@ -95,7 +97,7 @@ namespace Characters.Player{
 
 		public override void ChangeTarget(CharacterManager newTarget) {
 			if (LockOnTarget) {
-				LockOnTarget?.onCharacterDeath.RemoveListener(WaitForTargetToDie);
+				LockOnTarget.onCharacterDeath.RemoveListener(WaitForTargetToDie);
 			}
 			if (newTarget) {
 				newTarget.onCharacterDeath.AddListener(WaitForTargetToDie);
@@ -112,7 +114,7 @@ namespace Characters.Player{
 
 		#region Animation Events
 		public virtual void DrainAttackStamina() {
-			_manager.statsController.UseStamina(activeWeapon.GetAttackStaminaCost(_activeCombo, _comboIndex));
+			_manager.statsController.UseStamina(activeWeapon.GetAttackStaminaCost(_activeCombo, _currentAttackIndex));
 			_manager.equipmentManager.EnableWeaponColliders();
 		}
         #endregion

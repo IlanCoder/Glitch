@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b2811c204741c24e9b64a9ec658f546, type: 3}
-  m_Name: Sword_C1_1_L
+  m_Name: DualSword_L_1
   m_EditorClassIdentifier: 
-  attackAnimation: {fileID: 673659374932735726, guid: abc8a6e598f141d4795c3393460c5609,
+  attackAnimation: {fileID: 4062580546051787168, guid: 01df75b86bb727548ac49bd2fcb46e36,
     type: 3}
   motionMultiplier: 1
   staminaCostMultiplier: 1

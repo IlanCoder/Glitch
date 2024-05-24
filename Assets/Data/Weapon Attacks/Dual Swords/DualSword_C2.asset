@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b2811c204741c24e9b64a9ec658f546, type: 3}
-  m_Name: Sword_C2_1_H
+  m_Script: {fileID: 11500000, guid: 5c3b8de512114cdfa3b3d7014f290490, type: 3}
+  m_Name: DualSword_C2
   m_EditorClassIdentifier: 
-  attackAnimation: {fileID: -7536146537415446483, guid: d4fcc6da733f1b3458da71ac40af1f46,
-    type: 3}
-  motionMultiplier: 1.5
-  staminaCostMultiplier: 1.5
-  energyGainMultiplier: 1.5
-  input: 1
+  comboLength: 2
+  comboAttacks:
+  - {fileID: 11400000, guid: 7a8fbdb3b1ec15c4a8f796f983298d83, type: 2}
+  - {fileID: 11400000, guid: 61dc2cf84dfe4a242a9d4bbbc6973603, type: 2}

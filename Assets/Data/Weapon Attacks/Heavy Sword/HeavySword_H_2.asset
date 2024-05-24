@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b2811c204741c24e9b64a9ec658f546, type: 3}
-  m_Name: Sword_C1_2_L
+  m_Name: HeavySword_H_2
   m_EditorClassIdentifier: 
-  attackAnimation: {fileID: -2746501166638713497, guid: c6cb707ce52fd864d8b535a07ad3e0cd,
-    type: 3}
-  motionMultiplier: 1.1
-  staminaCostMultiplier: 1.1
-  energyGainMultiplier: 1.1
-  input: 0
+  attackAnimation: {fileID: 7400000, guid: a9e53a9afd1b65147922674d07e707c7, type: 3}
+  motionMultiplier: 4
+  staminaCostMultiplier: 4
+  energyGainMultiplier: 4
+  input: 1

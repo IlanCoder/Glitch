@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b2811c204741c24e9b64a9ec658f546, type: 3}
-  m_Name: Sword_C3_3_L
+  m_Script: {fileID: 11500000, guid: 5c3b8de512114cdfa3b3d7014f290490, type: 3}
+  m_Name: HeavySword_C2
   m_EditorClassIdentifier: 
-  attackAnimation: {fileID: -2746501166638713497, guid: c6cb707ce52fd864d8b535a07ad3e0cd,
-    type: 3}
-  motionMultiplier: 1.1
-  staminaCostMultiplier: 1.1
-  energyGainMultiplier: 1.1
-  input: 0
+  comboLength: 2
+  comboAttacks:
+  - {fileID: 11400000, guid: 029a959c7232a0e4f971e846d6be071d, type: 2}
+  - {fileID: 11400000, guid: 09a06dc2206e2ef4e94df4b154f08371, type: 2}

@@ -35,4 +35,7 @@ MonoBehaviour:
   postureDmg: 0
   baseStaminaCost: 15
   baseAttackEnergyGain: 10
-  combos: []
+  combos:
+  - {fileID: 11400000, guid: 623a4af83abf64f42b88a2d4fdb40e6d, type: 2}
+  - {fileID: 11400000, guid: 21955d87b8d534e4eb7d6ac8f7151293, type: 2}
+  - {fileID: 11400000, guid: 55cbff354fc87bc4c95c57e3af8066d7, type: 2}

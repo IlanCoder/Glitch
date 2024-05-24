@@ -43,9 +43,5 @@ namespace Characters.NPC {
 			CurrentState = NextState;
 			CurrentState.EnterState(this);
 		}
-
-		public virtual void LockOn(CharacterManager target) {
-			combatController.ChangeTarget(target);
-		}
 	}
 }

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c3b8de512114cdfa3b3d7014f290490, type: 3}
-  m_Name: Sword_C3
+  m_Name: DualSword_C3
   m_EditorClassIdentifier: 
   comboLength: 3
   comboAttacks:
-  - {fileID: 11400000, guid: 8ab897057ca5c94408d5bee6e78efc6e, type: 2}
-  - {fileID: 11400000, guid: 56846c33f536f2340b62a4d3bd66046e, type: 2}
-  - {fileID: 11400000, guid: 4c7695faef3952c4e8d76c51d9a215a5, type: 2}
+  - {fileID: 11400000, guid: e0a58b9d98c541547b09450eb0dec7fe, type: 2}
+  - {fileID: 11400000, guid: 20dabae7bd5987347963235b872f5867, type: 2}
+  - {fileID: 11400000, guid: 61dc2cf84dfe4a242a9d4bbbc6973603, type: 2}
