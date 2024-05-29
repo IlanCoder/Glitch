@@ -1,5 +1,4 @@
 ﻿using System;
-using Data.BehaviorTree.Runtime.Nodes.Decorators;
 
 namespace BehaviorTree.Runtime.Nodes.Decorators {
     public class InverterNode : DecoratorNode {

@@ -1,7 +1,5 @@
-﻿using Data.BehaviorTree.Runtime.Nodes.Decorators;
-
-namespace BehaviorTree.Runtime.Nodes.Decorators {
-    public class Succeeder : DecoratorNode{
+﻿namespace BehaviorTree.Runtime.Nodes.Decorators {
+    public class SucceederNode : DecoratorNode{
         protected override void InitializeNode() { }
 
         protected override void ExitNode() { }

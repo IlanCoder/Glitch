@@ -1,15 +1,16 @@
-﻿using Data.BehaviorTree.Runtime.Nodes.Leaves;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace BehaviorTree.Runtime.Nodes.Leaves {
-    public class DebugLeaf : LeafNode {
+    public class DebugNode : LeafNode {
+        public string Message;
+        
         protected override void InitializeNode() { }
 
         protected override void ExitNode() { }
         
         protected override NodeStatus Tick() {
             #if UNITY_EDITOR
-            Debug.Log($"{Name} Ticked");
+            Debug.Log(Message);
             #endif
             return NodeStatus.Succeeded;
         }

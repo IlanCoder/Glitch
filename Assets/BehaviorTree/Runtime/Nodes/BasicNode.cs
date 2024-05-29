@@ -3,7 +3,7 @@
         public string Name { get; protected set; }
         public NodeStatus Status { get; protected set; }
         public bool Initialized { get; protected set; }
-
+        
         public NodeStatus UpdateNode() {
             if (!Initialized) {
                 InitializeNode();

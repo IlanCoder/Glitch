@@ -21,5 +21,9 @@ namespace BehaviorTree.Runtime.Nodes.Composites {
         protected void ResetChildIndex() {
             RunningChildIndex = 0;
         }
+
+        public void AddChild(BasicNode node) => Children.Add(node);
+
+        public void RemoveChild(BasicNode node) => Children.Remove(node);
     }
 }

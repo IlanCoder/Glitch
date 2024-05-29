@@ -1,7 +1,7 @@
-﻿using BehaviorTree.Runtime.Nodes;
-
-namespace Data.BehaviorTree.Runtime.Nodes.Decorators {
+﻿namespace BehaviorTree.Runtime.Nodes.Decorators {
     public abstract class DecoratorNode : BasicNode {
         protected BasicNode child;
+
+        public virtual void SetChild(BasicNode node) => child = node;
     }
 }

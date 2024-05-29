@@ -1,4 +1,4 @@
-namespace BehaviorTree.Runtime {
+namespace BehaviorTree.Runtime.Nodes {
     public enum NodeStatus {
         Failed,
         Succeeded,

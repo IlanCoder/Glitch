@@ -1,5 +1,5 @@
 ﻿namespace BehaviorTree.Runtime.Nodes.Decorators {
-    public class UntilFailRepeater : Repeater {
+    public class UntilFailRepeaterNode : RepeaterNode {
         protected override void InitializeNode() { }
 
         protected override void ExitNode() { }
