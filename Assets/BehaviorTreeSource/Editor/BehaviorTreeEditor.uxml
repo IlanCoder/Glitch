@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/BehaviorTreeSource/Editor/BehaviorTreeEditor.uss?fileID=7433441132597879392&amp;guid=0198eddb91258da4092c77b6bf3c7673&amp;type=3#BehaviorTreeEditor" />
+    <uie:Toolbar>
+        <uie:ToolbarMenu tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" text="Assets" />
+    </uie:Toolbar>
+    <BehaviorTreeSource.Editor.SplitView fixed-pane-initial-dimension="150">
+        <ui:VisualElement name="Left-Panel">
+            <ui:Label tabindex="-1" text="Inspector&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="height: 23px;" />
+            <BehaviorTreeSource.Editor.InspectorView />
+        </ui:VisualElement>
+        <ui:VisualElement name="Right-Panel">
+            <ui:Label tabindex="-1" text="Tree View&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-grow: 0; height: 23px;" />
+            <BehaviorTreeSource.Editor.BehaviorTreeView focusable="true" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </BehaviorTreeSource.Editor.SplitView>
+</ui:UXML>
