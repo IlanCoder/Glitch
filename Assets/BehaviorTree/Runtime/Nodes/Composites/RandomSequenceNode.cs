@@ -1,15 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Data.BehaviorTree.Runtime.Nodes.Composites {
+namespace BehaviorTree.Runtime.Nodes.Composites {
     public class RandomSequenceNode : SequenceNode{
-        public override void Initialize() {
+        protected override void InitializeNode() {
             ShuffleChildren();
-            base.Initialize();
-        }
-
-        public override void Reset() {
-            ShuffleChildren();
-            base.Reset();
+            base.InitializeNode();
         }
 
         protected void ShuffleChildren() {

@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Data.BehaviorTree.Runtime.Nodes.Composites {
+namespace BehaviorTree.Runtime.Nodes.Composites {
     public class SelectorNode : CompositeNode {
-        public override NodeStatus Tick() {
+        protected override NodeStatus Tick() {
             while (ChildIndexInListRange()) {
-                switch (Children[RunningChildIndex].Tick()) {
+                switch (Children[RunningChildIndex].UpdateNode()) {
                     case NodeStatus.Failed:
                         if (WasLastChild()) return NodeStatus.Failed;
                         RunningChildIndex++;

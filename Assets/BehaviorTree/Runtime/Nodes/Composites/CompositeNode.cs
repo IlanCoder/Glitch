@@ -1,22 +1,14 @@
 ﻿using System.Collections.Generic;
 
-namespace Data.BehaviorTree.Runtime.Nodes.Composites {
+namespace BehaviorTree.Runtime.Nodes.Composites {
     public abstract class CompositeNode : BasicNode {
         protected List<BasicNode> Children = new List<BasicNode>();
         protected ushort RunningChildIndex = 0;
 
-        public override void Initialize() {
-            RunningChildIndex = 0;
-            base.Initialize();
-        }
-
-        public override void Reset() {
-            foreach (BasicNode child in Children) {
-                child.Reset();
-            }
+        protected override void InitializeNode() {
             ResetChildIndex();
-            base.Reset();
         }
+        protected override void ExitNode() { }
 
         protected bool ChildIndexInListRange() {
             return RunningChildIndex < Children.Count;
