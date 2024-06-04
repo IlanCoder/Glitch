@@ -6,7 +6,7 @@
         protected override void ExitNode() { }
         
         protected override NodeStatus Tick() {
-            child.UpdateNode();
+            Child.UpdateNode();
             return NodeStatus.Running;
         }
     }

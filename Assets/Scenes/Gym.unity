@@ -15503,7 +15503,7 @@ GameObject:
   - component: {fileID: 1007104021}
   - component: {fileID: 1007104020}
   m_Layer: 0
-  m_Name: Test
+  m_Name: Nav Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34468,7 +34468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49f0fb54f914bf298e30336bb009092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 0}
+  tree: {fileID: 11400000, guid: 1a3aa9344db12bd4ca45721e5bb414c1, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

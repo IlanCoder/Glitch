@@ -28,14 +28,20 @@ namespace BehaviorTreeSource.Editor {
 
             _treeView = root.Q<BehaviorTreeView>();
             _inspectorView = root.Q<InspectorView>();
-            
+
+            _treeView.OnNodeSelected += OnNodeSelectionChanged;
             OnSelectionChange();
         }
 
         public void OnSelectionChange() {
             BehaviorTree tree = Selection.activeObject as BehaviorTree;
             if (!tree) return;
+            if (!AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID())) return;
             _treeView.PopulateView(tree);
+        }
+
+        void OnNodeSelectionChanged(NodeView node) {
+            _inspectorView.UpdateSelection(node);
         }
     }
 }

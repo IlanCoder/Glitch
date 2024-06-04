@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace BehaviorTreeSource.Runtime.Nodes.Composites {
-    public abstract class CompositeNode : BasicNode {
+    public abstract class CompositeNode : BasicNode { 
         protected List<BasicNode> Children = new List<BasicNode>();
         protected ushort RunningChildIndex = 0;
 
@@ -21,9 +23,27 @@ namespace BehaviorTreeSource.Runtime.Nodes.Composites {
         protected void ResetChildIndex() {
             RunningChildIndex = 0;
         }
+        
+        public override void AddChild(BasicNode newChild) {
+            if(newChild == this) return;
+            if(Children.Contains(newChild)) return;
+            AddChildToList(newChild);
+        }
 
-        public void AddChild(BasicNode node) => Children.Add(node);
+        public override void RemoveChild(BasicNode childToRemove) {
+            if(childToRemove == this) return;
+            if(!Children.Contains(childToRemove)) return;
+            RemoveChildFromList(childToRemove);
+        }
+        
+        public override List<BasicNode> GetChildren() {
+            return Children;
+        }
 
-        public void RemoveChild(BasicNode node) => Children.Remove(node);
+        public void AddChildToList(BasicNode node) => Children.Add(node);
+
+        public void RemoveChildFromList(BasicNode node) => Children.Remove(node);
+        
+        
     }
 }

@@ -7,7 +7,7 @@ namespace BehaviorTreeSource.Runtime.Nodes.Decorators {
         protected override void ExitNode() { }
         
         protected override NodeStatus Tick() {
-            switch (child.UpdateNode()) {
+            switch (Child.UpdateNode()) {
                 case NodeStatus.Failed: return NodeStatus.Succeeded;
                 case NodeStatus.Succeeded: return NodeStatus.Failed;
                 case NodeStatus.Running: return NodeStatus.Running;

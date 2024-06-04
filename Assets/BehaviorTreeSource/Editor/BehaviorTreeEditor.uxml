@@ -4,9 +4,9 @@
         <uie:ToolbarMenu tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" text="Assets" />
     </uie:Toolbar>
     <BehaviorTreeSource.Editor.SplitView fixed-pane-initial-dimension="150">
-        <ui:VisualElement name="Left-Panel">
+        <ui:VisualElement name="Left-Panel" style="width: auto;">
             <ui:Label tabindex="-1" text="Inspector&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="height: 23px;" />
-            <BehaviorTreeSource.Editor.InspectorView />
+            <BehaviorTreeSource.Editor.InspectorView style="height: auto; align-items: auto; align-self: auto;" />
         </ui:VisualElement>
         <ui:VisualElement name="Right-Panel">
             <ui:Label tabindex="-1" text="Tree View&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-grow: 0; height: 23px;" />

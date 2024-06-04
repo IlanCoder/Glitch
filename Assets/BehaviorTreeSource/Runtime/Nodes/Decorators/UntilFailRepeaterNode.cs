@@ -5,7 +5,7 @@
         protected override void ExitNode() { }
         
         protected override NodeStatus Tick() {
-            return child.UpdateNode() == NodeStatus.Failed ? NodeStatus.Succeeded : NodeStatus.Running;
+            return Child.UpdateNode() == NodeStatus.Failed ? NodeStatus.Succeeded : NodeStatus.Running;
         }
     }
 }

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8603805474296846582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4cfe8af44643db8d01c3a171add411, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  NodeName: RootNode
+  GuId: 244f239c536f489479e5526e58fa470d
+  GraphPos: {x: 111, y: 194}
+--- !u!114 &-6038288815723322693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c178ab20b9e142aca42b58d9f6aa70a4, type: 3}
+  m_Name: DebugNode
+  m_EditorClassIdentifier: 
+  NodeName: DebugNode
+  GuId: b0d0aa5e26aa194459a84491a3a7538a
+  GraphPos: {x: 587.36, y: 252.5}
+  Message: ji
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,3 +43,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02a396402274a8a93a9d14ecd357355, type: 3}
   m_Name: BehaviorTree
   m_EditorClassIdentifier: 
+  rootNode: {fileID: -8603805474296846582}
+  Nodes:
+  - {fileID: -8603805474296846582}
+  - {fileID: 2496287024818433282}
+  - {fileID: -6038288815723322693}
+  - {fileID: 5822159195649913456}
+  - {fileID: 5521819811739011629}
+--- !u!114 &2496287024818433282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8719c57472a49a3b944510b904be83b, type: 3}
+  m_Name: SequenceNode
+  m_EditorClassIdentifier: 
+  NodeName: SequenceNode
+  GuId: 0e2342512afd02343b861e087840e715
+  GraphPos: {x: 374.52002, y: 214}
+--- !u!114 &5521819811739011629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c178ab20b9e142aca42b58d9f6aa70a4, type: 3}
+  m_Name: DebugNode
+  m_EditorClassIdentifier: 
+  NodeName: DebugNode
+  GuId: cb01acdc4d7920546acdf77523fb9c8a
+  GraphPos: {x: 599, y: 49.40699}
+  Message: hi
+--- !u!114 &5822159195649913456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd11a200fab34a72b9e5f0dbb7dfa6cd, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  NodeName: WaitNode
+  GuId: 77230a5049c1cd0429cc835c3f2f242e
+  GraphPos: {x: 598.99994, y: 155.50005}
+  Duration: 1
