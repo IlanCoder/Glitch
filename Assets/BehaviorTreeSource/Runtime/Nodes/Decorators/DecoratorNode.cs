@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BehaviorTreeSource.Runtime.Nodes.Decorators {
     public abstract class DecoratorNode : BasicNode {
-        protected BasicNode Child;
+        [SerializeField]protected BasicNode Child;
 
         public override void AddChild(BasicNode newChild) {
             if(newChild == this) return;

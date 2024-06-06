@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BehaviorTreeSource.Runtime.Nodes.Composites {
     public abstract class CompositeNode : BasicNode { 
-        protected List<BasicNode> Children = new List<BasicNode>();
+        [SerializeField]protected List<BasicNode> Children = new List<BasicNode>();
         protected ushort RunningChildIndex = 0;
 
         protected override void InitializeNode() {

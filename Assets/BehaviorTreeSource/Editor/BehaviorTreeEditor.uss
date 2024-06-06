@@ -3,4 +3,5 @@ GridBackground {
     --line-color: rgba(195, 195, 195, 0.1);
     --thick-line-color: rgba(195, 195, 195, 0.2);
     --spacing: 15;
+    align-items: auto;
 }

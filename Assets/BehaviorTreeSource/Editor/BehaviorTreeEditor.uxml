@@ -3,13 +3,13 @@
     <uie:Toolbar>
         <uie:ToolbarMenu tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" text="Assets" />
     </uie:Toolbar>
-    <BehaviorTreeSource.Editor.SplitView fixed-pane-initial-dimension="150">
-        <ui:VisualElement name="Left-Panel" style="width: auto;">
-            <ui:Label tabindex="-1" text="Inspector&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="height: 23px;" />
-            <BehaviorTreeSource.Editor.InspectorView style="height: auto; align-items: auto; align-self: auto;" />
+    <BehaviorTreeSource.Editor.SplitView fixed-pane-initial-dimension="150" style="background-color: rgb(56, 56, 56);">
+        <ui:VisualElement name="Left-Panel" style="width: auto; align-items: flex-start; align-self: flex-start;">
+            <ui:Label tabindex="-1" text="Inspector&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="height: 23px; color: rgb(255, 255, 255); align-items: flex-start;" />
+            <BehaviorTreeSource.Editor.InspectorView style="height: auto; align-items: flex-start; align-self: flex-start;" />
         </ui:VisualElement>
         <ui:VisualElement name="Right-Panel">
-            <ui:Label tabindex="-1" text="Tree View&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-grow: 0; height: 23px;" />
+            <ui:Label tabindex="-1" text="Tree View&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-grow: 0; height: 23px; color: rgb(255, 255, 255);" />
             <BehaviorTreeSource.Editor.BehaviorTreeView focusable="true" style="flex-grow: 1;" />
         </ui:VisualElement>
     </BehaviorTreeSource.Editor.SplitView>

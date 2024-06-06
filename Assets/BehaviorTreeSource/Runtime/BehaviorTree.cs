@@ -27,24 +27,34 @@ namespace BehaviorTreeSource.Runtime {
 
             Nodes.Add(node);
             
+            #if UNITY_EDITOR
             AssetDatabase.AddObjectToAsset(node, this);
             AssetDatabase.SaveAssets();
+            #endif
             
             return node;
         }
 
         public void DeleteNode(BasicNode node) {
             Nodes.Remove(node);
+            #if UNITY_EDITOR
             AssetDatabase.RemoveObjectFromAsset(node);
             AssetDatabase.SaveAssets();
+            #endif
         }
 
         public void AddChildToNode(BasicNode parent, BasicNode child) {
             parent.AddChild(child);
+            #if UNITY_EDITOR
+            AssetDatabase.SaveAssets();
+            #endif
         }
         
         public void RemoveChildFromNode(BasicNode parent, BasicNode child) {
             parent.RemoveChild(child);
+            #if UNITY_EDITOR
+            AssetDatabase.SaveAssets();
+            #endif
         }
 
         public List<BasicNode> GetNodeChildren(BasicNode parent) {
