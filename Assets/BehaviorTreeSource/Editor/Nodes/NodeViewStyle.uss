@@ -38,6 +38,13 @@
 
 #title {
     align-items: center;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+#divider {
+    min-height: 1px;
+    background-color: rgb(89, 89, 89);
 }
 
 :hover > #selection-border {
