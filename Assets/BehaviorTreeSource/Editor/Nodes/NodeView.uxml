@@ -13,6 +13,7 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
+                <ui:Label tabindex="-1" text="this is a description&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
                 <ui:VisualElement name="divider" class="horizontal" />
                 <ui:VisualElement name="output" />
             </ui:VisualElement>

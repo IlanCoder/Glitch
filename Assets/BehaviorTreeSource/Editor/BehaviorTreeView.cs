@@ -32,6 +32,13 @@ namespace BehaviorTreeSource.Editor {
             StyleSheet styleSheet =
                 AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/BehaviorTreeSource/Editor/BehaviorTreeEditor.uss");
             styleSheets.Add(styleSheet);
+
+            Undo.undoRedoPerformed += OnUndoRedo;
+        }
+
+        void OnUndoRedo() {
+            PopulateView(_tree);
+            AssetDatabase.SaveAssets();
         }
 
         internal void PopulateView(BehaviorTree tree) {

@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
 namespace BehaviorTreeSource.Runtime.Nodes {
     public class RootNode : BasicNode {
 
-        protected BasicNode Child;
+        [SerializeField]protected BasicNode Child;
         
         protected override void InitializeNode() { }
 

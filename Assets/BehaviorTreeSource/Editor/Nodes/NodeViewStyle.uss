@@ -18,6 +18,7 @@
 #output {
     justify-content: flex-start;
     align-items: center;
+    background-color: rgb(60, 60, 60);
 }
 
 #selection-border {
@@ -26,10 +27,10 @@
     top: 0;
     right: 0;
     bottom: 0;
-    border-left-color: rgb(42, 123, 115);
-    border-right-color: rgb(42, 123, 115);
-    border-top-color: rgb(42, 123, 115);
-    border-bottom-color: rgb(42, 123, 115);
+    border-left-color: rgb(203, 144, 77);
+    border-right-color: rgb(203, 144, 77);
+    border-top-color: rgb(203, 144, 77);
+    border-bottom-color: rgb(203, 144, 77);
     border-top-width: 0;
     border-right-width: 0;
     border-bottom-width: 0;
@@ -45,6 +46,12 @@
 #divider {
     min-height: 1px;
     background-color: rgb(89, 89, 89);
+}
+
+#Description {
+    font-size: 10px;
+    color: rgb(161, 161, 161);
+    -unity-text-align: middle-left;
 }
 
 :hover > #selection-border {
@@ -70,4 +77,21 @@
 
 .node {
     min-width: 100px;
+}
+
+.Leaf #input {
+    background-color: rgb(15, 113, 115);
+}
+
+.Decorator #input {
+    background-color: rgb(34, 34, 59);
+}
+
+.Composite #input {
+    background-color: rgb(193, 219, 227);
+}
+
+.Root #input {
+    background-color: rgb(179, 141, 151);
+    min-height: 20px;
 }

@@ -3,10 +3,11 @@ using BehaviorTreeSource.Runtime.Nodes;
 using BehaviorTreeSource.Runtime.Nodes.Composites;
 using BehaviorTreeSource.Runtime.Nodes.Decorators;
 using BehaviorTreeSource.Runtime.Nodes.Leaves;
+using UnityEditor;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
-using UnityEditor.Rendering;
 using UnityEngine.UIElements;
+using UnityEditor.Rendering;
 
 public class NodeView : Node {
     public Action<NodeView> OnNodeSelected;
@@ -24,6 +25,24 @@ public class NodeView : Node {
 
         CreateInputPorts();
         CreateOutputPorts();
+        SetupClasses();
+    }
+
+    void SetupClasses() {
+        switch (Node) {
+            case CompositeNode:
+                AddToClassList("Composite");
+                break;
+            case DecoratorNode:
+                AddToClassList("Decorator");
+                break;
+            case LeafNode:
+                AddToClassList("Leaf");
+                break;
+            case RootNode: 
+                AddToClassList("Root");
+                return;
+        }
     }
 
     void CreateInputPorts() {
@@ -41,7 +60,7 @@ public class NodeView : Node {
         }
         if (inputPort == null) return;
         inputPort.portName = "";
-        //inputPort.style.flexDirection = FlexDirection.Column;
+        inputPort.style.flexDirection = FlexDirection.Column;
         inputContainer.Add(inputPort);
     }
     
@@ -60,15 +79,16 @@ public class NodeView : Node {
         }
         if (outputPort == null) return;
         outputPort.portName = "";
-        //outputPort.style.flexDirection = FlexDirection.ColumnReverse;
+        outputPort.style.flexDirection = FlexDirection.ColumnReverse;
         outputContainer.Add(outputPort);
     }
 
-
     public override void SetPosition(Rect newPos) {
         base.SetPosition(newPos);
+        Undo.RecordObject(Node,"BehaviorTree (Set Position)");
         Node.GraphPos.x = newPos.xMin;
         Node.GraphPos.y = newPos.yMin;
+        EditorUtility.SetDirty(Node);
     }
 
     public override void OnSelected() {

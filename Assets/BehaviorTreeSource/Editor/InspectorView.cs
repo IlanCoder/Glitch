@@ -15,7 +15,10 @@ namespace BehaviorTreeSource.Editor {
             UnityEngine.Object.DestroyImmediate(_editor);
             if(node == null) return;
             _editor = UnityEditor.Editor.CreateEditor(node.Node);
-            IMGUIContainer container = new IMGUIContainer(() => { _editor.OnInspectorGUI(); });
+            IMGUIContainer container = new IMGUIContainer(() => {
+                if (!_editor.target) return;
+                _editor.OnInspectorGUI();
+            });
             Add(container);
         }
     }

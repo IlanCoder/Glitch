@@ -19,43 +19,47 @@ namespace BehaviorTreeSource.Runtime {
             return treeStatus;
         }
 
+    #if UNITY_EDITOR
         public BasicNode CreateNode(Type type) {
             BasicNode node = ScriptableObject.CreateInstance(type) as BasicNode;
             node.NodeName = type.Name;
             node.name = node.NodeName;
             node.GuId = GUID.Generate().ToString();
-
+            
+            Undo.RecordObject(this, "BehaviorTree (Create Node)");
             Nodes.Add(node);
             
-            #if UNITY_EDITOR
             AssetDatabase.AddObjectToAsset(node, this);
+            Undo.RegisterCreatedObjectUndo(node, "BehaviorTree (Create Node)");
             AssetDatabase.SaveAssets();
-            #endif
-            
             return node;
         }
 
         public void DeleteNode(BasicNode node) {
+            Undo.RecordObject(this, "BehaviorTree (Delete Node)");
             Nodes.Remove(node);
-            #if UNITY_EDITOR
-            AssetDatabase.RemoveObjectFromAsset(node);
+            foreach (BasicNode basicNode in Nodes) {
+                if (!GetNodeChildren(basicNode).Contains(node)) continue;
+                RemoveChildFromNode(basicNode, node);
+            }
+            //AssetDatabase.RemoveObjectFromAsset(node);
+            Undo.DestroyObjectImmediate(node);
             AssetDatabase.SaveAssets();
-            #endif
         }
 
         public void AddChildToNode(BasicNode parent, BasicNode child) {
+            Undo.RecordObject(parent, "BehaviorTree (Add Child)");
             parent.AddChild(child);
-            #if UNITY_EDITOR
             AssetDatabase.SaveAssets();
-            #endif
         }
         
         public void RemoveChildFromNode(BasicNode parent, BasicNode child) {
+            if(!parent) return;
+            Undo.RecordObject(parent, "BehaviorTree (Remove Child)");
             parent.RemoveChild(child);
-            #if UNITY_EDITOR
             AssetDatabase.SaveAssets();
-            #endif
         }
+    #endif
 
         public List<BasicNode> GetNodeChildren(BasicNode parent) {
             return parent.GetChildren();
