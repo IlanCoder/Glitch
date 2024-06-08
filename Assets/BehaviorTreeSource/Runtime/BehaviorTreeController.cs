@@ -6,9 +6,10 @@ using UnityEngine;
 namespace BehaviorTreeSource.Runtime {
     public class BehaviorTreeController : MonoBehaviour {
         [SerializeField] BehaviorTree tree;
+        public BehaviorTree Tree => tree;
 
         void Start() {
-            tree = Instantiate(tree);
+            tree = tree.Clone();
         }
 
         void FixedUpdate() {

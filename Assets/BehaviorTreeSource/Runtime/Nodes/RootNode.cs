@@ -6,7 +6,13 @@ namespace BehaviorTreeSource.Runtime.Nodes {
     public class RootNode : BasicNode {
 
         [SerializeField]protected BasicNode Child;
-        
+
+        override public BasicNode Clone() {
+            RootNode node = Instantiate(this);
+            node.AddChild(Child.Clone());
+            return node;
+        }
+
         protected override void InitializeNode() { }
 
         protected override NodeStatus Tick() {

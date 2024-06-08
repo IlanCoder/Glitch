@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BehaviorTreeSource.Runtime.Nodes;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,6 +18,23 @@ namespace BehaviorTreeSource.Runtime {
             if (treeStatus != NodeStatus.Running) return treeStatus;
             treeStatus = rootNode.UpdateNode();
             return treeStatus;
+        }
+
+        void Traverse(BasicNode node, Action<BasicNode> visitor) {
+            if (!node) return;
+            visitor.Invoke(node);
+            List<BasicNode> children = node.GetChildren();
+            foreach (BasicNode child in children) {
+                Traverse(child, visitor);
+            }
+        }
+        
+        public BehaviorTree Clone() {
+            BehaviorTree tree = Instantiate(this);
+            tree.rootNode = tree.rootNode.Clone();
+            tree.Nodes = new List<BasicNode>();
+            Traverse(tree.rootNode, (node)=> tree.Nodes.Add(node));
+            return tree;
         }
 
     #if UNITY_EDITOR
@@ -39,7 +57,7 @@ namespace BehaviorTreeSource.Runtime {
             Undo.RecordObject(this, "BehaviorTree (Delete Node)");
             Nodes.Remove(node);
             foreach (BasicNode basicNode in Nodes) {
-                if (!GetNodeChildren(basicNode).Contains(node)) continue;
+                if (!basicNode.GetChildren().Contains(node)) continue;
                 RemoveChildFromNode(basicNode, node);
             }
             //AssetDatabase.RemoveObjectFromAsset(node);
@@ -60,9 +78,5 @@ namespace BehaviorTreeSource.Runtime {
             AssetDatabase.SaveAssets();
         }
     #endif
-
-        public List<BasicNode> GetNodeChildren(BasicNode parent) {
-            return parent.GetChildren();
-        }
     }
 }

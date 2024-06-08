@@ -7,9 +7,17 @@ namespace BehaviorTreeSource.Runtime.Nodes.Composites {
         [SerializeField]protected List<BasicNode> Children = new List<BasicNode>();
         protected ushort RunningChildIndex = 0;
 
+        
+        override public BasicNode Clone() {
+            CompositeNode node = Instantiate(this);
+            node.Children = Children.ConvertAll(child => child.Clone());
+            return node;
+        }
+        
         protected override void InitializeNode() {
             ResetChildIndex();
         }
+        
         protected override void ExitNode() { }
 
         protected bool ChildIndexInListRange() {
@@ -43,7 +51,5 @@ namespace BehaviorTreeSource.Runtime.Nodes.Composites {
         public void AddChildToList(BasicNode node) => Children.Add(node);
 
         public void RemoveChildFromList(BasicNode node) => Children.Remove(node);
-        
-        
     }
 }

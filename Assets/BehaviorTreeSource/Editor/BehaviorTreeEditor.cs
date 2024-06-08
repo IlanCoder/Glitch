@@ -1,3 +1,4 @@
+using System;
 using BehaviorTreeSource.Runtime;
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -25,6 +26,29 @@ namespace BehaviorTreeSource.Editor {
             return true;
         }
 
+        void OnEnable() {
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        }
+
+        void OnDisable() {
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+        }
+
+        void OnPlayModeStateChanged(PlayModeStateChange obj) {
+            switch (obj) {
+                case PlayModeStateChange.EnteredEditMode:
+                    OnSelectionChange();
+                    break;
+                case PlayModeStateChange.ExitingEditMode: break;
+                case PlayModeStateChange.EnteredPlayMode:
+                    OnSelectionChange();
+                    break;
+                case PlayModeStateChange.ExitingPlayMode: break;
+                default: throw new ArgumentOutOfRangeException(nameof(obj), obj, null);
+            }
+        }
+
         public void CreateGUI()
         {
             // Each editor window contains a root VisualElement object
@@ -43,9 +67,14 @@ namespace BehaviorTreeSource.Editor {
 
         public void OnSelectionChange() {
             BehaviorTree tree = Selection.activeObject as BehaviorTree;
-            if (!tree) return;
-            if (!AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID())) return;
-            _treeView.PopulateView(tree);
+            if (!tree) {
+                if (!Selection.activeGameObject) return;
+                if (!Selection.activeGameObject.TryGetComponent(out BehaviorTreeController treeController)) return;
+                tree = treeController.Tree;
+            }
+
+            if (!Application.isPlaying && !AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID())) return;
+            _treeView?.PopulateView(tree);
         }
 
         void OnNodeSelectionChanged(NodeView node) {
