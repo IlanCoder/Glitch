@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NodeName: RootNode
   GuId: 244f239c536f489479e5526e58fa470d
-  GraphPos: {x: 260, y: -38.24002}
+  GraphPos: {x: 276.00003, y: -40.80495}
   Child: {fileID: -3339057155166454003}
 --- !u!114 &-6038288815723322693
 MonoBehaviour:
@@ -30,7 +30,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NodeName: DebugNode
   GuId: b0d0aa5e26aa194459a84491a3a7538a
-  GraphPos: {x: 165, y: 330}
+  GraphPos: {x: 143, y: 342}
   Message: ji
 --- !u!114 &-3339057155166454003
 MonoBehaviour:
@@ -46,8 +46,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NodeName: RepeaterNode
   GuId: ddf6bf0b3680c3343b526d825f453b56
-  GraphPos: {x: 260, y: 74}
+  GraphPos: {x: 276.00003, y: 71.19505}
   Child: {fileID: 2496287024818433282}
+--- !u!114 &-3160442596998975465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0173b6344554b7a8e7b3919d49af299, type: 3}
+  m_Name: InverterNode
+  m_EditorClassIdentifier: 
+  NodeName: InverterNode
+  GuId: 3a841491672f9034995601f289d725fb
+  GraphPos: {x: 268, y: 338}
+  Child: {fileID: 5521819811739011629}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +84,7 @@ MonoBehaviour:
   - {fileID: 5521819811739011629}
   - {fileID: -3339057155166454003}
   - {fileID: 1397427371747391529}
+  - {fileID: -3160442596998975465}
 --- !u!114 &1397427371747391529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NodeName: WaitNode
   GuId: e8d21024d784f144ebf9379c7fc88ae2
-  GraphPos: {x: 379, y: 336}
+  GraphPos: {x: 390, y: 346}
   Duration: 1
 --- !u!114 &2496287024818433282
 MonoBehaviour:
@@ -98,10 +115,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NodeName: SequenceNode
   GuId: 0e2342512afd02343b861e087840e715
-  GraphPos: {x: 260, y: 184}
+  GraphPos: {x: 276.00003, y: 181.19505}
   Children:
   - {fileID: -6038288815723322693}
-  - {fileID: 5521819811739011629}
+  - {fileID: -3160442596998975465}
   - {fileID: 1397427371747391529}
 --- !u!114 &5521819811739011629
 MonoBehaviour:
@@ -117,5 +134,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NodeName: DebugNode
   GuId: cb01acdc4d7920546acdf77523fb9c8a
-  GraphPos: {x: 268, y: 338}
+  GraphPos: {x: 268, y: 444}
   Message: Ja

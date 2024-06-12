@@ -80,5 +80,9 @@ namespace BehaviorTreeSource.Editor {
         void OnNodeSelectionChanged(NodeView node) {
             _inspectorView.UpdateSelection(node);
         }
+
+        void OnInspectorUpdate() {
+            _treeView?.UpdateNodeStates();
+        }
     }
 }

@@ -152,5 +152,12 @@ namespace BehaviorTreeSource.Editor {
                 evt.menu.AppendAction($"Decorator Nodes/{type.Name}", (a) => CreateNode(type));
             }
         }
+
+        public void UpdateNodeStates() {
+            foreach (Node node in nodes) {
+                NodeView nodeView = node as NodeView;
+                nodeView?.UpdateState();
+            }
+        }
     }
 }

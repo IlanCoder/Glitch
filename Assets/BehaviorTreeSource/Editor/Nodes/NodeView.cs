@@ -105,4 +105,23 @@ public class NodeView : Node {
     int SortByHorizontalPosition(BasicNode left, BasicNode right) {
         return left.GraphPos.x < right.GraphPos.x ? -1 : 1;
     }
+
+    public void UpdateState() {
+        RemoveFromClassList("FailedNode");
+        RemoveFromClassList("SucceededNode");
+        RemoveFromClassList("RunningNode");
+        if (!Application.isPlaying) return;
+        switch (Node.Status) {
+            case NodeStatus.Failed:
+                AddToClassList("FailedNode");
+                break;
+            case NodeStatus.Succeeded: 
+                AddToClassList("SucceededNode");
+                break;
+            case NodeStatus.Running: 
+                if(!Node.Initialized) return;
+                AddToClassList("RunningNode");
+                break;
+        }
+    }
 }
