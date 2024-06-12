@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace BehaviorTreeSource.Runtime.Nodes.Composites {
@@ -51,5 +52,9 @@ namespace BehaviorTreeSource.Runtime.Nodes.Composites {
         public void AddChildToList(BasicNode node) => Children.Add(node);
 
         public void RemoveChildFromList(BasicNode node) => Children.Remove(node);
+
+        public void SortChildrenByComparison(Comparison<BasicNode> comparison) {
+            Children.Sort(comparison);
+        }
     }
 }

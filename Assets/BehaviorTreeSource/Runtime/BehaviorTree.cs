@@ -46,8 +46,10 @@ namespace BehaviorTreeSource.Runtime {
             
             Undo.RecordObject(this, "BehaviorTree (Create Node)");
             Nodes.Add(node);
-            
-            AssetDatabase.AddObjectToAsset(node, this);
+
+            if (!Application.isPlaying) {
+                AssetDatabase.AddObjectToAsset(node, this);
+            }
             Undo.RegisterCreatedObjectUndo(node, "BehaviorTree (Create Node)");
             AssetDatabase.SaveAssets();
             return node;

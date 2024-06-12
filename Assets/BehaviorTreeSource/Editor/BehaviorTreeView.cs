@@ -97,6 +97,7 @@ namespace BehaviorTreeSource.Editor {
             RemoveTreeNode(graphViewChange);
             CreateTreeEdge(graphViewChange);
             RemoveTreeEdge(graphViewChange);
+            CheckMovedNodes(graphViewChange);
             return graphViewChange;
         }
 
@@ -126,6 +127,14 @@ namespace BehaviorTreeSource.Editor {
             foreach (var graphElement in graphViewChange.elementsToRemove) {
                 if (graphElement is not NodeView nodeView) continue;
                 _tree.DeleteNode(nodeView.Node);
+            }
+        }
+
+        void CheckMovedNodes(GraphViewChange graphViewChange) {
+            if (graphViewChange.movedElements == null) return;
+            foreach (Node node in nodes) {
+                NodeView nodeView = node as NodeView;
+                nodeView?.SortChildren();
             }
         }
 

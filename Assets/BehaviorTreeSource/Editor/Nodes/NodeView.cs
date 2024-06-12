@@ -95,4 +95,14 @@ public class NodeView : Node {
         base.OnSelected();
         OnNodeSelected?.Invoke(this);
     }
+
+    public void SortChildren() {
+        CompositeNode tempNode= Node as CompositeNode;
+        if (!tempNode) return;
+        tempNode.SortChildrenByComparison(SortByHorizontalPosition);
+    }
+
+    int SortByHorizontalPosition(BasicNode left, BasicNode right) {
+        return left.GraphPos.x < right.GraphPos.x ? -1 : 1;
+    }
 }
