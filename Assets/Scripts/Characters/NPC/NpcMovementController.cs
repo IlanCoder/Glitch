@@ -13,6 +13,8 @@ namespace Characters.NPC {
 		[Header("Nav Mesh")]
 		[SerializeField] protected float lockOnDistance;
 
+		public CharacterManager chaseTarget;
+
 		protected override void Awake() {
 			base.Awake();
 			Manager = GetComponent<NpcManager>();
@@ -34,14 +36,23 @@ namespace Characters.NPC {
 			if (NavAgent.enabled == enable) return;
 			NavAgent.enabled = enable;
 		}
+		
+		public void Chase() {
+			SetNavMeshDestination(chaseTarget.transform.position);
+			Manager.animController.UpdateMovementParameters(0, 1);
+		}
 
-		public void SetNavMeshDestination(Vector3 targetPos) {
+		void SetNavMeshDestination(Vector3 targetPos) {
 			NavAgent.SetDestination(targetPos);
 			NavAgent.nextPosition = transform.position;
 		}
 
 		public bool HasArrivedToLockOnRange() {
 			return NavAgent.remainingDistance <= NavAgent.stoppingDistance;
+		}
+
+		public bool IsPathComplete() {
+			return NavAgent.pathStatus == NavMeshPathStatus.PathComplete;
 		}
 	}
 }

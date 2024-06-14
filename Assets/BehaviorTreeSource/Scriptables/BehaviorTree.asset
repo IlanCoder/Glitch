@@ -14,24 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NodeName: RootNode
   GuId: 244f239c536f489479e5526e58fa470d
-  GraphPos: {x: 276.00003, y: -40.80495}
+  GraphPos: {x: 397.6521, y: -165.35628}
   Child: {fileID: -3339057155166454003}
---- !u!114 &-6038288815723322693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c178ab20b9e142aca42b58d9f6aa70a4, type: 3}
-  m_Name: DebugNode
-  m_EditorClassIdentifier: 
-  NodeName: DebugNode
-  GuId: b0d0aa5e26aa194459a84491a3a7538a
-  GraphPos: {x: 143, y: 342}
-  Message: ji
 --- !u!114 &-3339057155166454003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,8 +30,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NodeName: RepeaterNode
   GuId: ddf6bf0b3680c3343b526d825f453b56
-  GraphPos: {x: 276.00003, y: 71.19505}
+  GraphPos: {x: 397.6521, y: -53.356262}
   Child: {fileID: 2496287024818433282}
+--- !u!114 &-312714226922439646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8719c57472a49a3b944510b904be83b, type: 3}
+  m_Name: SequenceNode
+  m_EditorClassIdentifier: 
+  NodeName: SequenceNode
+  GuId: b80e5f0656e7a5245afa01a5d7c81eac
+  GraphPos: {x: 326.66998, y: 396.95825}
+  Children:
+  - {fileID: 2131084105564693046}
+  - {fileID: 2946632005916212112}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,11 +66,14 @@ MonoBehaviour:
   Nodes:
   - {fileID: -8603805474296846582}
   - {fileID: 2496287024818433282}
-  - {fileID: -6038288815723322693}
-  - {fileID: 5521819811739011629}
   - {fileID: -3339057155166454003}
-  - {fileID: 1397427371747391529}
---- !u!114 &1397427371747391529
+  - {fileID: 2131084105564693046}
+  - {fileID: 3056662064380337565}
+  - {fileID: 2946632005916212112}
+  - {fileID: 4359783522835431311}
+  - {fileID: 8245167627056840502}
+  - {fileID: -312714226922439646}
+--- !u!114 &2131084105564693046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,13 +82,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd11a200fab34a72b9e5f0dbb7dfa6cd, type: 3}
-  m_Name: WaitNode
+  m_Script: {fileID: 11500000, guid: bdcf4ccfa7c34deebe932ccbc8537a1a, type: 3}
+  m_Name: IdleNode
   m_EditorClassIdentifier: 
-  NodeName: WaitNode
-  GuId: e8d21024d784f144ebf9379c7fc88ae2
-  GraphPos: {x: 387, y: 339}
-  Duration: 1
+  NodeName: IdleNode
+  GuId: e5ed44d3d55c66043a5992c96cde4b6e
+  GraphPos: {x: 275, y: 540}
 --- !u!114 &2496287024818433282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,12 +102,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NodeName: SequenceNode
   GuId: 0e2342512afd02343b861e087840e715
-  GraphPos: {x: 276, y: 188}
+  GraphPos: {x: 405, y: 136.8}
   Children:
-  - {fileID: -6038288815723322693}
-  - {fileID: 5521819811739011629}
-  - {fileID: 1397427371747391529}
---- !u!114 &5521819811739011629
+  - {fileID: 4359783522835431311}
+  - {fileID: 8245167627056840502}
+--- !u!114 &2946632005916212112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,10 +115,56 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c178ab20b9e142aca42b58d9f6aa70a4, type: 3}
-  m_Name: DebugNode
+  m_Script: {fileID: 11500000, guid: b0173b6344554b7a8e7b3919d49af299, type: 3}
+  m_Name: InverterNode
   m_EditorClassIdentifier: 
-  NodeName: DebugNode
-  GuId: cb01acdc4d7920546acdf77523fb9c8a
-  GraphPos: {x: 273, y: 341}
-  Message: Ja
+  NodeName: InverterNode
+  GuId: ad53742d6bde9cb4caad550e8737bdf2
+  GraphPos: {x: 405.50003, y: 532}
+  Child: {fileID: 3056662064380337565}
+--- !u!114 &3056662064380337565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 163ffb5664fb498e996f75d8be3e1d40, type: 3}
+  m_Name: FindChaseTargetNode
+  m_EditorClassIdentifier: 
+  NodeName: FindChaseTargetNode
+  GuId: 406e472cdabcbd9458ca0ce2967b2480
+  GraphPos: {x: 385.5, y: 648}
+--- !u!114 &4359783522835431311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eabccf0b27974cefbbe9db4cc8176a34, type: 3}
+  m_Name: UntilFailRepeaterNode
+  m_EditorClassIdentifier: 
+  NodeName: UntilFailRepeaterNode
+  GuId: 2d27c82831ed2a7489dc4b329dce5a16
+  GraphPos: {x: 306.66998, y: 285.95825}
+  Child: {fileID: -312714226922439646}
+--- !u!114 &8245167627056840502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e4b379ba4e4551acc7c7a05a4b543c, type: 3}
+  m_Name: ChaseTargetNode
+  m_EditorClassIdentifier: 
+  NodeName: ChaseTargetNode
+  GuId: 82c7889e0ee884e47b5639ffb67ace65
+  GraphPos: {x: 475.99997, y: 294}

@@ -1,4 +1,3 @@
-using AIStates;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,9 +7,6 @@ namespace Characters.NPC {
 	 RequireComponent(typeof(NpcCombatController)),
 	 RequireComponent(typeof(NpcAnimController))]
 	public class NpcManager : CharacterManager {
-		protected AIState CurrentState;
-		protected AIState NextState;
-
 		[HideInInspector] public NpcMovementController movementController;
 		[HideInInspector] public NpcCombatController combatController;
 		[HideInInspector] public NpcAnimController animController;
@@ -24,24 +20,6 @@ namespace Characters.NPC {
 			movementController = GetComponent<NpcMovementController>();
 			combatController = GetComponent<NpcCombatController>();
 			animController = GetComponent<NpcAnimController>();
-		}
-
-		protected void Start() {
-			CurrentState = new IdleState();
-			CurrentState.EnterState(this);
-		}
-
-		protected virtual void FixedUpdate() {
-			ProcessCurrentState();
-		}
-		
-		protected virtual void ProcessCurrentState() {
-			if (CurrentState == null) return;
-			NextState = CurrentState.Tick();
-			if (NextState == CurrentState) return;
-			CurrentState.ExitState();
-			CurrentState = NextState;
-			CurrentState.EnterState(this);
 		}
 	}
 }

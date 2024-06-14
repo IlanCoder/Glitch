@@ -15,10 +15,10 @@ namespace Characters {
             { "Stagger_B", Animator.StringToHash("Stagger_B") },
             { "Stagger_R", Animator.StringToHash("Stagger_R") },
         };
-        readonly int _horizontalInputFloatHash = Animator.StringToHash("Horizontal");
-        readonly int _verticalInputFloatHash = Animator.StringToHash("Vertical");
-        readonly int _inAirTimerFloatHash = Animator.StringToHash("InAirTimer");
-        readonly int _isGroundedBoolHash = Animator.StringToHash("IsGrounded");
+        readonly protected int _horizontalInputFloatHash = Animator.StringToHash("Horizontal");
+        readonly protected int _verticalInputFloatHash = Animator.StringToHash("Vertical");
+        readonly protected int _inAirTimerFloatHash = Animator.StringToHash("InAirTimer");
+        readonly protected int _isGroundedBoolHash = Animator.StringToHash("IsGrounded");
         #endregion
         
         protected virtual void Awake() {
@@ -34,11 +34,11 @@ namespace Characters {
             animator.SetFloat(_inAirTimerFloatHash, newVal);
         }
         
-        public void UpdateMovementParameters(float horizontal, float vertical) {
+        public virtual void UpdateMovementParameters(float horizontal, float vertical) {
             animator.SetFloat(_horizontalInputFloatHash, horizontal,0.1f, Time.deltaTime);
             animator.SetFloat(_verticalInputFloatHash, vertical,0.1f, Time.deltaTime);
         }
-        
+
         protected virtual void PlayTargetAnimation(int targetAnimation, bool cancellableAction,
             bool lockMovement = true, bool lockRotation = true) {
             manager.isPerformingAction = !cancellableAction;
