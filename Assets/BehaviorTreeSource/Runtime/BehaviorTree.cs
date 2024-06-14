@@ -43,10 +43,11 @@ namespace BehaviorTreeSource.Runtime {
         }
 
     #if UNITY_EDITOR
-        public BasicNode CreateNode(Type type) {
+        public BasicNode CreateNode(Type type, Vector2 pos) {
             BasicNode node = ScriptableObject.CreateInstance(type) as BasicNode;
             node.NodeName = type.Name;
             node.name = node.NodeName;
+            node.GraphPos = pos;
             node.GuId = GUID.Generate().ToString();
             
             Undo.RecordObject(this, "BehaviorTree (Create Node)");

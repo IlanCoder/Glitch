@@ -48,12 +48,6 @@
     background-color: rgb(89, 89, 89);
 }
 
-#Description {
-    font-size: 10px;
-    color: rgb(161, 161, 161);
-    -unity-text-align: middle-left;
-}
-
 #node-state {
     position: absolute;
     left: 0;

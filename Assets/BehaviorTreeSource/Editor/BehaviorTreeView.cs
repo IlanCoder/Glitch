@@ -49,7 +49,7 @@ namespace BehaviorTreeSource.Editor {
             graphViewChanged += OnGraphviewChanged;
 
             if (!_tree.rootNode) {
-                _tree.rootNode = _tree.CreateNode(typeof(RootNode)) as RootNode;
+                _tree.rootNode = _tree.CreateNode(typeof(RootNode), Vector2.zero) as RootNode;
                 EditorUtility.SetDirty(_tree);
                 AssetDatabase.SaveAssets();
             }
@@ -88,8 +88,8 @@ namespace BehaviorTreeSource.Editor {
             AddElement(nodeView);
         }
 
-        void CreateNode(Type type) {
-            BasicNode node = _tree.CreateNode(type);
+        void CreateNode(Type type, Vector2 mousePos) {
+            BasicNode node = _tree.CreateNode(type, mousePos);
             CreateNodeView(node);
         }
         
@@ -140,16 +140,18 @@ namespace BehaviorTreeSource.Editor {
 
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt) {
             TypeCache.TypeCollection types = TypeCache.GetTypesDerivedFrom<LeafNode>();
+            Vector2 mousePos = evt.localMousePosition;
+            mousePos = viewTransform.matrix.inverse.MultiplyPoint(mousePos);
             foreach (Type type in types) {
-                evt.menu.AppendAction($"Leaf Nodes/{type.Name}", (a) => CreateNode(type));
+                evt.menu.AppendAction($"Leaf Nodes/{type.Name}", (a) => CreateNode(type, mousePos));
             }
             types = TypeCache.GetTypesDerivedFrom<CompositeNode>();
             foreach (Type type in types) {
-                evt.menu.AppendAction($"Composite Nodes/{type.Name}", (a) => CreateNode(type));
+                evt.menu.AppendAction($"Composite Nodes/{type.Name}", (a) => CreateNode(type, mousePos));
             }
             types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
             foreach (Type type in types) {
-                evt.menu.AppendAction($"Decorator Nodes/{type.Name}", (a) => CreateNode(type));
+                evt.menu.AppendAction($"Decorator Nodes/{type.Name}", (a) => CreateNode(type, mousePos));
             }
         }
 
