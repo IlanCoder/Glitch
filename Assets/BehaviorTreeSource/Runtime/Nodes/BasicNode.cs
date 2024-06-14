@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Characters.NPC;
 using UnityEngine;
 
 namespace BehaviorTreeSource.Runtime.Nodes {
@@ -8,6 +9,7 @@ namespace BehaviorTreeSource.Runtime.Nodes {
         public string NodeName;
         public NodeStatus Status { get; protected set; }
         public bool Initialized { get; protected set; }
+        protected NpcManager Character;
 
         #if UNITY_EDITOR
         [HideInInspector] public string GuId;
@@ -32,6 +34,10 @@ namespace BehaviorTreeSource.Runtime.Nodes {
             ExitNode();
             Initialized = false;
             return Status;
+        }
+
+        public void BindCharacter(NpcManager character) {
+            Character = character;
         }
 
         protected abstract void InitializeNode();

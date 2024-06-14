@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BehaviorTreeSource.Runtime.Nodes;
+using Characters.NPC;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -35,6 +36,10 @@ namespace BehaviorTreeSource.Runtime {
             tree.Nodes = new List<BasicNode>();
             Traverse(tree.rootNode, (node)=> tree.Nodes.Add(node));
             return tree;
+        }
+
+        public void BindCharacter(NpcManager character) {
+            Traverse(rootNode, node => node.BindCharacter(character));
         }
 
     #if UNITY_EDITOR
