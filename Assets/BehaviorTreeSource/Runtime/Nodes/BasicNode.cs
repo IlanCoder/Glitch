@@ -7,6 +7,7 @@ namespace BehaviorTreeSource.Runtime.Nodes {
 
     public abstract class BasicNode : ScriptableObject{
         public string NodeName;
+        [TextArea] public string Description;
         public NodeStatus Status { get; protected set; }
         public bool Initialized { get; protected set; }
         protected NpcManager Character;

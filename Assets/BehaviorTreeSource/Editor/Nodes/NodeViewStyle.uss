@@ -41,6 +41,16 @@
     align-items: center;
     -unity-font-style: bold;
     -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+#description {
+    -unity-text-align: upper-center;
+    text-overflow: clip;
+    white-space: normal;
+    font-size: 11px;
+    color: rgb(168, 168, 168);
+    max-width: 120px;
 }
 
 #divider {

@@ -6,8 +6,8 @@ using BehaviorTreeSource.Runtime.Nodes.Leaves;
 using UnityEditor;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-using UnityEditor.Rendering;
 
 public class NodeView : Node {
     public Action<NodeView> OnNodeSelected;
@@ -26,6 +26,10 @@ public class NodeView : Node {
         CreateInputPorts();
         CreateOutputPorts();
         SetupClasses();
+
+        Label descriptionLabel = this.Q<Label>("description");
+        descriptionLabel.bindingPath = "Description";
+        descriptionLabel.Bind(new SerializedObject(node));
     }
 
     void SetupClasses() {
