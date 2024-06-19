@@ -11,12 +11,12 @@ namespace BehaviorTreeSource.Runtime.Nodes.Leaves.Movement {
         }
 
         protected override NodeStatus Tick() {
-            Character.combatController.CheckLineSightRadius(out _target);
+            NpcAgent.combatController.CheckLineSightRadius(out _target);
             return _target is null ? NodeStatus.Failed : NodeStatus.Succeeded;
         }
 
         protected override void ExitNode() {
-            Character.movementController.chaseTarget = _target;
+            TreeBlackboard.targetCharacter = _target;
         }
     }
 }

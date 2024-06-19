@@ -12,7 +12,7 @@ namespace BehaviorTreeSource.Runtime {
 
         void Start() {
             tree = tree.Clone();
-            tree.BindCharacter(GetComponent<NpcManager>());
+            tree.BindNodesToTree(GetComponent<NpcManager>());
         }
 
         void FixedUpdate() {

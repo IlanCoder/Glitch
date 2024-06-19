@@ -42,6 +42,13 @@ namespace Characters.NPC {
             lockOnObstructLayer);
         }
 
+        public bool IsTargetStraightAhead(CharacterManager target) {
+            Vector3 targetDirection = target.transform.position - Npc.transform.position;
+            float angleToTarget = Vector3.Angle(eyes.transform.forward, targetDirection);
+
+            return angleToTarget < 20;
+        }
+
         #region Editor
         #if UNITY_EDITOR
         public float EditorLineSightRadius { get { return lineSightRadius;} set {lineSightRadius = value; } }

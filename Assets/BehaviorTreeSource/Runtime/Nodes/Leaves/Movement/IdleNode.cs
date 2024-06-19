@@ -1,7 +1,7 @@
 ﻿namespace BehaviorTreeSource.Runtime.Nodes.Leaves.Movement {
     public class IdleNode : LeafNode{
         protected override void InitializeNode() {
-            Character.movementController.GoIdle();
+            NpcAgent.movementController.GoIdle();
         }
 
         protected override NodeStatus Tick() {

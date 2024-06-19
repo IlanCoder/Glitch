@@ -17,7 +17,6 @@ namespace Characters {
         };
         readonly protected int _horizontalInputFloatHash = Animator.StringToHash("Horizontal");
         readonly protected int _verticalInputFloatHash = Animator.StringToHash("Vertical");
-        readonly protected int _inAirTimerFloatHash = Animator.StringToHash("InAirTimer");
         readonly protected int _isGroundedBoolHash = Animator.StringToHash("IsGrounded");
         #endregion
         
@@ -30,10 +29,6 @@ namespace Characters {
             animator.SetBool(_isGroundedBoolHash, newVal);
         }
 
-        public void SetAirTimerFloat(float newVal) {
-            animator.SetFloat(_inAirTimerFloatHash, newVal);
-        }
-        
         public virtual void UpdateMovementParameters(float horizontal, float vertical) {
             animator.SetFloat(_horizontalInputFloatHash, horizontal,0.1f, Time.deltaTime);
             animator.SetFloat(_verticalInputFloatHash, vertical,0.1f, Time.deltaTime);

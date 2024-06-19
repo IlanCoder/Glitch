@@ -4,6 +4,7 @@ using BehaviorTreeSource.Runtime.Nodes;
 using Characters.NPC;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace BehaviorTreeSource.Runtime {
@@ -13,6 +14,8 @@ namespace BehaviorTreeSource.Runtime {
         NodeStatus treeStatus = NodeStatus.Running;
 
         public List<BasicNode> Nodes = new List<BasicNode>();
+
+        public BehaviorTreeBlackboard Blackboard = new BehaviorTreeBlackboard();
 
         public NodeStatus UpdateTree() {
             if (rootNode is null) throw new ArgumentNullException();
@@ -38,8 +41,8 @@ namespace BehaviorTreeSource.Runtime {
             return tree;
         }
 
-        public void BindCharacter(NpcManager character) {
-            Traverse(rootNode, node => node.BindCharacter(character));
+        public void BindNodesToTree(NpcManager character) {
+            Traverse(rootNode, node => node.BindToTree(character, Blackboard));
         }
 
     #if UNITY_EDITOR

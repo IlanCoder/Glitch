@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 6a2542a821d75d948a69d0988fd66784
 ModelImporter:
-  serializedVersion: 20200
+  serializedVersion: 22200
   internalIDToNameTable:
   - first:
       1: 100000
@@ -425,10 +425,10 @@ ModelImporter:
     second: BasicMotions@ShuffleLeft [RM]
   - first:
       74: 7400004
-    second: BasicMotions@ShuffleRight
+    second: Turn_Right
   - first:
       74: 7400006
-    second: BasicMotions@ShuffleRight [RM]
+    second: Turn_Right_RM
   - first:
       95: 9500000
     second: //RootNode
@@ -446,6 +446,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -464,7 +465,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: BasicMotions@ShuffleRight
+      name: Turn_Right
       takeName: BasicMotions@ShuffleRight
       internalID: 0
       firstFrame: 0
@@ -493,7 +494,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: BasicMotions@ShuffleRight [RM]
+      name: Turn_Right_RM
       takeName: BasicMotions@ShuffleRight [RM]
       internalID: 0
       firstFrame: 0
@@ -529,10 +530,12 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 0
     importBlendShapes: 0
     importCameras: 0
     importLights: 0
+    nodeNameCollisionStrategy: 0
     fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -544,6 +547,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
+    optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -554,6 +558,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -1336,14 +1341,9 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157744
-  packageName: Basic Motions
-  packageVersion: 1.4
-  assetPath: Assets/Kevin Iglesias/Basic Motions/Animations/Movement/BasicMotions@ShuffleRight.fbx
-  uploadId: 633227

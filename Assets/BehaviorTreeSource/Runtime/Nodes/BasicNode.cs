@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Characters.NPC;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace BehaviorTreeSource.Runtime.Nodes {
@@ -10,9 +10,10 @@ namespace BehaviorTreeSource.Runtime.Nodes {
         [TextArea] public string Description;
         public NodeStatus Status { get; protected set; }
         public bool Initialized { get; protected set; }
-        protected NpcManager Character;
+        protected NpcManager NpcAgent;
+        protected BehaviorTreeBlackboard TreeBlackboard;
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         [HideInInspector] public string GuId;
         [HideInInspector] public Vector2 GraphPos;
         #endif
@@ -37,8 +38,9 @@ namespace BehaviorTreeSource.Runtime.Nodes {
             return Status;
         }
 
-        public void BindCharacter(NpcManager character) {
-            Character = character;
+        public void BindToTree(NpcManager character, BehaviorTreeBlackboard blackboard) {
+            NpcAgent = character;
+            TreeBlackboard = blackboard;
         }
 
         protected abstract void InitializeNode();

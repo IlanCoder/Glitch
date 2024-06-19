@@ -36,7 +36,6 @@ namespace Characters {
                 fallingVelHasBeenSet = true;
             }
             inAirTimer += Time.deltaTime;
-            _manager.AnimController.SetAirTimerFloat(inAirTimer);
             if (yVel.y <= fallMaxVel) return;
             yVel.y += gravityForce * Time.deltaTime;
         }
