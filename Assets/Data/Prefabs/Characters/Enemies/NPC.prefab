@@ -162,6 +162,7 @@ MonoBehaviour:
   eyes: {fileID: 2264434064256346313}
   lineSightRadius: 10
   lineSightAngle: 60
+  straightAheadAngle: 10
 --- !u!114 &2214719120477404899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +315,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Height: 1.7
+  m_Height: 1.8
   m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3

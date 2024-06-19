@@ -55,6 +55,12 @@ namespace Characters.NPC {
 			return NavAgent.pathStatus == NavMeshPathStatus.PathComplete;
 		}
 
-		public void RotateTowardsTarget(CharacterManager target) { }
+		public void RotateTowardsTarget(CharacterManager target) {
+			Vector3 targetPos = target.transform.position - transform.position;
+			targetPos.y = 0;
+			float angle = Vector3.SignedAngle(transform.forward, targetPos, Vector3.up);
+			angle /= Mathf.Abs(angle);
+			Manager.animController.UpdateRotation((int)angle);
+		}
 	}
 }

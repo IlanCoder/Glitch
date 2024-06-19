@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4cfe8af44643db8d01c3a171add411, type: 3}
   m_Name: RootNode
   m_EditorClassIdentifier: 
-  NodeName: RootNode
+  NodeName: Root
   Description: 
   GuId: 244f239c536f489479e5526e58fa470d
   GraphPos: {x: 409, y: -184.50867}
@@ -29,7 +29,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b52cb2ee7e42a3a444dd914b178182, type: 3}
   m_Name: RepeaterNode
   m_EditorClassIdentifier: 
-  NodeName: RepeaterNode
+  NodeName: Repeater
   Description: 
   GuId: ddf6bf0b3680c3343b526d825f453b56
   GraphPos: {x: 409, y: -82.50865}
@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8719c57472a49a3b944510b904be83b, type: 3}
   m_Name: SequenceNode
   m_EditorClassIdentifier: 
-  NodeName: SequenceNode
+  NodeName: Sequence
   Description: 
   GuId: b80e5f0656e7a5245afa01a5d7c81eac
-  GraphPos: {x: 297, y: 268}
+  GraphPos: {x: 297, y: 273}
   Children:
   - {fileID: 2131084105564693046}
   - {fileID: 2946632005916212112}
@@ -76,8 +76,26 @@ MonoBehaviour:
   - {fileID: 4359783522835431311}
   - {fileID: 8245167627056840502}
   - {fileID: -312714226922439646}
+  - {fileID: 8524417310741579380}
+  - {fileID: 1571603602094024553}
   Blackboard:
     targetCharacter: {fileID: 0}
+--- !u!114 &1571603602094024553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db872899f93f4a1a954b3294274b7125, type: 3}
+  m_Name: RotateTowardsTargetNode
+  m_EditorClassIdentifier: 
+  NodeName: RotateTowardsTarget
+  Description: 
+  GuId: 084f0b21a3d0fad4590ba3163c9ed6ce
+  GraphPos: {x: 425, y: 270}
 --- !u!114 &2131084105564693046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,10 +108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcf4ccfa7c34deebe932ccbc8537a1a, type: 3}
   m_Name: IdleNode
   m_EditorClassIdentifier: 
-  NodeName: IdleNode
+  NodeName: Idle
   Description: 
   GuId: e5ed44d3d55c66043a5992c96cde4b6e
-  GraphPos: {x: 255, y: 384}
+  GraphPos: {x: 255, y: 389}
 --- !u!114 &2496287024818433282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,13 +124,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8719c57472a49a3b944510b904be83b, type: 3}
   m_Name: SequenceNode
   m_EditorClassIdentifier: 
-  NodeName: SequenceNode
+  NodeName: Sequence
   Description: 
   GuId: 0e2342512afd02343b861e087840e715
-  GraphPos: {x: 406.50003, y: 12}
+  GraphPos: {x: 409, y: 23}
   Children:
   - {fileID: 4359783522835431311}
-  - {fileID: 8245167627056840502}
+  - {fileID: 8524417310741579380}
 --- !u!114 &2946632005916212112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,10 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0173b6344554b7a8e7b3919d49af299, type: 3}
   m_Name: InverterNode
   m_EditorClassIdentifier: 
-  NodeName: InverterNode
+  NodeName: Inverter
   Description: 
   GuId: ad53742d6bde9cb4caad550e8737bdf2
-  GraphPos: {x: 367, y: 381}
+  GraphPos: {x: 367, y: 386}
   Child: {fileID: 3056662064380337565}
 --- !u!114 &3056662064380337565
 MonoBehaviour:
@@ -142,10 +160,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163ffb5664fb498e996f75d8be3e1d40, type: 3}
   m_Name: FindChaseTargetNode
   m_EditorClassIdentifier: 
-  NodeName: FindChaseTargetNode
+  NodeName: FindChaseTarget
   Description: 
   GuId: 406e472cdabcbd9458ca0ce2967b2480
-  GraphPos: {x: 352, y: 489}
+  GraphPos: {x: 347, y: 494}
 --- !u!114 &4359783522835431311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,10 +176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabccf0b27974cefbbe9db4cc8176a34, type: 3}
   m_Name: UntilFailRepeaterNode
   m_EditorClassIdentifier: 
-  NodeName: UntilFailRepeaterNode
+  NodeName: UntilFailRepeater
   Description: Idle until it detects a target
   GuId: 2d27c82831ed2a7489dc4b329dce5a16
-  GraphPos: {x: 273, y: 147}
+  GraphPos: {x: 289, y: 149}
   Child: {fileID: -312714226922439646}
 --- !u!114 &8245167627056840502
 MonoBehaviour:
@@ -175,7 +193,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e4b379ba4e4551acc7c7a05a4b543c, type: 3}
   m_Name: ChaseTargetNode
   m_EditorClassIdentifier: 
-  NodeName: ChaseTargetNode
+  NodeName: ChaseTarget
   Description: 
   GuId: 82c7889e0ee884e47b5639ffb67ace65
-  GraphPos: {x: 475, y: 146}
+  GraphPos: {x: 571, y: 271.00012}
+--- !u!114 &8524417310741579380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8719c57472a49a3b944510b904be83b, type: 3}
+  m_Name: SequenceNode
+  m_EditorClassIdentifier: 
+  NodeName: Sequence
+  Description: 
+  GuId: 9f0a472cd4b730444a43c3217ba99417
+  GraphPos: {x: 499, y: 141}
+  Children:
+  - {fileID: 1571603602094024553}
+  - {fileID: 8245167627056840502}

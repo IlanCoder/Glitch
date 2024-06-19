@@ -13,13 +13,14 @@ namespace Characters.NPC {
         [SerializeField] protected Transform eyes;
         [SerializeField] protected float lineSightRadius;
         [SerializeField] protected float lineSightAngle;
+        [SerializeField] protected float straightAheadAngle;
 
         protected override void Awake() {
             Npc = GetComponent<NpcManager>();
         }
         
         public bool CheckLineSightRadius(out CharacterManager target) {
-            Collider[] colliders = Physics.OverlapSphere(Npc.transform.position, lineSightRadius, lockOnLayer);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, lineSightRadius, lockOnLayer);
             foreach (Collider col in colliders) {
                 if (!CanBeTargeted(col, out target)) continue;
                 return true;
@@ -34,7 +35,7 @@ namespace Characters.NPC {
             if (target == Npc.combatController.LockOnTarget) return false;
             if (!WorldCombatManager.Instance.IsTargetEnemy(team, target.CombatController.Team)) return false;
 
-            Vector3 targetDirection = target.transform.position - Npc.transform.position;
+            Vector3 targetDirection = target.transform.position - transform.position;
             float angleToTarget = Vector3.Angle(eyes.transform.forward, targetDirection);
 
             if (angleToTarget > lineSightAngle) return false;
@@ -43,10 +44,10 @@ namespace Characters.NPC {
         }
 
         public bool IsTargetStraightAhead(CharacterManager target) {
-            Vector3 targetDirection = target.transform.position - Npc.transform.position;
+            Vector3 targetDirection = target.transform.position - transform.position;
             float angleToTarget = Vector3.Angle(eyes.transform.forward, targetDirection);
 
-            return angleToTarget < 20;
+            return angleToTarget < straightAheadAngle;
         }
 
         #region Editor
