@@ -8,7 +8,7 @@
             <BehaviorTreeSource.Editor.SplitView orientation="Vertical" fixed-pane-initial-dimension="250">
                 <ui:VisualElement name="Inspector-Container">
                     <ui:Label tabindex="-1" text="Inspector" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" />
-                    <BehaviorTreeSource.Editor.InspectorView style="height: auto; align-items: flex-start; align-self: flex-start;" />
+                    <BehaviorTreeSource.Editor.InspectorView />
                 </ui:VisualElement>
                 <ui:VisualElement name="Blackboard-Container" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Blackboard" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" />

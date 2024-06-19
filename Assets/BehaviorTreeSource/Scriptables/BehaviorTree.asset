@@ -49,7 +49,7 @@ MonoBehaviour:
   NodeName: SequenceNode
   Description: 
   GuId: b80e5f0656e7a5245afa01a5d7c81eac
-  GraphPos: {x: 288, y: 261}
+  GraphPos: {x: 297, y: 268}
   Children:
   - {fileID: 2131084105564693046}
   - {fileID: 2946632005916212112}
@@ -76,6 +76,8 @@ MonoBehaviour:
   - {fileID: 4359783522835431311}
   - {fileID: 8245167627056840502}
   - {fileID: -312714226922439646}
+  Blackboard:
+    targetCharacter: {fileID: 0}
 --- !u!114 &2131084105564693046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +93,7 @@ MonoBehaviour:
   NodeName: IdleNode
   Description: 
   GuId: e5ed44d3d55c66043a5992c96cde4b6e
-  GraphPos: {x: 246, y: 377}
+  GraphPos: {x: 255, y: 384}
 --- !u!114 &2496287024818433282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +128,7 @@ MonoBehaviour:
   NodeName: InverterNode
   Description: 
   GuId: ad53742d6bde9cb4caad550e8737bdf2
-  GraphPos: {x: 357.5, y: 374}
+  GraphPos: {x: 367, y: 381}
   Child: {fileID: 3056662064380337565}
 --- !u!114 &3056662064380337565
 MonoBehaviour:
@@ -143,7 +145,7 @@ MonoBehaviour:
   NodeName: FindChaseTargetNode
   Description: 
   GuId: 406e472cdabcbd9458ca0ce2967b2480
-  GraphPos: {x: 342.5, y: 482}
+  GraphPos: {x: 352, y: 489}
 --- !u!114 &4359783522835431311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +161,7 @@ MonoBehaviour:
   NodeName: UntilFailRepeaterNode
   Description: Idle until it detects a target
   GuId: 2d27c82831ed2a7489dc4b329dce5a16
-  GraphPos: {x: 264, y: 140}
+  GraphPos: {x: 273, y: 147}
   Child: {fileID: -312714226922439646}
 --- !u!114 &8245167627056840502
 MonoBehaviour:
@@ -176,4 +178,4 @@ MonoBehaviour:
   NodeName: ChaseTargetNode
   Description: 
   GuId: 82c7889e0ee884e47b5639ffb67ace65
-  GraphPos: {x: 579, y: 148}
+  GraphPos: {x: 475, y: 146}

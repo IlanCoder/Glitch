@@ -67,6 +67,7 @@ namespace BehaviorTreeSource.Editor {
             _blackboardView = root.Q<IMGUIContainer>();
             _blackboardView.onGUIHandler = () => {
                 _treeObject?.Update();
+                if (_blackboardProperty == null) return;
                 EditorGUILayout.PropertyField(_blackboardProperty);
             };
 
