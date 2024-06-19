@@ -550,7 +550,7 @@ CharacterController:
   m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &5043196937043190559
@@ -568,7 +568,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
-  groundCheckSphereRadius: 1
+  groundCheckSphereRadius: 0.2
   groundedYVel: -20
   gravityForce: -9.81
   fallStartVel: -5

@@ -5286,6 +5286,16 @@ PrefabInstance:
       propertyPath: fadeOutDelay
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5758557636724959544, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223081410890605910, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6427160408734012516, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_Name
@@ -5420,6 +5430,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565147569743247457, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8682961930596713774, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
