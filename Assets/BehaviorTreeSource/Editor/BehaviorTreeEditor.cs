@@ -9,6 +9,10 @@ namespace BehaviorTreeSource.Editor {
     public class BehaviorTreeEditor : EditorWindow {
         BehaviorTreeView _treeView;
         InspectorView _inspectorView;
+        IMGUIContainer _blackboardView;
+
+        SerializedObject _treeObject;
+        SerializedProperty _blackboardProperty;
         
         [SerializeField]
         private VisualTreeAsset m_VisualTreeAsset = default;
@@ -60,6 +64,11 @@ namespace BehaviorTreeSource.Editor {
 
             _treeView = root.Q<BehaviorTreeView>();
             _inspectorView = root.Q<InspectorView>();
+            _blackboardView = root.Q<IMGUIContainer>();
+            _blackboardView.onGUIHandler = () => {
+                _treeObject?.Update();
+                EditorGUILayout.PropertyField(_blackboardProperty);
+            };
 
             _treeView.OnNodeSelected += OnNodeSelectionChanged;
             OnSelectionChange();
@@ -75,6 +84,10 @@ namespace BehaviorTreeSource.Editor {
 
             if (!Application.isPlaying && !AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID())) return;
             _treeView?.PopulateView(tree);
+
+            if (!tree) return;
+            _treeObject = new SerializedObject(tree);
+            _blackboardProperty = _treeObject.FindProperty("Blackboard");
         }
 
         void OnNodeSelectionChanged(NodeView node) {

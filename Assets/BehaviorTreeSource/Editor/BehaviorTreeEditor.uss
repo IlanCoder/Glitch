@@ -5,3 +5,8 @@ GridBackground {
     --spacing: 15;
     align-items: auto;
 }
+
+#Label {
+    color: rgb(255, 255, 255);
+    background-color: rgb(37, 37, 37);
+}
