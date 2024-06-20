@@ -1,8 +1,8 @@
-﻿using Characters;
-using Characters.NPC;
-using UnityEngine;
+﻿using BehaviorTreeSource.Runtime.Nodes;
+using BehaviorTreeSource.Runtime.Nodes.Leaves;
+using Characters;
 
-namespace BehaviorTreeSource.Runtime.Nodes.Leaves.Movement {
+namespace AiBehaviorNodes.Movement {
     public class FindChaseTargetNode : LeafNode {
         CharacterManager _target;
         

@@ -1,4 +1,7 @@
-﻿namespace BehaviorTreeSource.Runtime.Nodes.Leaves.Movement {
+﻿using BehaviorTreeSource.Runtime.Nodes;
+using BehaviorTreeSource.Runtime.Nodes.Leaves;
+
+namespace AiBehaviorNodes.Movement {
     public class ChaseTargetNode : LeafNode {
         protected override void InitializeNode() {
             NpcAgent.movementController.StartChasing();

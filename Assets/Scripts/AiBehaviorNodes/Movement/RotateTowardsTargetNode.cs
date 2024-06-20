@@ -1,6 +1,7 @@
-﻿using Characters;
+﻿using BehaviorTreeSource.Runtime.Nodes;
+using BehaviorTreeSource.Runtime.Nodes.Leaves;
 
-namespace BehaviorTreeSource.Runtime.Nodes.Leaves.Movement {
+namespace AiBehaviorNodes.Movement {
     public class RotateTowardsTargetNode : LeafNode {
         protected override void InitializeNode() {
             NpcAgent.animController.ApplyRootMotion(true);
