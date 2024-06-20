@@ -17,7 +17,7 @@ namespace Effects.Instant {
         [HideInInspector] public Vector3 contactPoint;
         
         #region Damage
-        DamageValues _damage = new DamageValues();
+        DamageStats _damage;
         float _totalDmg;
   #endregion
         
@@ -28,14 +28,14 @@ namespace Effects.Instant {
         #region Poise
         [HideInInspector] public float poiseDmg;
         bool _poiseIsBroken;
-  #endregion
+        #endregion
 
-        public void SetEffectDamage(DamageValues dmg) {
-            _damage.SetDamage(dmg);
+        public void SetEffectDamage(DamageStats dmg) {
+            _damage = dmg;
         }
 
         public void SetEffectDamageMultiplier(float motionMultiplier, float attackMultiplier = 1) {
-            _damage.SetMultipliedDamage(motionMultiplier, attackMultiplier);
+            _damage.SetDamageMultiplier(motionMultiplier, attackMultiplier);
         }
 
         public void SetEffectEnergyGain(float energy) {
@@ -52,7 +52,7 @@ namespace Effects.Instant {
         }
 
         void CalculateHealthDamage(CharacterManager character) {
-            _totalDmg = _damage.TotalMultipliedDamage;
+            _totalDmg = _damage.TotalDamage;
             if (_totalDmg <= 0) _totalDmg = 1;
             character.StatsController.ReceiveDamage(Mathf.RoundToInt(_totalDmg));
         }

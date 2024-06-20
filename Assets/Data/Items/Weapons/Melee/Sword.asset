@@ -24,12 +24,13 @@ MonoBehaviour:
   strReq: 10
   cyberReq: 0
   controlReq: 0
-  slashDmg: 100
-  strikeDmg: 0
-  thrustDmg: 0
-  photonDmg: 0
-  shockDmg: 0
-  plasmaDmg: 0
+  Damage:
+    slashDmg: 80
+    strikeDmg: 0
+    thrustDmg: 0
+    photonDmg: 0
+    shockDmg: 0
+    plasmaDmg: 0
   poiseDmg: 0
   postureDmg: 0
   baseStaminaCost: 20

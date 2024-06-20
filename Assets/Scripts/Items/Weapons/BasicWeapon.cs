@@ -24,13 +24,7 @@ namespace Items.Weapons {
         [SerializeField] protected int controlReq;
         
         [Header("Damage")]
-        [SerializeField] protected float slashDmg;
-        [SerializeField] protected float strikeDmg;
-        [SerializeField] protected float thrustDmg;
-        [SerializeField] protected float photonDmg;
-        [SerializeField] protected float shockDmg;
-        [SerializeField] protected float plasmaDmg;
-        public DamageValues Damage { get; protected set; } = new DamageValues();
+        public DamageStats Damage;
         
         [Header("Poise & Posture")]
         [SerializeField] protected float poiseDmg;
@@ -48,7 +42,7 @@ namespace Items.Weapons {
         public PlayerCombo[] Combos { get { return combos; } }
 
         public virtual void Awake() {
-            Damage.SetDamage(slashDmg, strikeDmg, thrustDmg, photonDmg, shockDmg, plasmaDmg);
+            Damage.Initialize();
         }
 
         public virtual float GetAttackStaminaCost(PlayerCombo combo, int comboAttackIndex = 0) {

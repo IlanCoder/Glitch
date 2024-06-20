@@ -45,7 +45,7 @@ namespace Colliders {
             DmgCollider.enabled = false;
         }
 
-        public virtual void SetDamage(DamageValues damage) {
+        public virtual void SetDamage(DamageStats damage) {
             if (DamageEffect == null) DamageEffect = WorldEffectsManager.Instance.GetDamageEffectCopy(transform);
             DamageEffect.SetEffectDamage(damage);
         }
