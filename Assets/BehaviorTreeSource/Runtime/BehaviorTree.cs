@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using BehaviorTreeSource.Runtime.Nodes;
 using Characters.NPC;
 using UnityEditor;
@@ -64,16 +65,14 @@ namespace BehaviorTreeSource.Runtime {
 
         static string CleanNodeName(Type type) {
             string tempName = type.Name;
-            char[] charsToRemove = { 'N', 'o', 'd', 'e' };
-            tempName = tempName.TrimEnd(charsToRemove);
-            string temp2 = tempName;
-            for (int i = 1; i < tempName.Length; i++) {
+            StringBuilder sBuilder = new StringBuilder(tempName);
+            sBuilder.Remove(sBuilder.Length - 4, 4);
+            for (int i = tempName.Length - 1; i > 0; i--) {
                 if (!char.IsUpper(tempName[i])) continue;
                 if (char.IsUpper(tempName[i - 1])) continue;
-                temp2 = temp2.Insert(i, " ");
+                sBuilder.Insert(i, ' ');
             }
-            tempName = temp2;
-            return tempName;
+            return sBuilder.ToString();
         }
 
         public void DeleteNode(BasicNode node) {
