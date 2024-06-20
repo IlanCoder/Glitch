@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c02a396402274a8a93a9d14ecd357355, type: 3}
-  m_Name: BehaviorTree
+  m_Name: TestTree
   m_EditorClassIdentifier: 
   rootNode: {fileID: -8603805474296846582}
   Nodes:
