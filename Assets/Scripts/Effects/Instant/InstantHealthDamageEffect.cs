@@ -19,7 +19,7 @@ namespace Effects.Instant {
         #region Damage
         DamageStats _damage;
         float _totalDmg;
-  #endregion
+        #endregion
         
         #region Energy
         float _baseEnergyGain;
