@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using BehaviorTreeSource.Runtime.Nodes;
 using Characters.NPC;
-using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace BehaviorTreeSource.Runtime {
@@ -48,10 +46,7 @@ namespace BehaviorTreeSource.Runtime {
     #if UNITY_EDITOR
         public BasicNode CreateNode(Type type, Vector2 pos) {
             BasicNode node = ScriptableObject.CreateInstance(type) as BasicNode;
-            string tempName = type.Name;
-            char[] charsToRemove = { 'N', 'o', 'd', 'e' };
-            tempName = tempName.TrimEnd(charsToRemove);
-            node.NodeName = tempName;
+            node.NodeName = CleanNodeName(type);
             node.name = node.NodeName;
             node.GraphPos = pos;
             node.GuId = GUID.Generate().ToString();
@@ -65,6 +60,20 @@ namespace BehaviorTreeSource.Runtime {
             Undo.RegisterCreatedObjectUndo(node, "BehaviorTree (Create Node)");
             AssetDatabase.SaveAssets();
             return node;
+        }
+
+        static string CleanNodeName(Type type) {
+            string tempName = type.Name;
+            char[] charsToRemove = { 'N', 'o', 'd', 'e' };
+            tempName = tempName.TrimEnd(charsToRemove);
+            string temp2 = tempName;
+            for (int i = 1; i < tempName.Length; i++) {
+                if (!char.IsUpper(tempName[i])) continue;
+                if (char.IsUpper(tempName[i - 1])) continue;
+                temp2 = temp2.Insert(i, " ");
+            }
+            tempName = temp2;
+            return tempName;
         }
 
         public void DeleteNode(BasicNode node) {

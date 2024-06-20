@@ -39,9 +39,14 @@
 
 #title {
     align-items: center;
+}
+
+#title-label {
+    max-width: 130px;
     -unity-font-style: bold;
     -unity-text-align: middle-center;
     white-space: normal;
+    text-overflow: clip;
 }
 
 #description {

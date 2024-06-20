@@ -927,6 +927,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7110476248090469432, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_Name
+      value: Player Cam
+      objectReference: {fileID: 0}
     - target: {fileID: 7196929176483153285, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_Layer

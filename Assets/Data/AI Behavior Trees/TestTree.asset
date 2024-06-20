@@ -29,11 +29,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabccf0b27974cefbbe9db4cc8176a34, type: 3}
   m_Name: UntilFailRepeater
   m_EditorClassIdentifier: 
-  NodeName: UntilFailRepeater
+  NodeName: Until Fail Repeater
   Description: 
   GuId: 37dc8273417d4934aa0ebb3bf30d1c7b
-  GraphPos: {x: 677, y: 153}
-  Child: {fileID: 0}
+  GraphPos: {x: 567, y: 142}
+  Child: {fileID: 8524417310741579380}
 --- !u!114 &-3339057155166454003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,10 +111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db872899f93f4a1a954b3294274b7125, type: 3}
   m_Name: RotateTowardsTargetNode
   m_EditorClassIdentifier: 
-  NodeName: RotateTowardsDirection
+  NodeName: Rotate To Chase Direction
   Description: 
   GuId: 084f0b21a3d0fad4590ba3163c9ed6ce
-  GraphPos: {x: 581, y: 297}
+  GraphPos: {x: 655, y: 410}
 --- !u!114 &2131084105564693046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   GraphPos: {x: 405, y: 22.720001}
   Children:
   - {fileID: 4359783522835431311}
-  - {fileID: 8524417310741579380}
+  - {fileID: -5362902769335487490}
 --- !u!114 &2946632005916212112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163ffb5664fb498e996f75d8be3e1d40, type: 3}
   m_Name: FindChaseTargetNode
   m_EditorClassIdentifier: 
-  NodeName: FindChaseTarget
+  NodeName: Find Chase Target
   Description: 
   GuId: 406e472cdabcbd9458ca0ce2967b2480
   GraphPos: {x: 347, y: 494}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabccf0b27974cefbbe9db4cc8176a34, type: 3}
   m_Name: UntilFailRepeaterNode
   m_EditorClassIdentifier: 
-  NodeName: UntilFailRepeater
+  NodeName: Until Fail Repeater
   Description: Idle until it detects a target
   GuId: 2d27c82831ed2a7489dc4b329dce5a16
   GraphPos: {x: 289, y: 149}
@@ -212,10 +212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 019e0fee6c257bf4695591c854fdcaf1, type: 3}
   m_Name: CalculatePathToTarget
   m_EditorClassIdentifier: 
-  NodeName: CalculatePathToTarget
+  NodeName: Calculate Path To Target
   Description: 
   GuId: 728c01f1cdbaa5f4ab2df038a8d0455f
-  GraphPos: {x: 426, y: 296}
+  GraphPos: {x: 500, y: 409}
 --- !u!114 &8245167627056840502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,10 +228,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e4b379ba4e4551acc7c7a05a4b543c, type: 3}
   m_Name: ChaseTargetNode
   m_EditorClassIdentifier: 
-  NodeName: ChaseTarget
+  NodeName: Chase Target
   Description: 
   GuId: 82c7889e0ee884e47b5639ffb67ace65
-  GraphPos: {x: 743, y: 295}
+  GraphPos: {x: 817, y: 408}
 --- !u!114 &8524417310741579380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
   NodeName: Sequence
   Description: 
   GuId: 9f0a472cd4b730444a43c3217ba99417
-  GraphPos: {x: 501, y: 157}
+  GraphPos: {x: 575, y: 270}
   Children:
   - {fileID: 6880987025524055808}
   - {fileID: 1571603602094024553}
