@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 8773442675942537494}
   - component: {fileID: 3493666990746572942}
   m_Layer: 7
-  m_Name: NPC
+  m_Name: Combat Npc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

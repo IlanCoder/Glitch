@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3282358453330032024}
   - component: {fileID: 3913371746147320539}
   m_Layer: 0
-  m_Name: PlayerCam
+  m_Name: Player Cam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 648073015579423002}
   player: {fileID: 0}
-  inputManager: {fileID: 0}
+  inputController: {fileID: 0}
   pivot: {fileID: 1895925016474867351}
   camSmoothTime: 0.15
   yAxisSpeed: 250
@@ -61,6 +61,7 @@ MonoBehaviour:
   lockOnSmoothSpeed: 0.15
   maxLockOnDistance: 20
   lockOnCamHeight: 0.4
+  camHeightSmoothSpeed: 0.05
   lockOnLayer:
     serializedVersion: 2
     m_Bits: 128
