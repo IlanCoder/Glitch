@@ -1,17 +1,22 @@
 ﻿using BehaviorTreeSource.Runtime.Nodes;
 using BehaviorTreeSource.Runtime.Nodes.Leaves;
+using UnityEngine;
 
 namespace AiBehaviorNodes.Movement {
-    public class RotateTowardsTargetNode : LeafNode {
+    public class RotateTowardsDirectionNode : LeafNode {
+
+        Vector3 targetDirection;
+        
         protected override void InitializeNode() {
             NpcAgent.animController.ApplyRootMotion(true);
+            targetDirection = NpcAgent.movementController.GetNextNavPosition() - NpcAgent.transform.position;
         }
 
         protected override NodeStatus Tick() {
             if (!TreeBlackboard.targetCharacter) return NodeStatus.Failed;
-            if (NpcAgent.combatController.IsTargetStraightAhead(TreeBlackboard.targetCharacter))
+            if (NpcAgent.combatController.IsDirectionStraightAhead(targetDirection))
                 return NodeStatus.Succeeded;
-            NpcAgent.movementController.RotateTowardsTarget(TreeBlackboard.targetCharacter);
+            NpcAgent.movementController.RotateTowardsDirection(targetDirection);
             return NodeStatus.Running;
         }
 

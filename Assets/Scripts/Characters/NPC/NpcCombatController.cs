@@ -7,12 +7,12 @@ namespace Characters.NPC {
         
         [Header("Lock On")]
         [SerializeField] LayerMask lockOnLayer;
-        [SerializeField] LayerMask lockOnObstructLayer;
 
         [Header("Detection")]
         [SerializeField] protected Transform eyes;
         [SerializeField] protected float lineSightRadius;
         [SerializeField] protected float lineSightAngle;
+        [SerializeField] LayerMask visionObstructLayer;
         [SerializeField] protected float straightAheadAngle;
 
         protected override void Awake() {
@@ -40,14 +40,14 @@ namespace Characters.NPC {
 
             if (angleToTarget > lineSightAngle) return false;
             return !Physics.Linecast(eyes.transform.position, target.CombatController.LockOnPivot.position,
-            lockOnObstructLayer);
+            visionObstructLayer);
         }
 
-        public bool IsTargetStraightAhead(CharacterManager target) {
-            Vector3 targetDirection = target.transform.position - transform.position;
+        public bool IsDirectionStraightAhead(Vector3 direction) {
+            Vector3 targetDirection = direction;
+            targetDirection.y = 0;
             float angleToTarget = Vector3.Angle(eyes.transform.forward, targetDirection);
-
-            return angleToTarget < straightAheadAngle;
+            return angleToTarget <= straightAheadAngle;
         }
 
         #region Editor

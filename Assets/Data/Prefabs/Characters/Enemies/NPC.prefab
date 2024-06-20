@@ -156,12 +156,12 @@ MonoBehaviour:
   lockOnLayer:
     serializedVersion: 2
     m_Bits: 64
-  lockOnObstructLayer:
-    serializedVersion: 2
-    m_Bits: 9
   eyes: {fileID: 2264434064256346313}
   lineSightRadius: 10
   lineSightAngle: 60
+  visionObstructLayer:
+    serializedVersion: 2
+    m_Bits: 9
   straightAheadAngle: 10
 --- !u!114 &2214719120477404899
 MonoBehaviour:

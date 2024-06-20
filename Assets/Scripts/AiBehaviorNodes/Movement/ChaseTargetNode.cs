@@ -11,11 +11,10 @@ namespace AiBehaviorNodes.Movement {
         protected override NodeStatus Tick() {
             NpcAgent.movementController.ChaseTarget(TreeBlackboard.targetCharacter);
             if (!NpcAgent.movementController.IsPathComplete()) return NodeStatus.Failed;
-            return NpcAgent.movementController.HasArrivedToLockOnRange() ? NodeStatus.Succeeded : NodeStatus.Running;
+            return NpcAgent.movementController.HasArrivedToStoppingDistance() ? NodeStatus.Succeeded : NodeStatus.Running;
         }
 
         protected override void ExitNode() {
-            
         }
     }
 }
