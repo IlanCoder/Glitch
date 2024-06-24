@@ -1,9 +1,9 @@
 using Enums;
 using UnityEngine;
 
-namespace Attacks{
+namespace Attacks.Player{
 	[CreateAssetMenu(fileName = "SingleAttack",menuName = "Attacks/Single Attack")]
-	public class AttackInfo : ScriptableObject {
+	public class PlayerAttack : ScriptableObject {
 		[SerializeField] protected AnimationClip attackAnimation;
 		[SerializeField, Min(0)] protected float motionMultiplier;
 		[SerializeField, Min(0)] protected float staminaCostMultiplier;

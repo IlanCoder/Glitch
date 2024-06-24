@@ -10,14 +10,15 @@ namespace Characters.NPC {
 		[Header("Movement Speeds")]
 		[SerializeField] protected float runningSpeed;
 		
-		[Header("Nav Mesh")]
-		[SerializeField] protected float lockOnDistance;
+		[Header("Chase Settings")]
+		[SerializeField] protected float stoppingDistance;
+		[SerializeField] protected float straightAheadAngle;
 
 		protected override void Awake() {
 			base.Awake();
 			Manager = GetComponent<NpcManager>();
 			NavAgent = GetComponent<NavMeshAgent>();
-			NavAgent.stoppingDistance = lockOnDistance;
+			NavAgent.stoppingDistance = stoppingDistance;
 			NavAgent.updatePosition = false;
 		}
 		
@@ -35,6 +36,13 @@ namespace Characters.NPC {
 		public void ChaseTarget(CharacterManager target) {
 			SetNavMeshDestination(target.transform.position);
 			Manager.animController.UpdateMovementParameters(0, 1);
+		}
+		
+		public bool IsDirectionStraightAhead(Vector3 direction) {
+			Vector3 targetDirection = direction;
+			targetDirection.y = 0;
+			float angleToTarget = Vector3.Angle(transform.forward, targetDirection);
+			return angleToTarget <= straightAheadAngle;
 		}
 		#endregion
 

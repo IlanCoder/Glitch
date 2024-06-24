@@ -1,5 +1,6 @@
 using System;
 using Attacks;
+using Attacks.Player;
 using DataContainers;
 using Enums;
 using Unity.VisualScripting;
@@ -39,7 +40,7 @@ namespace Items.Weapons {
 
         [Header("Combos")]
         [SerializeField] protected PlayerCombo[] combos;
-        public PlayerCombo[] Combos { get { return combos; } }
+        public PlayerCombo[] Combos => combos;
 
         public virtual void Awake() {
             Damage.Initialize();

@@ -5,11 +5,13 @@ namespace Characters.NPC {
 	[RequireComponent(typeof(NavMeshAgent)),
 	 RequireComponent(typeof(NpcMovementController)),
 	 RequireComponent(typeof(NpcCombatController)),
-	 RequireComponent(typeof(NpcAnimController))]
+	 RequireComponent(typeof(NpcAnimController)),
+	 RequireComponent(typeof(NpcAgroController))]
 	public class NpcManager : CharacterManager {
 		[HideInInspector] public NpcMovementController movementController;
 		[HideInInspector] public NpcCombatController combatController;
 		[HideInInspector] public NpcAnimController animController;
+		[HideInInspector] public NpcAgroController agroController;
 		
 		public override CharacterMovementController MovementController => movementController;
 		public override CharacterCombatController CombatController => combatController;
@@ -20,6 +22,7 @@ namespace Characters.NPC {
 			movementController = GetComponent<NpcMovementController>();
 			combatController = GetComponent<NpcCombatController>();
 			animController = GetComponent<NpcAnimController>();
+			agroController = GetComponent<NpcAgroController>();
 		}
 	}
 }

@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using Enums;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Attacks {
+namespace Attacks.Player {
     [CreateAssetMenu(fileName = "BasicCombo",menuName = "Attacks/Attack Combo")]
     public class PlayerCombo : ScriptableObject {
         [SerializeField, Range(1, 5)] int comboLength = 1;
         public int ComboLength { get { return comboLength; } }
-        [SerializeField] AttackInfo[] comboAttacks = new AttackInfo[1];
-        public AttackInfo[] ComboAttacks { get { return comboAttacks; } }
+        [SerializeField] PlayerAttack[] comboAttacks = new PlayerAttack[1];
+        public PlayerAttack[] ComboAttacks { get { return comboAttacks; } }
 
-        public AttackInfo GetAttackInfo(int index) {
+        public PlayerAttack GetAttackInfo(int index) {
             return comboAttacks[index];
         }
 
 #if UNITY_EDITOR
         void OnValidate() {
             if(comboLength == comboAttacks.Length) return;
-            AttackInfo[] tempInfo = comboAttacks;
-            comboAttacks = new AttackInfo[comboLength];
+            PlayerAttack[] tempInfo = comboAttacks;
+            comboAttacks = new PlayerAttack[comboLength];
 
             if (comboLength < tempInfo.Length) {
                 for (int i = 0; i < comboLength; i++) {

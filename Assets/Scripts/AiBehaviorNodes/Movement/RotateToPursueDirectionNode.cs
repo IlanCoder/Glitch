@@ -13,7 +13,7 @@ namespace AiBehaviorNodes.Movement {
 
         protected override NodeStatus Tick() {
             if (!TreeBlackboard.targetCharacter) return NodeStatus.Failed;
-            if (NpcAgent.combatController.IsDirectionStraightAhead(targetDirection))
+            if (NpcAgent.movementController.IsDirectionStraightAhead(targetDirection))
                 return NodeStatus.Succeeded;
             NpcAgent.movementController.RotateTowardsDirection(targetDirection);
             return NodeStatus.Running;

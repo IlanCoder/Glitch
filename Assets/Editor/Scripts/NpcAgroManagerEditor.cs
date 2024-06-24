@@ -3,13 +3,13 @@ using UnityEngine;
 using UnityEditor;
 
 namespace CustomEditors.Scripts{
-	[CustomEditor(typeof(NpcCombatController))]
-	public class NpcCombatManagerEditor : Editor {
-		NpcCombatController _controller;
+	[CustomEditor(typeof(NpcAgroController))]
+	public class NpcAgroManagerEditor : Editor {
+		NpcAgroController _controller;
 		Transform objTransform;
 		void OnSceneGUI() {
-			_controller = target as NpcCombatController;
-			objTransform = _controller.transform;
+			_controller = target as NpcAgroController;
+			objTransform = _controller?.transform;
 			DrawSightCone();
 		}
 

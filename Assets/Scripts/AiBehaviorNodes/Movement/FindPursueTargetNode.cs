@@ -11,8 +11,7 @@ namespace AiBehaviorNodes.Movement {
         }
 
         protected override NodeStatus Tick() {
-            NpcAgent.combatController.CheckLineSightRadius(out _target);
-            return _target is null ? NodeStatus.Failed : NodeStatus.Succeeded;
+            return !NpcAgent.agroController.CheckLineSightRadius(out _target) ? NodeStatus.Failed : NodeStatus.Succeeded;
         }
 
         protected override void ExitNode() {
