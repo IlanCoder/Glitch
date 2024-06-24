@@ -3,7 +3,7 @@ using BehaviorTreeSource.Runtime.Nodes.Leaves;
 using Characters;
 
 namespace AiBehaviorNodes.Movement {
-    public class FindChaseTargetNode : LeafNode {
+    public class FindPursueTargetNode : LeafNode {
         CharacterManager _target;
         
         protected override void InitializeNode() {

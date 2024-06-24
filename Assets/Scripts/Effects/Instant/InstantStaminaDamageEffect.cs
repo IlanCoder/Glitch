@@ -8,12 +8,13 @@ namespace Effects.Instant {
         public float staminaDamage;
         
         public override void ProcessEffect(CharacterManager character) {
-            if(character.isDead) return;
-            CalculateStaminaDamage(character);
+            if (character.isDead) return;
+            if (!character.TryGetComponent(out PlayerManager player)) return;
+            CalculateStaminaDamage(player);
         }
 
-        void CalculateStaminaDamage(CharacterManager character) {
-            character.StatsController.UseStamina(staminaDamage);
+        void CalculateStaminaDamage(PlayerManager character) {
+            character.statsController.UseStamina(staminaDamage);
         }
     }
 }

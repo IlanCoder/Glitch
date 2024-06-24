@@ -162,7 +162,7 @@ MonoBehaviour:
   visionObstructLayer:
     serializedVersion: 2
     m_Bits: 9
-  straightAheadAngle: 10
+  straightAheadAngle: 20
 --- !u!114 &2214719120477404899
 MonoBehaviour:
   m_ObjectHideFlags: 0

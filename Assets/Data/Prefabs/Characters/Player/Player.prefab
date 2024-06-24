@@ -2406,8 +2406,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Character
-  staminaRegen: 5
-  staminaRegenDelay: 1
   onStaminaChange:
     m_PersistentCalls:
       m_Calls:
@@ -2450,12 +2448,15 @@ MonoBehaviour:
   onMaxEnergyChange:
     m_PersistentCalls:
       m_Calls: []
-  vitality: 10
-  endurance: 10
-  dexterity: 10
-  strength: 10
-  cyber: 10
-  control: 10
+  playerAttributes:
+    vitality: 10
+    endurance: 10
+    dexterity: 10
+    strength: 10
+    cyber: 10
+    control: 10
+  staminaRegen: 5
+  staminaRegenDelay: 1
 --- !u!114 &5738588397391005857
 MonoBehaviour:
   m_ObjectHideFlags: 0

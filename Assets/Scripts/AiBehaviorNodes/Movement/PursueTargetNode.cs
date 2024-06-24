@@ -2,7 +2,7 @@
 using BehaviorTreeSource.Runtime.Nodes.Leaves;
 
 namespace AiBehaviorNodes.Movement {
-    public class ChaseTargetNode : LeafNode {
+    public class PursueTargetNode : LeafNode {
         protected override void InitializeNode() {
             NpcAgent.movementController.StartChasing();
             NpcAgent.animController.ApplyRootMotion(true);

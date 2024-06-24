@@ -10,10 +10,10 @@ namespace Attacks{
 		[SerializeField, Min(0)] protected float energyGainMultiplier;
 		[SerializeField] protected AttackType input;
 		
-		public AnimationClip AttackAnimation { get { return attackAnimation; } }
-		public float MotionCostMultiplier { get { return motionMultiplier; } }
-		public float StaminaCostMultiplier { get { return staminaCostMultiplier; } }
-		public float EnergyGainMultiplier { get { return energyGainMultiplier; } }
-		public AttackType Input { get { return input; } }
+		public AnimationClip AttackAnimation => attackAnimation;
+		public float MotionCostMultiplier => motionMultiplier;
+		public float StaminaCostMultiplier => staminaCostMultiplier;
+		public float EnergyGainMultiplier => energyGainMultiplier;
+		public AttackType Input => input;
 	}
 }

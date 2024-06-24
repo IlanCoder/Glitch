@@ -3,8 +3,7 @@ using BehaviorTreeSource.Runtime.Nodes.Leaves;
 using UnityEngine;
 
 namespace AiBehaviorNodes.Movement {
-    public class RotateToChaseDirectionNode : LeafNode {
-
+    public class RotateToPursueDirectionNode : LeafNode {
         Vector3 targetDirection;
         
         protected override void InitializeNode() {
