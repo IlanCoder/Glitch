@@ -354,9 +354,9 @@ GameObject:
   - component: {fileID: 3977683131871305635}
   - component: {fileID: 43185177805481858}
   - component: {fileID: 1566557391520841526}
+  - component: {fileID: 5043196937043190559}
   - component: {fileID: 6117838078811023577}
   - component: {fileID: 8768737442347181851}
-  - component: {fileID: 5043196937043190559}
   m_Layer: 7
   m_Name: Dummy
   m_TagString: Untagged
@@ -397,14 +397,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Character
-  staminaRegen: 1
-  staminaRegenDelay: 1
-  onStaminaChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onMaxStaminaChange:
-    m_PersistentCalls:
-      m_Calls: []
   onHpChange:
     m_PersistentCalls:
       m_Calls: []
@@ -506,6 +498,26 @@ MonoBehaviour:
   isJumping: 0
   isGrounded: 0
   isLockedOn: 0
+--- !u!114 &5043196937043190559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868617021434096131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81c5af020ebba346b24a40096bc4753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckSphereRadius: 0.2
+  groundedYVel: -20
+  gravityForce: -9.81
+  fallStartVel: -5
+  fallMaxVel: -50
 --- !u!95 &6117838078811023577
 Animator:
   serializedVersion: 5
@@ -553,26 +565,6 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &5043196937043190559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1868617021434096131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f81c5af020ebba346b24a40096bc4753, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  groundCheckSphereRadius: 0.2
-  groundedYVel: -20
-  gravityForce: -9.81
-  fallStartVel: -5
-  fallMaxVel: -50
 --- !u!1 &1945078540105459608
 GameObject:
   m_ObjectHideFlags: 0

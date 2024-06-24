@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db872899f93f4a1a954b3294274b7125, type: 3}
   m_Name: RotateTowardsTargetNode
   m_EditorClassIdentifier: 
-  NodeName: Rotate To Chase Direction
+  NodeName: Rotate To Pursue Direction
   Description: 
   GuId: 084f0b21a3d0fad4590ba3163c9ed6ce
   GraphPos: {x: 655, y: 410}
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163ffb5664fb498e996f75d8be3e1d40, type: 3}
   m_Name: FindChaseTargetNode
   m_EditorClassIdentifier: 
-  NodeName: Find Chase Target
+  NodeName: Find Pursue Target
   Description: 
   GuId: 406e472cdabcbd9458ca0ce2967b2480
   GraphPos: {x: 347, y: 494}
@@ -228,10 +228,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e4b379ba4e4551acc7c7a05a4b543c, type: 3}
   m_Name: ChaseTargetNode
   m_EditorClassIdentifier: 
-  NodeName: Chase Target
+  NodeName: Pursue Target
   Description: 
   GuId: 82c7889e0ee884e47b5639ffb67ace65
-  GraphPos: {x: 817, y: 408}
+  GraphPos: {x: 814.42, y: 417}
 --- !u!114 &8524417310741579380
 MonoBehaviour:
   m_ObjectHideFlags: 0
