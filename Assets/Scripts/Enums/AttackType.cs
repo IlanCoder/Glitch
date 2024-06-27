@@ -4,6 +4,7 @@ namespace Enums{
 		Heavy,
 		SuperchargedLight,
 		SuperchargedHeavy,
+		Special,
 		Ultimate
 	}
 }

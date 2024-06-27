@@ -16,6 +16,8 @@ namespace Characters.Player{
 		[HideInInspector] public BasicWeapon activeWeapon;
 		[HideInInspector] public WeaponManager rightHandWeaponManager;
 		[HideInInspector] public WeaponManager leftHandWeaponManager;
+		
+		public CharacterManager LockOnTarget { get; protected set; }
 
 		int _comboIndex;
 		int _currentAttackIndex;
@@ -96,14 +98,14 @@ namespace Characters.Player{
 			leftHandWeaponManager.SetWeaponEnergyGain(energyGain);
 		}
 
-		public override void ChangeTarget(CharacterManager newTarget) {
+		public void ChangeTarget(CharacterManager newTarget) {
 			if (LockOnTarget) {
 				LockOnTarget.onCharacterDeath.RemoveListener(WaitForTargetToDie);
 			}
 			if (newTarget) {
 				newTarget.onCharacterDeath.AddListener(WaitForTargetToDie);
 			}
-			base.ChangeTarget(newTarget);
+			LockOnTarget = newTarget;
 		}
 		
 		async void WaitForTargetToDie() {

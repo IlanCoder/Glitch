@@ -131,6 +131,7 @@ MonoBehaviour:
   fallMaxVel: -50
   runningSpeed: 5
   stoppingDistance: 2
+  straightAheadAngle: 35
 --- !u!114 &6282087500400664025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +153,6 @@ MonoBehaviour:
   visionObstructLayer:
     serializedVersion: 2
     m_Bits: 9
-  straightAheadAngle: 20
 --- !u!114 &894213957332525104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,16 +167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerLockOnPivot: {fileID: 6248522336254308412}
   team: 3
-  lockOnLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  eyes: {fileID: 5210906634904777955}
-  lineSightRadius: 10
-  lineSightAngle: 60
-  visionObstructLayer:
-    serializedVersion: 2
-    m_Bits: 9
-  straightAheadAngle: 20
+  attacks:
+  - {fileID: 11400000, guid: 54a615e1ed0259a4f9ee3621b17dab02, type: 2}
 --- !u!114 &2214719120477404899
 MonoBehaviour:
   m_ObjectHideFlags: 0

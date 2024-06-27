@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BehaviorTreeSource.Runtime.Nodes.Leaves {
+namespace BehaviorTreeSource.Runtime.Nodes.Leaves.General {
     public class DebugNode : LeafNode {
         public string Message;
         

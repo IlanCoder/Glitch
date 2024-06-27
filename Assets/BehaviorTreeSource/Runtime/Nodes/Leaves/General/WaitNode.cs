@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BehaviorTreeSource.Runtime.Nodes.Leaves {
+namespace BehaviorTreeSource.Runtime.Nodes.Leaves.General {
     public class WaitNode : LeafNode {
         public float Duration;
         protected float StartTime;

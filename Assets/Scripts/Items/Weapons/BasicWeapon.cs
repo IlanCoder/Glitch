@@ -44,6 +44,16 @@ namespace Items.Weapons {
 
         public virtual void Awake() {
             Damage.Initialize();
+            InstantiateCombos();
+        }
+
+        void InstantiateCombos() {
+            PlayerCombo[] tempCombos = new PlayerCombo[combos.Length];
+            for (int i = 0; i < combos.Length; i++) {
+                tempCombos[i] = Instantiate(combos[i]);
+                tempCombos[i].InstantiateAttacks();
+            }
+            combos = tempCombos;
         }
 
         public virtual float GetAttackStaminaCost(PlayerCombo combo, int comboAttackIndex = 0) {

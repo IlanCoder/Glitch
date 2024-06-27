@@ -31,7 +31,6 @@ namespace Characters.NPC {
         bool CanBeTargeted(Collider col, out CharacterManager target) {
             if (!col.TryGetComponent(out target)) return false;
             if (target.isDead) return false;
-            if (target == Npc.combatController.LockOnTarget) return false;
             if (!WorldCombatManager.Instance.IsTargetEnemy(Npc.combatController.Team, target.CombatController.Team))
                 return false;
 

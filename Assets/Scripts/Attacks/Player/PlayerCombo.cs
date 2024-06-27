@@ -6,10 +6,19 @@ namespace Attacks.Player {
         [SerializeField, Range(1, 5)] int comboLength = 1;
         public int ComboLength { get { return comboLength; } }
         [SerializeField] PlayerAttack[] comboAttacks = new PlayerAttack[1];
+        
         public PlayerAttack[] ComboAttacks { get { return comboAttacks; } }
 
         public PlayerAttack GetAttackInfo(int index) {
             return comboAttacks[index];
+        }
+
+        public void InstantiateAttacks() {
+            PlayerAttack[] tempAttacks = new PlayerAttack[comboAttacks.Length];
+            for (int i = 0; i < comboAttacks.Length; i++) {
+                tempAttacks[i] = Instantiate(comboAttacks[i]);
+            }
+            comboAttacks = tempAttacks;
         }
 
 #if UNITY_EDITOR
