@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b0cd54e05464e2290ee0a7673b6868d, type: 3}
-  m_Name: Basic Hit
+  m_Name: Basic Hit 1
   m_EditorClassIdentifier: 
-  attackAnimation: {fileID: 7400000, guid: 3b7933412fa63354aa86674312c76dfd, type: 3}
+  attackAnimation: {fileID: 7400000, guid: 452786ca4732fca499add32e3f5893d6, type: 3}
   attackType: 0
   downTime: 2
   attackWeight: 10
@@ -21,6 +21,5 @@ MonoBehaviour:
   maxAngle: 35
   minDistance: 0
   maxDistance: 2
-  possibleChains:
-  - {fileID: 11400000, guid: e51c6a636e3a31846b54fd6ba9004bfe, type: 2}
+  possibleChains: []
   chainChance: 50

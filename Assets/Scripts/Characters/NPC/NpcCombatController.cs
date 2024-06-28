@@ -34,6 +34,19 @@ namespace Characters.NPC {
             }
             return tempList.Count > 0;
         }
+        
+        public bool TryGetAvailableAttacks(CharacterManager target, NpcAttack attackToIgnore,out List<NpcAttack> tempList) {
+            tempList = new List<NpcAttack>();
+            int listWeight = 0;
+            foreach (NpcAttack attack in attacks) {
+                if (attack == attackToIgnore) continue;
+                if(!attack.RequirementsMet(Npc, target)) continue;
+                listWeight += attack.AttackWeight;
+                attack.listedRollWeight = listWeight;
+                tempList.Add(attack);
+            }
+            return tempList.Count > 0;
+        }
 
         public NpcAttack RollForAttack(List<NpcAttack> attacksList) {
             int totalWeight = attacksList[^1].listedRollWeight;
@@ -43,6 +56,11 @@ namespace Characters.NPC {
                 return attack;
             }
             return null;
+        }
+
+        public void HandleAttackAnimation(NpcAttack attack, bool firstInChain = true) {
+            Npc.animOverrider.OverrideNextAttack(attack, firstInChain);
+            Npc.animController.PlayAttackAnimation(firstInChain);
         }
     }
 }

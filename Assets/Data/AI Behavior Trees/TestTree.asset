@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8932597555508963066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f303e1de0845daa0f86d25fa31a984, type: 3}
+  m_Name: Play Attack Anima
+  m_EditorClassIdentifier: 
+  NodeName: Play Attack Animation
+  Description: 
+  GuId: 487669478d76a724da127a0391292e5a
+  GraphPos: {x: 1224, y: 311}
+  firstInChain: 1
 --- !u!114 &-8603805474296846582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17,6 +34,39 @@ MonoBehaviour:
   GuId: 244f239c536f489479e5526e58fa470d
   GraphPos: {x: 409, y: -184.50867}
   Child: {fileID: -3339057155166454003}
+--- !u!114 &-7204680879125135449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae673b6f1a74ce7a166464496934904, type: 3}
+  m_Name: 'Roll For Attack '
+  m_EditorClassIdentifier: 
+  NodeName: 'Roll For Attack '
+  Description: 
+  GuId: 238ce0ead8d331f4dabe9b39f8190422
+  GraphPos: {x: 1094, y: 322}
+--- !u!114 &-6861864710206288887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf7321278d14885a8c1adbe49bfa80d, type: 3}
+  m_Name: 'Wait For Attack Anim Finish '
+  m_EditorClassIdentifier: 
+  NodeName: 'Wait For Attack Anim Finish '
+  Description: 
+  GuId: 149017614e69f264194824c2c33e642c
+  GraphPos: {x: 1381, y: 307}
+  Duration: 0
 --- !u!114 &-5674872351286014936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,9 +82,12 @@ MonoBehaviour:
   NodeName: 'Sequence '
   Description: 
   GuId: 02b75e97d052fa7448341959205edf06
-  GraphPos: {x: 1009, y: 201}
+  GraphPos: {x: 1027, y: 187}
   Children:
   - {fileID: 1652708022761223933}
+  - {fileID: -7204680879125135449}
+  - {fileID: -8932597555508963066}
+  - {fileID: -6861864710206288887}
 --- !u!114 &-3339057155166454003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +151,9 @@ MonoBehaviour:
   - {fileID: 6060023088253049890}
   - {fileID: 1652708022761223933}
   - {fileID: -5674872351286014936}
+  - {fileID: -7204680879125135449}
+  - {fileID: -8932597555508963066}
+  - {fileID: -6861864710206288887}
   Blackboard:
     targetCharacter: {fileID: 0}
     availableAttacks: []
@@ -135,6 +191,7 @@ MonoBehaviour:
   Description: 
   GuId: 50a528a203cfe7f4f9e83ba747b2a0d3
   GraphPos: {x: 931, y: 318}
+  canRepeatLastAttack: 1
 --- !u!114 &2131084105564693046
 MonoBehaviour:
   m_ObjectHideFlags: 0

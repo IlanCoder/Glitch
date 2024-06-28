@@ -13,8 +13,8 @@ namespace Characters {
      RequireComponent(typeof(CharacterVFxController)),
      RequireComponent(typeof(CharacterSFxController))]
     public class CharacterManager : MonoBehaviour {
-        
         [HideInInspector]public CharacterController characterController;
+        
         public virtual CharacterMovementController MovementController => GetComponent<CharacterMovementController>();
         public virtual CharacterStatsController StatsController => GetComponent<CharacterStatsController>();
         public virtual CharacterAnimController AnimController => GetComponent<CharacterAnimController>();

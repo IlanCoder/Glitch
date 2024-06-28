@@ -8,9 +8,12 @@ namespace Attacks.NPC {
     [CreateAssetMenu(fileName = "SingleAttack",menuName = "AI/Attacks/Single Attack")]
     public class NpcAttack : ScriptableObject {
         [SerializeField] protected AnimationClip attackAnimation;
+        public AnimationClip AttackAnimation => attackAnimation;
         
         [Header("Attack Parameters")]
         [SerializeField] protected AttackType attackType;
+        [SerializeField] protected float downTime;
+        public float DownTime => downTime;
         [SerializeField, Min(1)] protected int attackWeight = 1;
         public int AttackWeight => attackWeight;
         [HideInInspector] public int listedRollWeight;

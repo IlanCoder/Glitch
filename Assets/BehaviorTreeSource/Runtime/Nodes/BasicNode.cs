@@ -16,7 +16,7 @@ namespace BehaviorTreeSource.Runtime.Nodes {
 #if UNITY_EDITOR
         [HideInInspector] public string GuId;
         [HideInInspector] public Vector2 GraphPos;
-        #endif
+#endif
 
         void Awake() {
             Initialized = false;
