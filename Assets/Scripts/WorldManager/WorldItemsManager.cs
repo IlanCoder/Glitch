@@ -30,7 +30,9 @@ namespace WorldManager{
 		}
 		
 		public BasicMeleeWeapon GetMeleeWeapon(int index, Transform parent) {
-			return Instantiate(meleeWeapons[index], parent);
+			BasicMeleeWeapon weapon = Instantiate(meleeWeapons[index], parent);
+			weapon.InitializeWeapon();
+			return weapon;
 		}
 	}
 }

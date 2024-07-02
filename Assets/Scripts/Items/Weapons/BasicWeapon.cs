@@ -42,7 +42,7 @@ namespace Items.Weapons {
         [SerializeField] protected PlayerCombo[] combos;
         public PlayerCombo[] Combos => combos;
 
-        public virtual void Awake() {
+        public virtual void InitializeWeapon() {
             Damage.Initialize();
             InstantiateCombos();
         }

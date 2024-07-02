@@ -15,7 +15,7 @@ MonoBehaviour:
   NodeName: Play Attack Animation
   Description: 
   GuId: 487669478d76a724da127a0391292e5a
-  GraphPos: {x: 1224, y: 311}
+  GraphPos: {x: 1202, y: 322}
   firstInChain: 1
 --- !u!114 &-8603805474296846582
 MonoBehaviour:
@@ -49,7 +49,7 @@ MonoBehaviour:
   NodeName: 'Roll For Attack '
   Description: 
   GuId: 238ce0ead8d331f4dabe9b39f8190422
-  GraphPos: {x: 1094, y: 322}
+  GraphPos: {x: 1077, y: 322}
 --- !u!114 &-6861864710206288887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   NodeName: 'Wait For Attack Anim Finish '
   Description: 
   GuId: 149017614e69f264194824c2c33e642c
-  GraphPos: {x: 1381, y: 307}
+  GraphPos: {x: 1348, y: 325}
   Duration: 0
 --- !u!114 &-5674872351286014936
 MonoBehaviour:
