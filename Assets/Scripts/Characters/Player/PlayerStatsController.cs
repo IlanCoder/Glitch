@@ -16,6 +16,7 @@ namespace Characters.Player {
         
         [HideInInspector] public UnityEvent<float> onStaminaChange;
         [HideInInspector] public UnityEvent<int> onMaxStaminaChange;
+        [HideInInspector] public UnityEvent OnStaminaDepletion;
         
         public int MaxStamina { get; protected set; }
         public float CurrentStamina { get; protected set; }
@@ -121,7 +122,7 @@ namespace Characters.Player {
             onStaminaChange?.Invoke(CurrentStamina);
             _staminaRegenTimer = staminaRegenDelay;
             if (CurrentStamina > 0) return;
-            if (manager.isSprinting) manager.isSprinting = false;
+            OnStaminaDepletion?.Invoke();
         }
         
         public bool CanPerformStaminaAction() {

@@ -28,29 +28,34 @@ namespace Characters.Player {
         
         void OnEnable() {
             if (_playerControls == null) {
-                _playerControls = new PlayerControls();
-                _playerControls.PlayerMovement.Movement.performed += i => 
-                    MovementInput = i.ReadValue<Vector2>();
-                _playerControls.PlayerMovement.Jump.performed += i => HandleJump();
-                _playerControls.PlayerMovement.Dodge.performed += i => HandleDodge();
-                _playerControls.PlayerMovement.Sprint.performed += i => _sprint = true;
-                _playerControls.PlayerMovement.Sprint.canceled += i => _sprint = false;
-
-                _playerControls.PlayerCamera.Movement.performed += i => 
-                    CameraInput = i.ReadValue<Vector2>();
-                _playerControls.PlayerCamera.LockOn.performed += i => HandleLockOn();
-                _playerControls.PlayerCamera.ChangeLockOnTarget.performed += i => 
-                    HandleLockOnChange(i.ReadValue<float>());
-
-                _playerControls.PlayerActions.ChangeWeapon.performed += i => HandleActiveWeaponChange();
-                _playerControls.PlayerActions.LightAttack.performed += i => HandleLightAttack();
-                _playerControls.PlayerActions.HeavyAttack.performed += i => HandleHeavyAttack();
+                BindControls();
             }
             _playerControls.Enable();
+
+            _playerManager.statsController.OnStaminaDepletion.RemoveListener(CancelSprint);
+            _playerManager.statsController.OnStaminaDepletion.AddListener(CancelSprint);
+        }
+
+        void BindControls() {
+            _playerControls = new PlayerControls();
+            _playerControls.PlayerMovement.Movement.performed += i => MovementInput = i.ReadValue<Vector2>();
+            _playerControls.PlayerMovement.Jump.performed += i => HandleJump();
+            _playerControls.PlayerMovement.Dodge.performed += i => HandleDodge();
+            _playerControls.PlayerMovement.Sprint.performed += i => _sprint = true;
+            _playerControls.PlayerMovement.Sprint.canceled += i => _sprint = false;
+
+            _playerControls.PlayerCamera.Movement.performed += i => CameraInput = i.ReadValue<Vector2>();
+            _playerControls.PlayerCamera.LockOn.performed += i => HandleLockOn();
+            _playerControls.PlayerCamera.ChangeLockOnTarget.performed += i => HandleLockOnChange(i.ReadValue<float>());
+
+            _playerControls.PlayerActions.ChangeWeapon.performed += i => HandleActiveWeaponChange();
+            _playerControls.PlayerActions.LightAttack.performed += i => HandleLightAttack();
+            _playerControls.PlayerActions.HeavyAttack.performed += i => HandleHeavyAttack();
         }
 
         void OnDisable() {
             _playerControls?.Disable();
+            _playerManager.statsController?.OnStaminaDepletion.RemoveListener(CancelSprint);
         }
 
         void OnDestroy() {
@@ -98,6 +103,10 @@ namespace Characters.Player {
                 return;
             }
             _playerManager.movementController.HandleSprint();
+        }
+
+        void CancelSprint() {
+            _sprint = false;
         }
   #endregion
         
