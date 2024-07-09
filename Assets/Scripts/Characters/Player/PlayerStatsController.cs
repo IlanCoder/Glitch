@@ -122,6 +122,7 @@ namespace Characters.Player {
             onStaminaChange?.Invoke(CurrentStamina);
             _staminaRegenTimer = staminaRegenDelay;
             if (CurrentStamina > 0) return;
+            CurrentStamina = 0;
             OnStaminaDepletion?.Invoke();
         }
         

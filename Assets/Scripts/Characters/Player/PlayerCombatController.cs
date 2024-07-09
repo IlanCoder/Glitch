@@ -76,6 +76,16 @@ namespace Characters.Player{
 			}
 			return _availableCombos.Count > 0;
 		}
+		
+		void ApplyAttackModifiers() {
+			float motionMultiplier = activeWeapon.GetAttackMotionMultiplier(_activeCombo, _comboIndex);
+			float energyGain = activeWeapon.GetAttackEnergyGain(_activeCombo, _comboIndex);
+			rightHandWeaponManager.SetWeaponDamageMultipliers(motionMultiplier);
+			rightHandWeaponManager.SetWeaponEnergyGain(energyGain);
+			if (!activeWeapon.DualWield) return;
+			leftHandWeaponManager.SetWeaponDamageMultipliers(motionMultiplier);
+			leftHandWeaponManager.SetWeaponEnergyGain(energyGain);
+		}
 
 		public void SetActiveWeapon(BasicWeapon weapon) {
 			activeWeapon = weapon;
@@ -86,16 +96,6 @@ namespace Characters.Player{
 		public void ResetCombo() {
 			_comboIndex = 0;
 			_availableCombos = new List<PlayerCombo>(_activeWeaponCombos);
-		}
-
-		void ApplyAttackModifiers() {
-			float motionMultiplier = activeWeapon.GetAttackMotionMultiplier(_activeCombo, _comboIndex);
-			float energyGain = activeWeapon.GetAttackEnergyGain(_activeCombo, _comboIndex);
-			rightHandWeaponManager.SetWeaponDamageMultipliers(motionMultiplier);
-			rightHandWeaponManager.SetWeaponEnergyGain(energyGain);
-			if (!activeWeapon.DualWield) return;
-			leftHandWeaponManager.SetWeaponDamageMultipliers(motionMultiplier);
-			leftHandWeaponManager.SetWeaponEnergyGain(energyGain);
 		}
 
 		public void ChangeTarget(CharacterManager newTarget) {

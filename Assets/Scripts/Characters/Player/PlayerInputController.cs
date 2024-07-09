@@ -30,7 +30,7 @@ namespace Characters.Player {
             if (_playerControls == null) {
                 BindControls();
             }
-            _playerControls.Enable();
+            _playerControls?.Enable();
 
             _playerManager.statsController.OnStaminaDepletion.RemoveListener(CancelSprint);
             _playerManager.statsController.OnStaminaDepletion.AddListener(CancelSprint);
