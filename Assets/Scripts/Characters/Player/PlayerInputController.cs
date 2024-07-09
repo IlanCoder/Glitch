@@ -13,7 +13,7 @@ namespace Characters.Player {
         #region Player Movement Vars
         public Vector2 MovementInput { get; private set; }
         public float MoveAmount{ get; private set; }
-        bool _sprint = false;
+        bool _sprint;
 #endregion
 
         #region Camera Vars
@@ -58,8 +58,8 @@ namespace Characters.Player {
         }
 
         void Update() {
-            HandleSprint();
             HandleMovement();
+            HandleSprint();
         }
 
         void OnSceneChanged(Scene oldScene, Scene newScene) {
@@ -69,7 +69,7 @@ namespace Characters.Player {
         #region Locomotion
         void HandleMovement() {
             MoveAmount = Mathf.Clamp01(Mathf.Abs(MovementInput.x) + Mathf.Abs(MovementInput.y));
-            if (_playerManager.isSprinting) {
+            if (_playerManager.isSprinting && MovementInput.magnitude > 0) {
                 MoveAmount = 2;
                 return;
             }
@@ -92,7 +92,7 @@ namespace Characters.Player {
         }
 
         void HandleSprint() {
-            if (!_sprint) {
+            if (!_sprint || MovementInput.magnitude <= 0) {
                 if(!_playerManager.isSprinting) return;
                 _playerManager.isSprinting = false;
                 return;
@@ -113,7 +113,7 @@ namespace Characters.Player {
             _playerManager.combatController.PerformNormalAttack(AttackType.Heavy);
         }
 
-        #region LockOn
+        #region Lock On
         void HandleLockOn() {
             if (_playerManager.isLockedOn) {
                 _playerManager.DisableLockOn();

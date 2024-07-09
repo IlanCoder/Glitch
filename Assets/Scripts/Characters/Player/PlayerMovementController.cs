@@ -58,6 +58,7 @@ namespace Characters.Player {
             } else {
                 _moveDirection = GetNormalizedHorizontalDirection(_camManagerTransform);
                 _playerManager.animController.UpdateMovementParameters(0, _playerManager.inputController.MoveAmount);
+                if(_playerManager.isSprinting) _playerManager.statsController.UseStamina(sprintCost * Time.deltaTime);
             }
             _playerManager.characterController.Move(GetGroundSpeed() * Time.deltaTime * _moveDirection);
         }
@@ -106,7 +107,6 @@ namespace Characters.Player {
                 return;
             }
             _playerManager.isSprinting = true;
-            _playerManager.statsController.UseStamina(sprintCost * Time.deltaTime);
         }
         
         void CheckRotationRelativeToCam() {

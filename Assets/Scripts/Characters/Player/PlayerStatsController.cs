@@ -120,6 +120,8 @@ namespace Characters.Player {
             CurrentStamina -= staminaUsed;
             onStaminaChange?.Invoke(CurrentStamina);
             _staminaRegenTimer = staminaRegenDelay;
+            if (CurrentStamina > 0) return;
+            if (manager.isSprinting) manager.isSprinting = false;
         }
         
         public bool CanPerformStaminaAction() {
