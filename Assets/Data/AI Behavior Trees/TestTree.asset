@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8932597555508963066
+--- !u!114 &-9056955710123094698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13f303e1de0845daa0f86d25fa31a984, type: 3}
-  m_Name: Play Attack Anima
+  m_Script: {fileID: 11500000, guid: effe0e6bcb164938b566fe1099afe41f, type: 3}
+  m_Name: 'Attack '
   m_EditorClassIdentifier: 
-  NodeName: Play Attack Animation
+  NodeName: 'Attack '
   Description: 
-  GuId: 487669478d76a724da127a0391292e5a
-  GraphPos: {x: 1202, y: 322}
-  firstInChain: 1
+  GuId: 7b4727897b853b941ab207d362b48454
+  GraphPos: {x: 1185, y: 322}
+  Duration: 0
 --- !u!114 &-8603805474296846582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,23 +50,7 @@ MonoBehaviour:
   Description: 
   GuId: 238ce0ead8d331f4dabe9b39f8190422
   GraphPos: {x: 1077, y: 322}
---- !u!114 &-6861864710206288887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbf7321278d14885a8c1adbe49bfa80d, type: 3}
-  m_Name: 'Wait For Attack Anim Finish '
-  m_EditorClassIdentifier: 
-  NodeName: 'Wait For Attack Anim Finish '
-  Description: 
-  GuId: 149017614e69f264194824c2c33e642c
-  GraphPos: {x: 1348, y: 325}
-  Duration: 0
+  canRepeatLastAttack: 1
 --- !u!114 &-5674872351286014936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,12 +66,26 @@ MonoBehaviour:
   NodeName: 'Sequence '
   Description: 
   GuId: 02b75e97d052fa7448341959205edf06
-  GraphPos: {x: 1027, y: 187}
+  GraphPos: {x: 1035, y: 197}
   Children:
-  - {fileID: 1652708022761223933}
   - {fileID: -7204680879125135449}
-  - {fileID: -8932597555508963066}
-  - {fileID: -6861864710206288887}
+  - {fileID: -9056955710123094698}
+--- !u!114 &-4403332352014810024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce93640e33aa432da96732ba4b52bd14, type: 3}
+  m_Name: 'Idle Until Agro '
+  m_EditorClassIdentifier: 
+  NodeName: 'Idle Until Agro '
+  Description: 
+  GuId: 704f6d03425d9484a8ca736b18dd1ae0
+  GraphPos: {x: 310, y: 321.99997}
 --- !u!114 &-3339057155166454003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,25 +103,6 @@ MonoBehaviour:
   GuId: ddf6bf0b3680c3343b526d825f453b56
   GraphPos: {x: 409, y: -82.50865}
   Child: {fileID: 6060023088253049890}
---- !u!114 &-312714226922439646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8719c57472a49a3b944510b904be83b, type: 3}
-  m_Name: SequenceNode
-  m_EditorClassIdentifier: 
-  NodeName: Sequence
-  Description: Idle until find Target
-  GuId: b80e5f0656e7a5245afa01a5d7c81eac
-  GraphPos: {x: 278, y: 181}
-  Children:
-  - {fileID: 2131084105564693046}
-  - {fileID: 2946632005916212112}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,25 +119,37 @@ MonoBehaviour:
   Nodes:
   - {fileID: -8603805474296846582}
   - {fileID: -3339057155166454003}
-  - {fileID: 2131084105564693046}
-  - {fileID: 3056662064380337565}
-  - {fileID: 2946632005916212112}
   - {fileID: 8245167627056840502}
-  - {fileID: -312714226922439646}
   - {fileID: 8524417310741579380}
   - {fileID: 1571603602094024553}
   - {fileID: 6880987025524055808}
   - {fileID: 6060023088253049890}
-  - {fileID: 1652708022761223933}
   - {fileID: -5674872351286014936}
   - {fileID: -7204680879125135449}
-  - {fileID: -8932597555508963066}
-  - {fileID: -6861864710206288887}
+  - {fileID: -4403332352014810024}
+  - {fileID: 940634421207969649}
+  - {fileID: -9056955710123094698}
   Blackboard:
     targetCharacter: {fileID: 0}
-    availableAttacks: []
     previousAttack: {fileID: 0}
     currentAttack: {fileID: 0}
+--- !u!114 &940634421207969649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0173b6344554b7a8e7b3919d49af299, type: 3}
+  m_Name: 'Inverter '
+  m_EditorClassIdentifier: 
+  NodeName: 'Inverter '
+  Description: 
+  GuId: 543ad9eec06ae72478613f459b92fde0
+  GraphPos: {x: 310, y: 195}
+  Child: {fileID: -4403332352014810024}
 --- !u!114 &1571603602094024553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,72 +166,6 @@ MonoBehaviour:
   Description: 
   GuId: 084f0b21a3d0fad4590ba3163c9ed6ce
   GraphPos: {x: 636, y: 318}
---- !u!114 &1652708022761223933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0801ba9e2ba4fa582210f558f74e6b2, type: 3}
-  m_Name: 'Get Available Attacks '
-  m_EditorClassIdentifier: 
-  NodeName: 'Get Available Attacks '
-  Description: 
-  GuId: 50a528a203cfe7f4f9e83ba747b2a0d3
-  GraphPos: {x: 931, y: 318}
-  canRepeatLastAttack: 1
---- !u!114 &2131084105564693046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdcf4ccfa7c34deebe932ccbc8537a1a, type: 3}
-  m_Name: IdleNode
-  m_EditorClassIdentifier: 
-  NodeName: Idle
-  Description: 
-  GuId: e5ed44d3d55c66043a5992c96cde4b6e
-  GraphPos: {x: 236, y: 297}
---- !u!114 &2946632005916212112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0173b6344554b7a8e7b3919d49af299, type: 3}
-  m_Name: InverterNode
-  m_EditorClassIdentifier: 
-  NodeName: Inverter
-  Description: 
-  GuId: ad53742d6bde9cb4caad550e8737bdf2
-  GraphPos: {x: 348, y: 294}
-  Child: {fileID: 3056662064380337565}
---- !u!114 &3056662064380337565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 163ffb5664fb498e996f75d8be3e1d40, type: 3}
-  m_Name: FindChaseTargetNode
-  m_EditorClassIdentifier: 
-  NodeName: Find Pursue Target
-  Description: 
-  GuId: 406e472cdabcbd9458ca0ce2967b2480
-  GraphPos: {x: 328, y: 402}
 --- !u!114 &6060023088253049890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,9 +181,9 @@ MonoBehaviour:
   NodeName: 'Selector '
   Description: 
   GuId: fbadb48cec9d9d245aca85c45443f0d1
-  GraphPos: {x: 405, y: 56}
+  GraphPos: {x: 402.35385, y: 45.749493}
   Children:
-  - {fileID: -312714226922439646}
+  - {fileID: 940634421207969649}
   - {fileID: 8524417310741579380}
 --- !u!114 &6880987025524055808
 MonoBehaviour:

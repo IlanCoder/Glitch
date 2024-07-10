@@ -35,7 +35,7 @@ namespace Characters.NPC {
             return tempList.Count > 0;
         }
         
-        public bool TryGetAvailableAttacks(CharacterManager target, NpcAttack attackToIgnore,out List<NpcAttack> tempList) {
+        public bool TryGetAvailableAttacks(CharacterManager target, NpcAttack attackToIgnore, out List<NpcAttack> tempList) {
             tempList = new List<NpcAttack>();
             int listWeight = 0;
             foreach (NpcAttack attack in attacks) {

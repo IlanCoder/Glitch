@@ -11,7 +11,6 @@ namespace BehaviorTreeSource.Runtime {
         public CharacterManager targetCharacter;
         
         [Header("Attacks")]
-        public List<NpcAttack> availableAttacks;
         public NpcAttack previousAttack;
         public NpcAttack currentAttack;
     }

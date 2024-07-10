@@ -3,15 +3,22 @@ using BehaviorTreeSource.Runtime.Nodes.Leaves;
 using Characters;
 
 namespace AiBehaviorNodes.Movement {
-    public class FindPursueTargetNode : LeafNode {
+    public class IdleUntilAgroNode : LeafNode {
         CharacterManager _target;
-        
         protected override void InitializeNode() {
             _target = null;
         }
 
         protected override NodeStatus Tick() {
-            return !NpcAgent.agroController.CheckLineSightRadius(out _target) ? NodeStatus.Failed : NodeStatus.Succeeded;
+            try {
+                NpcAgent.movementController.GoIdle();
+                return NpcAgent.agroController.CheckLineSightRadius(out _target)
+                    ? NodeStatus.Succeeded
+                    : NodeStatus.Running;
+            }
+            catch {
+                return NodeStatus.Failed;
+            }
         }
 
         protected override void ExitNode() {
