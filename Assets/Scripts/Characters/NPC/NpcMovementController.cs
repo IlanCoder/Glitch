@@ -13,6 +13,7 @@ namespace Characters.NPC {
 		[Header("Chase Settings")]
 		[SerializeField] protected float stoppingDistance;
 		[SerializeField] protected float straightAheadAngle;
+		public float StoppingDistance => stoppingDistance;
 
 		protected override void Awake() {
 			base.Awake();

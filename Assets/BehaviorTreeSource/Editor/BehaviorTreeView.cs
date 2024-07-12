@@ -152,7 +152,7 @@ namespace BehaviorTreeSource.Editor {
             }
             types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
             foreach (Type type in types) {
-                evt.menu.AppendAction($"Decorator Nodes/{type.Name}", (a) => CreateNode(type, mousePos));
+                evt.menu.AppendAction($"Decorator Nodes/{type.Namespace().Name}/{type.Name}", (a) => CreateNode(type, mousePos));
             }
         }
 

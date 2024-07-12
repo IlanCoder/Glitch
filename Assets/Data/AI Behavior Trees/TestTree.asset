@@ -16,7 +16,6 @@ MonoBehaviour:
   Description: 
   GuId: 7b4727897b853b941ab207d362b48454
   GraphPos: {x: 1093, y: 322}
-  Duration: 0
 --- !u!114 &-8603805474296846582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +128,7 @@ MonoBehaviour:
   - {fileID: -4403332352014810024}
   - {fileID: 940634421207969649}
   - {fileID: -9056955710123094698}
+  - {fileID: 8085195372924341437}
   Blackboard:
     targetCharacter: {fileID: 0}
     previousAttack: {fileID: 0}
@@ -165,7 +165,7 @@ MonoBehaviour:
   NodeName: Rotate To Pursue Direction
   Description: 
   GuId: 084f0b21a3d0fad4590ba3163c9ed6ce
-  GraphPos: {x: 636, y: 318}
+  GraphPos: {x: 645, y: 435}
 --- !u!114 &6060023088253049890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +184,8 @@ MonoBehaviour:
   GraphPos: {x: 402.35385, y: 45.749493}
   Children:
   - {fileID: 940634421207969649}
-  - {fileID: 8524417310741579380}
+  - {fileID: 8085195372924341437}
+  - {fileID: -5674872351286014936}
 --- !u!114 &6880987025524055808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +201,24 @@ MonoBehaviour:
   NodeName: Calculate Path To Target
   Description: 
   GuId: 728c01f1cdbaa5f4ab2df038a8d0455f
-  GraphPos: {x: 481, y: 317}
+  GraphPos: {x: 490, y: 434}
+--- !u!114 &8085195372924341437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d55802d53ab42459a02090deedaed1e, type: 3}
+  m_Name: 'Is Target Out Of Combat Range '
+  m_EditorClassIdentifier: 
+  NodeName: 'Is Target Out Of Combat Range '
+  Description: 
+  GuId: 0260c9118cd40574aba1fecb61bf7d55
+  GraphPos: {x: 584, y: 192}
+  Child: {fileID: 8524417310741579380}
 --- !u!114 &8245167627056840502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +234,7 @@ MonoBehaviour:
   NodeName: Pursue Target
   Description: 
   GuId: 82c7889e0ee884e47b5639ffb67ace65
-  GraphPos: {x: 792, y: 314}
+  GraphPos: {x: 801, y: 431}
 --- !u!114 &8524417310741579380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,9 +250,8 @@ MonoBehaviour:
   NodeName: Sequence
   Description: Chase Target
   GuId: 9f0a472cd4b730444a43c3217ba99417
-  GraphPos: {x: 594, y: 189}
+  GraphPos: {x: 603, y: 306}
   Children:
   - {fileID: 6880987025524055808}
   - {fileID: 1571603602094024553}
   - {fileID: 8245167627056840502}
-  - {fileID: -5674872351286014936}

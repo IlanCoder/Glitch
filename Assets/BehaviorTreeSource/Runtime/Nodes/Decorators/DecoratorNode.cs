@@ -20,6 +20,7 @@ namespace BehaviorTreeSource.Runtime.Nodes.Decorators {
             if (Child != childToRemove) return;
             Child = null;
         }
+        
         public override List<BasicNode> GetChildren() {
             return !Child ? new List<BasicNode>() : new List<BasicNode> { Child };
         }
