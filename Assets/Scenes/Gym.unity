@@ -3700,6 +3700,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 894213957332525104, guid: fb8970df72043a14a8450ab56a81ac0e,
+        type: 3}
+      propertyPath: attacks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3493666990746572942, guid: fb8970df72043a14a8450ab56a81ac0e,
         type: 3}
       propertyPath: m_Enabled

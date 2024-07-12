@@ -30,10 +30,5 @@ namespace Characters.NPC {
             }
             animator.SetTrigger(_continueAttackChainTriggerHash);
         }
-
-        public bool IsAttackAnimationPlaying(NpcAttack attack) {
-            if (animator.GetCurrentAnimatorClipInfo(0).Length <= 0) return true;
-            return animator.GetCurrentAnimatorClipInfo(0)[0].clip == attack.AttackAnimation;
-        }
     }
 }

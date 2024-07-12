@@ -1,28 +1,32 @@
-﻿using BehaviorTreeSource.Runtime.Nodes;
+﻿using AnimatorScripts.NPC;
+using BehaviorTreeSource.Runtime.Nodes;
+using BehaviorTreeSource.Runtime.Nodes.Leaves;
 using BehaviorTreeSource.Runtime.Nodes.Leaves.General;
 
 namespace AiBehaviorNodes.Combat {
-    public class AttackNode : WaitNode {
-        bool _firstInChain;
-        
+    public class AttackNode : LeafNode {
+
         protected override void InitializeNode() {
-            _firstInChain = true;
-            Duration = TreeBlackboard.currentAttack.AttackAnimation.length;
+            NpcAgent.isPerformingAction = true;
+            InvokeNewAttackEvent.AttackStarted.AddListener(LoadNextAttackAnimation);
+            NpcAgent.combatController.HandleAttackAnimation(TreeBlackboard.attackChain.Dequeue());
         }
 
         protected override NodeStatus Tick() {
             try {
-                NpcAgent.combatController.HandleAttackAnimation(TreeBlackboard.currentAttack, _firstInChain);
-                return NpcAgent.animController.IsAttackAnimationPlaying(TreeBlackboard.currentAttack)
-                    ? base.Tick()
-                    : NodeStatus.Failed;
+                return NpcAgent.isPerformingAction ? NodeStatus.Running : NodeStatus.Succeeded;
             } catch {
                 return NodeStatus.Failed;
             }
         }
 
         protected override void ExitNode() {
-            
+            InvokeNewAttackEvent.AttackStarted.RemoveListener(LoadNextAttackAnimation);
+        }
+
+        protected void LoadNextAttackAnimation() {
+            if (TreeBlackboard.attackChain.Count <= 0) return;
+            NpcAgent.combatController.HandleAttackAnimation(TreeBlackboard.attackChain.Dequeue(), false);
         }
     }
 }

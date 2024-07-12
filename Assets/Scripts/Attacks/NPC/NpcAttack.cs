@@ -60,7 +60,8 @@ namespace Attacks.NPC {
 
         public bool TryRollForChain(out NpcAttack chainedAttack) {
             chainedAttack = null;
-            if (chainChance >= Random.Range(0, 100)) return false;
+            if (possibleChains.Count <= 0) return false;
+            if (chainChance < Random.Range(0, 100)) return false;
             chainedAttack = RollChainWeights();
             return true;
         }

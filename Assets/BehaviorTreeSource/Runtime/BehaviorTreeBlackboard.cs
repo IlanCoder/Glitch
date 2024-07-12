@@ -13,5 +13,6 @@ namespace BehaviorTreeSource.Runtime {
         [Header("Attacks")]
         public NpcAttack previousAttack;
         public NpcAttack currentAttack;
+        public Queue<NpcAttack> attackChain = new Queue<NpcAttack>();
     }
 }

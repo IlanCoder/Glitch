@@ -58,6 +58,16 @@ namespace Characters.NPC {
             return null;
         }
 
+        public Queue<NpcAttack> RollForAttackChain(NpcAttack firstAttack) {
+            Queue<NpcAttack> tempQueue = new Queue<NpcAttack>();
+            NpcAttack selectedAttack = firstAttack;
+            tempQueue.Enqueue(selectedAttack);
+            while (selectedAttack.TryRollForChain(out selectedAttack)) {
+                tempQueue.Enqueue(selectedAttack);
+            }
+            return tempQueue;
+        }
+
         public void HandleAttackAnimation(NpcAttack attack, bool firstInChain = true) {
             Npc.animOverrider.OverrideNextAttack(attack, firstInChain);
             Npc.animController.PlayAttackAnimation(firstInChain);

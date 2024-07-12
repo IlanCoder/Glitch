@@ -15,7 +15,7 @@ MonoBehaviour:
   NodeName: 'Attack '
   Description: 
   GuId: 7b4727897b853b941ab207d362b48454
-  GraphPos: {x: 1185, y: 322}
+  GraphPos: {x: 1093, y: 322}
   Duration: 0
 --- !u!114 &-8603805474296846582
 MonoBehaviour:
@@ -49,7 +49,7 @@ MonoBehaviour:
   NodeName: 'Roll For Attack '
   Description: 
   GuId: 238ce0ead8d331f4dabe9b39f8190422
-  GraphPos: {x: 1077, y: 322}
+  GraphPos: {x: 957, y: 322}
   canRepeatLastAttack: 1
 --- !u!114 &-5674872351286014936
 MonoBehaviour:
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 'Sequence '
   m_EditorClassIdentifier: 
   NodeName: 'Sequence '
-  Description: 
+  Description: Attack
   GuId: 02b75e97d052fa7448341959205edf06
   GraphPos: {x: 1035, y: 197}
   Children:
