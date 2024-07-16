@@ -15,7 +15,7 @@ MonoBehaviour:
   NodeName: 'Attack '
   Description: 
   GuId: 7b4727897b853b941ab207d362b48454
-  GraphPos: {x: 1093, y: 322}
+  GraphPos: {x: 814, y: 562}
 --- !u!114 &-8603805474296846582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   NodeName: 'Roll For Attack '
   Description: 
   GuId: 238ce0ead8d331f4dabe9b39f8190422
-  GraphPos: {x: 964, y: 330}
+  GraphPos: {x: 685, y: 570}
   canRepeatLastAttack: 1
 --- !u!114 &-5674872351286014936
 MonoBehaviour:
@@ -65,7 +65,7 @@ MonoBehaviour:
   NodeName: 'Sequence '
   Description: Attack
   GuId: 02b75e97d052fa7448341959205edf06
-  GraphPos: {x: 1035, y: 197}
+  GraphPos: {x: 756, y: 437}
   Children:
   - {fileID: -7204680879125135449}
   - {fileID: -9056955710123094698}
@@ -102,6 +102,25 @@ MonoBehaviour:
   GuId: ddf6bf0b3680c3343b526d825f453b56
   GraphPos: {x: 409, y: -82.50865}
   Child: {fileID: 6060023088253049890}
+--- !u!114 &-796108780585097224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc759b7faab4b52ae44aefa6dff2204, type: 3}
+  m_Name: 'Selector '
+  m_EditorClassIdentifier: 
+  NodeName: 'Selector '
+  Description: 
+  GuId: 3a68548f825d3c648bae8ffe62ffe4e5
+  GraphPos: {x: 648.1829, y: 298.99997}
+  Children:
+  - {fileID: 8085195372924341437}
+  - {fileID: -5674872351286014936}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +148,8 @@ MonoBehaviour:
   - {fileID: 940634421207969649}
   - {fileID: -9056955710123094698}
   - {fileID: 8085195372924341437}
+  - {fileID: 1799485874801459230}
+  - {fileID: -796108780585097224}
   Blackboard:
     targetCharacter: {fileID: 0}
     previousAttack: {fileID: 0}
@@ -165,7 +186,27 @@ MonoBehaviour:
   NodeName: Rotate To Pursue Direction
   Description: 
   GuId: 084f0b21a3d0fad4590ba3163c9ed6ce
-  GraphPos: {x: 645, y: 435}
+  GraphPos: {x: 546.3141, y: 673}
+--- !u!114 &1799485874801459230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f4918cd7224766b49af1c63d0d4fd8, type: 3}
+  m_Name: 'Cancellable Repeater '
+  m_EditorClassIdentifier: 
+  NodeName: 'Cancellable Repeater '
+  Description: 'Aggro Branch
+
+'
+  GuId: 57c70402c6bec0d42838a00c79e187a1
+  GraphPos: {x: 630.18286, y: 189.99997}
+  Child: {fileID: -796108780585097224}
+  cancellableTokenName: Aggro
 --- !u!114 &6060023088253049890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,10 +222,10 @@ MonoBehaviour:
   NodeName: 'Selector '
   Description: 
   GuId: fbadb48cec9d9d245aca85c45443f0d1
-  GraphPos: {x: 402.35385, y: 45.749493}
+  GraphPos: {x: 417, y: 52}
   Children:
   - {fileID: 940634421207969649}
-  - {fileID: 8085195372924341437}
+  - {fileID: 1799485874801459230}
 --- !u!114 &6880987025524055808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +241,7 @@ MonoBehaviour:
   NodeName: Calculate Path To Target
   Description: 
   GuId: 728c01f1cdbaa5f4ab2df038a8d0455f
-  GraphPos: {x: 490, y: 434}
+  GraphPos: {x: 391.31412, y: 672}
 --- !u!114 &8085195372924341437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +257,7 @@ MonoBehaviour:
   NodeName: 'Is Target Out Of Combat Range '
   Description: 
   GuId: 0260c9118cd40574aba1fecb61bf7d55
-  GraphPos: {x: 584, y: 192}
+  GraphPos: {x: 485.31415, y: 430.00003}
   Child: {fileID: 8524417310741579380}
 --- !u!114 &8245167627056840502
 MonoBehaviour:
@@ -233,7 +274,7 @@ MonoBehaviour:
   NodeName: Pursue Target
   Description: 
   GuId: 82c7889e0ee884e47b5639ffb67ace65
-  GraphPos: {x: 801, y: 431}
+  GraphPos: {x: 692.3141, y: 681}
 --- !u!114 &8524417310741579380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +290,7 @@ MonoBehaviour:
   NodeName: Sequence
   Description: Chase Target
   GuId: 9f0a472cd4b730444a43c3217ba99417
-  GraphPos: {x: 603, y: 306}
+  GraphPos: {x: 504.31412, y: 544}
   Children:
   - {fileID: 6880987025524055808}
   - {fileID: 1571603602094024553}

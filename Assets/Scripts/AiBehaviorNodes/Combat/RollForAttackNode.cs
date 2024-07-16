@@ -33,7 +33,7 @@ namespace AiBehaviorNodes.Combat {
             if (_chosenAttacks.Count > 0) {
                 TreeBlackboard.currentAttack = _chosenAttacks.Peek();
             }
-            TreeBlackboard.attackChain = _chosenAttacks;
+            TreeBlackboard.AttackChain = _chosenAttacks;
             _filteredAttacks.Clear();
         }
     }

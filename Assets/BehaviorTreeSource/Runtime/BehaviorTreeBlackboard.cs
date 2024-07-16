@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Attacks.NPC;
 using Characters;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace BehaviorTreeSource.Runtime {
     [Serializable]
@@ -14,7 +13,7 @@ namespace BehaviorTreeSource.Runtime {
         [Header("Attacks")]
         public NpcAttack previousAttack;
         public NpcAttack currentAttack;
-        public Queue<NpcAttack> attackChain = new Queue<NpcAttack>();
+        public Queue<NpcAttack> AttackChain = new Queue<NpcAttack>();
 
         [Header("Cancel Events")]
         public Dictionary<string, bool> CancelEvents = new Dictionary<string, bool>();
