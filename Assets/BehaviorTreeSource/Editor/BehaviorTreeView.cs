@@ -143,16 +143,20 @@ namespace BehaviorTreeSource.Editor {
             Vector2 mousePos = evt.localMousePosition;
             mousePos = viewTransform.matrix.inverse.MultiplyPoint(mousePos);
             foreach (Type type in types) {
+                if (type.IsAbstract) continue;
                 evt.menu.AppendAction($"Leaf Nodes/{type.Namespace().Name}/{type.Name}",
                 (a) => CreateNode(type, mousePos));
             }
             types = TypeCache.GetTypesDerivedFrom<CompositeNode>();
             foreach (Type type in types) {
+                if (type.IsAbstract) continue;
                 evt.menu.AppendAction($"Composite Nodes/{type.Name}", (a) => CreateNode(type, mousePos));
             }
             types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
             foreach (Type type in types) {
-                evt.menu.AppendAction($"Decorator Nodes/{type.Namespace().Name}/{type.Name}", (a) => CreateNode(type, mousePos));
+                if (type.IsAbstract) continue;
+                evt.menu.AppendAction($"Decorator Nodes/{type.Namespace().Name}/{type.Name}",
+                (a) => CreateNode(type, mousePos));
             }
         }
 
