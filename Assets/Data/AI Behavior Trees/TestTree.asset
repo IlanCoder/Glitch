@@ -48,7 +48,7 @@ MonoBehaviour:
   NodeName: 'Roll For Attack '
   Description: 
   GuId: 238ce0ead8d331f4dabe9b39f8190422
-  GraphPos: {x: 957, y: 322}
+  GraphPos: {x: 964, y: 330}
   canRepeatLastAttack: 1
 --- !u!114 &-5674872351286014936
 MonoBehaviour:
@@ -185,7 +185,6 @@ MonoBehaviour:
   Children:
   - {fileID: 940634421207969649}
   - {fileID: 8085195372924341437}
-  - {fileID: -5674872351286014936}
 --- !u!114 &6880987025524055808
 MonoBehaviour:
   m_ObjectHideFlags: 0
