@@ -12,7 +12,7 @@ namespace Characters.Player {
         [Header("Sub Stats")] 
         [SerializeField, Min(0.1f)] protected float staminaRegen = 1;
         [SerializeField, Min(0.1f)] protected float staminaRegenDelay = 1;
-        float _staminaRegenTimer;
+        float _lastStaminaActionTime;
         
         [HideInInspector] public UnityEvent<float> onStaminaChange;
         [HideInInspector] public UnityEvent<int> onMaxStaminaChange;
@@ -108,10 +108,7 @@ namespace Characters.Player {
             if (manager.isPerformingAction) return;
             if (manager.isSprinting) return;
             if (CurrentStamina >= MaxStamina) return;
-            if (_staminaRegenTimer > 0) {
-                _staminaRegenTimer -= Time.deltaTime;
-                return;
-            }
+            if (Time.time - _lastStaminaActionTime <= staminaRegenDelay) return;
             CurrentStamina += staminaRegen * Time.deltaTime;
             if (CurrentStamina > MaxStamina) CurrentStamina = MaxStamina;
             onStaminaChange?.Invoke(CurrentStamina);
@@ -120,7 +117,7 @@ namespace Characters.Player {
         public void UseStamina(float staminaUsed) {
             CurrentStamina -= staminaUsed;
             onStaminaChange?.Invoke(CurrentStamina);
-            _staminaRegenTimer = staminaRegenDelay;
+            _lastStaminaActionTime = Time.time;
             if (CurrentStamina > 0) return;
             CurrentStamina = 0;
             OnStaminaDepletion?.Invoke();

@@ -12,6 +12,11 @@ namespace BehaviorTreeSource.Runtime.Nodes.Decorators {
             return node;
         }
         
+        public override void ExitNodeEarly() {
+            if(Child.Status == NodeStatus.Running) Child.ExitNodeEarly();
+            base.ExitNodeEarly();
+        }
+        
         public override void AddChild(BasicNode newChild) {
             if(newChild == this) return;
             SetChild(newChild);

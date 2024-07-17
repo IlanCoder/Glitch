@@ -16,5 +16,13 @@ namespace BehaviorTreeSource.Runtime.Nodes.Composites {
             }
             return Status;
         }
+        
+        public override void ExitNodeEarly() {
+            foreach (BasicNode child in Children) {
+                if(child.Status != NodeStatus.Running) continue;
+                child.ExitNodeEarly();
+            }
+            base.ExitNodeEarly();
+        }
     }
 }

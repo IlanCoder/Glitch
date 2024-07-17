@@ -15,6 +15,7 @@ namespace AiBehaviorNodes.Movement {
         }
 
         protected override void ExitNode() {
+            NpcAgent.movementController.StopChasing();
         }
     }
 }

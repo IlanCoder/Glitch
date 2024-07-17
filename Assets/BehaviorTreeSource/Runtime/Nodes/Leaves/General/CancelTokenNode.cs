@@ -14,7 +14,7 @@ namespace BehaviorTreeSource.Runtime.Nodes.Leaves.General {
 
         protected override NodeStatus Tick() {
             if (!_keyFound) return NodeStatus.Failed;
-            TreeBlackboard.CancelEvents[cancellableTokenName] = true;
+            TreeBlackboard.CancelEvents[cancellableTokenName]?.Invoke();
             return NodeStatus.Succeeded;
         }
 

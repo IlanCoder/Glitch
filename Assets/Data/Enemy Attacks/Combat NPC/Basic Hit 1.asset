@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackAnimation: {fileID: 7400000, guid: 452786ca4732fca499add32e3f5893d6, type: 3}
   attackType: 0
-  downTime: 2
+  downTime: 1
   attackWeight: 15
   listedRollWeight: 15
   minAngle: -35

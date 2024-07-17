@@ -1,15 +1,18 @@
 ﻿using AnimatorScripts.NPC;
+using Attacks.NPC;
 using BehaviorTreeSource.Runtime.Nodes;
 using BehaviorTreeSource.Runtime.Nodes.Leaves;
-using BehaviorTreeSource.Runtime.Nodes.Leaves.General;
+using UnityEngine;
 
 namespace AiBehaviorNodes.Combat {
     public class AttackNode : LeafNode {
+        NpcAttack _lastAttack;
 
         protected override void InitializeNode() {
             NpcAgent.isPerformingAction = true;
             InvokeNewAttackEvent.AttackStarted.AddListener(LoadNextAttackAnimation);
-            NpcAgent.combatController.HandleAttackAnimation(TreeBlackboard.AttackChain.Dequeue());
+            _lastAttack = TreeBlackboard.AttackChain.Dequeue();
+            NpcAgent.combatController.HandleAttackAnimation(_lastAttack);
         }
 
         protected override NodeStatus Tick() {
@@ -22,11 +25,14 @@ namespace AiBehaviorNodes.Combat {
 
         protected override void ExitNode() {
             InvokeNewAttackEvent.AttackStarted.RemoveListener(LoadNextAttackAnimation);
+            TreeBlackboard.lastAttackTime = Time.time;
+            TreeBlackboard.lastAttackDownTime = _lastAttack.DownTime;
         }
 
         protected void LoadNextAttackAnimation() {
             if (TreeBlackboard.AttackChain.Count <= 0) return;
-            NpcAgent.combatController.HandleAttackAnimation(TreeBlackboard.AttackChain.Dequeue(), false);
+            _lastAttack = TreeBlackboard.AttackChain.Dequeue();
+            NpcAgent.combatController.HandleAttackAnimation(_lastAttack, false);
         }
     }
 }

@@ -7,7 +7,6 @@ namespace BehaviorTreeSource.Runtime.Nodes.Composites {
     public abstract class CompositeNode : BasicNode { 
         [SerializeField]protected List<BasicNode> Children = new List<BasicNode>();
         protected ushort RunningChildIndex = 0;
-
         
         override public BasicNode Clone() {
             CompositeNode node = Instantiate(this);
@@ -20,6 +19,11 @@ namespace BehaviorTreeSource.Runtime.Nodes.Composites {
         }
         
         protected override void ExitNode() { }
+
+        public override void ExitNodeEarly() {
+            if(Children[RunningChildIndex].Status == NodeStatus.Running) Children[RunningChildIndex].ExitNodeEarly();
+            base.ExitNodeEarly();
+        }
 
         protected bool ChildIndexInListRange() {
             return RunningChildIndex < Children.Count;

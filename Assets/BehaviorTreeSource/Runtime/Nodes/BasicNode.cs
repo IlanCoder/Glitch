@@ -4,7 +4,6 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace BehaviorTreeSource.Runtime.Nodes {
-
     public abstract class BasicNode : ScriptableObject{
         public string NodeName;
         [TextArea] public string Description;
@@ -36,6 +35,12 @@ namespace BehaviorTreeSource.Runtime.Nodes {
             ExitNode();
             Initialized = false;
             return Status;
+        }
+
+        public virtual void ExitNodeEarly() {
+            Status = NodeStatus.Failed;
+            ExitNode();
+            Initialized = false;
         }
 
         public void BindToTree(NpcManager character, BehaviorTreeBlackboard blackboard) {

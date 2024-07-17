@@ -1,7 +1,7 @@
 ﻿using System.Data;
 
 namespace BehaviorTreeSource.Runtime.Nodes.Decorators {
-    public class CancellableRepeaterNode : RepeaterNode {
+    public class CancellableRepeaterNode : RepeaterNode{
         public string cancellableTokenName;
 
         bool _earlyExit;
@@ -9,7 +9,7 @@ namespace BehaviorTreeSource.Runtime.Nodes.Decorators {
         
         protected override void InitializeNode() {
             base.InitializeNode();
-            if (TreeBlackboard.CancelEvents.TryAdd(cancellableTokenName, _earlyExit)) return;
+            if (TreeBlackboard.CancelEvents.TryAdd(cancellableTokenName, TriggerEarlyExit)) return;
             _nameTaken = true;
             throw new DuplicateNameException($"{cancellableTokenName} already exists in the cancel events dictionary");
         }
@@ -22,6 +22,10 @@ namespace BehaviorTreeSource.Runtime.Nodes.Decorators {
             base.ExitNode();
             if(!_nameTaken) TreeBlackboard.CancelEvents.Remove(cancellableTokenName);
             _earlyExit = false;
+        }
+
+        protected void TriggerEarlyExit() {
+            _earlyExit = true;
         }
     }
 }

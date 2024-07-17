@@ -45,6 +45,11 @@ namespace Characters.NPC {
 			float angleToTarget = Vector3.Angle(transform.forward, targetDirection);
 			return angleToTarget <= straightAheadAngle;
 		}
+
+		public void StopChasing() {
+			Manager.animController.ResetMovementParameters();
+			EnableNavMeshAgent(false);
+		}
 		#endregion
 
 		public void EnableNavMeshAgent(bool enable = true) {

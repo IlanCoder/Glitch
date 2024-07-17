@@ -19,6 +19,11 @@ namespace Characters.NPC {
             animator.SetFloat(_verticalInputFloatHash, vertical,0.1f, Time.fixedDeltaTime);
         }
 
+        public void ResetMovementParameters() {
+            animator.SetFloat(_horizontalInputFloatHash, 0);
+            animator.SetFloat(_verticalInputFloatHash, 0);
+        }
+
         public void UpdateRotation(int y) {
             animator.SetInteger(_rotationYIntHash, y);
         }

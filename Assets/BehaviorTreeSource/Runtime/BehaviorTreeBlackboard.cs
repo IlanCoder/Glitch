@@ -16,6 +16,11 @@ namespace BehaviorTreeSource.Runtime {
         public Queue<NpcAttack> AttackChain = new Queue<NpcAttack>();
 
         [Header("Cancel Events")]
-        public Dictionary<string, bool> CancelEvents = new Dictionary<string, bool>();
+        public Dictionary<string, Action> CancelEvents = new Dictionary<string, Action>();
+
+        [Header("CDs")]
+        public float lastAttackDownTime;
+        public float lastAttackTime;
+
     }
 }
