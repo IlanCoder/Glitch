@@ -15,7 +15,7 @@ MonoBehaviour:
   NodeName: 'Attack '
   Description: 
   GuId: 7b4727897b853b941ab207d362b48454
-  GraphPos: {x: 930, y: 677}
+  GraphPos: {x: 888, y: 692}
 --- !u!114 &-8603805474296846582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   NodeName: 'Roll For Attack '
   Description: 
   GuId: 238ce0ead8d331f4dabe9b39f8190422
-  GraphPos: {x: 816, y: 680}
+  GraphPos: {x: 780, y: 692}
   canRepeatLastAttack: 1
 --- !u!114 &-6430884283539975817
 MonoBehaviour:
@@ -63,10 +63,10 @@ MonoBehaviour:
   m_Name: 'Cancel Token '
   m_EditorClassIdentifier: 
   NodeName: 'Cancel Token '
-  Description: 
+  Description: Aggro
   GuId: 044db91f727393a47a90fd91f32dc2ae
-  GraphPos: {x: 555, y: 688}
-  cancellableTokenName: 
+  GraphPos: {x: 608.0001, y: 733.5}
+  cancellableTokenName: Aggro
 --- !u!114 &-5674872351286014936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,12 +80,31 @@ MonoBehaviour:
   m_Name: 'Sequence '
   m_EditorClassIdentifier: 
   NodeName: 'Sequence '
-  Description: Attack
+  Description: 
   GuId: 02b75e97d052fa7448341959205edf06
-  GraphPos: {x: 872, y: 552}
+  GraphPos: {x: 822, y: 573}
   Children:
   - {fileID: -7204680879125135449}
   - {fileID: -9056955710123094698}
+--- !u!114 &-4971081218690883448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc759b7faab4b52ae44aefa6dff2204, type: 3}
+  m_Name: 'Selector '
+  m_EditorClassIdentifier: 
+  NodeName: 'Selector '
+  Description: 
+  GuId: 7ef52d96c715a4f40b9c1f8558ed3599
+  GraphPos: {x: 588.0001, y: 852.5}
+  Children:
+  - {fileID: -1773168125992348568}
+  - {fileID: 8245167627056840502}
 --- !u!114 &-4403332352014810024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +138,42 @@ MonoBehaviour:
   GuId: ddf6bf0b3680c3343b526d825f453b56
   GraphPos: {x: 418.00012, y: -69.387985}
   Child: {fileID: 6060023088253049890}
+--- !u!114 &-2326408896394296775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192b8698523b4e659461c0c6a8289cb9, type: 3}
+  m_Name: 'Is Performing Action '
+  m_EditorClassIdentifier: 
+  NodeName: 'Is Performing Action '
+  Description: 
+  GuId: 2ac5535ca9847f74eab68a8dadc0abaf
+  GraphPos: {x: 287.99988, y: 458.00006}
+  Child: {fileID: 0}
+  invertCondition: 0
+--- !u!114 &-1773168125992348568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d55802d53ab42459a02090deedaed1e, type: 3}
+  m_Name: 'Is Target In Combat Range '
+  m_EditorClassIdentifier: 
+  NodeName: 'Is Target In Combat Range '
+  Description: 
+  GuId: 4fe9b883991fa9346a9a02075bdb2413
+  GraphPos: {x: 490.00006, y: 973.5}
+  Child: {fileID: 3511240888692838158}
+  invertCondition: 0
 --- !u!114 &-796108780585097224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,10 +189,10 @@ MonoBehaviour:
   NodeName: 'Selector '
   Description: 
   GuId: 3a68548f825d3c648bae8ffe62ffe4e5
-  GraphPos: {x: 648.1829, y: 298.99997}
+  GraphPos: {x: 496.0001, y: 595.05}
   Children:
-  - {fileID: 8085195372924341437}
-  - {fileID: 7835896019667619066}
+  - {fileID: 8524417310741579380}
+  - {fileID: -6430884283539975817}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,12 +219,15 @@ MonoBehaviour:
   - {fileID: -4403332352014810024}
   - {fileID: 940634421207969649}
   - {fileID: -9056955710123094698}
-  - {fileID: 8085195372924341437}
   - {fileID: 1799485874801459230}
   - {fileID: -796108780585097224}
-  - {fileID: 7835896019667619066}
-  - {fileID: 2189745705197745685}
   - {fileID: -6430884283539975817}
+  - {fileID: 1587341814381632991}
+  - {fileID: 8088340623329478941}
+  - {fileID: -1773168125992348568}
+  - {fileID: 3511240888692838158}
+  - {fileID: -4971081218690883448}
+  - {fileID: -2326408896394296775}
   Blackboard:
     targetCharacter: {fileID: 0}
     previousAttack: {fileID: 0}
@@ -208,7 +266,25 @@ MonoBehaviour:
   NodeName: Rotate To Pursue Direction
   Description: 
   GuId: 084f0b21a3d0fad4590ba3163c9ed6ce
-  GraphPos: {x: 409, y: 833.5}
+  GraphPos: {x: 429.00003, y: 851.5}
+--- !u!114 &1587341814381632991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7c632160684cd5850547a08b2c0a9f, type: 3}
+  m_Name: 'Parallel '
+  m_EditorClassIdentifier: 
+  NodeName: 'Parallel '
+  Description: 
+  GuId: 638fa889336bd8f40b18139019a290f0
+  GraphPos: {x: 584, y: 318}
+  Children:
+  - {fileID: 8088340623329478941}
 --- !u!114 &1799485874801459230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,14 +298,12 @@ MonoBehaviour:
   m_Name: 'Cancellable Repeater '
   m_EditorClassIdentifier: 
   NodeName: 'Cancellable Repeater '
-  Description: 'Aggro Branch
-
-'
+  Description: Aggro Branch
   GuId: 57c70402c6bec0d42838a00c79e187a1
-  GraphPos: {x: 630.18286, y: 189.99997}
-  Child: {fileID: -796108780585097224}
+  GraphPos: {x: 547.5594, y: 190.00003}
+  Child: {fileID: 1587341814381632991}
   cancellableTokenName: Aggro
---- !u!114 &2189745705197745685
+--- !u!114 &3511240888692838158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,16 +312,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cc759b7faab4b52ae44aefa6dff2204, type: 3}
-  m_Name: 'Selector '
+  m_Script: {fileID: 11500000, guid: e525de562c314b84922855cbe6862f80, type: 3}
+  m_Name: 'Walk Towards Target '
   m_EditorClassIdentifier: 
-  NodeName: 'Selector '
+  NodeName: 'Walk Towards Target '
   Description: 
-  GuId: ca7597dcd3833b54491e69f384858d4d
-  GraphPos: {x: 481, y: 560}
-  Children:
-  - {fileID: 8524417310741579380}
-  - {fileID: -6430884283539975817}
+  GuId: ca93dcaa43fa6214ab1efc2d3d2a4c2e
+  GraphPos: {x: 495.0001, y: 1097.5}
 --- !u!114 &6060023088253049890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +334,7 @@ MonoBehaviour:
   NodeName: 'Selector '
   Description: 
   GuId: fbadb48cec9d9d245aca85c45443f0d1
-  GraphPos: {x: 417, y: 52}
+  GraphPos: {x: 417.02, y: 52.000008}
   Children:
   - {fileID: 940634421207969649}
   - {fileID: 1799485874801459230}
@@ -282,8 +353,8 @@ MonoBehaviour:
   NodeName: Calculate Path To Target
   Description: 
   GuId: 728c01f1cdbaa5f4ab2df038a8d0455f
-  GraphPos: {x: 254, y: 832.5}
---- !u!114 &7835896019667619066
+  GraphPos: {x: 271.00006, y: 853.5}
+--- !u!114 &8088340623329478941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,30 +364,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96fa982280254cca8ab89053d1e1a51a, type: 3}
-  m_Name: 'Is Attack Down Time '
+  m_Name: 'Is Attack Down Time Over '
   m_EditorClassIdentifier: 
-  NodeName: 'Is Attack Down Time '
+  NodeName: 'Is Attack Down Time Over '
   Description: 
-  GuId: 021c82040612f44419294484f4deb08c
-  GraphPos: {x: 849, y: 438}
+  GuId: 550a86da34a9ccc4eb08aa15151b7f00
+  GraphPos: {x: 796, y: 450}
   Child: {fileID: -5674872351286014936}
---- !u!114 &8085195372924341437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d55802d53ab42459a02090deedaed1e, type: 3}
-  m_Name: 'Is Target Out Of Combat Range '
-  m_EditorClassIdentifier: 
-  NodeName: 'Is Target Out Of Combat Range '
-  Description: 
-  GuId: 0260c9118cd40574aba1fecb61bf7d55
-  GraphPos: {x: 474, y: 431}
-  Child: {fileID: 2189745705197745685}
+  invertCondition: 0
 --- !u!114 &8245167627056840502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,7 +387,7 @@ MonoBehaviour:
   NodeName: Pursue Target
   Description: 
   GuId: 82c7889e0ee884e47b5639ffb67ace65
-  GraphPos: {x: 560, y: 831.5}
+  GraphPos: {x: 646.0001, y: 981.5}
 --- !u!114 &8524417310741579380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,8 +403,8 @@ MonoBehaviour:
   NodeName: Sequence
   Description: Chase Target
   GuId: 9f0a472cd4b730444a43c3217ba99417
-  GraphPos: {x: 367, y: 704.5}
+  GraphPos: {x: 434.00003, y: 726.5}
   Children:
   - {fileID: 6880987025524055808}
   - {fileID: 1571603602094024553}
-  - {fileID: 8245167627056840502}
+  - {fileID: -4971081218690883448}

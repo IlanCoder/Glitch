@@ -21,6 +21,5 @@ namespace BehaviorTreeSource.Runtime {
         [Header("CDs")]
         public float lastAttackDownTime;
         public float lastAttackTime;
-
     }
 }

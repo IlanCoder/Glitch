@@ -2,7 +2,7 @@
 using BehaviorTreeSource.Runtime.Nodes.Decorators;
 
 namespace AiBehaviorNodes.Conditionals {
-    public class IsTargetOutOfCombatRangeNode : ConditionalNode {
+    public class IsTargetInCombatRangeNode : ConditionalNode {
         protected override void InitializeNode() {
         }
 
@@ -12,8 +12,8 @@ namespace AiBehaviorNodes.Conditionals {
 
         protected override bool CheckCondition() {
             if (TreeBlackboard.targetCharacter is null) return false;
-            return (NpcAgent.movementController.StoppingDistance <= UnityEngine.Vector3.Distance(NpcAgent.transform.position,
-            TreeBlackboard.targetCharacter.transform.position));
+            return NpcAgent.movementController.PursueStoppingDistance > UnityEngine.Vector3.Distance(NpcAgent.transform.position,
+            TreeBlackboard.targetCharacter.transform.position);
         }
     }
 }

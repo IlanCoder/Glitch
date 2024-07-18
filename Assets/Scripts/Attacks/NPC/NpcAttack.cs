@@ -52,7 +52,8 @@ namespace Attacks.NPC {
             float distance = Vector3.Distance(attacker.transform.position, target.transform.position);
             if (distance < minDistance) return false;
             if (distance > maxDistance) return false;
-            float angle = Vector3.SignedAngle(attacker.transform.position, target.transform.position, Vector3.up);
+            Vector3 dirToTarget = target.transform.position - attacker.transform.position;
+            float angle = Vector3.SignedAngle(attacker.transform.forward, dirToTarget, Vector3.up);
             if (angle < minAngle) return false;
             if (angle > maxAngle) return false;
             return true;

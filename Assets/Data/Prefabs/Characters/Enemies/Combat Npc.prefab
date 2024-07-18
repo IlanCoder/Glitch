@@ -130,9 +130,9 @@ MonoBehaviour:
   gravityForce: -10
   fallStartVel: -5
   fallMaxVel: -50
-  runningSpeed: 5
-  stoppingDistance: 2
+  pursueStoppingDistance: 5
   straightAheadAngle: 35
+  walkStoppingDistance: 1
 --- !u!114 &6282087500400664025
 MonoBehaviour:
   m_ObjectHideFlags: 0

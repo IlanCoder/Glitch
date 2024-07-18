@@ -7,19 +7,20 @@ namespace Characters.NPC {
 		protected NavMeshAgent NavAgent;
 		protected NpcManager Manager;
 
-		[Header("Movement Speeds")]
-		[SerializeField] protected float runningSpeed;
-		
 		[Header("Chase Settings")]
-		[SerializeField] protected float stoppingDistance;
+		[SerializeField] protected float pursueStoppingDistance;
 		[SerializeField] protected float straightAheadAngle;
-		public float StoppingDistance => stoppingDistance;
+		public float PursueStoppingDistance => pursueStoppingDistance;
+		
+		[Header("In Combat Settings")]
+		[SerializeField] protected float walkStoppingDistance;
+		public float WalkStoppingDistance => walkStoppingDistance;
 
 		protected override void Awake() {
 			base.Awake();
 			Manager = GetComponent<NpcManager>();
 			NavAgent = GetComponent<NavMeshAgent>();
-			NavAgent.stoppingDistance = stoppingDistance;
+			NavAgent.stoppingDistance = pursueStoppingDistance;
 			NavAgent.updatePosition = false;
 		}
 		
@@ -29,25 +30,17 @@ namespace Characters.NPC {
 		}
 
 		#region Chase
-		public void StartChasing() {
-			NavAgent.speed = runningSpeed;
+		public void StartChasing(float stoppingDistance) {
 			EnableNavMeshAgent();
+			NavAgent.stoppingDistance = stoppingDistance;
 		}
 
-		public void ChaseTarget(CharacterManager target) {
+		public void ChaseTarget(CharacterManager target, float speed = 1) {
 			SetNavMeshDestination(target.transform.position);
-			Manager.animController.UpdateMovementParameters(0, 1);
+			Manager.animController.UpdateMovementParameters(0, speed);
 		}
 		
-		public bool IsDirectionStraightAhead(Vector3 direction) {
-			Vector3 targetDirection = direction;
-			targetDirection.y = 0;
-			float angleToTarget = Vector3.Angle(transform.forward, targetDirection);
-			return angleToTarget <= straightAheadAngle;
-		}
-
 		public void StopChasing() {
-			Manager.animController.ResetMovementParameters();
 			EnableNavMeshAgent(false);
 		}
 		#endregion
@@ -79,6 +72,13 @@ namespace Characters.NPC {
 			return NavAgent.remainingDistance <= NavAgent.stoppingDistance;
 		}
 		#endregion
+		
+		public bool IsDirectionStraightAhead(Vector3 direction) {
+			Vector3 targetDirection = direction;
+			targetDirection.y = 0;
+			float angleToTarget = Vector3.Angle(transform.forward, targetDirection);
+			return angleToTarget <= straightAheadAngle;
+		}
 		
 		public void RotateTowardsDirection(Vector3 direction) {
 			Vector3 targetDir = direction;

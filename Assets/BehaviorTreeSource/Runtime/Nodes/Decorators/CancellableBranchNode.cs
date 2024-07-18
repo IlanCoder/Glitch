@@ -29,5 +29,11 @@ namespace BehaviorTreeSource.Runtime.Nodes.Decorators {
         protected void TriggerEarlyExit() {
             _earlyExit = true;
         }
+        
+        #if UNITY_EDITOR
+        protected void OnValidate() {
+            Description = cancellableTokenName + " Branch";
+        }
+        #endif
     }
 }

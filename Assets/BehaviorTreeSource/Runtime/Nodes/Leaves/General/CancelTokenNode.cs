@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BehaviorTreeSource.Runtime.Nodes.Leaves.General {
     public class CancelTokenNode : LeafNode {
@@ -21,5 +22,11 @@ namespace BehaviorTreeSource.Runtime.Nodes.Leaves.General {
         protected override void ExitNode() {
             _keyFound = true;
         }
+        
+        #if UNITY_EDITOR
+        protected void OnValidate() {
+            Description = cancellableTokenName;
+        }
+#endif
     }
 }
