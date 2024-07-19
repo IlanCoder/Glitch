@@ -20,18 +20,21 @@ namespace BehaviorTreeSource.Runtime.Nodes.Decorators {
         
         protected override void ExitNode() {
             base.ExitNode();
-            if(!_nameTaken) TreeBlackboard.CancelEvents.Remove(cancellableTokenName);
+            if (!_nameTaken) TreeBlackboard.CancelEvents.Remove(cancellableTokenName);
+            if (!_earlyExit) return;
             _earlyExit = false;
+            if (Child.Status == NodeStatus.Running) Child.ExitNodeEarly();
         }
 
         protected void TriggerEarlyExit() {
             _earlyExit = true;
         }
         
-        #if UNITY_EDITOR
+        
+#if UNITY_EDITOR
         protected void OnValidate() {
             Description = cancellableTokenName + " Branch";
         }
-        #endif
+#endif
     }
 }

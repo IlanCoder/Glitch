@@ -2,17 +2,16 @@
     public class ParallelSelectorNode : ParallelNode {
         protected override NodeStatus Tick() {
             Status = NodeStatus.Failed;
+            EarlyExit = true;
             foreach (BasicNode basicNode in Children) {
                 switch (basicNode.UpdateNode()) {
-                    case NodeStatus.Succeeded:
-                        if (Status == NodeStatus.Running) break;
-                        Status = NodeStatus.Succeeded;
-                        break;
+                    case NodeStatus.Succeeded: return NodeStatus.Succeeded;
                     case NodeStatus.Running: 
                         Status = NodeStatus.Running;
                         break;
                 }
             }
+            EarlyExit = false;
             return Status;
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using UnityEngine.Events;
 
 namespace BehaviorTreeSource.Runtime.Nodes.Decorators {
     public class CancellableBranchNode : DecoratorNode {
@@ -15,15 +14,14 @@ namespace BehaviorTreeSource.Runtime.Nodes.Decorators {
         }
 
         protected override NodeStatus Tick() {
-            if (!_earlyExit) return Child.UpdateNode();
-            if (Child.Status != NodeStatus.Running) return NodeStatus.Failed;
-            Child.ExitNodeEarly();
-            return NodeStatus.Failed;
+            return _earlyExit ? NodeStatus.Failed : Child.UpdateNode();
         }
 
         protected override void ExitNode() {
-            if(!_nameTaken) TreeBlackboard.CancelEvents.Remove(cancellableTokenName);
+            if (!_nameTaken) TreeBlackboard.CancelEvents.Remove(cancellableTokenName);
+            if (!_earlyExit) return;
             _earlyExit = false;
+            if (Child.Status == NodeStatus.Running) Child.ExitNodeEarly();
         }
         
         protected void TriggerEarlyExit() {

@@ -38,7 +38,7 @@ namespace BehaviorTreeSource.Runtime.Nodes {
         }
 
         public virtual void ExitNodeEarly() {
-            Status = NodeStatus.Failed;
+            if(Status == NodeStatus.Running) Status = NodeStatus.Failed;
             ExitNode();
             Initialized = false;
         }
