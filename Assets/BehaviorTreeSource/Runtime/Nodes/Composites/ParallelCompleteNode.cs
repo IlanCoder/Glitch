@@ -1,7 +1,7 @@
 ﻿namespace BehaviorTreeSource.Runtime.Nodes.Composites {
     public class ParallelCompleteNode : ParallelNode {
         protected override NodeStatus Tick() {
-            Status = NodeStatus.Running;
+            ReturnStatus = NodeStatus.Running;
             EarlyExit = true;
             foreach (BasicNode basicNode in Children) {
                 switch (basicNode.UpdateNode()) {
@@ -11,7 +11,7 @@
                 }
             }
             EarlyExit = false;
-            return Status;
+            return ReturnStatus;
         }
     }
 }

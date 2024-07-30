@@ -1,21 +1,21 @@
 ﻿namespace BehaviorTreeSource.Runtime.Nodes.Composites {
     public class ParallelNode : CompositeNode {
-        protected NodeStatus Status;
+        protected NodeStatus ReturnStatus;
         protected bool EarlyExit;
         
         protected override NodeStatus Tick() {
-            Status = NodeStatus.Succeeded;
+            ReturnStatus = NodeStatus.Succeeded;
             EarlyExit = true;
             foreach (BasicNode basicNode in Children) {
                 switch (basicNode.UpdateNode()) {
                     case NodeStatus.Failed: return NodeStatus.Failed;
                     case NodeStatus.Running: 
-                        Status = NodeStatus.Running;
+                        ReturnStatus = NodeStatus.Running;
                         break;
                 }
             }
             EarlyExit = false;
-            return Status;
+            return ReturnStatus;
         }
 
         protected override void ExitNode() {

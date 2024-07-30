@@ -2,6 +2,7 @@
 using Attacks.NPC;
 using BehaviorTreeSource.Runtime.Nodes;
 using BehaviorTreeSource.Runtime.Nodes.Leaves;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace AiBehaviorNodes.Combat {
@@ -17,7 +18,9 @@ namespace AiBehaviorNodes.Combat {
 
         protected override NodeStatus Tick() {
             try {
-                return NpcAgent.isPerformingAction ? NodeStatus.Running : NodeStatus.Succeeded;
+                if (!NpcAgent.isPerformingAction) return NodeStatus.Succeeded;
+                NpcAgent.combatController.HandleAttackRotationTracking(TreeBlackboard.targetCharacter);
+                return NodeStatus.Running;
             } catch {
                 return NodeStatus.Failed;
             }

@@ -2329,11 +2329,11 @@ GameObject:
   - component: {fileID: 331698001150466806}
   - component: {fileID: 4593154082145648705}
   - component: {fileID: 8605303721872254329}
-  - component: {fileID: 7257033694426047524}
   - component: {fileID: 8043861301878091408}
   - component: {fileID: 2385595446979143259}
-  - component: {fileID: 233316731465283562}
-  - component: {fileID: 8397120296693354487}
+  - component: {fileID: 7513362065233718204}
+  - component: {fileID: 1665158678654020307}
+  - component: {fileID: 5811708739841155344}
   - component: {fileID: 5697119794618443428}
   - component: {fileID: 7987833362174241047}
   m_Layer: 6
@@ -2406,6 +2406,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Character
+  onHpChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onMaxHpChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnergyChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onMaxEnergyChange:
+    m_PersistentCalls:
+      m_Calls: []
+  playerAttributes:
+    vitality: 10
+    endurance: 10
+    dexterity: 10
+    strength: 10
+    cyber: 10
+    control: 10
+  staminaRegen: 5
+  staminaRegenDelay: 1
   onStaminaChange:
     m_PersistentCalls:
       m_Calls:
@@ -2436,27 +2457,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onHpChange:
+  OnStaminaDepletion:
     m_PersistentCalls:
       m_Calls: []
-  onMaxHpChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onEnergyChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onMaxEnergyChange:
-    m_PersistentCalls:
-      m_Calls: []
-  playerAttributes:
-    vitality: 10
-    endurance: 10
-    dexterity: 10
-    strength: 10
-    cyber: 10
-    control: 10
-  staminaRegen: 5
-  staminaRegenDelay: 1
 --- !u!114 &5738588397391005857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2486,12 +2489,9 @@ MonoBehaviour:
   animController: {fileID: 0}
   animOverrider: {fileID: 0}
   statsController: {fileID: 0}
-  effectsController: {fileID: 0}
   inventoryController: {fileID: 0}
   equipmentManager: {fileID: 0}
   combatController: {fileID: 0}
-  vFxController: {fileID: 0}
-  sFxController: {fileID: 0}
   onPlayerDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -2562,19 +2562,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldSaveManager: {fileID: 0}
---- !u!114 &7257033694426047524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7443002251341178569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c37ca8c2cac92e845af81cb67eed8e16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageVFxType: 0
 --- !u!114 &8043861301878091408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2599,7 +2586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f62932fe604eb18c50427e7b4f26a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &233316731465283562
+--- !u!114 &7513362065233718204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2608,10 +2595,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7443002251341178569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb9cf81f74dde1d40bac624dcd5867b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 62ce8efb0d718e848a09827d1b1ea8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8397120296693354487
+--- !u!114 &1665158678654020307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2620,11 +2607,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 7443002251341178569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 657dd7ebb9294244cbf48bf725554456, type: 3}
+  m_Script: {fileID: 11500000, guid: fd220315c0a6fd6458cfbc87b66d9d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageVFxType: 0
+--- !u!114 &5811708739841155344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443002251341178569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30233891f16953747acb2780053996b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageSFxType: 0
-  hitSFxController: {fileID: 5770958502549400169}
+  hitSFxController: {fileID: 0}
 --- !u!143 &5697119794618443428
 CharacterController:
   m_ObjectHideFlags: 0

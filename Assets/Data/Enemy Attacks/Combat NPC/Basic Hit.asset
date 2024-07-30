@@ -17,8 +17,8 @@ MonoBehaviour:
   downTime: 0.5
   attackWeight: 10
   listedRollWeight: 10
-  minAngle: -35
-  maxAngle: 35
+  minAngle: -25
+  maxAngle: 25
   minDistance: 0
   maxDistance: 2
   possibleChains:

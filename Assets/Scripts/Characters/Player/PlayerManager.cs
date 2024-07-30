@@ -11,12 +11,9 @@ namespace Characters.Player {
      RequireComponent(typeof(PlayerAnimController)),
      RequireComponent(typeof(PlayerAnimOverrider)),
      RequireComponent(typeof(PlayerStatsController)),
-     RequireComponent(typeof(PlayerEffectsController)),
      RequireComponent(typeof(PlayerInventoryController)),
      RequireComponent(typeof(PlayerEquipmentManager)),
-     RequireComponent(typeof(PlayerCombatController)),
-     RequireComponent(typeof(PlayerVFxController)),
-     RequireComponent(typeof(PlayerSFxController)),]
+     RequireComponent(typeof(PlayerCombatController)),]
     public class PlayerManager : CharacterManager {
         [SerializeField]PlayerCamera playerCamera;
         [HideInInspector]public PlayerMovementController movementController;
@@ -24,20 +21,14 @@ namespace Characters.Player {
         [HideInInspector]public PlayerAnimController animController;
         [HideInInspector]public PlayerAnimOverrider animOverrider;
         [HideInInspector]public PlayerStatsController statsController;
-        [HideInInspector]public PlayerEffectsController effectsController;
         [HideInInspector]public PlayerInventoryController inventoryController;
         [HideInInspector]public PlayerEquipmentManager equipmentManager;
         [HideInInspector]public PlayerCombatController combatController;
-        [HideInInspector]public PlayerVFxController vFxController;
-        [HideInInspector]public PlayerSFxController sFxController;
-        
+
         public override CharacterMovementController MovementController => movementController;
         public override CharacterStatsController StatsController => statsController;
         public override CharacterAnimController AnimController => animController;
-        public override CharacterEffectsController EffectsController => effectsController;
         public override CharacterCombatController CombatController => combatController;
-        public override CharacterVFxController VFxController => vFxController;
-        public override CharacterSFxController SFxController => sFxController;
 
         [HideInInspector] public UnityEvent onPlayerDeath;
 
@@ -48,12 +39,9 @@ namespace Characters.Player {
             inputController = GetComponent<PlayerInputController>();
             movementController = GetComponent<PlayerMovementController>();
             statsController = GetComponent<PlayerStatsController>();
-            effectsController = GetComponent<PlayerEffectsController>();
             inventoryController = GetComponent<PlayerInventoryController>();
             equipmentManager = GetComponent<PlayerEquipmentManager>();
             combatController = GetComponent<PlayerCombatController>();
-            vFxController = GetComponent<PlayerVFxController>();
-            sFxController = GetComponent<PlayerSFxController>();
             movementController.playerCam = playerCamera;
             playerCamera.player = this;
             playerCamera.inputController = inputController;
