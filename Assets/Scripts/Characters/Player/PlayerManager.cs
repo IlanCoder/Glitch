@@ -11,7 +11,7 @@ namespace Characters.Player {
      RequireComponent(typeof(PlayerAnimController)),
      RequireComponent(typeof(PlayerAnimOverrider)),
      RequireComponent(typeof(PlayerStatsController)),
-     RequireComponent(typeof(PlayerInventoryController)),
+     RequireComponent(typeof(PlayerInventoryManager)),
      RequireComponent(typeof(PlayerEquipmentManager)),
      RequireComponent(typeof(PlayerCombatController)),]
     public class PlayerManager : CharacterManager {
@@ -21,7 +21,7 @@ namespace Characters.Player {
         [HideInInspector]public PlayerAnimController animController;
         [HideInInspector]public PlayerAnimOverrider animOverrider;
         [HideInInspector]public PlayerStatsController statsController;
-        [HideInInspector]public PlayerInventoryController inventoryController;
+        [HideInInspector]public PlayerInventoryManager inventoryManager;
         [HideInInspector]public PlayerEquipmentManager equipmentManager;
         [HideInInspector]public PlayerCombatController combatController;
 
@@ -39,7 +39,7 @@ namespace Characters.Player {
             inputController = GetComponent<PlayerInputController>();
             movementController = GetComponent<PlayerMovementController>();
             statsController = GetComponent<PlayerStatsController>();
-            inventoryController = GetComponent<PlayerInventoryController>();
+            inventoryManager = GetComponent<PlayerInventoryManager>();
             equipmentManager = GetComponent<PlayerEquipmentManager>();
             combatController = GetComponent<PlayerCombatController>();
             movementController.playerCam = playerCamera;

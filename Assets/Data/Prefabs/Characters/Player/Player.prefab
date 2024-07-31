@@ -2489,7 +2489,7 @@ MonoBehaviour:
   animController: {fileID: 0}
   animOverrider: {fileID: 0}
   statsController: {fileID: 0}
-  inventoryController: {fileID: 0}
+  inventoryManager: {fileID: 0}
   equipmentManager: {fileID: 0}
   combatController: {fileID: 0}
   onPlayerDeath:
@@ -2624,7 +2624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageSFxType: 0
-  hitSFxController: {fileID: 0}
+  hitSFxController: {fileID: 5770958502549400169}
 --- !u!143 &5697119794618443428
 CharacterController:
   m_ObjectHideFlags: 0

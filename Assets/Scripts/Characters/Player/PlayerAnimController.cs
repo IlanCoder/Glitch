@@ -9,7 +9,6 @@ namespace Characters.Player {
             { "Dodge_F", Animator.StringToHash("Dodge_F") },
             { "Dodge_B", Animator.StringToHash("Dodge_B") },
             { "Jump_Start", Animator.StringToHash("Jump_Start") },
-            { "Equip_Weapon", Animator.StringToHash("Equip_Weapon") }
         };
         
         readonly protected Dictionary<string, int> AttackAnimationHashes = new Dictionary<string, int> {
@@ -34,11 +33,6 @@ namespace Characters.Player {
 
         public void PlayReviveAnimation() {
             PlayTargetAnimation(Animator.StringToHash("Movement"), true, false, 
-                false);
-        }
-
-        public void PlayEquipAnimation() {
-            PlayTargetAnimation(PlayerAnimationHashes["Equip_Weapon"], true, false, 
                 false);
         }
 

@@ -16,10 +16,12 @@ namespace BehaviorTreeSource.Runtime.Nodes {
         protected override void InitializeNode() { }
 
         protected override NodeStatus Tick() {
-            return Child.UpdateNode();
+            return NpcAgent.isDead ? NodeStatus.Failed : Child.UpdateNode();
         }
 
-        protected override void ExitNode() { }
+        protected override void ExitNode() {
+            if (Child.Status == NodeStatus.Running) Child.ExitNodeEarly();
+        }
 
         override public void AddChild(BasicNode newChild) {
             if(newChild == this) return;

@@ -14,7 +14,7 @@ namespace Characters.NPC {
 		[HideInInspector] public NpcAnimController animController;
 		[HideInInspector] public NpcAnimOverrider animOverrider;
 		[HideInInspector] public NpcAgroController agroController;
-		
+
 		public override CharacterMovementController MovementController => movementController;
 		public override CharacterCombatController CombatController => combatController;
 		public override CharacterAnimController AnimController => animController;

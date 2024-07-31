@@ -7,12 +7,12 @@ using UnityEngine;
 using WorldManager;
 
 namespace Characters.Player {
-    public class PlayerInventoryController : MonoBehaviour {
+    public class PlayerInventoryManager : MonoBehaviour {
         PlayerManager _manager;
 
         [SerializeField] Transform weaponsParent;
         [Header("Inventory Objs List")]
-        [SerializeField] List<BasicMeleeWeapon> _meleeWeapons = new List<BasicMeleeWeapon>();
+        [SerializeField] List<BasicWeapon> _meleeWeapons = new List<BasicWeapon>();
         public Dictionary<int, GameObject> MainWeaponsInventory { get; protected set; } = new Dictionary<int, GameObject>();
         public Dictionary<int, GameObject> OffhandWeaponsInventory { get; protected set; }= new Dictionary<int, GameObject>();
 
@@ -21,7 +21,7 @@ namespace Characters.Player {
         }
 
         void InstantiateAllWeapons() {
-            foreach (BasicMeleeWeapon weapon in _meleeWeapons) {
+            foreach (BasicWeapon weapon in _meleeWeapons) {
                 GameObject tempWeapon = Instantiate(weapon.WeaponPrefab, weaponsParent);
                 tempWeapon.SetActive(false);
                 MainWeaponsInventory.TryAdd(weapon.ItemID, tempWeapon);

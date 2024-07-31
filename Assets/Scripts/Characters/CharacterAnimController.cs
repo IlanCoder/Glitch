@@ -15,6 +15,11 @@ namespace Characters {
             { "Stagger_B", Animator.StringToHash("Stagger_B") },
             { "Stagger_R", Animator.StringToHash("Stagger_R") },
         };
+
+        readonly protected Dictionary<string, int> CharacterAnimationHashes = new Dictionary<string, int> {
+            { "Equip_Weapon", Animator.StringToHash("Equip_Weapon") }
+        };
+
         readonly protected int _horizontalInputFloatHash = Animator.StringToHash("Horizontal");
         readonly protected int _verticalInputFloatHash = Animator.StringToHash("Vertical");
         readonly protected int _isGroundedBoolHash = Animator.StringToHash("IsGrounded");
@@ -61,6 +66,11 @@ namespace Characters {
 
         public void ApplyRootMotion(bool applyRootMotion) {
             animator.applyRootMotion = applyRootMotion;
+        }
+        
+        public void PlayEquipAnimation() {
+            PlayTargetAnimation(CharacterAnimationHashes["Equip_Weapon"], true, false, 
+            false);
         }
     }
 }

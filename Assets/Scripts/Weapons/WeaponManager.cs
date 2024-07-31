@@ -1,5 +1,6 @@
 using System;
 using Characters;
+using Characters.NPC;
 using Colliders;
 using DataContainers;
 using Items.Weapons;
@@ -13,7 +14,7 @@ namespace Weapons{
 			damageCollider.SetDamage(weapon.Damage);
 			damageCollider.SetWielder(wielder);
 		}
-		
+
 		public void SetWeaponDamageMultipliers(float motionMultiplier, float attackMultiplier = 1) {
 			damageCollider.SetAttackModifier(motionMultiplier, attackMultiplier);
 		}
