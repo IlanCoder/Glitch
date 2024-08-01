@@ -29,6 +29,7 @@ namespace Characters.Player {
         public override CharacterStatsController StatsController => statsController;
         public override CharacterAnimController AnimController => animController;
         public override CharacterCombatController CombatController => combatController;
+        public override CharacterEquipmentManager EquipmentManager => equipmentManager;
 
         [HideInInspector] public UnityEvent onPlayerDeath;
 

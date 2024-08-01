@@ -64,14 +64,14 @@ ModelImporter:
       curves: []
       events:
       - time: 0.25043613
-        functionName: DrainAttackStamina
+        functionName: EnableAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.4117647
-        functionName: DisableWeaponColliders
+        functionName: DisableAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

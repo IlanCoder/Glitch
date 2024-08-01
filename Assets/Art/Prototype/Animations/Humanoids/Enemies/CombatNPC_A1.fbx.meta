@@ -448,28 +448,28 @@ ModelImporter:
       curves: []
       events:
       - time: 0
-        functionName: EnableAttackRotationTracking
+        functionName: EnableRotationTracking
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.40902367
-        functionName: DisableAttackRotationTracking
+        functionName: DisableRotationTracking
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.1891892
-        functionName: EnableWeaponColliders
+        functionName: EnableAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 2
         messageOptions: 0
       - time: 0.42647696
-        functionName: DisableWeaponColliders
+        functionName: DisableAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

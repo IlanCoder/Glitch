@@ -88,6 +88,26 @@ namespace Characters.Player {
                 _leftHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>();
         }
         
+        override public void EnableWeaponAttack(int hand = 0) {
+            if(_equippedWeapons[_activeWeaponIndex] == null) return;
+            if (!_equippedWeapons[_activeWeaponIndex].DualWield) {
+                EnableWeaponColliders(_rightHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>());
+                return;
+            }
+            EnableWeaponColliders(_rightHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>(),
+            _leftHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>(), hand);
+        }
+
+        override public void DisableWeaponAttack(int hand = 0) {
+            if(_equippedWeapons[_activeWeaponIndex] == null) return;
+            if (!_equippedWeapons[_activeWeaponIndex].DualWield) {
+                DisableWeaponColliders(_rightHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>());
+                return;
+            }
+            DisableWeaponColliders(_rightHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>(),
+            _leftHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>(), hand);
+        }
+        
         #region Animation Events
         public void SwitchWeapons() {
             onActiveWeaponSwitch?.Invoke(_activeWeaponIndex, _nextWeaponIndex);
@@ -95,40 +115,6 @@ namespace Characters.Player {
             _activeWeaponIndex = _nextWeaponIndex;
             ActivateCurrentWeapon(true);
             SetCombatWeapon();
-        }
-
-        public void EnableWeaponColliders(int hand = 0) {
-            if(_equippedWeapons[_activeWeaponIndex] == null) return;
-            if (!_equippedWeapons[_activeWeaponIndex].DualWield) hand = 1;
-            switch (hand) {
-                case 0:
-                    _rightHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>().EnableDamageCollider();
-                    _leftHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>().EnableDamageCollider();
-                    break;
-                case 1:
-                    _rightHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>().EnableDamageCollider();
-                    break;
-                case >=2:
-                    _leftHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>().EnableDamageCollider();
-                    break;
-            }
-        }
-
-        public void DisableWeaponColliders(int hand = 0) {
-            if(_equippedWeapons[_activeWeaponIndex] == null) return;
-            if (!_equippedWeapons[_activeWeaponIndex].DualWield) hand = 1;
-            switch (hand) {
-                case 0:
-                    _rightHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>().DisableDamageCollider();
-                    _leftHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>().DisableDamageCollider();
-                    break;
-                case 1:
-                    _rightHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>().DisableDamageCollider();
-                    break;
-                case >=2:
-                    _leftHandWeapons[_activeWeaponIndex].GetComponent<WeaponManager>().DisableDamageCollider();
-                    break;
-            }
         }
         #endregion
     }

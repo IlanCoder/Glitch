@@ -51,45 +51,31 @@ namespace Characters.NPC {
             if (!equippedWeapon.DualWield) return;
             _leftHandWeapon.transform.SetParent(leftHandWeaponLocation, false);
         }
+        
+        override public void EnableWeaponAttack(int hand = 0) {
+            if(equippedWeapon == null) return;
+            if (!equippedWeapon.DualWield) {
+                EnableWeaponColliders(_rightHandWeapon.GetComponent<WeaponManager>());
+                return;
+            }
+            EnableWeaponColliders(_rightHandWeapon.GetComponent<WeaponManager>(),
+            _leftHandWeapon.GetComponent<WeaponManager>(), hand);
+        }   
+
+        override public void DisableWeaponAttack(int hand = 0) {
+            if(equippedWeapon == null) return;
+            if (!equippedWeapon.DualWield) {
+                DisableWeaponColliders(_rightHandWeapon.GetComponent<WeaponManager>());
+                return;
+            }
+            DisableWeaponColliders(_rightHandWeapon.GetComponent<WeaponManager>(),
+            _leftHandWeapon.GetComponent<WeaponManager>(), hand);
+        }
 
         #region Animation Events
         public void GrabWeapon() {
             if (startEquipped) return;
             EquipWeapon();
-        }
-        
-        public void EnableWeaponColliders(int hand = 0) {
-            if (!equippedWeapon) return;
-            if (!equippedWeapon.DualWield) hand = 1;
-            switch (hand) {
-                case 0:
-                    _rightHandWeapon.GetComponent<WeaponManager>().EnableDamageCollider();
-                    _leftHandWeapon.GetComponent<WeaponManager>().EnableDamageCollider();
-                    break;
-                case 1:
-                    _rightHandWeapon.GetComponent<WeaponManager>().EnableDamageCollider();
-                    break;
-                case >=2:
-                    _leftHandWeapon.GetComponent<WeaponManager>().EnableDamageCollider();
-                    break;
-            }
-        }
-
-        public void DisableWeaponColliders(int hand = 0) {
-            if (!equippedWeapon) return;
-            if (!equippedWeapon.DualWield) hand = 1;
-            switch (hand) {
-                case 0:
-                    _rightHandWeapon.GetComponent<WeaponManager>().DisableDamageCollider();
-                    _leftHandWeapon.GetComponent<WeaponManager>().DisableDamageCollider();
-                    break;
-                case 1:
-                    _rightHandWeapon.GetComponent<WeaponManager>().DisableDamageCollider();
-                    break;
-                case >=2:
-                    _leftHandWeapon.GetComponent<WeaponManager>().DisableDamageCollider();
-                    break;
-            }
         }
         #endregion
     }

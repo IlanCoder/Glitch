@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 43185177805481858}
   - component: {fileID: 1566557391520841526}
   - component: {fileID: 5043196937043190559}
+  - component: {fileID: 3031822704697754132}
   - component: {fileID: 6117838078811023577}
   - component: {fileID: 8768737442347181851}
   m_Layer: 7
@@ -518,6 +519,20 @@ MonoBehaviour:
   gravityForce: -9.81
   fallStartVel: -5
   fallMaxVel: -50
+--- !u!114 &3031822704697754132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868617021434096131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27154d625bb74a82a2dc44e0817dfcf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHandWeaponLocation: {fileID: 0}
+  leftHandWeaponLocation: {fileID: 0}
 --- !u!95 &6117838078811023577
 Animator:
   serializedVersion: 5

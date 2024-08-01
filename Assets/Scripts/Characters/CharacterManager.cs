@@ -11,7 +11,8 @@ namespace Characters {
      RequireComponent(typeof(CharacterEffectsController)),
      RequireComponent(typeof(CharacterCombatController)),
      RequireComponent(typeof(CharacterVFxController)),
-     RequireComponent(typeof(CharacterSFxController))]
+     RequireComponent(typeof(CharacterSFxController)),
+     RequireComponent(typeof(CharacterEquipmentManager)),]
     public class CharacterManager : MonoBehaviour {
         [HideInInspector]public CharacterController characterController;
         
@@ -22,6 +23,7 @@ namespace Characters {
         public virtual CharacterCombatController CombatController => GetComponent<CharacterCombatController>();
         public virtual CharacterVFxController VFxController => GetComponent<CharacterVFxController>();
         public virtual CharacterSFxController SFxController => GetComponent<CharacterSFxController>();
+        public virtual CharacterEquipmentManager EquipmentManager => GetComponent<CharacterEquipmentManager>();
 
         [HideInInspector] public UnityEvent onCharacterDeath;
         

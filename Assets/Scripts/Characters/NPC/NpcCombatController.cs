@@ -12,6 +12,7 @@ namespace Characters.NPC {
         [SerializeField] protected List<NpcAttack> attacks;
 
         protected override void Awake() {
+            base.Awake();
             Npc = GetComponent<NpcManager>();
             InstantiateAttacks();
         }
@@ -87,11 +88,11 @@ namespace Characters.NPC {
         }
         
         #region Animation Events
-        public void EnableAttackRotationTracking() {
+        public void EnableRotationTracking() {
             Npc.rotationLocked = false;
         }
         
-        public void DisableAttackRotationTracking() {
+        public void DisableRotationTracking() {
             Npc.rotationLocked = true;
         }
         #endregion

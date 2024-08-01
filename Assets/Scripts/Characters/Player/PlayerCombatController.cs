@@ -12,7 +12,7 @@ using Weapons;
 
 namespace Characters.Player{
 	public class PlayerCombatController : CharacterCombatController {
-		PlayerManager _manager;
+		PlayerManager _playerManager;
 		[HideInInspector] public BasicWeapon activeWeapon;
 		[HideInInspector] public WeaponManager rightHandWeaponManager;
 		[HideInInspector] public WeaponManager leftHandWeaponManager;
@@ -26,13 +26,14 @@ namespace Characters.Player{
 		List<PlayerCombo> _availableCombos;
 
 		protected override void Awake() {
-			_manager = GetComponent<PlayerManager>();
+			base.Awake();
+			_playerManager = GetComponent<PlayerManager>();
 		}
 
 		public void PerformNormalAttack(AttackType attackType) {
 			if (activeWeapon == null) return;
-			if (!_manager.isGrounded) return;
-			if (!_manager.statsController.CanPerformStaminaAction()) return;
+			if (!_playerManager.isGrounded) return;
+			if (!_playerManager.statsController.CanPerformStaminaAction()) return;
 			CurrentAttackType = attackType;
 			if (!InputIsInCombos()) return;
 			HandleAttackAnimation();
@@ -46,9 +47,9 @@ namespace Characters.Player{
 		void HandleAttackAnimation() {
 			if (_activeCombo != _availableCombos[0]) {
 				_activeCombo = _availableCombos[0];
-				_manager.animOverrider.OverrideCombos(_activeCombo.ComboAttacks, _comboIndex);
+				_playerManager.animOverrider.OverrideCombos(_activeCombo.ComboAttacks, _comboIndex);
 			}
-			_manager.animController.PlayAttackAnimation(_comboIndex);
+			_playerManager.animController.PlayAttackAnimation(_comboIndex);
 		}
 		
 		bool InputIsInCombos() {
@@ -109,16 +110,16 @@ namespace Characters.Player{
 		}
 		
 		async void WaitForTargetToDie() {
-			while (_manager.isPerformingAction) {
+			while (_playerManager.isPerformingAction) {
 				await Task.Delay(10);
 			}
-			_manager.TryNewLockOn();
+			_playerManager.TryNewLockOn();
 		}
 
 		#region Animation Events
-		public virtual void DrainAttackStamina() {
-			_manager.statsController.UseStamina(activeWeapon.GetAttackStaminaCost(_activeCombo, _currentAttackIndex));
-			_manager.equipmentManager.EnableWeaponColliders();
+		override public void EnableAttack(int hand = 0) {
+			_playerManager.statsController.UseStamina(activeWeapon.GetAttackStaminaCost(_activeCombo, _currentAttackIndex));
+			base.EnableAttack(hand);
 		}
         #endregion
 	}
