@@ -38,7 +38,7 @@ namespace Items.Weapons {
         [Header("Energy Gains")]
         [SerializeField] protected float baseAttackEnergyGain;
 
-        [Header("Combos")]
+        [Header("Player Combos")]
         [SerializeField] protected PlayerCombo[] combos;
         public PlayerCombo[] Combos => combos;
 

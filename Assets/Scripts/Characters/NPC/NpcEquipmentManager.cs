@@ -48,34 +48,34 @@ namespace Characters.NPC {
             if (!equippedWeapon) return;
             if (!_rightHandWeapon) return;
             _rightHandWeapon.transform.SetParent(rightHandWeaponLocation, false);
-            if (!equippedWeapon.DualWield) return;
-            _leftHandWeapon.transform.SetParent(leftHandWeaponLocation, false);
+            if (equippedWeapon.DualWield) {
+                _leftHandWeapon.transform.SetParent(leftHandWeaponLocation, false);
+                _npcManager.combatController.SetActiveWeapon(equippedWeapon,
+                    _rightHandWeapon.GetComponent<WeaponManager>(), _leftHandWeapon.GetComponent<WeaponManager>());
+                return;
+            }
+            _npcManager.combatController.SetActiveWeapon(equippedWeapon, _rightHandWeapon.GetComponent<WeaponManager>());
+        }
+
+        void UnequipWeapon() {
+            if (!equippedWeapon) return;
+            if (!_rightHandWeapon) return;
+            _rightHandWeapon.transform.SetParent(rightHandUnequippedLocation, false);
+            if (equippedWeapon.DualWield) {
+                _leftHandWeapon.transform.SetParent(leftHandUnequippedLocation, false);
+            }
+            _npcManager.combatController.SetActiveWeapon(null, null);
         }
         
-        override public void EnableWeaponAttack(int hand = 0) {
-            if(equippedWeapon == null) return;
-            if (!equippedWeapon.DualWield) {
-                EnableWeaponColliders(_rightHandWeapon.GetComponent<WeaponManager>());
-                return;
-            }
-            EnableWeaponColliders(_rightHandWeapon.GetComponent<WeaponManager>(),
-            _leftHandWeapon.GetComponent<WeaponManager>(), hand);
-        }   
-
-        override public void DisableWeaponAttack(int hand = 0) {
-            if(equippedWeapon == null) return;
-            if (!equippedWeapon.DualWield) {
-                DisableWeaponColliders(_rightHandWeapon.GetComponent<WeaponManager>());
-                return;
-            }
-            DisableWeaponColliders(_rightHandWeapon.GetComponent<WeaponManager>(),
-            _leftHandWeapon.GetComponent<WeaponManager>(), hand);
-        }
-
         #region Animation Events
         public void GrabWeapon() {
             if (startEquipped) return;
             EquipWeapon();
+        }
+
+        public void SheatheWeapon() {
+            if (startEquipped) return;
+            UnequipWeapon();
         }
         #endregion
     }

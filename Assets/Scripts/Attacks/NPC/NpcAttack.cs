@@ -5,13 +5,9 @@ using Enums;
 using UnityEngine;
 
 namespace Attacks.NPC {
-    [CreateAssetMenu(fileName = "SingleAttack",menuName = "AI/Attacks/Single Attack")]
-    public class NpcAttack : ScriptableObject {
-        [SerializeField] protected AnimationClip attackAnimation;
-        public AnimationClip AttackAnimation => attackAnimation;
-        
-        [Header("Attack Parameters")]
-        [SerializeField] protected AttackType attackType;
+    [CreateAssetMenu(fileName = "SingleAttack",menuName = "Attacks/NPC/Single Attack")]
+    public class NpcAttack : CharacterAttack {
+        [Header("Npc Specific Parameters")]
         [SerializeField] protected float downTime;
         public float DownTime => downTime;
         [SerializeField, Min(1)] protected int attackWeight = 1;

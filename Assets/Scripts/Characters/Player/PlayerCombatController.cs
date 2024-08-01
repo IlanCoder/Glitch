@@ -13,9 +13,6 @@ using Weapons;
 namespace Characters.Player{
 	public class PlayerCombatController : CharacterCombatController {
 		PlayerManager _playerManager;
-		[HideInInspector] public BasicWeapon activeWeapon;
-		[HideInInspector] public WeaponManager rightHandWeaponManager;
-		[HideInInspector] public WeaponManager leftHandWeaponManager;
 		
 		public CharacterManager LockOnTarget { get; protected set; }
 
@@ -55,7 +52,7 @@ namespace Characters.Player{
 		bool InputIsInCombos() {
 			List<PlayerCombo> combosToRemove = new List<PlayerCombo>();
 			foreach (PlayerCombo combo in _availableCombos) {
-				if (combo.GetAttackInfo(_comboIndex).Input == CurrentAttackType) continue;
+				if (combo.GetAttackInfo(_comboIndex).AttackType == CurrentAttackType) continue;
 				combosToRemove.Add(combo);
 			}
 			foreach (PlayerCombo comboToRemove in combosToRemove) {
@@ -88,8 +85,8 @@ namespace Characters.Player{
 			leftHandWeaponManager.SetWeaponEnergyGain(energyGain);
 		}
 
-		public void SetActiveWeapon(BasicWeapon weapon) {
-			activeWeapon = weapon;
+		override public void SetActiveWeapon(BasicWeapon weapon, WeaponManager right, WeaponManager left = null) {
+			base.SetActiveWeapon(weapon, right, left);
 			_activeWeaponCombos = new List<PlayerCombo>(activeWeapon.Combos);
 			ResetCombo();
 		}
@@ -115,6 +112,7 @@ namespace Characters.Player{
 			}
 			_playerManager.TryNewLockOn();
 		}
+		
 
 		#region Animation Events
 		override public void EnableAttack(int hand = 0) {
