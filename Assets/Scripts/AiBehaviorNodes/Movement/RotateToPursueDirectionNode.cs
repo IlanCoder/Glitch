@@ -8,7 +8,8 @@ namespace AiBehaviorNodes.Movement {
         
         protected override void InitializeNode() {
             NpcAgent.animController.ApplyRootMotion(true);
-            targetDirection = NpcAgent.movementController.GetNextNavPosition() - NpcAgent.transform.position;
+            //targetDirection = NpcAgent.movementController.GetNextNavPosition() - NpcAgent.transform.position;
+            targetDirection = NpcAgent.movementController.GetNavAgentRotation();
         }
 
         protected override NodeStatus Tick() {

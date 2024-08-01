@@ -64,8 +64,8 @@ namespace Characters.NPC {
 			return NavAgent.pathStatus == NavMeshPathStatus.PathComplete;
 		}
 
-		public Vector3 GetNextNavPosition() {
-			return NavAgent.steeringTarget;
+		public Vector3 GetNavAgentRotation() {
+			return NavAgent.transform.forward;
 		}
 		
 		public bool HasArrivedToStoppingDistance() {
