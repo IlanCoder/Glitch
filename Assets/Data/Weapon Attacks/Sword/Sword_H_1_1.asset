@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackAnimation: {fileID: -7536146537415446483, guid: d4fcc6da733f1b3458da71ac40af1f46,
     type: 3}
+  attackType: 1
   motionMultiplier: 5
-  staminaCostMultiplier: 5
   energyGainMultiplier: 5
-  input: 1
+  staminaCostMultiplier: 5

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeavySword_H_1
   m_EditorClassIdentifier: 
   attackAnimation: {fileID: 7400000, guid: eafa7fbe101785249a5c166aa7581aa6, type: 3}
+  attackType: 1
   motionMultiplier: 2
-  staminaCostMultiplier: 2
   energyGainMultiplier: 2
-  input: 1
+  staminaCostMultiplier: 2
