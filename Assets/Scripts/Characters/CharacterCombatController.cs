@@ -34,6 +34,16 @@ namespace Characters{
 			rightHandWeaponManager = right;
 			leftHandWeaponManager = left;
 		}
+		
+		protected void ApplyAttackModifiers() {
+			float motionMultiplier = activeWeapon.GetAttackMotionMultiplier(CurrentAttack);
+			float energyGain = activeWeapon.GetAttackEnergyGain(CurrentAttack);
+			rightHandWeaponManager.SetWeaponDamageMultipliers(motionMultiplier);
+			rightHandWeaponManager.SetWeaponEnergyGain(energyGain);
+			if (!activeWeapon.DualWield) return;
+			leftHandWeaponManager.SetWeaponDamageMultipliers(motionMultiplier);
+			leftHandWeaponManager.SetWeaponEnergyGain(energyGain);
+		}
 
 		protected void EnableWeaponColliders(WeaponManager rightWeapon, WeaponManager leftWeapon = null, int hand = 1) {
 			switch (hand) {
@@ -86,6 +96,7 @@ namespace Characters{
 		
 		#region Animation Events
 		public virtual void EnableAttack(int hand = 0) {
+			ApplyAttackModifiers();
 			EnableWeaponAttack(hand);
 			_manager.SFxController.PlayAttackSwingSFx(CurrentAttack.SwingAudioClip);
 		}

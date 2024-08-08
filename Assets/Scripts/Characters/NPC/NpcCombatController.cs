@@ -71,11 +71,15 @@ namespace Characters.NPC {
             }
             return tempQueue;
         }
+        
+        public void SetNewAttack(NpcAttack attack, bool firstInChain = true) {
+            CurrentAttack = attack;
+            HandleAttackAnimation(attack, firstInChain);
+        }
 
-        public void HandleAttackAnimation(NpcAttack attack, bool firstInChain = true) {
+        protected void HandleAttackAnimation(NpcAttack attack, bool firstInChain = true) {
             Npc.animOverrider.OverrideNextAttack(attack, firstInChain);
             Npc.animController.PlayAttackAnimation(firstInChain);
-            CurrentAttack = attack;
         }
 
         public void HandleAttackRotationTracking(CharacterManager target) {

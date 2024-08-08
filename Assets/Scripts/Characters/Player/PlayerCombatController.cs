@@ -34,7 +34,7 @@ namespace Characters.Player{
 			CurrentAttackType = attackType;
 			if (!InputIsInCombos()) return;
 			HandleAttackAnimation();
-			ApplyAttackModifiers();
+			CurrentAttack = _activeCombo.ComboAttacks[_comboIndex];
 			_currentAttackIndex = _comboIndex;
 			_comboIndex++;
 			if (CanContinueCombo()) return;
@@ -47,7 +47,6 @@ namespace Characters.Player{
 				_playerManager.animOverrider.OverrideCombos(_activeCombo.ComboAttacks, _comboIndex);
 			}
 			_playerManager.animController.PlayAttackAnimation(_comboIndex);
-			CurrentAttack = _activeCombo.ComboAttacks[_comboIndex];
 		}
 		
 		bool InputIsInCombos() {
@@ -74,16 +73,6 @@ namespace Characters.Player{
 				_availableCombos.Remove(comboToRemove);
 			}
 			return _availableCombos.Count > 0;
-		}
-		
-		void ApplyAttackModifiers() {
-			float motionMultiplier = activeWeapon.GetAttackMotionMultiplier(_activeCombo, _comboIndex);
-			float energyGain = activeWeapon.GetAttackEnergyGain(_activeCombo, _comboIndex);
-			rightHandWeaponManager.SetWeaponDamageMultipliers(motionMultiplier);
-			rightHandWeaponManager.SetWeaponEnergyGain(energyGain);
-			if (!activeWeapon.DualWield) return;
-			leftHandWeaponManager.SetWeaponDamageMultipliers(motionMultiplier);
-			leftHandWeaponManager.SetWeaponEnergyGain(energyGain);
 		}
 
 		override public void SetActiveWeapon(BasicWeapon weapon, WeaponManager right, WeaponManager left = null) {

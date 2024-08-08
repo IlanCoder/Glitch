@@ -13,7 +13,7 @@ namespace AiBehaviorNodes.Combat {
             NpcAgent.isPerformingAction = true;
             InvokeNewAttackEvent.AttackStarted.AddListener(LoadNextAttackAnimation);
             _lastAttack = TreeBlackboard.AttackChain.Dequeue();
-            NpcAgent.combatController.HandleAttackAnimation(_lastAttack);
+            NpcAgent.combatController.SetNewAttack(_lastAttack);
         }
 
         protected override NodeStatus Tick() {
@@ -35,7 +35,7 @@ namespace AiBehaviorNodes.Combat {
         protected void LoadNextAttackAnimation() {
             if (TreeBlackboard.AttackChain.Count <= 0) return;
             _lastAttack = TreeBlackboard.AttackChain.Dequeue();
-            NpcAgent.combatController.HandleAttackAnimation(_lastAttack, false);
+            NpcAgent.combatController.SetNewAttack(_lastAttack, false);
         }
     }
 }

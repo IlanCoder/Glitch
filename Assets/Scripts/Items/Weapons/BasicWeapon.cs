@@ -66,9 +66,9 @@ namespace Items.Weapons {
             }
         }
 
-        public virtual float GetAttackEnergyGain(PlayerCombo combo, int comboAttackIndex = 0) {
+        public virtual float GetAttackEnergyGain(CharacterAttack attack) {
             try {
-                return baseAttackEnergyGain * combo.GetAttackInfo(comboAttackIndex).EnergyGainMultiplier;
+                return baseAttackEnergyGain * attack.EnergyGainMultiplier;
             }
             catch {
                 Debug.LogError($"{itemName}'s weapon combo indexes out of range to get Energy Gain");
@@ -76,9 +76,9 @@ namespace Items.Weapons {
             }
         }
 
-        public virtual float GetAttackMotionMultiplier(PlayerCombo combo, int comboAttackIndex = 0) {
+        public virtual float GetAttackMotionMultiplier(CharacterAttack attack) {
             try {
-                return combo.GetAttackInfo(comboAttackIndex).MotionCostMultiplier;
+                return attack.MotionCostMultiplier;
             }
             catch {
                 Debug.LogError($"{itemName}'s weapon combo indexes out of range to get Motion Multipliers");
@@ -86,5 +86,6 @@ namespace Items.Weapons {
             }
             
         }
+        
     }
 }
