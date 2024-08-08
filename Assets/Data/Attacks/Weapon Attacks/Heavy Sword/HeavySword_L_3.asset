@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackAnimation: {fileID: -6978093718252760216, guid: d4c24407e77722e439fafea34fd72f96,
     type: 3}
+  swingAudioClip: {fileID: 8300000, guid: 77f5c674952359e4a9d5beb3b03bdf87, type: 3}
+  attackType: 0
   motionMultiplier: 1.1
-  staminaCostMultiplier: 1.1
   energyGainMultiplier: 1.1
-  input: 0
+  staminaCostMultiplier: 1.1

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: HeavySword_H_2
   m_EditorClassIdentifier: 
   attackAnimation: {fileID: 7400000, guid: a9e53a9afd1b65147922674d07e707c7, type: 3}
-  attackType: 1
+  swingAudioClip: {fileID: 8300000, guid: 77f5c674952359e4a9d5beb3b03bdf87, type: 3}
+  attackType: 0
   motionMultiplier: 4
   energyGainMultiplier: 4
   staminaCostMultiplier: 4
