@@ -2507,11 +2507,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f460990d825c145a75441e944bb388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centerLockOnPivot: {fileID: 8446883103538547758}
-  team: 0
   activeWeapon: {fileID: 0}
   rightHandWeaponManager: {fileID: 0}
   leftHandWeaponManager: {fileID: 0}
+  centerLockOnPivot: {fileID: 8446883103538547758}
+  team: 0
 --- !u!114 &331698001150466806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2624,7 +2624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageSFxType: 0
-  hitSFxController: {fileID: 5770958502549400169}
+  characterSFxController: {fileID: 5770958502549400169}
 --- !u!143 &5697119794618443428
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3061,7 +3061,7 @@ GameObject:
   - component: {fileID: 7863911624676609693}
   - component: {fileID: 5770958502549400169}
   m_Layer: 6
-  m_Name: Hits Sound Source
+  m_Name: Character Sound Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

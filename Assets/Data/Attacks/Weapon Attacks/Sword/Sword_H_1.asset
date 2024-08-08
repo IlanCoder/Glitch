@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b2811c204741c24e9b64a9ec658f546, type: 3}
-  m_Name: Sword_L_1
+  m_Name: Sword_H_1
   m_EditorClassIdentifier: 
-  attackAnimation: {fileID: 673659374932735726, guid: abc8a6e598f141d4795c3393460c5609,
+  attackAnimation: {fileID: -7536146537415446483, guid: d4fcc6da733f1b3458da71ac40af1f46,
     type: 3}
-  motionMultiplier: 1
-  staminaCostMultiplier: 1
-  energyGainMultiplier: 1
-  input: 0
+  swingAudioClip: {fileID: 8300000, guid: 77f5c674952359e4a9d5beb3b03bdf87, type: 3}
+  attackType: 0
+  motionMultiplier: 1.5
+  energyGainMultiplier: 1.5
+  staminaCostMultiplier: 1.5

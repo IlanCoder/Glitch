@@ -1,4 +1,5 @@
 using System;
+using Attacks;
 using DataContainers;
 using Enums;
 using Items.Weapons;
@@ -11,7 +12,7 @@ namespace Characters{
 		[HideInInspector] public BasicWeapon activeWeapon;
 		[HideInInspector] public WeaponManager rightHandWeaponManager;
 		[HideInInspector] public WeaponManager leftHandWeaponManager;
-		
+
 		[SerializeField] protected Transform centerLockOnPivot;
 		
 		[Header("Combat Attributes")]
@@ -21,6 +22,8 @@ namespace Characters{
 		public Transform LockOnPivot => centerLockOnPivot;
 		
 		protected AttackType CurrentAttackType;
+		
+		protected CharacterAttack CurrentAttack;
 
 		protected virtual void Awake() {
 			_manager = GetComponent<CharacterManager>();
@@ -84,6 +87,7 @@ namespace Characters{
 		#region Animation Events
 		public virtual void EnableAttack(int hand = 0) {
 			EnableWeaponAttack(hand);
+			_manager.SFxController.PlayAttackSwingSFx(CurrentAttack.SwingAudioClip);
 		}
 
 		public virtual void DisableAttack(int hand = 0) {

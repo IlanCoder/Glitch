@@ -168,6 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d240944d594acc918a4dfd0302b790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeWeapon: {fileID: 0}
+  rightHandWeaponManager: {fileID: 0}
+  leftHandWeaponManager: {fileID: 0}
   centerLockOnPivot: {fileID: 6248522336254308412}
   team: 3
   attackRotationTrackingSpeed: 10
@@ -242,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageSFxType: 0
-  hitSFxController: {fileID: 6134560858185392156}
+  characterSFxController: {fileID: 6134560858185392156}
 --- !u!114 &7556249675142974900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +274,7 @@ MonoBehaviour:
   animController: {fileID: 0}
   animOverrider: {fileID: 0}
   agroController: {fileID: 0}
+  equipmentManager: {fileID: 0}
 --- !u!114 &6410675785972488243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,7 +773,7 @@ GameObject:
   - component: {fileID: 4267563196604270266}
   - component: {fileID: 6134560858185392156}
   m_Layer: 7
-  m_Name: Damage Sound Source
+  m_Name: Character Sound Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

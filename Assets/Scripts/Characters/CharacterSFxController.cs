@@ -1,5 +1,7 @@
+using Attacks;
 using Audio;
 using Enums;
+using Unity.VisualScripting;
 using UnityEngine;
 using WorldManager;
 
@@ -8,10 +10,15 @@ namespace Characters{
 		[SerializeField] protected DamageSFxType damageSFxType;
 
 		[Header("Audio Source Controllers")]
-		[SerializeField] AudioSourceController hitSFxController;
+		[SerializeField] AudioSourceController characterSFxController;
 
 		public virtual void PlayDamageSFx() { 
-			hitSFxController.PlayPitchedSFx(WorldSFxsManager.Instance.GetRandomDamageAudioClip(damageSFxType));
+			characterSFxController.PlayPitchedSFx(WorldSFxsManager.Instance.GetRandomDamageAudioClip(damageSFxType));
+		}
+
+		public virtual void PlayAttackSwingSFx(AudioClip swingAudioClip) {
+			if (!swingAudioClip) return;
+			characterSFxController.PlaySFx(swingAudioClip);
 		}
 	}
 }

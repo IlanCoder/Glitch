@@ -75,6 +75,7 @@ namespace Characters.NPC {
         public void HandleAttackAnimation(NpcAttack attack, bool firstInChain = true) {
             Npc.animOverrider.OverrideNextAttack(attack, firstInChain);
             Npc.animController.PlayAttackAnimation(firstInChain);
+            CurrentAttack = attack;
         }
 
         public void HandleAttackRotationTracking(CharacterManager target) {

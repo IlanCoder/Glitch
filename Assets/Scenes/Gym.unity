@@ -1085,7 +1085,7 @@ PrefabInstance:
     - target: {fileID: 6427160408734012516, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_Name
-      value: Damage Sound Source
+      value: Character Sound Source
       objectReference: {fileID: 0}
     - target: {fileID: 6427160408734012516, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
@@ -1286,6 +1286,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348238431426986421, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_text
+      value: GIT GUD SCRUB
       objectReference: {fileID: 0}
     - target: {fileID: 8565147569743247457, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
@@ -3985,6 +3990,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attacks.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242800988347769659, guid: fb8970df72043a14a8450ab56a81ac0e,
+        type: 3}
+      propertyPath: m_Name
+      value: Character Sound Source
       objectReference: {fileID: 0}
     - target: {fileID: 3493666990746572942, guid: fb8970df72043a14a8450ab56a81ac0e,
         type: 3}

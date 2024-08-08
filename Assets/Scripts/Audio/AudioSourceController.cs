@@ -13,11 +13,13 @@ namespace Audio {
         }
 
         public virtual void PlaySFx(AudioClip sFx, float volume = 1) {
+            _source.volume = volume;
             _source.PlayOneShot(sFx, volume);
         }
         
         public virtual void PlayPitchedSFx(AudioClip sFx, float pitchRange = 0.1f, float volume = 1) {
             _source.pitch = 1 + Random.Range(-pitchRange, pitchRange);
+            _source.volume = volume;
             _source.PlayOneShot(sFx);
         }
     }

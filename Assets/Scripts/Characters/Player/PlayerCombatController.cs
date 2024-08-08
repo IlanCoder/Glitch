@@ -47,6 +47,7 @@ namespace Characters.Player{
 				_playerManager.animOverrider.OverrideCombos(_activeCombo.ComboAttacks, _comboIndex);
 			}
 			_playerManager.animController.PlayAttackAnimation(_comboIndex);
+			CurrentAttack = _activeCombo.ComboAttacks[_comboIndex];
 		}
 		
 		bool InputIsInCombos() {
