@@ -34,14 +34,10 @@ namespace Effects.Instant {
             _damage = dmg;
         }
 
-        public void SetEffectDamageMultiplier(float motionMultiplier, float attackMultiplier = 1) {
-            _damage.SetDamageMultiplier(motionMultiplier, attackMultiplier);
-        }
-
         public void SetEffectEnergyGain(float energy) {
             _baseEnergyGain = energy;
         }
-        
+
         public override void ProcessEffect(CharacterManager character) {
             if(character.isDead) return;
             CalculateHealthDamage(character);
@@ -52,7 +48,7 @@ namespace Effects.Instant {
         }
 
         void CalculateHealthDamage(CharacterManager character) {
-            _totalDmg = _damage.TotalDamage;
+            _totalDmg = _damage.TotalFilteredDamage;
             if (_totalDmg <= 0) _totalDmg = 1;
             character.StatsController.ReceiveDamage(Mathf.RoundToInt(_totalDmg));
         }

@@ -11,12 +11,8 @@ namespace Weapons{
 		[SerializeField] WeaponDamageCollider damageCollider;
 
 		public void SetWeapon(BasicWeapon weapon, CharacterManager wielder) {
-			damageCollider.SetDamage(weapon.Damage);
+			damageCollider.SetDamage(weapon.damage);
 			damageCollider.SetWielder(wielder);
-		}
-
-		public void SetWeaponDamageMultipliers(float motionMultiplier, float attackMultiplier = 1) {
-			damageCollider.SetAttackModifier(motionMultiplier, attackMultiplier);
 		}
 
 		public void SetWeaponEnergyGain(float energyGain) {

@@ -50,11 +50,6 @@ namespace Colliders {
             DamageEffect.SetEffectDamage(damage);
         }
 
-        public virtual void SetAttackModifier(float motionMultiplier, float attackMultiplier = 1) {
-            if (DamageEffect == null) DamageEffect = WorldEffectsManager.Instance.GetDamageEffectCopy(transform);
-            DamageEffect.SetEffectDamageMultiplier(motionMultiplier, attackMultiplier);
-        }
-
         public virtual void SetEnergyGain(float energyGain) {
             if (DamageEffect == null) DamageEffect = WorldEffectsManager.Instance.GetDamageEffectCopy(transform);
             DamageEffect.SetEffectEnergyGain(energyGain);

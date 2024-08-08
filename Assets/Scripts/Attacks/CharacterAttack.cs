@@ -1,4 +1,5 @@
-﻿using Enums;
+﻿using System;
+using Enums;
 using UnityEngine;
 
 namespace Attacks {
@@ -11,13 +12,14 @@ namespace Attacks {
         
         [Header("Parameters")] 
         [SerializeField] protected AttackType attackType;
+        [SerializeField] protected DamageTypes attackDmgTypeses;
         [SerializeField, Min(0)] protected float motionMultiplier;
         [SerializeField, Min(0)] protected float energyGainMultiplier;
-        
-        
+
         public AnimationClip AttackAnimation => attackAnimation;
         public AudioClip SwingAudioClip => swingAudioClip;
         public AttackType AttackType => attackType;
+        public DamageTypes AttackDamageTypes => attackDmgTypeses;
         public float EnergyGainMultiplier => energyGainMultiplier;
         public float MotionCostMultiplier => motionMultiplier;
     }

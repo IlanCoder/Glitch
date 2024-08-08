@@ -36,12 +36,10 @@ namespace Characters{
 		}
 		
 		protected void ApplyAttackModifiers() {
-			float motionMultiplier = activeWeapon.GetAttackMotionMultiplier(CurrentAttack);
-			float energyGain = activeWeapon.GetAttackEnergyGain(CurrentAttack);
-			rightHandWeaponManager.SetWeaponDamageMultipliers(motionMultiplier);
+			activeWeapon.SetAttackDamage(CurrentAttack);
+			float energyGain = activeWeapon.GetAttackEnergyGain(CurrentAttack); ;
 			rightHandWeaponManager.SetWeaponEnergyGain(energyGain);
 			if (!activeWeapon.DualWield) return;
-			leftHandWeaponManager.SetWeaponDamageMultipliers(motionMultiplier);
 			leftHandWeaponManager.SetWeaponEnergyGain(energyGain);
 		}
 

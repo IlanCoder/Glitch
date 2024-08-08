@@ -25,7 +25,7 @@ namespace Items.Weapons {
         [SerializeField] protected int controlReq;
         
         [Header("Damage")]
-        public DamageStats Damage;
+        public DamageStats damage;
         
         [Header("Poise & Posture")]
         [SerializeField] protected float poiseDmg;
@@ -43,7 +43,7 @@ namespace Items.Weapons {
         public PlayerCombo[] Combos => combos;
 
         public virtual void InitializeWeapon() {
-            Damage.Initialize();
+            damage.Initialize();
             InstantiateCombos();
         }
 
@@ -76,16 +76,9 @@ namespace Items.Weapons {
             }
         }
 
-        public virtual float GetAttackMotionMultiplier(CharacterAttack attack) {
-            try {
-                return attack.MotionCostMultiplier;
-            }
-            catch {
-                Debug.LogError($"{itemName}'s weapon combo indexes out of range to get Motion Multipliers");
-                return 0;
-            }
-            
+        public virtual void SetAttackDamage(CharacterAttack attack) {
+            damage.SetDamageMultiplier(attack.MotionCostMultiplier);
+            damage.SetFilteredDamage(attack.AttackDamageTypes);
         }
-        
     }
 }
