@@ -24,11 +24,11 @@ MonoBehaviour:
   strReq: 15
   cyberReq: 0
   controlReq: 0
-  Damage:
-    slashDmg: 150
+  damage:
+    slashDmg: 100
     strikeDmg: 0
     thrustDmg: 0
-    photonDmg: 0
+    photonDmg: 100
     shockDmg: 0
     plasmaDmg: 0
   poiseDmg: 0

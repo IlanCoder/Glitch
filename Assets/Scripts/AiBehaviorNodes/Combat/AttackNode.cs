@@ -7,13 +7,15 @@ using UnityEngine;
 
 namespace AiBehaviorNodes.Combat {
     public class AttackNode : LeafNode {
-        NpcAttack _lastAttack;
+        NpcAttack _nextAttack;
 
         protected override void InitializeNode() {
             NpcAgent.isPerformingAction = true;
             InvokeNewAttackEvent.AttackStarted.AddListener(LoadNextAttackAnimation);
-            _lastAttack = TreeBlackboard.AttackChain.Dequeue();
-            NpcAgent.combatController.SetNewAttack(_lastAttack);
+            InvokeNewAttackEvent.AttackFinished.AddListener(SetNextAttackValues);
+            _nextAttack = TreeBlackboard.AttackChain.Dequeue();
+            NpcAgent.combatController.HandleNextAttackAnimation(_nextAttack);
+            NpcAgent.combatController.SetNewAttack(_nextAttack);
         }
 
         protected override NodeStatus Tick() {
@@ -28,14 +30,19 @@ namespace AiBehaviorNodes.Combat {
 
         protected override void ExitNode() {
             InvokeNewAttackEvent.AttackStarted.RemoveListener(LoadNextAttackAnimation);
+            InvokeNewAttackEvent.AttackFinished.RemoveListener(SetNextAttackValues);
             TreeBlackboard.lastAttackTime = Time.time;
-            TreeBlackboard.lastAttackDownTime = _lastAttack.DownTime;
+            TreeBlackboard.lastAttackDownTime = _nextAttack.DownTime;
         }
 
         protected void LoadNextAttackAnimation() {
             if (TreeBlackboard.AttackChain.Count <= 0) return;
-            _lastAttack = TreeBlackboard.AttackChain.Dequeue();
-            NpcAgent.combatController.SetNewAttack(_lastAttack, false);
+            _nextAttack = TreeBlackboard.AttackChain.Dequeue();
+            NpcAgent.combatController.HandleNextAttackAnimation(_nextAttack, false);
+        }
+
+        protected void SetNextAttackValues() {
+            NpcAgent.combatController.SetNewAttack(_nextAttack);
         }
     }
 }

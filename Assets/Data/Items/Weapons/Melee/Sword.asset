@@ -24,8 +24,8 @@ MonoBehaviour:
   strReq: 10
   cyberReq: 0
   controlReq: 0
-  Damage:
-    slashDmg: 80
+  damage:
+    slashDmg: 150
     strikeDmg: 0
     thrustDmg: 0
     photonDmg: 0
