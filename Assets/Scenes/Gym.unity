@@ -1297,6 +1297,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8565147569743247457, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: playerAttributes.vitality
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8682961930596713774, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_IsActive

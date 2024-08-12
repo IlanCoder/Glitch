@@ -14,7 +14,7 @@ namespace DataContainers {
         float _totalBaseDamage = 1;
         float _damageMultiplier = 1;
         float _totalFilteredDamage = 1;
-        
+
         #region Stats Getters
         public float TotalDamage => _totalBaseDamage * _damageMultiplier;
         public float TotalFilteredDamage => _totalFilteredDamage * _damageMultiplier;

@@ -27,7 +27,7 @@ namespace Characters.NPC {
         protected void Start() {
             equippedWeapon = Instantiate(equippedWeapon, transform);
             
-            equippedWeapon.InitializeWeapon();
+            equippedWeapon.InitializeWeapon(_npcManager.statsController.Stats.Damage);
             InstantiateUnequippedWeapon();
             if(startEquipped) EquipWeapon();
         }

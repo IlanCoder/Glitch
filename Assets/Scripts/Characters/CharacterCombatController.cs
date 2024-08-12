@@ -29,6 +29,10 @@ namespace Characters{
 			_manager = GetComponent<CharacterManager>();
 		}
 
+		public void OverrideTeam(CombatTeam newTeam) {
+			team = newTeam;
+		}
+
 		public virtual void SetActiveWeapon(BasicWeapon weapon, WeaponManager right, WeaponManager left = null) {
 			activeWeapon = weapon;
 			rightHandWeaponManager = right;

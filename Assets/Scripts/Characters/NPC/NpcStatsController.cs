@@ -1,16 +1,19 @@
-﻿using UnityEngine;
+﻿using DataScriptables;
+using UnityEngine;
 
 namespace Characters.NPC {
     public class NpcStatsController : CharacterStatsController {
         [Header("Main Stats")]
-        [SerializeField] int maxHp;
-        [SerializeField] int maxEnergy;
-		
+        [SerializeField] protected NpcStats stats;
+        public NpcStats Stats => stats;
+
         protected override void Awake() {
             base.Awake();
-            SetMaxHp(maxHp);
-            CurrentHp = maxHp;
-            SetMaxEnergy(maxEnergy);
+            characterName = stats.CharacterName;
+            SetMaxHp(stats.MaxHp);
+            CurrentHp = stats.MaxHp;
+            SetMaxEnergy(stats.MaxEnergy);
+            manager.CombatController.OverrideTeam(stats.Team);
         }
     }
 }

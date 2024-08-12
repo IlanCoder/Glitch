@@ -47,6 +47,11 @@ namespace Items.Weapons {
             InstantiateCombos();
         }
 
+        public virtual void InitializeWeapon(DamageStats damageOverride) {
+            damage = damageOverride;
+            InitializeWeapon();
+        }
+
         void InstantiateCombos() {
             PlayerCombo[] tempCombos = new PlayerCombo[combos.Length];
             for (int i = 0; i < combos.Length; i++) {

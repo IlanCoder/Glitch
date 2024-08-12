@@ -110,8 +110,7 @@ MonoBehaviour:
   onMaxEnergyChange:
     m_PersistentCalls:
       m_Calls: []
-  maxHp: 300
-  maxEnergy: 100
+  stats: {fileID: 11400000, guid: b0dfb42481b8ef645b6d5450a56dfab6, type: 2}
 --- !u!114 &138469432849384241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +274,7 @@ MonoBehaviour:
   animOverrider: {fileID: 0}
   agroController: {fileID: 0}
   equipmentManager: {fileID: 0}
+  statsController: {fileID: 0}
 --- !u!114 &6410675785972488243
 MonoBehaviour:
   m_ObjectHideFlags: 0
