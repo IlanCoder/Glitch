@@ -3,23 +3,30 @@ using UI.HUD.UIObjects;
 using UnityEngine;
 
 namespace UI.HUD {
-    public class HUDManager : UISliderManager {
+    public class HUDManager : MonoBehaviour {
         PlayerManager _player;
         
-        [Header("Player Stat Bars")]
+        [Header("Stat Bars")]
+        [SerializeField] UIStatBar healthBar;
+        [SerializeField] UIStatBar energyBar;
         [SerializeField] UIStatBar staminaBar;
 
         [Header("Weapon Slots")]
         [SerializeField] UIWeaponSlot[] weaponSlots = new UIWeaponSlot[3];
 
-        protected override void Awake() {
-            _player = manager.GetComponent<PlayerManager>();
-            base.Awake();
+        void Awake() {
+            _player = GetComponent<PlayerManager>();
+            SetStatBarsListeners();
             SetWeaponSlotsListeners();
         }
 
-        protected override void SetStatBarsListeners() {
-            base.SetStatBarsListeners();
+        void SetStatBarsListeners() {
+            _player.StatsController.onMaxHpChange.AddListener(SetNewMaxHpValue);
+            _player.StatsController.onHpChange.AddListener(SetNewHpValue);
+            
+            _player.StatsController.onMaxEnergyChange.AddListener(SetNewMaxEnergyValue);
+            _player.StatsController.onEnergyChange.AddListener(SetNewEnergyValue);
+            
             _player.statsController.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
             _player.statsController.onStaminaChange.AddListener(SetNewStaminaValue);
         }
@@ -37,6 +44,22 @@ namespace UI.HUD {
 
         void SetNewMaxStaminaValue(int newMax) {
             staminaBar.SetMaxStat(newMax);
+        }
+        
+        void SetNewHpValue(int newValue) {
+            healthBar.SetStat(newValue);
+        }
+
+        void SetNewMaxHpValue(int newMax) {
+            healthBar.SetMaxStat(newMax);
+        }
+
+        void SetNewEnergyValue(float newValue) {
+            energyBar.SetStat(newValue);
+        }
+        
+        void SetNewMaxEnergyValue(int newMax) {
+            energyBar.SetMaxStat(newMax);
         }
 #endregion
 
