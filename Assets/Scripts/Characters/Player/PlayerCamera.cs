@@ -3,6 +3,8 @@ using WorldManager;
 
 namespace Characters.Player {
     public class PlayerCamera : MonoBehaviour {
+        const short MaxLockOnColliders = 15;
+        
         public Camera cam;
         [HideInInspector] public PlayerManager player;
         [HideInInspector] public PlayerInputController inputController;
@@ -21,10 +23,13 @@ namespace Characters.Player {
         [SerializeField, Min(0.1f)] float lockOnSmoothSpeed = 1;
         [SerializeField] float maxLockOnDistance = 100f;
         [SerializeField] float lockOnCamHeight = 0.5f;
+        [SerializeField, Min(1)] float lockOnCamFarMultiplier = 1.1f;
         [SerializeField, Min(0.1f)] float camHeightSmoothSpeed = 0.05f;
         [SerializeField] LayerMask lockOnLayer;
         [SerializeField] LayerMask lockOnObstructLayer;
+        [HideInInspector] public Transform lockOnTransform;
 
+        Collider[] _lockOnColliders = new Collider[MaxLockOnColliders];
         Vector3 _camVelocity = Vector3.zero;
         float _yAxisAngle;
         float _xAxisAngle;
@@ -44,7 +49,7 @@ namespace Characters.Player {
             HandleFollowPlayer();
             if (player.isLockedOn) {
                 HandleLockedRotation();
-                CheckIfTargetIsInRange();
+                CheckLockOnCancelCases();
             } else {
                 HandleUnlockedRotation();
             }
@@ -58,7 +63,7 @@ namespace Characters.Player {
         }
 
         void HandleLockedRotation() {
-            Vector3 lockOnPos = player.combatController.LockOnTarget.CombatController.LockOnPivot.position;
+            Vector3 lockOnPos = lockOnTransform.position;
             Vector3 rotationDirection = lockOnPos - pivot.transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(rotationDirection);
             rotationDirection = targetRotation.eulerAngles;
@@ -70,11 +75,19 @@ namespace Characters.Player {
             pivot.localRotation = Quaternion.Slerp(pivot.transform.localRotation, targetRotation, lockOnSmoothSpeed);
         }
 
-        void CheckIfTargetIsInRange() {
+        void CheckLockOnCancelCases() {
+            if (!TargetIsInRange() || !TargetIsVisible()) player.DisableLockOn();
+        }
+        
+        bool TargetIsInRange() {
             float distToTarget = Vector3.Distance(player.combatController.LockOnTarget.transform.position,
                 player.transform.position);
-            if (distToTarget <= maxLockOnDistance) return;
-            player.DisableLockOn();
+            return distToTarget <= maxLockOnDistance;
+        }
+
+        bool TargetIsVisible() {
+            return !Physics.Linecast(cam.transform.position, lockOnTransform.position,
+            lockOnObstructLayer);
         }
 
         void HandleUnlockedRotation() {
@@ -92,7 +105,7 @@ namespace Characters.Player {
         }
 
         void HandleCollision() {
-            _targetCamZPos = _camZPosition;
+            _targetCamZPos = player.isLockedOn ? _camZPosition * lockOnCamFarMultiplier : _camZPosition;
             Vector3 direction = -cam.transform.forward.normalized;
             if (Physics.SphereCast(pivot.position, camCollisionRadius, direction, out RaycastHit hit,
                 Mathf.Abs(_camZPosition), camCollisionLayer)) {
@@ -138,11 +151,12 @@ namespace Characters.Player {
         public bool FindClosestLockOnTarget(out CharacterManager closestTarget) {
             float shortestDistance = maxLockOnDistance;
             closestTarget = null;
+
+            int collidersFound = Physics.OverlapSphereNonAlloc(player.transform.position, maxLockOnDistance,
+                _lockOnColliders, lockOnLayer);
             
-            Collider[] colliders = Physics.OverlapSphere(player.transform.position, maxLockOnDistance, lockOnLayer);
-            
-            foreach (Collider col in colliders) {
-                if (!CanBeTargeted(col, out CharacterManager target)) continue;
+            for (int i = 0; i < collidersFound; i++) {
+                if (!CanBeTargeted(_lockOnColliders[i], out CharacterManager target)) continue;
 
                 float distanceToTarget = Vector3.Distance(player.transform.position, target.transform.position);
                 
@@ -150,7 +164,7 @@ namespace Characters.Player {
                 shortestDistance = distanceToTarget;
                 closestTarget = target;
             }
-            return closestTarget != null;
+            return closestTarget;
         }
 
         public bool FindClosestRightLockOnTarget(out CharacterManager closestTarget) {
@@ -159,10 +173,11 @@ namespace Characters.Player {
                 .InverseTransformPoint(player.combatController.LockOnTarget.transform.position).x;
             closestTarget = null;
 
-            Collider[] colliders = Physics.OverlapSphere(player.transform.position, maxLockOnDistance, lockOnLayer);
+            int collidersFound = Physics.OverlapSphereNonAlloc(player.transform.position, maxLockOnDistance,
+                _lockOnColliders, lockOnLayer);
 
-            foreach (Collider col in colliders) {
-                if (!CanBeTargeted(col, out CharacterManager target)) continue;
+            for (int i = 0; i < collidersFound; i++) {
+                if (!CanBeTargeted(_lockOnColliders[i], out CharacterManager target)) continue;
                 
                 float relativeTargetPos = cam.transform.InverseTransformPoint(target.transform.position).x;
                 relativeTargetPos -= currentTargetRelativePos;
@@ -172,7 +187,7 @@ namespace Characters.Player {
                 distanceToTarget = relativeTargetPos;
                 closestTarget = target;
             }
-            return closestTarget != null;
+            return closestTarget;
         }
         
         public bool FindClosestLeftLockOnTarget(out CharacterManager closestTarget) {
@@ -181,10 +196,11 @@ namespace Characters.Player {
                 .InverseTransformPoint(player.combatController.LockOnTarget.transform.position).x;
             closestTarget = null;
 
-            Collider[] colliders = Physics.OverlapSphere(player.transform.position, maxLockOnDistance, lockOnLayer);
+            int collidersFound = Physics.OverlapSphereNonAlloc(player.transform.position, maxLockOnDistance,
+                _lockOnColliders, lockOnLayer);
 
-            foreach (Collider col in colliders) {
-                if (!CanBeTargeted(col, out CharacterManager target)) continue;
+            for (int i = 0; i < collidersFound; i++) {
+                if (!CanBeTargeted(_lockOnColliders[i], out CharacterManager target)) continue;
                 
                 float relativeTargetPos = cam.transform.InverseTransformPoint(target.transform.position).x;
                 relativeTargetPos -= currentTargetRelativePos;
@@ -194,7 +210,7 @@ namespace Characters.Player {
                 distanceToTarget = relativeTargetPos;
                 closestTarget = target;
             }
-            return closestTarget != null;
+            return closestTarget;
         }
         
         bool CanBeTargeted(Collider col, out CharacterManager target) {

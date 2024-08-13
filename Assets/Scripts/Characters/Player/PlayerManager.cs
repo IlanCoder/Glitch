@@ -106,7 +106,7 @@ namespace Characters.Player {
         #region Lock On
         public void LockOn() {
             if (!playerCamera.FindClosestLockOnTarget(out CharacterManager target)) return;
-            combatController.ChangeTarget(target);
+            ChangeLockOnTarget(target);
             isLockedOn = true;
         }
 
@@ -120,17 +120,22 @@ namespace Characters.Player {
             if (!playerCamera.FindClosestLockOnTarget(out CharacterManager target)) {
                 DisableLockOn();
             }
-            combatController.ChangeTarget(target);
+            ChangeLockOnTarget(target);
         }
         
         public void SwitchLockOn(float value) {
             CharacterManager target;
             if (value > 0) {
                 if (!playerCamera.FindClosestRightLockOnTarget(out target)) return;
-                combatController.ChangeTarget(target);
+                ChangeLockOnTarget(target);
                 return;
             }
             if (!playerCamera.FindClosestLeftLockOnTarget(out target)) return;
+            ChangeLockOnTarget(target);
+        }
+
+        protected void ChangeLockOnTarget(CharacterManager target) {
+            playerCamera.lockOnTransform = target.CombatController.LockOnPivot;
             combatController.ChangeTarget(target);
         }
   #endregion

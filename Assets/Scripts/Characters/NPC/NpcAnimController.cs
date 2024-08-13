@@ -5,13 +5,10 @@ using UnityEngine;
 namespace Characters.NPC {
     public class NpcAnimController : CharacterAnimController {
         #region Animation String Hashes
-        readonly protected int _rotationYIntHash = Animator.StringToHash("RotationY");
-        readonly protected int _continueAttackChainTriggerHash = Animator.StringToHash("ContinueAttackChain");
-        
-        readonly protected Dictionary<string, int> AttackAnimationHashes = new Dictionary<string, int> {
-            { "Combo_1", Animator.StringToHash("Combo_1") },
-            { "Combo_2", Animator.StringToHash("Combo_2") },
-        };
+        readonly protected int RotationYIntHash = Animator.StringToHash("RotationY");
+        readonly protected int ContinueAttackChainTriggerHash = Animator.StringToHash("ContinueAttackChain");
+
+        readonly protected int FirstAttackAnimationHash = Animator.StringToHash("Combo_1");
         #endregion
         
         public override void UpdateMovementParameters(float horizontal, float vertical) {
@@ -20,15 +17,15 @@ namespace Characters.NPC {
         }
 
         public void UpdateRotation(int y) {
-            animator.SetInteger(_rotationYIntHash, y);
+            animator.SetInteger(RotationYIntHash, y);
         }
 
         public void PlayAttackAnimation(bool firstInChain = true) {
             if (firstInChain) {
-                animator.Play(AttackAnimationHashes["Combo_1"]);
+                animator.CrossFade(FirstAttackAnimationHash, 0.1f);
                 return;
             }
-            animator.SetTrigger(_continueAttackChainTriggerHash);
+            animator.SetTrigger(ContinueAttackChainTriggerHash);
         }
     }
 }

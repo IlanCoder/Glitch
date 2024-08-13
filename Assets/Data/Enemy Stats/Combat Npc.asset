@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHp: 1000
   maxEnergy: 1000
   damage:
-    slashDmg: 1000
+    slashDmg: 100
     strikeDmg: 0
     thrustDmg: 0
     photonDmg: 0

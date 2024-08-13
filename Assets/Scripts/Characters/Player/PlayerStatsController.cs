@@ -16,7 +16,7 @@ namespace Characters.Player {
         
         [HideInInspector] public UnityEvent<float> onStaminaChange;
         [HideInInspector] public UnityEvent<int> onMaxStaminaChange;
-        [HideInInspector] public UnityEvent OnStaminaDepletion;
+        [HideInInspector] public UnityEvent onStaminaDepletion;
         
         public int MaxStamina { get; protected set; }
         public float CurrentStamina { get; protected set; }
@@ -30,7 +30,7 @@ namespace Characters.Player {
         public int Control => playerAttributes.control;
   #endregion
 
-        void Start() {
+        protected override void Start() {
             SetNewLevel();
         }
         
@@ -120,7 +120,7 @@ namespace Characters.Player {
             _lastStaminaActionTime = Time.time;
             if (CurrentStamina > 0) return;
             CurrentStamina = 0;
-            OnStaminaDepletion?.Invoke();
+            onStaminaDepletion?.Invoke();
         }
         
         public bool CanPerformStaminaAction() {

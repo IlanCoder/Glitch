@@ -32,8 +32,8 @@ namespace Characters.Player {
             }
             _playerControls?.Enable();
 
-            _playerManager.statsController.OnStaminaDepletion.RemoveListener(CancelSprint);
-            _playerManager.statsController.OnStaminaDepletion.AddListener(CancelSprint);
+            _playerManager.statsController.onStaminaDepletion.RemoveListener(CancelSprint);
+            _playerManager.statsController.onStaminaDepletion.AddListener(CancelSprint);
         }
 
         void BindControls() {
@@ -55,7 +55,7 @@ namespace Characters.Player {
 
         void OnDisable() {
             _playerControls?.Disable();
-            _playerManager.statsController?.OnStaminaDepletion.RemoveListener(CancelSprint);
+            _playerManager.statsController?.onStaminaDepletion.RemoveListener(CancelSprint);
         }
 
         void OnDestroy() {

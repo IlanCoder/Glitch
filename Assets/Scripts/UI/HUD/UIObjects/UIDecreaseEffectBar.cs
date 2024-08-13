@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.HUD {
+namespace UI.HUD.UIObjects {
     public class UIDecreaseEffectBar : MonoBehaviour {
 
         RectTransform _transform;

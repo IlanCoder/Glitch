@@ -23,6 +23,11 @@ namespace Characters {
             manager = GetComponent<CharacterManager>();
         }
 
+        protected virtual void Start() {
+            onHpChange?.Invoke(CurrentHp);
+            onEnergyChange?.Invoke(CurrentEnergy);
+        }
+
         protected virtual void OnDestroy() {
             onHpChange.RemoveAllListeners();
             onMaxHpChange.RemoveAllListeners();

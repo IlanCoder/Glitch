@@ -2419,14 +2419,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   playerAttributes:
-    vitality: 10
+    vitality: 15
     endurance: 10
     dexterity: 10
     strength: 10
     cyber: 10
     control: 10
   staminaRegen: 5
-  staminaRegenDelay: 1
+  staminaRegenDelay: 3
   onStaminaChange:
     m_PersistentCalls:
       m_Calls:

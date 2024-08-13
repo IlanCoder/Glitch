@@ -1,39 +1,33 @@
-using System;
 using Characters.Player;
+using UI.HUD.UIObjects;
 using UnityEngine;
 
 namespace UI.HUD {
-    public class HUDManager : MonoBehaviour {
-        [SerializeField] PlayerManager player;
+    public class HUDManager : UISliderManager {
+        PlayerManager _player;
         
-        [Header("HUD Bars")]
-        [SerializeField] UIStatBar healthBar;
+        [Header("Player Stat Bars")]
         [SerializeField] UIStatBar staminaBar;
-        [SerializeField] UIStatBar energyBar;
 
         [Header("Weapon Slots")]
         [SerializeField] UIWeaponSlot[] weaponSlots = new UIWeaponSlot[3];
 
-        void Awake() {
-            SetStatBarsListeners();
+        protected override void Awake() {
+            _player = manager.GetComponent<PlayerManager>();
+            base.Awake();
             SetWeaponSlotsListeners();
         }
 
-        void SetStatBarsListeners() {
-            player.statsController.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
-            player.statsController.onStaminaChange.AddListener(SetNewStaminaValue);
-            
-            player.statsController.onMaxHpChange.AddListener(SetNewMaxHpValue);
-            player.statsController.onHpChange.AddListener(SetNewHpValue);
-            
-            player.statsController.onMaxEnergyChange.AddListener(SetNewMaxEnergyValue);
-            player.statsController.onEnergyChange.AddListener(SetNewEnergyValue);
+        protected override void SetStatBarsListeners() {
+            base.SetStatBarsListeners();
+            _player.statsController.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
+            _player.statsController.onStaminaChange.AddListener(SetNewStaminaValue);
         }
 
         void SetWeaponSlotsListeners() {
-            player.equipmentManager.onEquipWeapon.AddListener(SetWeaponSlotSprite);
-            player.equipmentManager.onUnequipWeapon.AddListener(RemoveWeaponSlotSprite);
-            player.equipmentManager.onActiveWeaponSwitch.AddListener(SwitchActiveWeapon);
+            _player.equipmentManager.onEquipWeapon.AddListener(SetWeaponSlotSprite);
+            _player.equipmentManager.onUnequipWeapon.AddListener(RemoveWeaponSlotSprite);
+            _player.equipmentManager.onActiveWeaponSwitch.AddListener(SwitchActiveWeapon);
         }
 
         #region Stat Bars
@@ -43,22 +37,6 @@ namespace UI.HUD {
 
         void SetNewMaxStaminaValue(int newMax) {
             staminaBar.SetMaxStat(newMax);
-        }
-        
-        void SetNewHpValue(int newValue) {
-            healthBar.SetStat(newValue);
-        }
-
-        void SetNewMaxHpValue(int newMax) {
-            healthBar.SetMaxStat(newMax);
-        }
-
-        void SetNewEnergyValue(float newValue) {
-            energyBar.SetStat(newValue);
-        }
-        
-        void SetNewMaxEnergyValue(int newMax) {
-            energyBar.SetMaxStat(newMax);
         }
 #endregion
 

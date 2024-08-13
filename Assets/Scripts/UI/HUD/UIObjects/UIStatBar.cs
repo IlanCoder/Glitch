@@ -1,9 +1,7 @@
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
-namespace UI.HUD {
+namespace UI.HUD.UIObjects {
     public class UIStatBar : MonoBehaviour {
         Slider _slider;
         RectTransform _transform;

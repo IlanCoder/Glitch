@@ -52,7 +52,7 @@ MonoBehaviour:
   camSmoothTime: 0.15
   yAxisSpeed: 250
   xAxisSpeed: 200
-  minimumPivot: -60
+  minimumPivot: -45
   maximumPivot: 60
   camCollisionRadius: 0.2
   camCollisionLayer:
@@ -61,13 +61,15 @@ MonoBehaviour:
   lockOnSmoothSpeed: 0.15
   maxLockOnDistance: 20
   lockOnCamHeight: 0.4
-  camHeightSmoothSpeed: 0.05
+  lockOnCamFarMultiplier: 1.1
+  camHeightSmoothSpeed: 0.12
   lockOnLayer:
     serializedVersion: 2
     m_Bits: 128
   lockOnObstructLayer:
     serializedVersion: 2
     m_Bits: 9
+  lockOnTransform: {fileID: 0}
 --- !u!1 &7525426520785487530
 GameObject:
   m_ObjectHideFlags: 0

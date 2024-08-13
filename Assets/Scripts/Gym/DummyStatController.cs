@@ -9,6 +9,7 @@ namespace Gym{
 		
 		protected override void Awake() {
 			base.Awake();
+			
 			SetMaxHp(maxHp);
 			CurrentHp = maxHp;
 		}

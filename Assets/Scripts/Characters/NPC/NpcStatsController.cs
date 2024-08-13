@@ -10,8 +10,10 @@ namespace Characters.NPC {
         protected override void Awake() {
             base.Awake();
             characterName = stats.CharacterName;
+            
             SetMaxHp(stats.MaxHp);
             CurrentHp = stats.MaxHp;
+
             SetMaxEnergy(stats.MaxEnergy);
             manager.CombatController.OverrideTeam(stats.Team);
         }
