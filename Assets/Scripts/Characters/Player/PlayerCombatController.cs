@@ -8,6 +8,7 @@ using DataContainers;
 using Enums;
 using Items.Weapons;
 using UnityEngine;
+using UnityEngine.Events;
 using Weapons;
 
 namespace Characters.Player{
@@ -15,6 +16,8 @@ namespace Characters.Player{
 		PlayerManager _playerManager;
 		
 		public CharacterManager LockOnTarget { get; protected set; }
+
+		[HideInInspector] public UnityEvent<CharacterManager> onLockOnTargetChange;
 
 		int _comboIndex;
 		int _currentAttackIndex;
@@ -94,6 +97,7 @@ namespace Characters.Player{
 				newTarget.onCharacterDeath.AddListener(WaitForTargetToDie);
 			}
 			LockOnTarget = newTarget;
+			onLockOnTargetChange?.Invoke(LockOnTarget);
 		}
 		
 		async void WaitForTargetToDie() {

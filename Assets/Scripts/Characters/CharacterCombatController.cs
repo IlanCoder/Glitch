@@ -13,13 +13,16 @@ namespace Characters{
 		[HideInInspector] public WeaponManager rightHandWeaponManager;
 		[HideInInspector] public WeaponManager leftHandWeaponManager;
 
+		[Header("Lock On Pivots")]
 		[SerializeField] protected Transform centerLockOnPivot;
+		[SerializeField] protected Transform uiLockOnPivotRef;
 		
 		[Header("Combat Attributes")]
 		[SerializeField] protected CombatTeam team;
 		public CombatTeam Team => team;
 		
 		public Transform LockOnPivot => centerLockOnPivot;
+		public Transform UILockOnPivotRef => uiLockOnPivotRef;
 		
 		protected AttackType CurrentAttackType;
 		

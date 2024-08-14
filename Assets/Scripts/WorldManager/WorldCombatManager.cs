@@ -1,10 +1,15 @@
 ﻿using System;
+using Characters;
 using Enums;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace WorldManager {
+    [DisallowMultipleComponent]
     public class WorldCombatManager : MonoBehaviour {
         public static WorldCombatManager Instance;
+
+        [HideInInspector] public UnityEvent<CharacterManager, int> onNpcHit;
 
         void Awake() {
             if (Instance == null) {

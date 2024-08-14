@@ -135,7 +135,7 @@ namespace Characters.Player {
         }
 
         protected void ChangeLockOnTarget(CharacterManager target) {
-            playerCamera.lockOnTransform = target.CombatController.LockOnPivot;
+            playerCamera.lockOnTransform = target ? target.CombatController.LockOnPivot : null;
             combatController.ChangeTarget(target);
         }
   #endregion

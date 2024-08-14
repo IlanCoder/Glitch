@@ -18,10 +18,11 @@ namespace UI.HUD.UIObjects {
             _transform = GetComponent<RectTransform>();
         }
 
-        public void SetStat(float val) {
+        public void SetStat(float val, bool decrease = true) {
             float diff = _slider.value - val;
             float oldVal = _slider.value;
             _slider.value = val;
+            if (!decrease) return;
             if (diff <= _slider.maxValue / 100) return;
             if (decreaseEffect.gameObject.activeSelf) return;
             decreaseEffect.EnableDecreaseSlider(oldVal);

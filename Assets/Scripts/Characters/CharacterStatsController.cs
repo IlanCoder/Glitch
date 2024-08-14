@@ -33,7 +33,7 @@ namespace Characters {
             onMaxHpChange.RemoveAllListeners();
         }
 
-        public void ReceiveDamage(int dmgReceived) {
+        public virtual void ReceiveDamage(int dmgReceived) {
             CurrentHp -= dmgReceived;
             onHpChange?.Invoke(CurrentHp);
             if (CurrentHp > 0) return;

@@ -451,6 +451,7 @@ MonoBehaviour:
   rightHandWeaponManager: {fileID: 0}
   leftHandWeaponManager: {fileID: 0}
   centerLockOnPivot: {fileID: 503106847661772773}
+  uiLockOnPivotRef: {fileID: 1636887578307772735}
   team: 1
 --- !u!114 &3977683131871305635
 MonoBehaviour:

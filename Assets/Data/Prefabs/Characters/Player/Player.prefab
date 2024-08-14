@@ -2457,7 +2457,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnStaminaDepletion:
+  onStaminaDepletion:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &5738588397391005857
@@ -2511,7 +2511,11 @@ MonoBehaviour:
   rightHandWeaponManager: {fileID: 0}
   leftHandWeaponManager: {fileID: 0}
   centerLockOnPivot: {fileID: 8446883103538547758}
+  uiLockOnPivotRef: {fileID: 3517589974461964396}
   team: 0
+  onLockOnTargetChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &331698001150466806
 MonoBehaviour:
   m_ObjectHideFlags: 0

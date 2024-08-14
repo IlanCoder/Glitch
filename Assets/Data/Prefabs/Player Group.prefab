@@ -281,7 +281,7 @@ PrefabInstance:
     - target: {fileID: 80773936328029373, guid: 67e08b80ea92c9449b4be07eb74d0201,
         type: 3}
       propertyPath: m_Name
-      value: Player UI Manager
+      value: Player UI
       objectReference: {fileID: 0}
     - target: {fileID: 879244639912201433, guid: 67e08b80ea92c9449b4be07eb74d0201,
         type: 3}
@@ -353,6 +353,16 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1149446055214853723, guid: 67e08b80ea92c9449b4be07eb74d0201,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 7967837545312094350}
+    - target: {fileID: 1149446055214853723, guid: 67e08b80ea92c9449b4be07eb74d0201,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 8778251744926037100}
     - target: {fileID: 1354662148760397604, guid: 67e08b80ea92c9449b4be07eb74d0201,
         type: 3}
       propertyPath: playerManager
@@ -453,6 +463,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3563511329743484653, guid: 67e08b80ea92c9449b4be07eb74d0201,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 7967837545312094350}
+    - target: {fileID: 3563511329743484653, guid: 67e08b80ea92c9449b4be07eb74d0201,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 8778251744926037100}
     - target: {fileID: 3620144433652190943, guid: 67e08b80ea92c9449b4be07eb74d0201,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1077,6 +1097,12 @@ MonoBehaviour:
 --- !u!4 &6674809730526408942 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3282358453330032024, guid: dd1ff2405a10fad49942ea60e937909a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8155165200415475062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &8778251744926037100 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 648073015579423002, guid: dd1ff2405a10fad49942ea60e937909a,
     type: 3}
   m_PrefabInstance: {fileID: 8155165200415475062}
   m_PrefabAsset: {fileID: 0}

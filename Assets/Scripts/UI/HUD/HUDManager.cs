@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI.HUD {
     public class HUDManager : MonoBehaviour {
-        PlayerManager _player;
+        [SerializeField] PlayerManager player;
         
         [Header("Stat Bars")]
         [SerializeField] UIStatBar healthBar;
@@ -14,27 +14,38 @@ namespace UI.HUD {
         [Header("Weapon Slots")]
         [SerializeField] UIWeaponSlot[] weaponSlots = new UIWeaponSlot[3];
 
-        void Awake() {
-            _player = GetComponent<PlayerManager>();
+        void Start() {
             SetStatBarsListeners();
             SetWeaponSlotsListeners();
+            SetStatBarsValues();
+        }
+
+        void SetStatBarsValues() {
+            healthBar.SetMaxStat(player.statsController.MaxHp);
+            healthBar.SetStat(player.statsController.CurrentHp, false);
+
+            energyBar.SetMaxStat(player.statsController.MaxEnergy);
+            energyBar.SetStat(player.statsController.CurrentEnergy, false);
+            
+            staminaBar.SetMaxStat(player.statsController.MaxStamina);
+            staminaBar.SetStat(player.statsController.CurrentStamina, false);
         }
 
         void SetStatBarsListeners() {
-            _player.StatsController.onMaxHpChange.AddListener(SetNewMaxHpValue);
-            _player.StatsController.onHpChange.AddListener(SetNewHpValue);
+            player.StatsController.onMaxHpChange.AddListener(SetNewMaxHpValue);
+            player.StatsController.onHpChange.AddListener(SetNewHpValue);
             
-            _player.StatsController.onMaxEnergyChange.AddListener(SetNewMaxEnergyValue);
-            _player.StatsController.onEnergyChange.AddListener(SetNewEnergyValue);
+            player.StatsController.onMaxEnergyChange.AddListener(SetNewMaxEnergyValue);
+            player.StatsController.onEnergyChange.AddListener(SetNewEnergyValue);
             
-            _player.statsController.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
-            _player.statsController.onStaminaChange.AddListener(SetNewStaminaValue);
+            player.statsController.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
+            player.statsController.onStaminaChange.AddListener(SetNewStaminaValue);
         }
 
         void SetWeaponSlotsListeners() {
-            _player.equipmentManager.onEquipWeapon.AddListener(SetWeaponSlotSprite);
-            _player.equipmentManager.onUnequipWeapon.AddListener(RemoveWeaponSlotSprite);
-            _player.equipmentManager.onActiveWeaponSwitch.AddListener(SwitchActiveWeapon);
+            player.equipmentManager.onEquipWeapon.AddListener(SetWeaponSlotSprite);
+            player.equipmentManager.onUnequipWeapon.AddListener(RemoveWeaponSlotSprite);
+            player.equipmentManager.onActiveWeaponSwitch.AddListener(SwitchActiveWeapon);
         }
 
         #region Stat Bars

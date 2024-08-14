@@ -1,6 +1,7 @@
 using System;
 using Characters;
 using UnityEngine;
+using WorldManager;
 
 namespace Gym{
 	public class DummyStatController : CharacterStatsController {
@@ -12,6 +13,11 @@ namespace Gym{
 			
 			SetMaxHp(maxHp);
 			CurrentHp = maxHp;
+		}
+		
+		override public void ReceiveDamage(int dmgReceived) {
+			base.ReceiveDamage(dmgReceived);
+			WorldCombatManager.Instance.onNpcHit?.Invoke(manager, dmgReceived);
 		}
 	}
 }

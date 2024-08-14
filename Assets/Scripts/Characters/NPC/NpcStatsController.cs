@@ -1,5 +1,6 @@
 ﻿using DataScriptables;
 using UnityEngine;
+using WorldManager;
 
 namespace Characters.NPC {
     public class NpcStatsController : CharacterStatsController {
@@ -16,6 +17,11 @@ namespace Characters.NPC {
 
             SetMaxEnergy(stats.MaxEnergy);
             manager.CombatController.OverrideTeam(stats.Team);
+        }
+
+        override public void ReceiveDamage(int dmgReceived) {
+            base.ReceiveDamage(dmgReceived);
+            WorldCombatManager.Instance.onNpcHit?.Invoke(manager, dmgReceived);
         }
     }
 }

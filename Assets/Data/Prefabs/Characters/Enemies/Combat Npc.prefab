@@ -171,11 +171,11 @@ MonoBehaviour:
   rightHandWeaponManager: {fileID: 0}
   leftHandWeaponManager: {fileID: 0}
   centerLockOnPivot: {fileID: 6248522336254308412}
+  uiLockOnPivotRef: {fileID: 5018083100367892739}
   team: 3
   attackRotationTrackingSpeed: 10
   attacks:
   - {fileID: 11400000, guid: 54a615e1ed0259a4f9ee3621b17dab02, type: 2}
-  - {fileID: 11400000, guid: e51c6a636e3a31846b54fd6ba9004bfe, type: 2}
 --- !u!114 &2214719120477404899
 MonoBehaviour:
   m_ObjectHideFlags: 0
