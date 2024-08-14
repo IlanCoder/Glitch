@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Characters;
 using Characters.Player;
+using UI.CombatUI.EnemiesStatBars;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using WorldManager;
 
 namespace UI.CombatUI {
@@ -12,6 +10,9 @@ namespace UI.CombatUI {
         [SerializeField] PlayerManager player;
         [SerializeField] Camera mainCamera;
 
+        [Header("Boss Settings")]
+        [SerializeField] BossStatBarsController bossStatBars;
+        
         [Header("Pool Settings")]
         [SerializeField] GameObject enemyStatBarsPrefab;
         [SerializeField] int initCopyCounts;
@@ -31,17 +32,24 @@ namespace UI.CombatUI {
         void Start() {
             player.combatController.onLockOnTargetChange.AddListener(ChangeLockOnTarget);
             WorldCombatManager.Instance.onNpcHit.AddListener(TieHitCharacter);
+            WorldCombatManager.Instance.onBossStarted.AddListener(TieBoss);
         }
 
         void LateUpdate() {
-            Dictionary<CharacterManager, EnemyStatBarsController> barsToRemove = 
-                new Dictionary<CharacterManager, EnemyStatBarsController>();
-            foreach (KeyValuePair<CharacterManager,EnemyStatBarsController> activeStatBar in _activeStatBars) {
-                if(!activeStatBar.Value.IsStillVisible())
-                    barsToRemove.Add(activeStatBar.Key,activeStatBar.Value);
+            CheckEnemyBarsToRemove();
+            if (!bossStatBars.gameObject.activeSelf) return;
+            if (!bossStatBars.IsStillVisible()) bossStatBars.FadeOut();
+        }
+
+        void CheckEnemyBarsToRemove() {
+            Dictionary<CharacterManager, EnemyStatBarsController> barsToRemove =
+            new Dictionary<CharacterManager, EnemyStatBarsController>();
+            foreach (KeyValuePair<CharacterManager, EnemyStatBarsController> activeStatBar in _activeStatBars) {
+                if (!activeStatBar.Value.IsStillVisible())
+                    barsToRemove.Add(activeStatBar.Key, activeStatBar.Value);
             }
-            foreach (KeyValuePair<CharacterManager,EnemyStatBarsController> removeTarget in barsToRemove) {
-                if(!removeTarget.Value.IsStillVisible())
+            foreach (KeyValuePair<CharacterManager, EnemyStatBarsController> removeTarget in barsToRemove) {
+                if (!removeTarget.Value.IsStillVisible())
                     UntieStatBarsFromCharacter(removeTarget.Key);
             }
         }
@@ -79,7 +87,9 @@ namespace UI.CombatUI {
 
         void ChangeLockOnTarget(CharacterManager newTarget) {
             if (_lockedOnController) _lockedOnController.RemoveLockOn();
+            _lockedOnController = null;
             if (!newTarget) return;
+            if (bossStatBars.TiedCharacter == newTarget) return;
             if (!_activeStatBars.TryGetValue(newTarget, out EnemyStatBarsController barsController))
                 barsController = TieStatBarsToCharacter(newTarget);
             barsController.LockOn();
@@ -87,9 +97,16 @@ namespace UI.CombatUI {
         }
 
         void TieHitCharacter(CharacterManager character, int damageReceived) {
+            if (bossStatBars.TiedCharacter == character) return;
             if (_activeStatBars.TryGetValue(character, out EnemyStatBarsController barsController))
                 barsController.EnableCombat();
             else TieStatBarsToCharacter(character, true, damageReceived);
+        }
+
+        void TieBoss(CharacterManager boss) {
+            if (_activeStatBars.ContainsKey(boss)) UntieStatBarsFromCharacter(boss);
+            bossStatBars.TieNewCharacter(boss);
+            bossStatBars.gameObject.SetActive(true);
         }
     }
 }

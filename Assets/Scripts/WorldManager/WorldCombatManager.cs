@@ -10,6 +10,7 @@ namespace WorldManager {
         public static WorldCombatManager Instance;
 
         [HideInInspector] public UnityEvent<CharacterManager, int> onNpcHit;
+        [HideInInspector] public UnityEvent<CharacterManager> onBossStarted;
 
         void Awake() {
             if (Instance == null) {

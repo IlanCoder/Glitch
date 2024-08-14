@@ -55,10 +55,10 @@ GameObject:
   - component: {fileID: 4636813968090390321}
   - component: {fileID: 7556249675142974900}
   - component: {fileID: 6410675785972488243}
+  - component: {fileID: 3167554467765934337}
   - component: {fileID: 410416262407915781}
   - component: {fileID: 8773442675942537494}
   - component: {fileID: 3493666990746572942}
-  - component: {fileID: 3167554467765934337}
   m_Layer: 7
   m_Name: Combat Npc
   m_TagString: Untagged
@@ -288,6 +288,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tree: {fileID: 11400000, guid: 1a3aa9344db12bd4ca45721e5bb414c1, type: 2}
+--- !u!114 &3167554467765934337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449377457554804151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c56adc01e2f4452fb85b990b8358b8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &410416262407915781
 Animator:
   serializedVersion: 5
@@ -357,18 +369,6 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &3167554467765934337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449377457554804151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c56adc01e2f4452fb85b990b8358b8a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &455919941229834904
 GameObject:
   m_ObjectHideFlags: 0

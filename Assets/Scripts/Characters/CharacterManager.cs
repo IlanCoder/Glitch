@@ -54,6 +54,7 @@ namespace Characters {
             isDead = true;
             onCharacterDeath?.Invoke();
             AnimController.PlayDeathAnimation();
+            CombatController.DisableAttack(0);
         }
 
         public virtual void ReviveCharacter() {
