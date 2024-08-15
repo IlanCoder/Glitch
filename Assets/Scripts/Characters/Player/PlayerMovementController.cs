@@ -84,6 +84,7 @@ namespace Characters.Player {
         }
 
         void HandleLockedRotation() {
+            if (_inputMovement.magnitude <= 0) return;
             Vector3 targetDirection = _playerManager.combatController.LockOnTarget.transform.position - transform.position;
             targetDirection.y = 0;
             targetDirection.Normalize();
