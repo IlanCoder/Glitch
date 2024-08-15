@@ -16,7 +16,11 @@ namespace Characters.NPC {
             CurrentHp = stats.MaxHp;
 
             SetMaxEnergy(stats.MaxEnergy);
+        }
+
+        protected override void Start() {
             manager.CombatController.OverrideTeam(stats.Team);
+            base.Start();
         }
 
         override public void ReceiveDamage(int dmgReceived) {

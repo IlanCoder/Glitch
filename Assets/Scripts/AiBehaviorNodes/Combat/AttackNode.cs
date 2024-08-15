@@ -1,5 +1,4 @@
-﻿using AnimatorScripts.NPC;
-using Attacks.NPC;
+﻿using Attacks.NPC;
 using BehaviorTreeSource.Runtime.Nodes;
 using BehaviorTreeSource.Runtime.Nodes.Leaves;
 using UnityEditor.Experimental.GraphView;
@@ -11,8 +10,8 @@ namespace AiBehaviorNodes.Combat {
 
         protected override void InitializeNode() {
             NpcAgent.isPerformingAction = true;
-            InvokeNewAttackEvent.AttackStarted.AddListener(LoadNextAttackAnimation);
-            InvokeNewAttackEvent.AttackFinished.AddListener(SetNextAttackValues);
+            NpcAgent.combatController.onAttackStarted.AddListener(LoadNextAttackAnimation);
+            NpcAgent.combatController.onAttackFinished.AddListener(SetNextAttackValues);
             _nextAttack = TreeBlackboard.AttackChain.Dequeue();
             NpcAgent.combatController.HandleNextAttackAnimation(_nextAttack);
             NpcAgent.combatController.SetNewAttack(_nextAttack);
@@ -29,8 +28,8 @@ namespace AiBehaviorNodes.Combat {
         }
 
         protected override void ExitNode() {
-            InvokeNewAttackEvent.AttackStarted.RemoveListener(LoadNextAttackAnimation);
-            InvokeNewAttackEvent.AttackFinished.RemoveListener(SetNextAttackValues);
+            NpcAgent.combatController.onAttackStarted.RemoveListener(LoadNextAttackAnimation);
+            NpcAgent.combatController.onAttackFinished.RemoveListener(SetNextAttackValues);
             TreeBlackboard.lastAttackTime = Time.time;
             TreeBlackboard.lastAttackDownTime = _nextAttack.DownTime;
         }

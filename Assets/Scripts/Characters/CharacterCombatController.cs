@@ -4,6 +4,7 @@ using DataContainers;
 using Enums;
 using Items.Weapons;
 using UnityEngine;
+using UnityEngine.Events;
 using Weapons;
 
 namespace Characters{
@@ -20,6 +21,9 @@ namespace Characters{
 		[Header("Combat Attributes")]
 		[SerializeField] protected CombatTeam team;
 		public CombatTeam Team => team;
+
+		[HideInInspector] public UnityEvent onAttackStarted;
+		[HideInInspector] public UnityEvent onAttackFinished;
 		
 		public Transform LockOnPivot => centerLockOnPivot;
 		public Transform UILockOnPivotRef => uiLockOnPivotRef;
