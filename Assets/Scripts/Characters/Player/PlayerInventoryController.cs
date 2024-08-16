@@ -20,6 +20,10 @@ namespace Characters.Player {
             _manager = GetComponent<PlayerManager>();
         }
 
+        void Start() {
+            SetWeapons();
+        }
+
         void InstantiateAllWeapons() {
             foreach (BasicWeapon weapon in _meleeWeapons) {
                 GameObject tempWeapon = Instantiate(weapon.WeaponPrefab, weaponsParent);
@@ -53,7 +57,7 @@ namespace Characters.Player {
          #region Editor Funcs
 #if UNITY_EDITOR
         [ContextMenu("Set Test Weapons")]
-        void SetNewLevel() {
+        void SetWeapons() {
             LoadWeaponsIntoInventory();
             EquipWeapons();
         }

@@ -454,19 +454,19 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.40902367
-        functionName: DisableRotationTracking
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 0.1891892
         functionName: EnableAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 2
+        messageOptions: 0
+      - time: 0.31286985
+        functionName: DisableRotationTracking
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
         messageOptions: 0
       - time: 0.42647696
         functionName: DisableAttack

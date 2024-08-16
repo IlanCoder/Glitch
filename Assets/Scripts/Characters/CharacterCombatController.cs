@@ -20,11 +20,11 @@ namespace Characters{
 		
 		[Header("Combat Attributes")]
 		[SerializeField] protected CombatTeam team;
-		public CombatTeam Team => team;
 
 		[HideInInspector] public UnityEvent onAttackStarted;
 		[HideInInspector] public UnityEvent onAttackFinished;
 		
+		public CombatTeam Team => team;
 		public Transform LockOnPivot => centerLockOnPivot;
 		public Transform UILockOnPivotRef => uiLockOnPivotRef;
 		
@@ -101,8 +101,7 @@ namespace Characters{
 			}
 			DisableWeaponColliders(rightHandWeaponManager, leftHandWeaponManager, hand);
 		}
-		
-		
+
 		#region Animation Events
 		public virtual void EnableAttack(int hand = 0) {
 			ApplyAttackModifiers();
@@ -112,6 +111,14 @@ namespace Characters{
 
 		public virtual void DisableAttack(int hand = 0) {
 			DisableWeaponAttack(hand);
+		}
+		
+		public void EnableRotationTracking() {
+			_manager.rotationLocked = false;
+		}
+        
+		public void DisableRotationTracking() {
+			_manager.rotationLocked = true;
 		}
 		#endregion
 	}

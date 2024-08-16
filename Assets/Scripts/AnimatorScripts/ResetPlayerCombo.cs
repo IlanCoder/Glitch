@@ -7,7 +7,7 @@ namespace AnimatorScripts {
         PlayerManager _player;
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             _player ??= animator.GetComponent<PlayerManager>();
-            //_player.combatManager.ResetCombo();
+            _player.combatController.ResetCombo();
         }
     }
 }

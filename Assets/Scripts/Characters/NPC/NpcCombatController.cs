@@ -5,10 +5,11 @@ using UnityEngine;
 namespace Characters.NPC {
     public class NpcCombatController : CharacterCombatController {
         protected NpcManager Npc;
-
+        
         [Header("Combat Speeds")]
         [SerializeField] protected float attackRotationTrackingSpeed = 10;
-
+        
+        [Header("Enemy Initial Attacks")]
         [SerializeField] protected List<NpcAttack> attacks;
 
         protected override void Awake() {
@@ -80,7 +81,7 @@ namespace Characters.NPC {
             Npc.animOverrider.OverrideNextAttack(attack, firstInChain);
             Npc.animController.PlayAttackAnimation(firstInChain);
         }
-
+        
         public void HandleAttackRotationTracking(CharacterManager target) {
             if (Npc.rotationLocked) return;
             Vector3 targetDir = target.transform.position - transform.position;
@@ -88,17 +89,7 @@ namespace Characters.NPC {
             targetDir.Normalize();
             Quaternion targetRotation = Quaternion.LookRotation(targetDir);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation,
-                attackRotationTrackingSpeed * Time.fixedDeltaTime);
+            attackRotationTrackingSpeed * Time.fixedDeltaTime);
         }
-        
-        #region Animation Events
-        public void EnableRotationTracking() {
-            Npc.rotationLocked = false;
-        }
-        
-        public void DisableRotationTracking() {
-            Npc.rotationLocked = true;
-        }
-        #endregion
     }
 }

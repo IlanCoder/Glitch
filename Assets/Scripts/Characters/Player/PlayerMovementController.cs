@@ -50,8 +50,8 @@ namespace Characters.Player {
         }
 
         void HandleGroundMovement() {
-            if (_playerManager.movementLocked) return;
             _inputMovement = _playerManager.inputController.MovementInput;
+            if (_playerManager.movementLocked) return;
             if (_playerManager.isLockedOn && !_playerManager.isSprinting) {
                 _playerManager.animController.UpdateMovementParameters(_inputMovement.x, _inputMovement.y);
                 _moveDirection = GetNormalizedHorizontalDirection(transform);
@@ -84,7 +84,6 @@ namespace Characters.Player {
         }
 
         void HandleLockedRotation() {
-            if (_inputMovement.magnitude <= 0) return;
             Vector3 targetDirection = _playerManager.combatController.LockOnTarget.transform.position - transform.position;
             targetDirection.y = 0;
             targetDirection.Normalize();
