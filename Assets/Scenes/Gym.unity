@@ -817,6 +817,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1984517240863290957, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1984517240863290957, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1984517240863290957, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1984517240863290957, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2014583880027676473, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1620,6 +1640,26 @@ PrefabInstance:
     - target: {fileID: 8453477530922510259, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519262374743222614, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519262374743222614, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519262374743222614, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519262374743222614, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8622319025546093852, guid: 752639fa95abbd2409c2234008a1899e,
@@ -2897,7 +2937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 795831360}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Event Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3129,7 +3169,7 @@ GameObject:
   - component: {fileID: 985153485}
   - component: {fileID: 985153487}
   - component: {fileID: 985153486}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enable Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
