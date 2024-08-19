@@ -641,6 +641,7 @@ MonoBehaviour:
   fadeOutTime: 0.2
   nameText: {fileID: 5292728017073256826}
   damageText: {fileID: 8518438461024069557}
+  showDamageLength: 5
 --- !u!114 &2504293634470310963 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4958566040599478820, guid: 651801de61460f045a7d08c9a8f6dcf3,

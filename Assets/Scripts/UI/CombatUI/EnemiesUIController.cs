@@ -39,6 +39,7 @@ namespace UI.CombatUI {
             CheckEnemyBarsToRemove();
             if (!bossStatBars.gameObject.activeSelf) return;
             if (!bossStatBars.IsStillVisible()) bossStatBars.FadeOut();
+            bossStatBars.TickDamageTextTimer();
         }
 
         void CheckEnemyBarsToRemove() {
@@ -97,7 +98,10 @@ namespace UI.CombatUI {
         }
 
         void TieHitCharacter(CharacterManager character, int damageReceived) {
-            if (bossStatBars.TiedCharacter == character) return;
+            if (bossStatBars.TiedCharacter == character) {
+                bossStatBars.IncreaseDamageText(damageReceived);
+                return;
+            }
             if (_activeStatBars.TryGetValue(character, out EnemyStatBarsController barsController))
                 barsController.EnableCombat();
             else TieStatBarsToCharacter(character, true, damageReceived);
