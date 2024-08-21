@@ -6,9 +6,6 @@ namespace Characters.NPC {
     public class NpcAnimController : CharacterAnimController {
         #region Animation String Hashes
         readonly protected int RotationYIntHash = Animator.StringToHash("RotationY");
-        readonly protected int ContinueAttackChainTriggerHash = Animator.StringToHash("ContinueAttackChain");
-
-        readonly protected int FirstAttackAnimationHash = Animator.StringToHash("Combo_1");
         #endregion
         
         public override void UpdateMovementParameters(float horizontal, float vertical) {
@@ -19,10 +16,10 @@ namespace Characters.NPC {
         public void UpdateRotation(int y) {
             animator.SetInteger(RotationYIntHash, y);
         }
-
+        
         public void PlayAttackAnimation(bool firstInChain = true) {
             if (firstInChain) {
-                animator.CrossFade(FirstAttackAnimationHash, 0.1f);
+                animator.Play(FirstAttackAnimationHash);
                 return;
             }
             animator.SetTrigger(ContinueAttackChainTriggerHash);

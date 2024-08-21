@@ -23,6 +23,9 @@ namespace Characters {
         readonly protected int _horizontalInputFloatHash = Animator.StringToHash("Horizontal");
         readonly protected int _verticalInputFloatHash = Animator.StringToHash("Vertical");
         readonly protected int _isGroundedBoolHash = Animator.StringToHash("IsGrounded");
+        
+        readonly protected int FirstAttackAnimationHash = Animator.StringToHash("Combo_1");
+        readonly protected int ContinueAttackChainTriggerHash = Animator.StringToHash("ContinueAttackChain");
         #endregion
         
         protected virtual void Awake() {
@@ -39,7 +42,7 @@ namespace Characters {
             animator.SetFloat(_verticalInputFloatHash, vertical,0.1f, Time.deltaTime);
         }
 
-        protected virtual void PlayTargetAnimation(int targetAnimation, bool cancellableAction,
+        protected void PlayTargetAnimation(int targetAnimation, bool cancellableAction,
             bool lockMovement = true, bool lockRotation = true) {
             manager.isPerformingAction = !cancellableAction;
             animator.applyRootMotion = lockMovement;

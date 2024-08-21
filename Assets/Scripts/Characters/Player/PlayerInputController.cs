@@ -115,11 +115,11 @@ namespace Characters.Player {
         }
 
         void HandleLightAttack() {
-            _playerManager.combatController.PerformNormalAttack(AttackType.Light);
+            _playerManager.combatController.TryPerformAttack(AttackType.Light);
         }
 
         void HandleHeavyAttack() {
-            _playerManager.combatController.PerformNormalAttack(AttackType.Heavy);
+            _playerManager.combatController.TryPerformAttack(AttackType.Heavy);
         }
 
         #region Lock On

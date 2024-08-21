@@ -101,7 +101,7 @@ namespace Characters.Player {
         }
 
         public void HandleSprint() {
-            if (!_playerManager.statsController.CanPerformStaminaAction() || 
+            if (_playerManager.isPerformingAction || !_playerManager.statsController.HasStamina() || 
                 _playerManager.inputController.MoveAmount < 0.5f) {
                 _playerManager.isSprinting = false;
                 return;
@@ -116,7 +116,8 @@ namespace Characters.Player {
         }
 
         public void AttemptToDodge() {
-            if (!_playerManager.statsController.CanPerformStaminaAction()) return;
+            if (_playerManager.isPerformingAction) return;
+            if (!_playerManager.statsController.HasStamina()) return;
             if (_playerManager.inputController.MoveAmount > 0) {
                 CheckRotationRelativeToCam();
                 Quaternion newRotation = Quaternion.LookRotation(_targetRotation);
@@ -130,7 +131,8 @@ namespace Characters.Player {
         }
 
         public void AttemptToJump() {
-            if (!_playerManager.statsController.CanPerformStaminaAction()) return;
+            if (_playerManager.isPerformingAction) return;
+            if (!_playerManager.statsController.HasStamina()) return;
             if(_playerManager.isJumping) return;
             if (!_playerManager.isGrounded) return;
             _playerManager.isJumping = true;

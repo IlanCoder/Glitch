@@ -5,9 +5,10 @@ using UnityEngine;
 namespace AnimatorScripts {
     public class ResetPlayerCombo : StateMachineBehaviour{
         PlayerManager _player;
-        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             _player ??= animator.GetComponent<PlayerManager>();
-            _player.combatController.ResetCombo();
+            if (!_player) return;
+            if (_player.combatController.IsAttacking) _player.combatController.ResetCombo();
         }
     }
 }

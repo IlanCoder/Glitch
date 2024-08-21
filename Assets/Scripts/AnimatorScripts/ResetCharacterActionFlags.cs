@@ -4,7 +4,7 @@ using UnityEngine;
 namespace AnimatorScripts {
     public class ResetCharacterActionFlags : StateMachineBehaviour {
         CharacterManager _character;
-        public override void OnStateEnter(UnityEngine.Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             _character ??= animator.GetComponent<CharacterManager>();
             _character.isPerformingAction = false;
             _character.rotationLocked = false;

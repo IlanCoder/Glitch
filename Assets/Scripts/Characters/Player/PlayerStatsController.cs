@@ -123,8 +123,7 @@ namespace Characters.Player {
             onStaminaDepletion?.Invoke();
         }
         
-        public bool CanPerformStaminaAction() {
-            if (manager.isPerformingAction) return false;
+        public bool HasStamina() {
             return CurrentStamina > 0;
         }
 

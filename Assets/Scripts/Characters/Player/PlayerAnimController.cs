@@ -10,14 +10,6 @@ namespace Characters.Player {
             { "Dodge_B", Animator.StringToHash("Dodge_B") },
             { "Jump_Start", Animator.StringToHash("Jump_Start") },
         };
-        
-        readonly protected Dictionary<string, int> AttackAnimationHashes = new Dictionary<string, int> {
-            { "Combo_1", Animator.StringToHash("Combo_1") },
-            { "Combo_2", Animator.StringToHash("Combo_2") },
-            { "Combo_3", Animator.StringToHash("Combo_3") },
-            { "Combo_4", Animator.StringToHash("Combo_4") },
-            { "Combo_5", Animator.StringToHash("Combo_5") },
-        };
 
         public void PlayDodgeAnimation(bool backStep = false) {
             if (backStep) {
@@ -36,16 +28,16 @@ namespace Characters.Player {
                 false);
         }
 
-        public void PlayAttackAnimation(int comboAttackIndex) {
+        public void PlayAttackAnimation(int comboAttackIndex = 0) {
             manager.isPerformingAction = true;
             animator.applyRootMotion = true;
             manager.movementLocked = true;
             manager.rotationLocked = true;
             if (comboAttackIndex == 0) {
-                animator.CrossFade(AttackAnimationHashes["Combo_1"], 0.1f);
+                animator.CrossFade(FirstAttackAnimationHash, 0.1f);
                 return;
             }
-            animator.Play(AttackAnimationHashes[$"Combo_{comboAttackIndex + 1}"]);
+            animator.SetTrigger(ContinueAttackChainTriggerHash);
         }
     }
 }
