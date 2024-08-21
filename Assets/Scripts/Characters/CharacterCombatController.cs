@@ -27,9 +27,7 @@ namespace Characters{
 		public CombatTeam Team => team;
 		public Transform LockOnPivot => centerLockOnPivot;
 		public Transform UILockOnPivotRef => uiLockOnPivotRef;
-		
-		protected AttackType CurrentAttackType;
-		
+
 		protected CharacterAttack CurrentAttack;
 
 		protected virtual void Awake() {

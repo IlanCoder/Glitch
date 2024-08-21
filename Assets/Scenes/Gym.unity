@@ -1667,6 +1667,16 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8565147569743247457, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: staminaRegen
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565147569743247457, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: staminaRegenDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8622319025546093852, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_AnchorMax.y
