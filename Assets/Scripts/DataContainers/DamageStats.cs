@@ -5,9 +5,7 @@ using UnityEngine;
 namespace DataContainers {
     [Serializable]
     public class DamageStats {
-        [SerializeField] float slashDmg;
-        [SerializeField] float strikeDmg;
-        [SerializeField] float thrustDmg;
+        [SerializeField] float physicalDmg;
         [SerializeField] float photonDmg;
         [SerializeField] float shockDmg;
         [SerializeField] float plasmaDmg;
@@ -25,7 +23,7 @@ namespace DataContainers {
         }
         
         void SetTotalDamage() {
-            _totalBaseDamage = slashDmg + strikeDmg + thrustDmg + photonDmg + shockDmg + plasmaDmg;
+            _totalBaseDamage = physicalDmg + photonDmg + shockDmg + plasmaDmg;
         }
 
         public void SetDamageMultiplier(float motionMultiplier, float attackMultiplier = 1) {
@@ -34,12 +32,7 @@ namespace DataContainers {
 
         public void SetFilteredDamage(DamageTypes damageFilter) {
             float tempFilteredDamage = 0;
-            if ((damageFilter & DamageTypes.Physical) != 0) tempFilteredDamage += slashDmg + strikeDmg + thrustDmg;
-            else {
-                if ((damageFilter & DamageTypes.Slash) != 0) tempFilteredDamage += slashDmg;
-                if ((damageFilter & DamageTypes.Strike) != 0) tempFilteredDamage += strikeDmg;
-                if ((damageFilter & DamageTypes.Thrust) != 0) tempFilteredDamage += thrustDmg;
-            }
+            if ((damageFilter & DamageTypes.Physical) != 0) tempFilteredDamage += physicalDmg;
             if ((damageFilter & DamageTypes.Photon) != 0) tempFilteredDamage += photonDmg;
             if ((damageFilter & DamageTypes.Shock) != 0) tempFilteredDamage += shockDmg;
             if ((damageFilter & DamageTypes.Plasma) != 0) tempFilteredDamage += plasmaDmg;

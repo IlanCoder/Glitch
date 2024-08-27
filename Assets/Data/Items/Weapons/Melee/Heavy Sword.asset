@@ -25,10 +25,8 @@ MonoBehaviour:
   cyberReq: 0
   controlReq: 0
   damage:
-    slashDmg: 100
-    strikeDmg: 0
-    thrustDmg: 0
-    photonDmg: 100
+    physicalDmg: 150
+    photonDmg: 0
     shockDmg: 0
     plasmaDmg: 0
   poiseDmg: 0

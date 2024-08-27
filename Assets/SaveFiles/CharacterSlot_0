@@ -1,15 +1,16 @@
 {
     "PlayerName": "Character",
     "TimePlayed": 0.0,
-    "PlayerXPos": 0.0,
-    "PlayerYPos": 0.0,
-    "PlayerZPos": 0.0,
+    "PlayerXPos": 2.268470525741577,
+    "PlayerYPos": 0.0000998377799987793,
+    "PlayerZPos": -4.133376121520996,
     "Vitality": 10,
     "Endurance": 10,
     "Dexterity": 10,
     "Strength": 10,
     "Cyber": 10,
     "Control": 10,
-    "CurrentHp": 100.0,
-    "CurrentStamina": 100.0
+    "CurrentHp": 100,
+    "CurrentStamina": 94.42233276367188,
+    "CurrentEnergy": 0.0
 }
