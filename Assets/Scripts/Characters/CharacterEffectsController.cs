@@ -5,14 +5,14 @@ using WorldManager;
 
 namespace Characters {
     public class CharacterEffectsController : MonoBehaviour {
-        protected CharacterManager manager;
+        protected CharacterManager Manager;
 
         protected virtual void Awake() {
-            manager = GetComponent<CharacterManager>();
+            Manager = GetComponent<CharacterManager>();
         }
 
         public virtual void ProcessInstantEffect(InstantCharacterEffect effect) {
-            effect.ProcessEffect(manager);
+            effect.ProcessEffect(Manager);
         }
     }
 }

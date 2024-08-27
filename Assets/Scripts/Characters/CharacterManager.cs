@@ -29,6 +29,7 @@ namespace Characters {
         
         #region Flags
         public bool isDead { get; private set; }
+        [HideInInspector] public bool isInvulnerable;
         [HideInInspector] public bool isPerformingAction;
         [HideInInspector] public bool rotationLocked;
         [HideInInspector] public bool movementLocked;
@@ -45,6 +46,7 @@ namespace Characters {
         protected virtual void Update() {
             MovementController.HandleGroundCheck();
             MovementController.HandleGravity();
+            CombatController.HandleInvulnerability();
         }
 
         protected virtual void LateUpdate() {

@@ -23,6 +23,10 @@ namespace Characters{
 
 		[HideInInspector] public UnityEvent onAttackStarted;
 		[HideInInspector] public UnityEvent onAttackFinished;
+
+		[Header("Invulnerability Times")]
+		[SerializeField, Min(0.1f)] protected float rollIFramesTime;
+		float _iFramesStartTime;
 		
 		public CombatTeam Team => team;
 		public Transform LockOnPivot => centerLockOnPivot;
@@ -36,6 +40,12 @@ namespace Characters{
 
 		public void OverrideTeam(CombatTeam newTeam) {
 			team = newTeam;
+		}
+
+		public void HandleInvulnerability() {
+			if (!_manager.isInvulnerable) return;
+			if (Time.time - _iFramesStartTime < rollIFramesTime) return;
+			_manager.isInvulnerable = false;
 		}
 
 		public virtual void SetActiveWeapon(BasicWeapon weapon, WeaponManager right, WeaponManager left = null) {
@@ -119,5 +129,10 @@ namespace Characters{
 			_manager.rotationLocked = true;
 		}
 		#endregion
+
+		public void MakeInvulnerable() {
+			_manager.isInvulnerable = true;
+			_iFramesStartTime = Time.time;
+		}
 	}
 }

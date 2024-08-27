@@ -7,8 +7,6 @@ namespace Effects.Instant {
         [Header("Effect ID")]
         public int instantEffectID;
 
-        public virtual void ProcessEffect(CharacterManager player) {
-            if(player.isDead) return;
-        }
+        public abstract void ProcessEffect(CharacterManager player);
     }
 }

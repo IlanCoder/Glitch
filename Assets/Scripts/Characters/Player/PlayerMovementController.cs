@@ -118,16 +118,16 @@ namespace Characters.Player {
         public void AttemptToDodge() {
             if (_playerManager.isPerformingAction) return;
             if (!_playerManager.statsController.HasStamina()) return;
+            _playerManager.statsController.UseStamina(rollCost);
+            _playerManager.combatController.MakeInvulnerable();
             if (_playerManager.inputController.MoveAmount > 0) {
                 CheckRotationRelativeToCam();
                 Quaternion newRotation = Quaternion.LookRotation(_targetRotation);
                 transform.rotation = newRotation;
                 _playerManager.animController.PlayDodgeAnimation();
-                _playerManager.statsController.UseStamina(rollCost);
                 return;
             }
             _playerManager.animController.PlayDodgeAnimation(true);
-            _playerManager.statsController.UseStamina(rollCost);
         }
 
         public void AttemptToJump() {

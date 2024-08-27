@@ -46,12 +46,12 @@ namespace Colliders {
         }
 
         public virtual void SetDamage(DamageStats damage) {
-            if (DamageEffect == null) DamageEffect = WorldEffectsManager.Instance.GetDamageEffectCopy(transform);
+            DamageEffect ??= WorldEffectsManager.Instance.GetDamageEffectCopy(transform);
             DamageEffect.SetEffectDamage(damage);
         }
 
         public virtual void SetEnergyGain(float energyGain) {
-            if (DamageEffect == null) DamageEffect = WorldEffectsManager.Instance.GetDamageEffectCopy(transform);
+            DamageEffect ??= WorldEffectsManager.Instance.GetDamageEffectCopy(transform);
             DamageEffect.SetEffectEnergyGain(energyGain);
         }
     }
