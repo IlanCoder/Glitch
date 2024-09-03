@@ -53,6 +53,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Deflect"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ff10880-331a-4ff8-9dd7-6c6618cc81bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -119,6 +128,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Heavy Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9c76561-3f3a-41a4-8a8f-2bafd1b344ca"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""Deflect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8451358-d6df-4da0-9e33-58566f6be4f3"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Deflect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -658,6 +689,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_ChangeWeapon = m_PlayerActions.FindAction("Change Weapon", throwIfNotFound: true);
         m_PlayerActions_LightAttack = m_PlayerActions.FindAction("Light Attack", throwIfNotFound: true);
         m_PlayerActions_HeavyAttack = m_PlayerActions.FindAction("Heavy Attack", throwIfNotFound: true);
+        m_PlayerActions_Deflect = m_PlayerActions.FindAction("Deflect", throwIfNotFound: true);
         // Player Movement
         m_PlayerMovement = asset.FindActionMap("Player Movement", throwIfNotFound: true);
         m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
@@ -736,6 +768,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_ChangeWeapon;
     private readonly InputAction m_PlayerActions_LightAttack;
     private readonly InputAction m_PlayerActions_HeavyAttack;
+    private readonly InputAction m_PlayerActions_Deflect;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -743,6 +776,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @ChangeWeapon => m_Wrapper.m_PlayerActions_ChangeWeapon;
         public InputAction @LightAttack => m_Wrapper.m_PlayerActions_LightAttack;
         public InputAction @HeavyAttack => m_Wrapper.m_PlayerActions_HeavyAttack;
+        public InputAction @Deflect => m_Wrapper.m_PlayerActions_Deflect;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -761,6 +795,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @HeavyAttack.started += instance.OnHeavyAttack;
             @HeavyAttack.performed += instance.OnHeavyAttack;
             @HeavyAttack.canceled += instance.OnHeavyAttack;
+            @Deflect.started += instance.OnDeflect;
+            @Deflect.performed += instance.OnDeflect;
+            @Deflect.canceled += instance.OnDeflect;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -774,6 +811,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @HeavyAttack.started -= instance.OnHeavyAttack;
             @HeavyAttack.performed -= instance.OnHeavyAttack;
             @HeavyAttack.canceled -= instance.OnHeavyAttack;
+            @Deflect.started -= instance.OnDeflect;
+            @Deflect.performed -= instance.OnDeflect;
+            @Deflect.canceled -= instance.OnDeflect;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -992,6 +1032,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnChangeWeapon(InputAction.CallbackContext context);
         void OnLightAttack(InputAction.CallbackContext context);
         void OnHeavyAttack(InputAction.CallbackContext context);
+        void OnDeflect(InputAction.CallbackContext context);
     }
     public interface IPlayerMovementActions
     {

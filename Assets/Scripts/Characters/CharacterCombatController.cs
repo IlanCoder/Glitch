@@ -53,6 +53,15 @@ namespace Characters{
 			rightHandWeaponManager = right;
 			leftHandWeaponManager = left;
 		}
+
+		public void TryDeflect(bool deflecting) {
+			if (!deflecting) {
+				_manager.AnimController.SetDeflectHeldBool(false);
+				return;
+			}
+			if (_manager.isPerformingAction) return;
+			_manager.AnimController.SetDeflectHeldBool(true);
+		}
 		
 		protected void ApplyAttackModifiers() {
 			activeWeapon.SetAttackDamage(CurrentAttack);

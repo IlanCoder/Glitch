@@ -51,6 +51,8 @@ namespace Characters.Player {
             _playerControls.PlayerActions.ChangeWeapon.performed += i => HandleActiveWeaponChange();
             _playerControls.PlayerActions.LightAttack.performed += i => HandleLightAttack();
             _playerControls.PlayerActions.HeavyAttack.performed += i => HandleHeavyAttack();
+            _playerControls.PlayerActions.Deflect.performed += i => HandleDeflect(true);
+            _playerControls.PlayerActions.Deflect.canceled += i => HandleDeflect(false);
         }
 
         void OnDisable() {
@@ -112,6 +114,10 @@ namespace Characters.Player {
         
         void HandleActiveWeaponChange() {
             _playerManager.equipmentManager.ChangeActiveWeapon();
+        }
+
+        void HandleDeflect(bool pressed) {
+            _playerManager.combatController.TryDeflect(pressed);
         }
 
         void HandleLightAttack() {

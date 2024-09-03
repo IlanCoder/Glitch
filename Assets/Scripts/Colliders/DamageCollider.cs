@@ -28,6 +28,7 @@ namespace Colliders {
         protected virtual void HitTarget(Collider other, CharacterManager target) {
             if (CharactersHit.Contains(target)) return;
             CharactersHit.Add(target);
+            DamageEffect.deflected = other.CompareTag("Deflect");
             DamageEffect.contactPoint = other.ClosestPoint(transform.position);
             DamageTarget(target);
         }

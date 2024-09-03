@@ -16,16 +16,18 @@ namespace Characters {
             { "Stagger_R", Animator.StringToHash("Stagger_R") },
         };
 
-        readonly protected Dictionary<string, int> CharacterAnimationHashes = new Dictionary<string, int> {
-            { "Equip_Weapon", Animator.StringToHash("Equip_Weapon") }
+        readonly protected Dictionary<string, int> WeaponLayerAnimationHashes = new Dictionary<string, int> {
+            { "Equip_Weapon", Animator.StringToHash("Equip_Weapon") },
+            { "Deflect_Start", Animator.StringToHash("Deflect_Start") }
         };
 
-        readonly protected int _horizontalInputFloatHash = Animator.StringToHash("Horizontal");
-        readonly protected int _verticalInputFloatHash = Animator.StringToHash("Vertical");
-        readonly protected int _isGroundedBoolHash = Animator.StringToHash("IsGrounded");
+        readonly protected int HorizontalInputFloatHash = Animator.StringToHash("Horizontal");
+        readonly protected int VerticalInputFloatHash = Animator.StringToHash("Vertical");
+        readonly protected int IsGroundedBoolHash = Animator.StringToHash("IsGrounded");
         
         readonly protected int FirstAttackAnimationHash = Animator.StringToHash("Combo_1");
         readonly protected int ContinueAttackChainTriggerHash = Animator.StringToHash("ContinueAttackChain");
+        readonly protected int DeflectHeldBoolHash = Animator.StringToHash("DeflectHeld");
         #endregion
         
         protected virtual void Awake() {
@@ -34,12 +36,12 @@ namespace Characters {
         }
 
         public void SetGroundedBool(bool newVal) {
-            animator.SetBool(_isGroundedBoolHash, newVal);
+            animator.SetBool(IsGroundedBoolHash, newVal);
         }
 
         public virtual void UpdateMovementParameters(float horizontal, float vertical) {
-            animator.SetFloat(_horizontalInputFloatHash, horizontal,0.1f, Time.deltaTime);
-            animator.SetFloat(_verticalInputFloatHash, vertical,0.1f, Time.deltaTime);
+            animator.SetFloat(HorizontalInputFloatHash, horizontal,0.1f, Time.deltaTime);
+            animator.SetFloat(VerticalInputFloatHash, vertical,0.1f, Time.deltaTime);
         }
 
         protected void PlayTargetAnimation(int targetAnimation, bool cancellableAction,
@@ -72,8 +74,12 @@ namespace Characters {
         }
         
         public void PlayEquipAnimation() {
-            PlayTargetAnimation(CharacterAnimationHashes["Equip_Weapon"], true, false, 
+            PlayTargetAnimation(WeaponLayerAnimationHashes["Equip_Weapon"], true, false, 
             false);
+        }
+
+        public void SetDeflectHeldBool(bool newVal) {
+            animator.SetBool(DeflectHeldBoolHash, newVal);
         }
     }
 }

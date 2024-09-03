@@ -15,6 +15,8 @@ namespace Effects.Instant {
         
         [HideInInspector] public float hitAngle;
         [HideInInspector] public Vector3 contactPoint;
+
+        [HideInInspector] public bool deflected;
         
         #region Damage
         DamageStats _damage;
@@ -41,6 +43,7 @@ namespace Effects.Instant {
         public override void ProcessEffect(CharacterManager character) {
             if (character.isDead) return;
             if (character.isInvulnerable) return;
+            if (deflected) Debug.Log("Deflect");
             CalculateHealthDamage(character);
             CalculateEnergyGained();
             PlayDamageVFx(character);
