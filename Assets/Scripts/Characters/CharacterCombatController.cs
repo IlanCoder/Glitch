@@ -27,6 +27,9 @@ namespace Characters{
 		[Header("Invulnerability Times")]
 		[SerializeField, Min(0.1f)] protected float rollIFramesTime;
 		float _iFramesStartTime;
+
+		[Header("Deflect")]
+		[SerializeField] protected GameObject deflectCollider;
 		
 		public CombatTeam Team => team;
 		public Transform LockOnPivot => centerLockOnPivot;
@@ -136,6 +139,14 @@ namespace Characters{
         
 		public void DisableRotationTracking() {
 			_manager.rotationLocked = true;
+		}
+
+		public void EnableDeflectCollider() {
+			deflectCollider.SetActive(true);
+		}
+
+		public void DisableDeflectCollider() {
+			deflectCollider.SetActive(false);
 		}
 		#endregion
 

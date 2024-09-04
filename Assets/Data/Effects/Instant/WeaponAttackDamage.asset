@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a518a10ad2bc4d446bf9fa8c2eece1cf, type: 3}
-  m_Name: InstantHealthDamage
+  m_Name: WeaponAttackDamage
   m_EditorClassIdentifier: 
   instantEffectID: 0
   playDamageAnimation: 1

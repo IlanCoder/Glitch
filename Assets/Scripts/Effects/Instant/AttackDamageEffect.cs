@@ -5,7 +5,7 @@ using DataContainers;
 
 namespace Effects.Instant {
     [CreateAssetMenu(fileName = "InstantHealthDamage",menuName = "Effects/Instant/Health Damage")]
-    public class InstantHealthDamageEffect : InstantCharacterEffect {
+    public class AttackDamageEffect : InstantCharacterEffect {
         [Header("Animation")]
         public bool playDamageAnimation = true;
         public bool manuallySelectDamageAnimation;

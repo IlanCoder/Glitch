@@ -10,7 +10,7 @@ using WorldManager;
 namespace Colliders {
     [RequireComponent(typeof(Collider))]
     public class DamageCollider : MonoBehaviour {
-        protected InstantHealthDamageEffect DamageEffect;
+        protected AttackDamageEffect DamageEffect;
         protected Collider DmgCollider;
         
         protected List<CharacterManager> CharactersHit = new List<CharacterManager>();

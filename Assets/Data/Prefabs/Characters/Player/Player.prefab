@@ -2235,7 +2235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6693378857145558611
 Transform:
   m_ObjectHideFlags: 0
@@ -2577,6 +2577,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   rollIFramesTime: 0
+  deflectCollider: {fileID: 0}
   onLockOnTargetChange:
     m_PersistentCalls:
       m_Calls: []
