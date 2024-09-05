@@ -3,13 +3,13 @@ using Enums;
 using UnityEngine;
 
 namespace AnimatorScripts {
-    public class DisableDeflectCollider : StateMachineBehaviour{
+    public class SetDeflectQuality : StateMachineBehaviour{
         CharacterDeflectController _deflectController;
+        [SerializeField] DeflectQuality targetQuality;
             
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             _deflectController ??= animator.GetComponent<CharacterDeflectController>();
-            _deflectController.DisableDeflectCollider();
-            _deflectController.deflectQuality = DeflectQuality.Miss;
+            _deflectController.deflectQuality = targetQuality;
         }
     }
 }

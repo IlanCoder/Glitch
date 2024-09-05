@@ -2381,6 +2381,7 @@ GameObject:
   - component: {fileID: -2887517767363528626}
   - component: {fileID: 5738588397391005857}
   - component: {fileID: 6230370529941219925}
+  - component: {fileID: 2731145472032293052}
   - component: {fileID: 331698001150466806}
   - component: {fileID: 4593154082145648705}
   - component: {fileID: 8605303721872254329}
@@ -2549,6 +2550,7 @@ MonoBehaviour:
   inventoryManager: {fileID: 0}
   equipmentManager: {fileID: 0}
   combatController: {fileID: 0}
+  deflectController: {fileID: 0}
   onPlayerDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -2577,10 +2579,26 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   rollIFramesTime: 0
-  deflectCollider: {fileID: 0}
   onLockOnTargetChange:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2731145472032293052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443002251341178569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a54ddbc48f44a1b13e7d73a89b9003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deflectCollider: {fileID: 6942329368854956603}
+  perfectDeflectEnergyGain: 10
+  imperfectDeflectEnergyGain: 5
+  imperfectChipDamage: 50
+  deflectQuality: 0
 --- !u!114 &331698001150466806
 MonoBehaviour:
   m_ObjectHideFlags: 0

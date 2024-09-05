@@ -28,9 +28,6 @@ namespace Characters{
 		[SerializeField, Min(0.1f)] protected float rollIFramesTime;
 		float _iFramesStartTime;
 
-		[Header("Deflect")]
-		[SerializeField] protected GameObject deflectCollider;
-		
 		public CombatTeam Team => team;
 		public Transform LockOnPivot => centerLockOnPivot;
 		public Transform UILockOnPivotRef => uiLockOnPivotRef;
@@ -57,15 +54,6 @@ namespace Characters{
 			leftHandWeaponManager = left;
 		}
 
-		public void TryDeflect(bool deflecting) {
-			if (!deflecting) {
-				_manager.AnimController.SetDeflectHeldBool(false);
-				return;
-			}
-			if (_manager.isPerformingAction) return;
-			_manager.AnimController.SetDeflectHeldBool(true);
-		}
-		
 		protected void ApplyAttackModifiers() {
 			activeWeapon.SetAttackDamage(CurrentAttack);
 			float energyGain = activeWeapon.GetAttackEnergyGain(CurrentAttack); ;
@@ -139,14 +127,6 @@ namespace Characters{
         
 		public void DisableRotationTracking() {
 			_manager.rotationLocked = true;
-		}
-
-		public void EnableDeflectCollider() {
-			deflectCollider.SetActive(true);
-		}
-
-		public void DisableDeflectCollider() {
-			deflectCollider.SetActive(false);
 		}
 		#endregion
 

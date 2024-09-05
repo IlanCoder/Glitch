@@ -117,7 +117,7 @@ namespace Characters.Player {
         }
 
         void HandleDeflect(bool pressed) {
-            _playerManager.combatController.TryDeflect(pressed);
+            _playerManager.deflectController.TryDeflect(pressed);
         }
 
         void HandleLightAttack() {

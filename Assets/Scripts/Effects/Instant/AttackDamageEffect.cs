@@ -1,7 +1,8 @@
+using System;
 using Characters;
 using UnityEngine;
-using Characters.Player;
 using DataContainers;
+using Enums;
 
 namespace Effects.Instant {
     [CreateAssetMenu(fileName = "InstantHealthDamage",menuName = "Effects/Instant/Health Damage")]
@@ -43,7 +44,26 @@ namespace Effects.Instant {
         public override void ProcessEffect(CharacterManager character) {
             if (character.isDead) return;
             if (character.isInvulnerable) return;
-            if (deflected) Debug.Log("Deflect");
+            
+            if (deflected) {
+                try {
+                    CharacterDeflectController deflectController = character.GetComponent<CharacterDeflectController>();
+                    switch (deflectController.deflectQuality) {
+                        case DeflectQuality.Miss: break;
+                        case DeflectQuality.Imperfect:
+                            deflectController.GainImperfectDeflectEnergy();
+                            return;
+                        case DeflectQuality.Perfect:
+                            deflectController.GainPerfectDeflectEnergy();
+                            return;
+                        default: throw new ArgumentOutOfRangeException();
+                    }
+                }
+                catch {
+                    throw new NullReferenceException(
+                    $"Deflecting character {character.name} has no DeflectController script attached");
+                }
+            }
             CalculateHealthDamage(character);
             CalculateEnergyGained();
             PlayDamageVFx(character);

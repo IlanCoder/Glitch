@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3593094248d53484c9a65c146a176717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageEffect: {fileID: 11400000, guid: a2fab64016e926745bc83c451da718cf, type: 2}
+  attackEffect: {fileID: 11400000, guid: a2fab64016e926745bc83c451da718cf, type: 2}
   instantEffects:
   - {fileID: 11400000, guid: d538d210790f5da4a85164473f3d1a26, type: 2}
   - {fileID: 11400000, guid: a2fab64016e926745bc83c451da718cf, type: 2}
@@ -238,6 +238,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c4cef12c094497839c40b8806ea029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onNpcHit:
+    m_PersistentCalls:
+      m_Calls: []
+  onBossStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5987782936413589487
 GameObject:
   m_ObjectHideFlags: 0

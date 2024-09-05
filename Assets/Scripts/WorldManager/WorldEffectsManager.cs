@@ -10,7 +10,7 @@ namespace WorldManager {
         public static WorldEffectsManager Instance;
         
         [Header("Main Effects")]
-        [SerializeField] AttackDamageEffect damageEffect;
+        [SerializeField] AttackDamageEffect attackEffect;
         
         [Header("Effects")]
         [SerializeField] List<InstantCharacterEffect> instantEffects;
@@ -35,7 +35,7 @@ namespace WorldManager {
         }
 
         public AttackDamageEffect GetDamageEffectCopy(Transform parent) {
-            return Instantiate(damageEffect, parent);
+            return Instantiate(attackEffect, parent);
         }
     }
 }
