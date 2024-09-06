@@ -12,12 +12,12 @@ namespace Characters {
         [SerializeField] protected float perfectDeflectEnergyGain;
         [Space(5)]
         [SerializeField] protected float imperfectDeflectEnergyGain;
-        [SerializeField, Range(1,100), Tooltip("% of the attack's damage")] protected float imperfectChipDamage;
+        [SerializeField, Range(0.01f,1f), Tooltip("% of the attack's damage")] protected float imperfectChipDamage;
         
         [HideInInspector] public DeflectQuality deflectQuality = DeflectQuality.Miss;
 
         protected void Awake() {
-            _manager.GetComponent<CharacterManager>();
+            _manager = GetComponent<CharacterManager>();
         }
 
         public void TryDeflect(bool deflecting) {
@@ -35,6 +35,11 @@ namespace Characters {
         
         public void GainImperfectDeflectEnergy() {
             _manager.StatsController.GainEnergy(imperfectDeflectEnergyGain);
+        }
+
+        public void CalculateChipDamage(float totalDamage) {
+            int chipDamage = Mathf.RoundToInt(totalDamage * imperfectChipDamage);
+            _manager.StatsController.ReceiveDamage(chipDamage);
         }
 
         #region Aniamtion Events

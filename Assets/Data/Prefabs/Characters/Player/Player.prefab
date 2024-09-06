@@ -2597,7 +2597,7 @@ MonoBehaviour:
   deflectCollider: {fileID: 6942329368854956603}
   perfectDeflectEnergyGain: 10
   imperfectDeflectEnergyGain: 5
-  imperfectChipDamage: 50
+  imperfectChipDamage: 0.333
   deflectQuality: 0
 --- !u!114 &331698001150466806
 MonoBehaviour:
@@ -2635,7 +2635,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponsParent: {fileID: 0}
-  _meleeWeapons: []
+  _meleeWeapons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: a8096f99955b69b4a92b0abcf26db035, type: 2}
 --- !u!114 &8605303721872254329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2711,7 +2714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageSFxType: 0
-  characterSFxController: {fileID: 5770958502549400169}
+  sourceSFxController: {fileID: 5770958502549400169}
 --- !u!143 &5697119794618443428
 CharacterController:
   m_ObjectHideFlags: 0

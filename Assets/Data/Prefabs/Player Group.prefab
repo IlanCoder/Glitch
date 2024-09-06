@@ -226,6 +226,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: db6d8887c8e0c6d459f0233f32a20858, type: 3}
   - {fileID: 8300000, guid: 7cf0d197af47f624f95720d3ea51f5ef, type: 3}
   - {fileID: 8300000, guid: 5ec2cc69dd4753043adb200e773301ef, type: 3}
+  perfectDeflectSFx: {fileID: 8300000, guid: c77bb6fd74717d0448cc343db780364c, type: 3}
+  imperfectDeflectSFx: {fileID: 8300000, guid: 0661cea98fa496e46ab1caa59f6b20d9, type: 3}
 --- !u!114 &1817859028306224074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,11 +745,6 @@ PrefabInstance:
       propertyPath: weaponsParent
       value: 
       objectReference: {fileID: 5114275450988587970}
-    - target: {fileID: 4593154082145648705, guid: 6169ed57bd56a1144932ccb03668fe8b,
-        type: 3}
-      propertyPath: _meleeWeapons.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4593154082145648705, guid: 6169ed57bd56a1144932ccb03668fe8b,
         type: 3}
       propertyPath: _meleeWeapons.Array.data[0]

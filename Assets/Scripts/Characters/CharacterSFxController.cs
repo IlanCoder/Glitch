@@ -10,15 +10,20 @@ namespace Characters{
 		[SerializeField] protected DamageSFxType damageSFxType;
 
 		[Header("Audio Source Controllers")]
-		[SerializeField] AudioSourceController characterSFxController;
+		[SerializeField] AudioSourceController sourceSFxController;
 
 		public virtual void PlayDamageSFx() { 
-			characterSFxController.PlayPitchedSFx(WorldSFxsManager.Instance.GetRandomDamageAudioClip(damageSFxType));
+			sourceSFxController.PlayPitchedSFx(WorldSFxsManager.Instance.GetRandomDamageAudioClip(damageSFxType));
 		}
 
 		public virtual void PlayAttackSwingSFx(AudioClip swingAudioClip) {
 			if (!swingAudioClip) return;
-			characterSFxController.PlaySFx(swingAudioClip);
+			sourceSFxController.PlaySFx(swingAudioClip);
+		}
+
+		public virtual void PlayDeflectSFx(DeflectQuality deflectQuality) {
+			if (deflectQuality == DeflectQuality.Miss) return;
+			sourceSFxController.PlayPitchedSFx(WorldSFxsManager.Instance.GetDeflectAudioClip(deflectQuality));
 		}
 	}
 }

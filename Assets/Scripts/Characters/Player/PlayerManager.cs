@@ -34,6 +34,7 @@ namespace Characters.Player {
         public override CharacterEquipmentManager EquipmentManager => equipmentManager;
 
         [HideInInspector] public UnityEvent onPlayerDeath;
+        [HideInInspector] public UnityEvent onPlayerRevive;
 
         protected override void Awake() {
             base.Awake();
@@ -104,6 +105,7 @@ namespace Characters.Player {
             base.ReviveCharacter();
             statsController.RevivePlayer();
             animController.PlayReviveAnimation();
+            onPlayerRevive?.Invoke();
         }
 
         #region Lock On

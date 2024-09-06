@@ -53,8 +53,8 @@ namespace Characters.Player {
             OffhandWeaponsInventory[weapon.ItemID].SetActive(false);
             OffhandWeaponsInventory[weapon.ItemID].transform.SetParent(weaponsParent, false);
         }
-
-         #region Editor Funcs
+        
+        #region Editor Funcs
 #if UNITY_EDITOR
         [ContextMenu("Set Test Weapons")]
         void SetWeapons() {

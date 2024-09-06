@@ -26,7 +26,7 @@ namespace Characters {
         public virtual CharacterEquipmentManager EquipmentManager => GetComponent<CharacterEquipmentManager>();
 
         [HideInInspector] public UnityEvent onCharacterDeath;
-        
+
         #region Flags
         public bool isDead { get; private set; }
         [HideInInspector] public bool isInvulnerable;

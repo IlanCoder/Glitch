@@ -70,7 +70,11 @@ namespace Characters.Player {
 
         public void RevivePlayer() {
             CurrentHp = MaxHp;
+            onHpChange?.Invoke(CurrentHp);
             CurrentStamina = MaxStamina;
+            onStaminaChange?.Invoke(CurrentStamina);
+            CurrentEnergy = 0;
+            onEnergyChange?.Invoke(CurrentEnergy);
         }
 
         public void LoadCharacterAttributes(int vit, int end, int dex, int str, int cbr, int ctrl) {

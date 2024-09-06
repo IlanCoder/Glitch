@@ -34,8 +34,19 @@ namespace Characters.Player {
 
             _playerManager.statsController.onStaminaDepletion.RemoveListener(CancelSprint);
             _playerManager.statsController.onStaminaDepletion.AddListener(CancelSprint);
+            
+            _playerManager.onPlayerDeath.AddListener(DisablePlayerControls);
+            _playerManager.onPlayerRevive.AddListener(EnablePlayerControls);
         }
 
+        void OnDisable() {
+            _playerControls?.Disable();
+            _playerManager.statsController?.onStaminaDepletion.RemoveListener(CancelSprint);
+            
+            _playerManager.onPlayerDeath.RemoveListener(DisablePlayerControls);
+            _playerManager.onPlayerRevive.RemoveListener(EnablePlayerControls);
+        }
+        
         void BindControls() {
             _playerControls = new PlayerControls();
             _playerControls.PlayerMovement.Movement.performed += i => MovementInput = i.ReadValue<Vector2>();
@@ -55,11 +66,6 @@ namespace Characters.Player {
             _playerControls.PlayerActions.Deflect.canceled += i => HandleDeflect(false);
         }
 
-        void OnDisable() {
-            _playerControls?.Disable();
-            _playerManager.statsController?.onStaminaDepletion.RemoveListener(CancelSprint);
-        }
-
         void OnDestroy() {
             SceneManager.activeSceneChanged -= OnSceneChanged;
         }
@@ -71,6 +77,16 @@ namespace Characters.Player {
 
         void OnSceneChanged(Scene oldScene, Scene newScene) {
             enabled = newScene.buildIndex == worldSaveManager.GetSceneIndex();
+        }
+
+        void DisablePlayerControls() {
+            _playerControls.PlayerMovement.Disable();
+            _playerControls.PlayerActions.Disable();
+        }
+
+        void EnablePlayerControls() {
+            _playerControls.PlayerMovement.Enable();
+            _playerControls.PlayerActions.Enable();
         }
 
         #region Locomotion

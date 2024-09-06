@@ -173,6 +173,13 @@ MonoBehaviour:
   centerLockOnPivot: {fileID: 6248522336254308412}
   uiLockOnPivotRef: {fileID: 5018083100367892739}
   team: 3
+  onAttackStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttackFinished:
+    m_PersistentCalls:
+      m_Calls: []
+  rollIFramesTime: 0
   attackRotationTrackingSpeed: 10
   attacks:
   - {fileID: 11400000, guid: 54a615e1ed0259a4f9ee3621b17dab02, type: 2}
@@ -244,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageSFxType: 0
-  characterSFxController: {fileID: 6134560858185392156}
+  sourceSFxController: {fileID: 6134560858185392156}
 --- !u!114 &7556249675142974900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +268,7 @@ MonoBehaviour:
   onCharacterDeath:
     m_PersistentCalls:
       m_Calls: []
+  isInvulnerable: 0
   isPerformingAction: 0
   rotationLocked: 0
   movementLocked: 0

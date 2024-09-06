@@ -10,6 +10,10 @@ namespace WorldManager {
         [Header("Damage SFXs")]
         [SerializeField] AudioClip[] fleshDamageSFxs;
         
+        [Header("Deflect SFXs")]
+        [SerializeField] AudioClip perfectDeflectSFx;
+        [SerializeField] AudioClip imperfectDeflectSFx;
+        
         void Awake() {
             if (Instance == null) {
                 Instance = this;
@@ -27,6 +31,15 @@ namespace WorldManager {
                     break;
             }
             return clip;
+        }
+
+        public AudioClip GetDeflectAudioClip(DeflectQuality deflectType) {
+            return deflectType switch {
+                DeflectQuality.Miss => null,
+                DeflectQuality.Imperfect => imperfectDeflectSFx,
+                DeflectQuality.Perfect => perfectDeflectSFx,
+                _ => throw new ArgumentOutOfRangeException(nameof(deflectType), deflectType, null)
+            };
         }
     }
 }

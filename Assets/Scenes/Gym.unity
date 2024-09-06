@@ -698,6 +698,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2201931443777503342, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: _meleeWeapons.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2399108584957099159, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: m_AnchorMax.x
