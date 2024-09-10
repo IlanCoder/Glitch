@@ -3,6 +3,7 @@ using Characters;
 using UnityEngine;
 using DataContainers;
 using Enums;
+using Unity.VisualScripting;
 
 namespace Effects.Instant {
     [CreateAssetMenu(fileName = "InstantHealthDamage",menuName = "Effects/Instant/Health Damage")]
@@ -11,6 +12,10 @@ namespace Effects.Instant {
         public bool playDamageAnimation = true;
         public bool manuallySelectDamageAnimation;
         public AnimationClip damageAnimation;
+
+        [Header("Deflect Settings")]
+        [SerializeField, Range(0.01f, 1), Tooltip("% of attack's energy gain when attack is imperfectly deflected")]
+            float deflectEnergyModifier;
 
         [HideInInspector] public CharacterManager characterCausingDamage;
         
@@ -51,10 +56,7 @@ namespace Effects.Instant {
                     switch (deflectController.deflectQuality) {
                         case DeflectQuality.Miss: break;
                         case DeflectQuality.Imperfect:
-                            deflectController.GainImperfectDeflectEnergy();
-                            CalculateHealthDamage(character);
-                            deflectController.CalculateChipDamage(_totalDmg);
-                            PlayDeflectSFx(character, DeflectQuality.Imperfect);
+                            ResolveImperfectDeflect(character, deflectController);
                             return;
                         case DeflectQuality.Perfect:
                             deflectController.GainPerfectDeflectEnergy();
@@ -68,11 +70,24 @@ namespace Effects.Instant {
                     $"Deflecting character {character.name} has no DeflectController script attached");
                 }
             }
+            ResolveFullAttack(character);
+        }
+
+        void ResolveImperfectDeflect(CharacterManager character, CharacterDeflectController deflectController) {
+            deflectController.GainImperfectDeflectEnergy();
+            CalculateHealthDamage(character);
+            deflectController.CalculateChipDamage(_totalDmg);
+            PlayDeflectSFx(character, DeflectQuality.Imperfect);
+            character.AnimController.TriggerDeflectHitAnimation();
+            CalculateEnergyGained(deflectEnergyModifier);
+        }
+
+        void ResolveFullAttack(CharacterManager character) {
             CalculateHealthDamage(character);
             character.StatsController.ReceiveDamage(Mathf.RoundToInt(_totalDmg));
             CalculateEnergyGained();
             PlayDamageSFx(character);
-            
+
             PlayDamageVFx(character);
             PlayDamageAnimation(character);
         }
@@ -82,8 +97,8 @@ namespace Effects.Instant {
             if (_totalDmg <= 0) _totalDmg = 1;
         }
 
-        void CalculateEnergyGained() {
-            characterCausingDamage.StatsController.GainEnergy(_baseEnergyGain);
+        void CalculateEnergyGained(float deflectModifier = 1) {
+            characterCausingDamage.StatsController.GainEnergy(_baseEnergyGain * deflectModifier);
         }
 
         void PlayDamageVFx(CharacterManager character) {
@@ -97,6 +112,7 @@ namespace Effects.Instant {
         void PlayDeflectSFx(CharacterManager character, DeflectQuality deflectQuality) {
             character.SFxController.PlayDeflectSFx(deflectQuality);
         }
+        
         void PlayDamageAnimation(CharacterManager character) {
             character.AnimController.PlayStaggerAnimation(hitAngle);
         }

@@ -12,19 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a518a10ad2bc4d446bf9fa8c2eece1cf, type: 3}
   m_Name: WeaponAttackDamage
   m_EditorClassIdentifier: 
-  instantEffectID: 0
+  instantEffectID: 1
   playDamageAnimation: 1
   manuallySelectDamageAnimation: 0
-  damageAnimation: 
-  willPlayDamageSfx: 1
-  damageSfx: {fileID: 0}
+  damageAnimation: {fileID: 0}
+  deflectEnergyModifier: 0.5
   characterCausingDamage: {fileID: 0}
   hitAngle: 0
   contactPoint: {x: 0, y: 0, z: 0}
-  slashDmg: 0
-  strikeDmg: 0
-  thrustDmg: 0
-  photonDmg: 0
-  shockDmg: 0
-  plasmaDmg: 0
+  deflected: 0
   poiseDmg: 0

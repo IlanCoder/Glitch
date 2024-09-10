@@ -13,7 +13,7 @@ namespace Characters {
         [Space(5)]
         [SerializeField] protected float imperfectDeflectEnergyGain;
         [SerializeField, Range(0.01f,1f), Tooltip("% of the attack's damage")] protected float imperfectChipDamage;
-        
+
         [HideInInspector] public DeflectQuality deflectQuality = DeflectQuality.Miss;
 
         protected void Awake() {

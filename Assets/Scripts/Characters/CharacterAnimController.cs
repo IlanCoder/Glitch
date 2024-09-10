@@ -27,12 +27,23 @@ namespace Characters {
         
         readonly protected int FirstAttackAnimationHash = Animator.StringToHash("Combo_1");
         readonly protected int ContinueAttackChainTriggerHash = Animator.StringToHash("ContinueAttackChain");
+        
         readonly protected int DeflectHeldBoolHash = Animator.StringToHash("DeflectHeld");
+        readonly protected int DeflectHitTriggerHash = Animator.StringToHash("DeflectHit");
         #endregion
         
         protected virtual void Awake() {
             manager = GetComponent<CharacterManager>();
             animator = GetComponent<Animator>();
+        }
+        
+        protected void PlayTargetAnimation(int targetAnimation, bool cancellableAction,
+            bool lockMovement = true, bool lockRotation = true) {
+            manager.isPerformingAction = !cancellableAction;
+            animator.applyRootMotion = lockMovement;
+            animator.CrossFade(targetAnimation, 0.2f);
+            manager.movementLocked = lockMovement;
+            manager.rotationLocked = lockRotation;
         }
 
         public void SetGroundedBool(bool newVal) {
@@ -42,15 +53,6 @@ namespace Characters {
         public virtual void UpdateMovementParameters(float horizontal, float vertical) {
             animator.SetFloat(HorizontalInputFloatHash, horizontal,0.1f, Time.deltaTime);
             animator.SetFloat(VerticalInputFloatHash, vertical,0.1f, Time.deltaTime);
-        }
-
-        protected void PlayTargetAnimation(int targetAnimation, bool cancellableAction,
-            bool lockMovement = true, bool lockRotation = true) {
-            manager.isPerformingAction = !cancellableAction;
-            animator.applyRootMotion = lockMovement;
-            animator.CrossFade(targetAnimation, 0.2f);
-            manager.movementLocked = lockMovement;
-            manager.rotationLocked = lockRotation;
         }
 
         public void PlayDeathAnimation() {
@@ -80,6 +82,10 @@ namespace Characters {
 
         public void SetDeflectHeldBool(bool newVal) {
             animator.SetBool(DeflectHeldBoolHash, newVal);
+        }
+
+        public void TriggerDeflectHitAnimation() {
+            animator.SetTrigger(DeflectHitTriggerHash);
         }
     }
 }
