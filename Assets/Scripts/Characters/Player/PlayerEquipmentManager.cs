@@ -58,6 +58,7 @@ namespace Characters.Player {
         }
 
         public void ChangeActiveWeapon() {
+            if (_playerManager.isPerformingAction) return;
             if (!TryGetNextEquippedWeapon(out int index)) return;
             _playerManager.animController.PlayEquipAnimation();
             _nextWeaponIndex = index;
