@@ -16,9 +16,11 @@ namespace DataScriptables {
         public int MaxEnergy => maxEnergy;
 
         [Header("Combat Stats")]
+        [SerializeField, Min(0)] float energyPerSecond;
         [SerializeField] DamageStats damage;
         [SerializeField] CombatTeam team;
 
+        public float EnergyPerSecond => energyPerSecond;
         public DamageStats Damage => damage;
         public CombatTeam Team => team;
     }

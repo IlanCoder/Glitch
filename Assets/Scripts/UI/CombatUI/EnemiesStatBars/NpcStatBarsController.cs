@@ -11,6 +11,7 @@ namespace UI.CombatUI.EnemiesStatBars {
 
         [Header("Fade Out Settings")]
         [SerializeField] float fadeOutTime;
+        bool _fadingOut;
         
         public CharacterManager TiedCharacter { get; protected set; }
         CanvasGroup _canvasGroup;
@@ -23,7 +24,6 @@ namespace UI.CombatUI.EnemiesStatBars {
             if (TiedCharacter == newTarget) return;
             if (TiedCharacter) UnsubscribeToEvents();
             TiedCharacter = newTarget;
-            if (!newTarget) return;
             _canvasGroup.alpha = 1;
 
             SubscribeToEvents();
@@ -37,18 +37,23 @@ namespace UI.CombatUI.EnemiesStatBars {
         }
         
         public void FadeOut() {
-            _canvasGroup.DOFade(0, fadeOutTime).OnComplete(() => Untie());
+            if (_fadingOut) return;
+            _fadingOut = true;
+            _canvasGroup.DOFade(0, fadeOutTime).OnComplete(() => {
+                Untie();
+                _fadingOut = false;
+            });
         }
         
         void Untie() {
-            TieNewCharacter(null);
+            UnsubscribeToEvents();
+            TiedCharacter = null;
             gameObject.SetActive(false);
         }
 
         public virtual bool IsStillVisible() {
             if (!TiedCharacter) return false;
-            if (TiedCharacter.isDead) return false;
-            return true;
+            return !TiedCharacter.isDead;
         }
         
         void SubscribeToEvents() {

@@ -1,4 +1,5 @@
-﻿using DataScriptables;
+﻿using System.Threading;
+using DataScriptables;
 using UnityEngine;
 using WorldManager;
 
@@ -26,6 +27,10 @@ namespace Characters.NPC {
         override public void ReceiveDamage(int dmgReceived) {
             base.ReceiveDamage(dmgReceived);
             WorldCombatManager.Instance.onNpcHit?.Invoke(manager, dmgReceived);
+        }
+
+        public void GainAgroEnergy(float deltaTime) {
+            GainEnergy(stats.EnergyPerSecond * deltaTime);
         }
     }
 }

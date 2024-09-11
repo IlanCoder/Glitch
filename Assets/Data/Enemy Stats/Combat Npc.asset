@@ -15,6 +15,7 @@ MonoBehaviour:
   characterName: Combat Npc
   maxHp: 1000
   maxEnergy: 1000
+  energyPerSecond: 10
   damage:
     physicalDmg: 100
     photonDmg: 0
