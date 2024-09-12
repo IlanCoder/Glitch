@@ -28,4 +28,4 @@ MonoBehaviour:
   maxDistance: 2
   possibleChains:
   - {fileID: 11400000, guid: e51c6a636e3a31846b54fd6ba9004bfe, type: 2}
-  chainChance: 10
+  chainChance: 100
