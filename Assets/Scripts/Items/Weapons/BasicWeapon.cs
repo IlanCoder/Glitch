@@ -79,7 +79,7 @@ namespace Items.Weapons {
 
         public virtual void SetAttackDamage(CharacterAttack attack) {
             damage.SetDamageMultiplier(attack.MotionCostMultiplier);
-            damage.SetFilteredDamage(attack.AttackDamageTypes);
+            damage.DamageFilter = attack.AttackDamageTypes;
             damage.SetPoiseMultiplier(attack.PoiseDamageMultiplier);
         }
     }

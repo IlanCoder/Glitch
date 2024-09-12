@@ -1,5 +1,6 @@
 using System;
 using Characters.Player;
+using DataContainers;
 using DataScriptables;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,7 +33,11 @@ namespace Characters {
             onMaxHpChange.RemoveAllListeners();
         }
 
-        public virtual void ReceiveDamage(int dmgReceived) {
+        public void ResolveDamage(DamageStats damage, float finalModifier = 1) {
+            ReceiveDamage(Mathf.RoundToInt(CharacterStats.Armor.ResolveDamageReduction(damage) * finalModifier));
+        }
+        
+        protected virtual void ReceiveDamage(int dmgReceived) {
             CurrentHp -= dmgReceived;
             onHpChange?.Invoke(CurrentHp);
             if (CurrentHp > 0) return;
@@ -56,7 +61,7 @@ namespace Characters {
         }
 
         public bool CanWithstandPoiseInteraction(float poiseDmg) {
-            return poiseDmg < CharacterStats.Poise;
+            return poiseDmg < CharacterStats.Armor.Poise;
         }
     }
 }

@@ -15,8 +15,8 @@ MonoBehaviour:
   characterName: Dumy
   maxHp: 1000
   maxEnergy: 1
-  poise: 25
   energyPerSecond: 10
+  team: 1
   damage:
     physicalDmg: 100
     photonDmg: 0
@@ -24,4 +24,10 @@ MonoBehaviour:
     plasmaDmg: 0
     poiseDmg: 0
     postureDmg: 0
-  team: 1
+  armor:
+    physicalPctArmor: 0
+    photonPctArmor: 0
+    shockPctArmor: 0
+    plasmaPctArmor: 0
+    poiseArmor: 50
+    postureArmor: 0

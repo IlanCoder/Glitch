@@ -1,4 +1,5 @@
 ﻿using System;
+using DataContainers;
 using UnityEngine;
 
 namespace DataScriptables {
@@ -13,7 +14,7 @@ namespace DataScriptables {
         [Header("Basic Stats")]
         [SerializeField, Min(1)] protected int maxHp;
         [SerializeField, Min(1)] protected int maxEnergy;
-        [SerializeField, Min(1)] protected int poise;
+
         public int MaxHp {
             get { return maxHp; }
             set { maxHp = value; }
@@ -23,6 +24,6 @@ namespace DataScriptables {
             set { maxEnergy = value; }
         }
 
-        public int Poise => poise;
+        public virtual ArmorStats Armor => null;
     }
 }

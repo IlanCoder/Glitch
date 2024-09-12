@@ -33,7 +33,7 @@ namespace UI.CombatUI.EnemiesStatBars {
             healthBar.SetStat(newTarget.StatsController.CurrentHp, inCombat);
             
             energyBar.SetMaxStat(newTarget.StatsController.CharacterStats.MaxEnergy);
-            energyBar.SetStat(newTarget.StatsController.CurrentEnergy, inCombat);
+            energyBar.SetStat(newTarget.StatsController.CurrentEnergy, false);
         }
         
         public void FadeOut() {

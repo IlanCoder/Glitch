@@ -15,8 +15,8 @@ MonoBehaviour:
   characterName: Combat Npc
   maxHp: 1000
   maxEnergy: 1000
-  poise: 50
   energyPerSecond: 10
+  team: 1
   damage:
     physicalDmg: 100
     photonDmg: 0
@@ -24,4 +24,10 @@ MonoBehaviour:
     plasmaDmg: 0
     poiseDmg: 50
     postureDmg: 0
-  team: 1
+  armor:
+    physicalPctArmor: 50
+    photonPctArmor: 0
+    shockPctArmor: 0
+    plasmaPctArmor: 0
+    poiseArmor: 100
+    postureArmor: 0

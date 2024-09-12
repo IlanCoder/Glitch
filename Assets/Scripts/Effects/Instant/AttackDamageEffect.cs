@@ -26,7 +26,6 @@ namespace Effects.Instant {
         
         #region Damage
         DamageStats _damage;
-        float _totalDmg;
         #endregion
         
         #region Energy
@@ -75,26 +74,19 @@ namespace Effects.Instant {
 
         void ResolveImperfectDeflect(CharacterManager character, CharacterDeflectController deflectController) {
             deflectController.GainImperfectDeflectEnergy();
-            CalculateHealthDamage(character);
-            deflectController.CalculateChipDamage(_totalDmg);
+            deflectController.CalculateChipDamage(_damage);
             PlayDeflectSFx(character, DeflectQuality.Imperfect);
             character.AnimController.TriggerDeflectHitAnimation();
             CalculateEnergyGained(deflectEnergyModifier);
         }
 
         void ResolveFullAttack(CharacterManager character) {
-            CalculateHealthDamage(character);
-            character.StatsController.ReceiveDamage(Mathf.RoundToInt(_totalDmg));
+            character.StatsController.ResolveDamage(_damage);
             CalculateEnergyGained();
             PlayDamageSFx(character);
 
             PlayDamageVFx(character);
             PlayDamageAnimation(character);
-        }
-
-        void CalculateHealthDamage(CharacterManager character) {
-            _totalDmg = _damage.TotalFilteredDamage;
-            if (_totalDmg <= 0) _totalDmg = 1;
         }
 
         void CalculateEnergyGained(float deflectModifier = 1) {

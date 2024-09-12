@@ -13,9 +13,19 @@ MonoBehaviour:
   m_Name: Player Stats
   m_EditorClassIdentifier: 
   characterName: Player
-  maxHp: 1000
+  maxHp: 500
   maxEnergy: 100
-  poise: 100
-  maxStamina: 200
+  maxStamina: 100
   staminaRegen: 5
   staminaRegenDelay: 2
+  armor:
+    physicalPctArmor: 0
+    photonPctArmor: 0
+    shockPctArmor: 0
+    plasmaPctArmor: 0
+    poiseArmor: 0
+    postureArmor: 0
+    physicalArmor: 0
+    photonArmor: 0
+    shockArmor: 0
+    plasmaArmor: 0

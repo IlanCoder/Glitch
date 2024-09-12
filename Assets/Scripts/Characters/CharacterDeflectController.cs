@@ -1,4 +1,5 @@
 ﻿using System;
+using DataContainers;
 using Enums;
 using UnityEngine;
 
@@ -37,9 +38,8 @@ namespace Characters {
             _manager.StatsController.GainEnergy(imperfectDeflectEnergyGain);
         }
 
-        public void CalculateChipDamage(float totalDamage) {
-            int chipDamage = Mathf.RoundToInt(totalDamage * imperfectChipDamage);
-            _manager.StatsController.ReceiveDamage(chipDamage);
+        public void CalculateChipDamage(DamageStats damage) {
+            _manager.StatsController.ResolveDamage(damage, imperfectChipDamage);
         }
 
         #region Aniamtion Events

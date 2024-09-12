@@ -25,7 +25,7 @@ namespace Characters.NPC {
             base.Start();
         }
 
-        override public void ReceiveDamage(int dmgReceived) {
+        protected override void ReceiveDamage(int dmgReceived) {
             base.ReceiveDamage(dmgReceived);
             WorldCombatManager.Instance.onNpcHit?.Invoke(Manager, dmgReceived);
         }
