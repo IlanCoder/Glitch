@@ -16,7 +16,8 @@ MonoBehaviour:
     type: 3}
   swingAudioClip: {fileID: 8300000, guid: c5c7d599b490f08499688fac87b8f307, type: 3}
   attackType: 0
-  attackDmgTypeses: -1
+  attackDmgTypes: -1
   motionMultiplier: 1.1
   energyGainMultiplier: 1.1
+  poiseDamageMultiplier: 1
   staminaCostMultiplier: 1.1

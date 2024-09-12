@@ -114,6 +114,7 @@ namespace Effects.Instant {
         }
         
         void PlayDamageAnimation(CharacterManager character) {
+            if (character.StatsController.CanWithstandPoiseInteraction(_damage.TotalPoiseDamage)) return;
             character.AnimController.PlayStaggerAnimation(hitAngle);
         }
     }

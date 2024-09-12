@@ -26,10 +26,6 @@ namespace Items.Weapons {
         
         [Header("Damage")]
         public DamageStats damage;
-        
-        [Header("Poise & Posture")]
-        [SerializeField] protected float poiseDmg;
-        [SerializeField] protected float postureDmg;
 
         [Header("Stamina Cost")]
         [SerializeField] protected float baseStaminaCost;
@@ -84,6 +80,7 @@ namespace Items.Weapons {
         public virtual void SetAttackDamage(CharacterAttack attack) {
             damage.SetDamageMultiplier(attack.MotionCostMultiplier);
             damage.SetFilteredDamage(attack.AttackDamageTypes);
+            damage.SetPoiseMultiplier(attack.PoiseDamageMultiplier);
         }
     }
 }

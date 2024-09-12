@@ -918,6 +918,12 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8565147569743247457, guid: 752639fa95abbd2409c2234008a1899e,
+        type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 6a352c3dcda89fa48994528f20c84872,
+        type: 2}
     - target: {fileID: 8594633126213790330, guid: 752639fa95abbd2409c2234008a1899e,
         type: 3}
       propertyPath: rollIFramesTime

@@ -1,26 +1,25 @@
 using System;
 using Characters.Player;
+using DataScriptables;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Characters {
     public class CharacterStatsController : MonoBehaviour {
-        protected CharacterManager manager;
+        protected CharacterManager Manager;
 
-        public string characterName = "Character";
-        
+        public virtual CharacterStats CharacterStats => null;
+
         [HideInInspector] public UnityEvent<int> onHpChange;
         [HideInInspector] public UnityEvent<int> onMaxHpChange;
         [HideInInspector] public UnityEvent<float> onEnergyChange;
         [HideInInspector] public UnityEvent<int> onMaxEnergyChange;
         
-        public int MaxHp { get; protected set; }
         public int CurrentHp { get; protected set; }
-        public int MaxEnergy { get; protected set; }
         public float CurrentEnergy { get; protected set; }
 
         protected virtual void Awake() {
-            manager = GetComponent<CharacterManager>();
+            Manager = GetComponent<CharacterManager>();
         }
 
         protected virtual void Start() {
@@ -37,23 +36,27 @@ namespace Characters {
             CurrentHp -= dmgReceived;
             onHpChange?.Invoke(CurrentHp);
             if (CurrentHp > 0) return;
-            manager.HandleDeathEvent();
+            Manager.HandleDeathEvent();
         }
 
         public void GainEnergy(float energyGained) {
             CurrentEnergy += energyGained;
-            if (CurrentEnergy > MaxEnergy) CurrentEnergy = MaxEnergy;
+            if (CurrentEnergy > CharacterStats.MaxHp) CurrentEnergy = CharacterStats.MaxEnergy;
             onEnergyChange?.Invoke(CurrentEnergy);
         }
 
         protected void SetMaxHp(int newMaxHp) {
-            MaxHp = newMaxHp;
-            onMaxHpChange?.Invoke(MaxHp);
+            CharacterStats.MaxHp = newMaxHp;
+            onMaxHpChange?.Invoke(CharacterStats.MaxHp);
         }
 
         protected void SetMaxEnergy(int newMaxEnergy) {
-            MaxEnergy = newMaxEnergy;
-            onMaxEnergyChange?.Invoke(MaxEnergy);
+            CharacterStats.MaxEnergy = newMaxEnergy;
+            onMaxEnergyChange?.Invoke(CharacterStats.MaxEnergy);
+        }
+
+        public bool CanWithstandPoiseInteraction(float poiseDmg) {
+            return poiseDmg < CharacterStats.Poise;
         }
     }
 }

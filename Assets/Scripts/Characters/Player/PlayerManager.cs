@@ -65,31 +65,23 @@ namespace Characters.Player {
         
         #region Save & Load
         public void SavePlayerData(ref PlayerSaveData saveData) {
-            saveData.PlayerName = statsController.characterName;
+            saveData.PlayerName = statsController.PlayerStats.CharacterName;
             Vector3 position = transform.position;
             saveData.PlayerXPos = position.x;
             saveData.PlayerYPos = position.y;
             saveData.PlayerZPos = position.z;
-            SavePlayerAttributes(ref saveData);
+            saveData.MaxHp = statsController.PlayerStats.MaxHp;
+            saveData.MaxStamina = statsController.PlayerStats.MaxStamina;
+            saveData.MaxEnergy = statsController.PlayerStats.MaxEnergy;
             saveData.CurrentHp = statsController.CurrentHp;
             saveData.CurrentStamina = statsController.CurrentStamina;
             saveData.CurrentEnergy = statsController.CurrentEnergy;
         }
 
-        void SavePlayerAttributes(ref PlayerSaveData saveData) {
-            saveData.Vitality = statsController.Vitality;
-            saveData.Endurance = statsController.Endurance;
-            saveData.Dexterity = statsController.Dexterity;
-            saveData.Strength = statsController.Strength;
-            saveData.Cyber = statsController.Cyber;
-            saveData.Control = statsController.Control;
-        }
-
         public void LoadPlayerData(ref PlayerSaveData saveData) {
-            statsController.characterName = saveData.PlayerName;
+            statsController.PlayerStats.CharacterName = saveData.PlayerName;
             transform.position = new Vector3(saveData.PlayerXPos, saveData.PlayerYPos, saveData.PlayerZPos);
-            statsController.LoadCharacterAttributes(saveData.Vitality, saveData.Endurance, saveData.Dexterity,
-                saveData.Strength, saveData.Cyber, saveData.Control);
+            statsController.LoadCharacterStats(saveData.MaxHp, saveData.MaxStamina, saveData.MaxEnergy);
             statsController.LoadCurrentStats(saveData.CurrentHp, saveData.CurrentStamina, saveData.CurrentEnergy);
         }
         #endregion

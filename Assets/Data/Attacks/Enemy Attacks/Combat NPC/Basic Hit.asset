@@ -15,9 +15,10 @@ MonoBehaviour:
   attackAnimation: {fileID: 7400000, guid: 3b7933412fa63354aa86674312c76dfd, type: 3}
   swingAudioClip: {fileID: 8300000, guid: 92781b1abeeb1cc43bef57682fd53851, type: 3}
   attackType: 0
-  attackDmgTypeses: -1
+  attackDmgTypes: -1
   motionMultiplier: 1
   energyGainMultiplier: 1
+  poiseDamageMultiplier: 1
   downTime: 0.5
   attackWeight: 10
   listedRollWeight: 10

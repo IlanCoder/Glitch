@@ -21,13 +21,13 @@ namespace UI.HUD {
         }
 
         void SetStatBarsValues() {
-            healthBar.SetMaxStat(player.statsController.MaxHp);
+            healthBar.SetMaxStat(player.statsController.PlayerStats.MaxHp);
             healthBar.SetStat(player.statsController.CurrentHp, false);
 
-            energyBar.SetMaxStat(player.statsController.MaxEnergy);
+            energyBar.SetMaxStat(player.statsController.PlayerStats.MaxEnergy);
             energyBar.SetStat(player.statsController.CurrentEnergy, false);
             
-            staminaBar.SetMaxStat(player.statsController.MaxStamina);
+            staminaBar.SetMaxStat(player.statsController.PlayerStats.MaxStamina);
             staminaBar.SetStat(player.statsController.CurrentStamina, false);
         }
 

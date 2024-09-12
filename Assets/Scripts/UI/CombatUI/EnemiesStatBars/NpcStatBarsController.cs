@@ -28,11 +28,11 @@ namespace UI.CombatUI.EnemiesStatBars {
 
             SubscribeToEvents();
             
-            healthBar.SetMaxStat(newTarget.StatsController.MaxHp);
+            healthBar.SetMaxStat(newTarget.StatsController.CharacterStats.MaxHp);
             if (inCombat) healthBar.SetStat(newTarget.StatsController.CurrentHp + damageReceived, false);
             healthBar.SetStat(newTarget.StatsController.CurrentHp, inCombat);
             
-            energyBar.SetMaxStat(newTarget.StatsController.MaxEnergy);
+            energyBar.SetMaxStat(newTarget.StatsController.CharacterStats.MaxEnergy);
             energyBar.SetStat(newTarget.StatsController.CurrentEnergy, inCombat);
         }
         

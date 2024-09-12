@@ -1,6 +1,3 @@
-Enemy Agro Energy Overtime
-
-Poise
 Posture
 
 Armor

@@ -347,7 +347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9040899200732888972}
-  - component: {fileID: 8143574528980203058}
+  - component: {fileID: 4727838355694565116}
   - component: {fileID: 6317895910072317066}
   - component: {fileID: 2643354896979444842}
   - component: {fileID: 3156594473080368293}
@@ -385,7 +385,7 @@ Transform:
   - {fileID: 999824958448101400}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8143574528980203058
+--- !u!114 &4727838355694565116
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -394,10 +394,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1868617021434096131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f28755ccb0ce504d847de2e3f13ffdd, type: 3}
+  m_Script: {fileID: 11500000, guid: 369e713b5d6e406c851ab61b244c6187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Character
   onHpChange:
     m_PersistentCalls:
       m_Calls: []
@@ -410,7 +409,7 @@ MonoBehaviour:
   onMaxEnergyChange:
     m_PersistentCalls:
       m_Calls: []
-  maxHp: 1000
+  stats: {fileID: 11400000, guid: e1b1e283e6e62d84cba518791c11fb5a, type: 2}
 --- !u!114 &6317895910072317066
 MonoBehaviour:
   m_ObjectHideFlags: 0

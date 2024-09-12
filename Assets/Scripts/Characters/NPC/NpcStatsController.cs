@@ -7,12 +7,13 @@ namespace Characters.NPC {
     public class NpcStatsController : CharacterStatsController {
         [Header("Main Stats")]
         [SerializeField] protected NpcStats stats;
+        public override CharacterStats CharacterStats => stats;
         public NpcStats Stats => stats;
 
         protected override void Awake() {
+            stats = Instantiate(stats, transform);
             base.Awake();
-            characterName = stats.CharacterName;
-            
+
             SetMaxHp(stats.MaxHp);
             CurrentHp = stats.MaxHp;
 
@@ -20,13 +21,13 @@ namespace Characters.NPC {
         }
 
         protected override void Start() {
-            manager.CombatController.OverrideTeam(stats.Team);
+            Manager.CombatController.OverrideTeam(stats.Team);
             base.Start();
         }
 
         override public void ReceiveDamage(int dmgReceived) {
             base.ReceiveDamage(dmgReceived);
-            WorldCombatManager.Instance.onNpcHit?.Invoke(manager, dmgReceived);
+            WorldCombatManager.Instance.onNpcHit?.Invoke(Manager, dmgReceived);
         }
 
         public void GainAgroEnergy(float deltaTime) {

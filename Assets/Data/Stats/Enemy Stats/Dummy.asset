@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3792c96202cd4b51b9239e32cfb42d00, type: 3}
-  m_Name: Combat Npc
+  m_Name: Dummy
   m_EditorClassIdentifier: 
-  characterName: Combat Npc
+  characterName: Dumy
   maxHp: 1000
-  maxEnergy: 1000
+  maxEnergy: 1
+  poise: 25
   energyPerSecond: 10
   damage:
     physicalDmg: 100
     photonDmg: 0
     shockDmg: 0
     plasmaDmg: 0
+    poiseDmg: 0
+    postureDmg: 0
   team: 1

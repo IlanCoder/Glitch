@@ -11,13 +11,10 @@ namespace SaveSystem {
         public float PlayerZPos;
   #endregion
 
-        #region Player Attributes
-        public int Vitality;
-        public int Endurance;
-        public int Dexterity;
-        public int Strength;
-        public int Cyber;
-        public int Control;
+        #region Player Max Stats
+        public int MaxHp;
+        public int MaxStamina;
+        public int MaxEnergy;
 #endregion
         
         #region Player Stats
