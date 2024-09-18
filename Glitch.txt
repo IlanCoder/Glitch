@@ -1,2 +1,16 @@
-Posture
+Posture Dmg on Deflect
+Posture Break Anim
+Posture Break Critical Attack Anim
 
+Out of Combat Energy depletion
+In Combat Energy Depeletion
+Supercharge activation
+Supercharge Mode Energy Depletion 
+Supercharge Skill
+Supercharge Deflect Interaction
+
+NPC Deflect
+NPC Supercharge
+
+
+Override Idle,Deflect,etc anim on weapon change

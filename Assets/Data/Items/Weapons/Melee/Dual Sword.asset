@@ -31,7 +31,7 @@ MonoBehaviour:
     shockDmg: 0
     plasmaDmg: 0
     poiseDmg: 10
-    postureDmg: 0
+    postureDmg: 10
   baseStaminaCost: 15
   baseAttackEnergyGain: 10
   combos:

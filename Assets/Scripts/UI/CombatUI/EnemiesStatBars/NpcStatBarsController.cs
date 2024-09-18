@@ -57,18 +57,18 @@ namespace UI.CombatUI.EnemiesStatBars {
         }
         
         void SubscribeToEvents() {
-            TiedCharacter.StatsController.onMaxHpChange.AddListener(SetNewMaxHpValue);
+            TiedCharacter.StatsController.CharacterStats.onMaxHpChange.AddListener(SetNewMaxHpValue);
             TiedCharacter.StatsController.onHpChange.AddListener(SetNewHpValue);
             
-            TiedCharacter.StatsController.onMaxEnergyChange.AddListener(SetNewMaxEnergyValue);
+            TiedCharacter.StatsController.CharacterStats.onMaxEnergyChange.AddListener(SetNewMaxEnergyValue);
             TiedCharacter.StatsController.onEnergyChange.AddListener(SetNewEnergyValue);
         }
 
         void UnsubscribeToEvents() {
-            TiedCharacter.StatsController.onMaxHpChange.RemoveListener(SetNewMaxHpValue);
+            TiedCharacter.StatsController.CharacterStats.onMaxHpChange.RemoveListener(SetNewMaxHpValue);
             TiedCharacter.StatsController.onHpChange.RemoveListener(SetNewHpValue);
             
-            TiedCharacter.StatsController.onMaxEnergyChange.RemoveListener(SetNewMaxEnergyValue);
+            TiedCharacter.StatsController.CharacterStats.onMaxEnergyChange.RemoveListener(SetNewMaxEnergyValue);
             TiedCharacter.StatsController.onEnergyChange.RemoveListener(SetNewEnergyValue);
         }
         

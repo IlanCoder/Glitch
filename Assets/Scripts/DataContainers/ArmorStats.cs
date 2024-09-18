@@ -1,7 +1,6 @@
 ﻿using System;
 using Enums;
 using UnityEngine;
-using UnityEngine.Rendering.HighDefinition;
 
 namespace DataContainers {
     [Serializable]
@@ -11,14 +10,6 @@ namespace DataContainers {
         [SerializeField, Range(0, 100)] float photonPctArmor;
         [SerializeField, Range(0, 100)] float shockPctArmor;
         [SerializeField, Range(0, 100)] float plasmaPctArmor;
-
-        [Header("Misc Armor")]
-        [SerializeField] float poiseArmor;
-        [SerializeField] float postureArmor;
-        
-        #region Stats Getters
-        public float Poise => poiseArmor;
-        #endregion
 
         public float ResolveDamageReduction(DamageStats damage) {
             DamageTypes filter = damage.DamageFilter;

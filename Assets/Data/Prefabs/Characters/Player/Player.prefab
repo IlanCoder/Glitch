@@ -2462,7 +2462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a1a6f1d9a76fa41996a5f39c5fc73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Character
   onHpChange:
     m_PersistentCalls:
       m_Calls: []
@@ -2475,15 +2474,7 @@ MonoBehaviour:
   onMaxEnergyChange:
     m_PersistentCalls:
       m_Calls: []
-  playerAttributes:
-    vitality: 15
-    endurance: 10
-    dexterity: 10
-    strength: 10
-    cyber: 10
-    control: 10
-  staminaRegen: 5
-  staminaRegenDelay: 3
+  playerStats: {fileID: 0}
   onStaminaChange:
     m_PersistentCalls:
       m_Calls:
@@ -2554,6 +2545,9 @@ MonoBehaviour:
   onPlayerDeath:
     m_PersistentCalls:
       m_Calls: []
+  onPlayerRevive:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6230370529941219925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2578,7 +2572,7 @@ MonoBehaviour:
   onAttackFinished:
     m_PersistentCalls:
       m_Calls: []
-  rollIFramesTime: 0
+  rollIFramesTime: 1
   onLockOnTargetChange:
     m_PersistentCalls:
       m_Calls: []

@@ -12,7 +12,6 @@ namespace Characters.Player {
         float _lastStaminaActionTime;
         
         [HideInInspector] public UnityEvent<float> onStaminaChange;
-        [HideInInspector] public UnityEvent<int> onMaxStaminaChange;
         [HideInInspector] public UnityEvent onStaminaDepletion;
         
         public float CurrentStamina { get; protected set; }
@@ -21,22 +20,16 @@ namespace Characters.Player {
             SetNewLevel();
         }
         
-        void Update() {
+        protected override void Update() {
             RegenStamina();
+            base.Update();
         }
 
         protected override void OnDestroy() {
             base.OnDestroy();
             onStaminaChange.RemoveAllListeners();
-            onMaxStaminaChange.RemoveAllListeners();
         }
-
-        void SetStats() {
-            SetMaxStamina(playerStats.MaxStamina);
-            SetMaxHp(playerStats.MaxHp);
-            SetMaxEnergy(playerStats.MaxEnergy);
-        }
-
+        
         public void RevivePlayer() {
             CurrentHp = playerStats.MaxHp;
             onHpChange?.Invoke(CurrentHp);
@@ -48,7 +41,6 @@ namespace Characters.Player {
 
         public void LoadCharacterStats(int hp, int stamina, int energy) {
             playerStats.LoadStats(hp, stamina, energy);
-            SetStats();
         }
 
         public void LoadCurrentStats(int hp, float stamina, float energy) {
@@ -94,17 +86,10 @@ namespace Characters.Player {
         public bool HasStamina() {
             return CurrentStamina > 0;
         }
-
-        protected void SetMaxStamina(int newMaxStamina) {
-            playerStats.MaxStamina = newMaxStamina;
-            onMaxStaminaChange?.Invoke(playerStats.MaxStamina);
-        }
-
         #region Editor Funcs
 #if UNITY_EDITOR
         [ContextMenu("Set New Level")]
         void SetNewLevel() {
-            SetStats();
             LoadCurrentStats(playerStats.MaxHp, playerStats.MaxStamina, CurrentEnergy);
         }
 #endif

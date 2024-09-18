@@ -81,6 +81,7 @@ namespace Items.Weapons {
             damage.SetDamageMultiplier(attack.MotionCostMultiplier);
             damage.DamageFilter = attack.AttackDamageTypes;
             damage.SetPoiseMultiplier(attack.PoiseDamageMultiplier);
+            damage.SetPostureMultiplier(attack.PostureDamageMultiplier);
         }
     }
 }

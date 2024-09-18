@@ -6,18 +6,19 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace Characters {
-    public class CharacterStatsController : MonoBehaviour {
+    public abstract class CharacterStatsController : MonoBehaviour {
         protected CharacterManager Manager;
 
         public virtual CharacterStats CharacterStats => null;
 
         [HideInInspector] public UnityEvent<int> onHpChange;
-        [HideInInspector] public UnityEvent<int> onMaxHpChange;
         [HideInInspector] public UnityEvent<float> onEnergyChange;
-        [HideInInspector] public UnityEvent<int> onMaxEnergyChange;
-        
+
         public int CurrentHp { get; protected set; }
         public float CurrentEnergy { get; protected set; }
+        public float CurrentPosture { get; protected set; }
+
+        protected float LastPostureDamageTime;
 
         protected virtual void Awake() {
             Manager = GetComponent<CharacterManager>();
@@ -28,13 +29,22 @@ namespace Characters {
             onEnergyChange?.Invoke(CurrentEnergy);
         }
 
-        protected virtual void OnDestroy() {
-            onHpChange.RemoveAllListeners();
-            onMaxHpChange.RemoveAllListeners();
+        protected virtual void Update() {
+            RegenPosture();
         }
 
+        protected virtual void OnDestroy() {
+            onHpChange.RemoveAllListeners();
+        }
+
+        public void ReceivePostureDamage(float damage) {
+            CurrentPosture -= damage;
+            LastPostureDamageTime = Time.time;
+        }
+        
         public void ResolveDamage(DamageStats damage, float finalModifier = 1) {
             ReceiveDamage(Mathf.RoundToInt(CharacterStats.Armor.ResolveDamageReduction(damage) * finalModifier));
+            ReceivePostureDamage(damage.TotalPostureDamage);
         }
         
         protected virtual void ReceiveDamage(int dmgReceived) {
@@ -50,18 +60,17 @@ namespace Characters {
             onEnergyChange?.Invoke(CurrentEnergy);
         }
 
-        protected void SetMaxHp(int newMaxHp) {
-            CharacterStats.MaxHp = newMaxHp;
-            onMaxHpChange?.Invoke(CharacterStats.MaxHp);
-        }
-
-        protected void SetMaxEnergy(int newMaxEnergy) {
-            CharacterStats.MaxEnergy = newMaxEnergy;
-            onMaxEnergyChange?.Invoke(CharacterStats.MaxEnergy);
-        }
-
         public bool CanWithstandPoiseInteraction(float poiseDmg) {
-            return poiseDmg < CharacterStats.Armor.Poise;
+            return poiseDmg < CharacterStats.Poise;
+        }
+        
+        void RegenPosture() {
+            if (Manager.isPerformingAction) return;
+            if (Manager.isSprinting) return;
+            if (CurrentPosture >= CharacterStats.Posture) return;
+            if (Time.time - LastPostureDamageTime <= CharacterStats.PostureRegenDelay) return;
+            CurrentPosture += CharacterStats.PostureRegen * Time.deltaTime;
+            if (CurrentPosture > CharacterStats.Posture) CurrentPosture = CharacterStats.Posture;
         }
     }
 }

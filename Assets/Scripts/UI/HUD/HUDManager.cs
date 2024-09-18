@@ -32,13 +32,13 @@ namespace UI.HUD {
         }
 
         void SetStatBarsListeners() {
-            player.StatsController.onMaxHpChange.AddListener(SetNewMaxHpValue);
+            player.StatsController.CharacterStats.onMaxHpChange.AddListener(SetNewMaxHpValue);
             player.StatsController.onHpChange.AddListener(SetNewHpValue);
             
-            player.StatsController.onMaxEnergyChange.AddListener(SetNewMaxEnergyValue);
+            player.StatsController.CharacterStats.onMaxEnergyChange.AddListener(SetNewMaxEnergyValue);
             player.StatsController.onEnergyChange.AddListener(SetNewEnergyValue);
             
-            player.statsController.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
+            player.statsController.PlayerStats.onMaxStaminaChange.AddListener(SetNewMaxStaminaValue);
             player.statsController.onStaminaChange.AddListener(SetNewStaminaValue);
         }
 

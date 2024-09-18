@@ -16,6 +16,7 @@ namespace Attacks {
         [SerializeField, Min(0.1f)] protected float motionMultiplier;
         [SerializeField, Min(0.1f)] protected float energyGainMultiplier;
         [SerializeField, Min(0.1f)] protected float poiseDamageMultiplier;
+        [SerializeField, Min(0.1f)] protected float postureDamageMultiplier;
 
         public AnimationClip AttackAnimation => attackAnimation;
         public AudioClip SwingAudioClip => swingAudioClip;
@@ -24,5 +25,6 @@ namespace Attacks {
         public float EnergyGainMultiplier => energyGainMultiplier;
         public float MotionCostMultiplier => motionMultiplier;
         public float PoiseDamageMultiplier => poiseDamageMultiplier;
+        public float PostureDamageMultiplier => postureDamageMultiplier;
     }
 }

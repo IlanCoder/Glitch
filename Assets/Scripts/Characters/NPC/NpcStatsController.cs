@@ -12,12 +12,9 @@ namespace Characters.NPC {
 
         protected override void Awake() {
             stats = Instantiate(stats, transform);
-            base.Awake();
-
-            SetMaxHp(stats.MaxHp);
             CurrentHp = stats.MaxHp;
-
-            SetMaxEnergy(stats.MaxEnergy);
+            CurrentPosture = stats.Posture;
+            base.Awake();
         }
 
         protected override void Start() {

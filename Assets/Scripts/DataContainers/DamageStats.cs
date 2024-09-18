@@ -18,6 +18,7 @@ namespace DataContainers {
         
         float _totalBaseDamage = 1;
         float _poiseMultiplier = 1;
+        float _postureMultiplier = 1;
 
         #region Stats Getters
         public float Physical => physicalDmg;
@@ -30,6 +31,7 @@ namespace DataContainers {
         }
         public float Multiplier { get; private set; } = 1;
         public float TotalPoiseDamage => poiseDmg * _poiseMultiplier;
+        public float TotalPostureDamage => postureDmg * _postureMultiplier;
         #endregion
         
         public void Initialize() {
@@ -46,6 +48,10 @@ namespace DataContainers {
 
         public void SetPoiseMultiplier(float poiseMultiplier) {
             _poiseMultiplier = poiseMultiplier;
+        }
+
+        public void SetPostureMultiplier(float postureMultiplier) {
+            _postureMultiplier = postureMultiplier;
         }
     }
 }

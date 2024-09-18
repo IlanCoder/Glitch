@@ -15,6 +15,8 @@ MonoBehaviour:
   characterName: Player
   maxHp: 500
   maxEnergy: 100
+  poise: 60
+  posture: 10
   maxStamina: 100
   staminaRegen: 5
   staminaRegenDelay: 2
@@ -23,8 +25,6 @@ MonoBehaviour:
     photonPctArmor: 0
     shockPctArmor: 0
     plasmaPctArmor: 0
-    poiseArmor: 0
-    postureArmor: 0
     physicalArmor: 0
     photonArmor: 0
     shockArmor: 0
