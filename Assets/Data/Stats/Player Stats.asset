@@ -17,6 +17,14 @@ MonoBehaviour:
   maxEnergy: 100
   poise: 60
   posture: 10
+  postureRegen: 2
+  postureRegenDelay: 2
+  onMaxHpChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onMaxEnergyChange:
+    m_PersistentCalls:
+      m_Calls: []
   maxStamina: 100
   staminaRegen: 5
   staminaRegenDelay: 2
@@ -29,3 +37,6 @@ MonoBehaviour:
     photonArmor: 0
     shockArmor: 0
     plasmaArmor: 0
+  onMaxStaminaChange:
+    m_PersistentCalls:
+      m_Calls: []

@@ -17,6 +17,14 @@ MonoBehaviour:
   maxEnergy: 1000
   poise: 100
   posture: 25
+  postureRegen: 2
+  postureRegenDelay: 2
+  onMaxHpChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onMaxEnergyChange:
+    m_PersistentCalls:
+      m_Calls: []
   energyPerSecond: 10
   team: 1
   damage:

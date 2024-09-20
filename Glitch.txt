@@ -12,5 +12,4 @@ Supercharge Deflect Interaction
 NPC Deflect
 NPC Supercharge
 
-
 Override Idle,Deflect,etc anim on weapon change

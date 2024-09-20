@@ -8,7 +8,6 @@ namespace DataScriptables {
     public abstract class CharacterStats : ScriptableObject {
         [Header("Name")]
         [SerializeField] protected string characterName;
-        
 
         [Header("Basic Stats")]
         [SerializeField, Min(1)] protected int maxHp;

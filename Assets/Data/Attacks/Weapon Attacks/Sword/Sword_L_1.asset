@@ -20,4 +20,5 @@ MonoBehaviour:
   motionMultiplier: 1
   energyGainMultiplier: 1
   poiseDamageMultiplier: 1
+  postureDamageMultiplier: 1
   staminaCostMultiplier: 1
