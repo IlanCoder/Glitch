@@ -44,7 +44,6 @@ namespace Characters {
         
         public void ResolveDamage(DamageStats damage, float finalModifier = 1) {
             ReceiveDamage(Mathf.RoundToInt(CharacterStats.Armor.ResolveDamageReduction(damage) * finalModifier));
-            ReceivePostureDamage(damage.TotalPostureDamage);
         }
         
         protected virtual void ReceiveDamage(int dmgReceived) {

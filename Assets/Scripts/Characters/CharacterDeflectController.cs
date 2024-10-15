@@ -30,16 +30,32 @@ namespace Characters {
             _manager.AnimController.SetDeflectHeldBool(true);
         }
 
-        public void GainPerfectDeflectEnergy() {
-            _manager.StatsController.GainEnergy(perfectDeflectEnergyGain);
-        }
-        
-        public void GainImperfectDeflectEnergy() {
-            _manager.StatsController.GainEnergy(imperfectDeflectEnergyGain);
+        public void ResolveImperfectDeflect(DamageStats damage) {
+            GainImperfectDeflectEnergy();
+            CalculateChipDamage(damage);
+            _manager.AnimController.TriggerDeflectHitAnimation();
+            PlayDeflectSFx(DeflectQuality.Imperfect);
         }
 
-        public void CalculateChipDamage(DamageStats damage) {
+        public void ResolvePerfectDeflect(CharacterManager deflectedCharacter) {
+            GainPerfectDeflectEnergy();
+            PlayDeflectSFx(DeflectQuality.Perfect);
+        }
+        
+        void GainImperfectDeflectEnergy() {
+            _manager.StatsController.GainEnergy(imperfectDeflectEnergyGain);
+        }
+        
+        void CalculateChipDamage(DamageStats damage) {
             _manager.StatsController.ResolveDamage(damage, imperfectChipDamage);
+        }
+        
+        void PlayDeflectSFx(DeflectQuality deflectQuality) {
+            _manager.SFxController.PlayDeflectSFx(deflectQuality);
+        }
+        
+        void GainPerfectDeflectEnergy() {
+            _manager.StatsController.GainEnergy(perfectDeflectEnergyGain);
         }
 
         #region Aniamtion Events

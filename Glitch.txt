@@ -1,4 +1,4 @@
-Posture Dmg on Deflect
+Posture Dmg on Deflect (based on attack posture dmg or on delfecter???)
 Posture Break Anim
 Posture Break Critical Attack Anim
 

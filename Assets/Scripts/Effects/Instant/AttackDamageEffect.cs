@@ -55,11 +55,11 @@ namespace Effects.Instant {
                     switch (deflectController.deflectQuality) {
                         case DeflectQuality.Miss: break;
                         case DeflectQuality.Imperfect:
-                            ResolveImperfectDeflect(character, deflectController);
+                            deflectController.ResolveImperfectDeflect(_damage);
                             return;
                         case DeflectQuality.Perfect:
-                            deflectController.GainPerfectDeflectEnergy();
-                            PlayDeflectSFx(character, DeflectQuality.Perfect);
+                            deflectController.ResolvePerfectDeflect();
+                            CalculateEnergyGained(deflectEnergyModifier);
                             return;
                         default: throw new ArgumentOutOfRangeException();
                     }
@@ -72,16 +72,10 @@ namespace Effects.Instant {
             ResolveFullAttack(character);
         }
 
-        void ResolveImperfectDeflect(CharacterManager character, CharacterDeflectController deflectController) {
-            deflectController.GainImperfectDeflectEnergy();
-            deflectController.CalculateChipDamage(_damage);
-            PlayDeflectSFx(character, DeflectQuality.Imperfect);
-            character.AnimController.TriggerDeflectHitAnimation();
-            CalculateEnergyGained(deflectEnergyModifier);
-        }
-
         void ResolveFullAttack(CharacterManager character) {
             character.StatsController.ResolveDamage(_damage);
+            character.StatsController.ReceivePostureDamage(_damage.TotalPostureDamage);
+            
             CalculateEnergyGained();
             PlayDamageSFx(character);
 
@@ -100,11 +94,7 @@ namespace Effects.Instant {
         void PlayDamageSFx(CharacterManager character) {
             character.SFxController.PlayDamageSFx();
         }
-        
-        void PlayDeflectSFx(CharacterManager character, DeflectQuality deflectQuality) {
-            character.SFxController.PlayDeflectSFx(deflectQuality);
-        }
-        
+
         void PlayDamageAnimation(CharacterManager character) {
             if (character.StatsController.CanWithstandPoiseInteraction(_damage.TotalPoiseDamage)) return;
             character.AnimController.PlayStaggerAnimation(hitAngle);
