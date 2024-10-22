@@ -58,7 +58,7 @@ namespace Effects.Instant {
                             deflectController.ResolveImperfectDeflect(_damage);
                             return;
                         case DeflectQuality.Perfect:
-                            deflectController.ResolvePerfectDeflect();
+                            deflectController.ResolvePerfectDeflect(characterCausingDamage, _damage);
                             CalculateEnergyGained(deflectEnergyModifier);
                             return;
                         default: throw new ArgumentOutOfRangeException();

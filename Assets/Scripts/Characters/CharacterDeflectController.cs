@@ -37,9 +37,12 @@ namespace Characters {
             PlayDeflectSFx(DeflectQuality.Imperfect);
         }
 
-        public void ResolvePerfectDeflect(CharacterManager deflectedCharacter) {
+        public void ResolvePerfectDeflect(CharacterManager deflectedCharacter, DamageStats stats) {
             GainPerfectDeflectEnergy();
             PlayDeflectSFx(DeflectQuality.Perfect);
+            float postureDamage = _manager.StatsController.CharacterStats.PerfectDeflectPostureDamage *
+                                  stats.TotalPostureDamage;
+            deflectedCharacter.StatsController.ReceivePostureDamage(postureDamage);
         }
         
         void GainImperfectDeflectEnergy() {

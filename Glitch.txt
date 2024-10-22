@@ -2,6 +2,9 @@ Posture Dmg on Deflect (based on attack posture dmg or on delfecter???)
 Posture Break Anim
 Posture Break Critical Attack Anim
 
+Deflect stamina cost
+Deflect stamina regain
+
 Out of Combat Energy depletion
 In Combat Energy Depeletion
 Supercharge activation
