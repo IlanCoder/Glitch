@@ -1,16 +1,18 @@
-Posture Dmg on Deflect (based on attack posture dmg or on delfecter???)
 Posture Break Anim
-Posture Break Critical Attack Anim
+Posture Break Supercharge Damage
+Posture Break Instance Damage
 
 Deflect stamina cost
 Deflect stamina regain
 
-Out of Combat Energy depletion
+Out of Combat Energy Depletion
 In Combat Energy Depeletion
-Supercharge activation
+Supercharge Activation
 Supercharge Mode Energy Depletion 
+Supercharge Mode Cancel on Posture Break
 Supercharge Skill
-Supercharge Deflect Interaction
+Supercharge Attack Imperfect Deflect
+Supercharge Skill Not Deflectable
 
 NPC Deflect
 NPC Supercharge
